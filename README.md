@@ -2,7 +2,7 @@
 
 LLM macro-regime classification as a constrained input to Black-Litterman allocation, with a contamination audit.
 
-**Status:** Phase 1 done — point-in-time data layer (`data/`, see `data/README.md`). Next: Phase 2, context pack + baselines.
+**Status:** Phase 2 — context pack + baselines (`scripts/run_baselines.py`, `notebooks/nb01_data_and_baselines.ipynb`). Next: Phase 3, LLM plumbing.
 
 ## Setup
 ```bash

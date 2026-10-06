@@ -1,0 +1,102 @@
+# Phase 2 configuration: context pack, regimes, baselines, backtest.
+# Playbook and reference weights are set ex ante on economic grounds and frozen
+# before any backtest is run. Do not tune them on results.
+
+regimes = ["Goldilocks", "Reflation", "Stagflation", "Risk_Off"]
+
+[calendar]
+first_decision = "2007-12-31"      # first holding month = 2008-01
+feature_start = "2002-12-31"       # earliest decision row in the ML feature matrix
+
+# Role names used in the context pack instead of tickers.
+[context.roles]
+SPY = "us_equity"
+EFA = "dev_ex_us_equity"
+EEM = "em_equity"
+IEF = "ust_7_10y"
+TLT = "ust_20y_plus"
+LQD = "ig_credit"
+GLD = "gold"
+
+[context.macro]
+# indicator name = [FRED series, transform]; transforms: level | yoy | ma3 | diff_ma3
+growth_indpro_yoy = ["INDPRO", "yoy"]
+growth_cfnai_ma3  = ["CFNAI", "ma3"]
+labour_unrate     = ["UNRATE", "level"]
+labour_payems_3m  = ["PAYEMS", "diff_ma3"]
+infl_cpi_yoy      = ["CPIAUCSL", "yoy"]
+infl_core_yoy     = ["CPILFESL", "yoy"]
+policy_ffr        = ["DFF", "level"]
+rates_2y          = ["DGS2", "level"]
+rates_10y         = ["DGS10", "level"]
+curve_10y2y       = ["T10Y2Y", "level"]
+risk_vix          = ["VIXCLS", "level"]
+credit_baa10y     = ["BAA10Y", "level"]
+usd_broad_yoy     = ["DTWEXBGS", "yoy"]
+
+[rules]
+# Growth x inflation quadrant ("investment clock" style). Trend = change in the
+# 3-month average of the YoY rate over `trend_months`.
+growth = "growth_indpro_yoy"
+inflation = "infl_cpi_yoy"
+trend_months = 6
+forward_months = 3                 # label horizon for the ML target / H1 scoring
+
+[ml]
+min_train = 36
+logit_C = 0.1
+gbt = { max_depth = 2, learning_rate = 0.05, max_iter = 100 }
+
+# Playbook: one fixed portfolio per regime (investable lean-8).
+[playbook.Goldilocks]
+SPY = 0.40
+EEM = 0.15
+HYG = 0.15
+IEF = 0.15
+TIP = 0.05
+DBC = 0.00
+GLD = 0.05
+BIL = 0.05
+
+[playbook.Reflation]
+SPY = 0.30
+EEM = 0.15
+HYG = 0.10
+IEF = 0.05
+TIP = 0.15
+DBC = 0.15
+GLD = 0.05
+BIL = 0.05
+
+[playbook.Stagflation]
+SPY = 0.10
+EEM = 0.00
+HYG = 0.05
+IEF = 0.15
+TIP = 0.25
+DBC = 0.15
+GLD = 0.20
+BIL = 0.10
+
+[playbook.Risk_Off]
+SPY = 0.10
+EEM = 0.00
+HYG = 0.00
+IEF = 0.45
+TIP = 0.10
+DBC = 0.00
+GLD = 0.20
+BIL = 0.15
+
+[bl]
+delta = 2.5
+tau = 0.05
+cov_lookback = 252
+cov_min_obs = 120
+momentum_lookback = 252
+# Strategic reference portfolio (equilibrium prior).
+reference = { SPY = 0.35, EEM = 0.10, IEF = 0.25, TIP = 0.05, HYG = 0.10, DBC = 0.05, GLD = 0.05, BIL = 0.05 }
+
+[backtest]
+cost_bps = 2.5
+cost_sensitivity_bps = [0.0, 2.5, 5.0, 10.0]
