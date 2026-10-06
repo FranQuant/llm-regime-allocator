@@ -52,6 +52,14 @@ def test_returns_nan_before_inception():
     assert r["A"].iloc[3] == pytest.approx(0.1)
 
 
+def test_flat_archive_layout(tmp_path):
+    cfg = {"panel": {"tickers": ["SPY"], "calendar_ticker": "SPY", "start": "2020-01-01",
+                     "max_ffill_days": 5, "sentinel_price": 999999.0}}
+    _write(tmp_path / "data/eodhd_csv/20260612/eod/SPY_US_eod_daily.csv", CAL, np.arange(20.0) + 1)
+    panel, _ = build_panel(tmp_path, cfg)
+    assert len(panel) == 20
+
+
 def _write(path, dates, adj):
     path.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"date": dates.strftime("%Y-%m-%d"), "open": adj, "close": adj,
@@ -65,9 +73,10 @@ def test_build_panel_reads_archive_layout_and_rejects_conflicting_copies(tmp_pat
     _write(tmp_path / f"data/etf_core/eodhd_csv/{run}/eod/SPY_US_eod_daily.csv", CAL, np.arange(20.0) + 1)
     _write(tmp_path / f"data/etf_core/eodhd_csv/{run}/eod/GLD_US_eod_daily.csv", CAL, np.ones(20))
     _write(tmp_path / f"data/cross/eodhd_csv/{run}/eod/GLD_US_eod_daily.csv", CAL, np.ones(20))
+    _write(tmp_path / f"data/eodhd_csv/{run}/eod/GLD_US_eod_daily.csv", CAL, np.ones(20))  # flat layout
     panel, rep = build_panel(tmp_path, cfg)
     assert list(panel.columns) == ["SPY", "GLD"]
-    assert len(rep.source_files["GLD"]) == 2
+    assert len(rep.source_files["GLD"]) == 3
 
     _write(tmp_path / f"data/cross/eodhd_csv/{run}/eod/GLD_US_eod_daily.csv", CAL, np.ones(20) * 2)
     with pytest.raises(ValueError, match="disagree"):

@@ -1,7 +1,8 @@
 """Build a clean adjusted-close panel from the local EODHD archive.
 
 Archive layout (snapshot audit 2026-06-12):
-    <archive>/data/<dataset>/eodhd_csv/<YYYYMMDD>/eod/<TICKER>_US_eod_daily.csv
+    <archive>/data/[<dataset>/]eodhd_csv/<YYYYMMDD>/eod/<TICKER>_US_eod_daily.csv
+(the dataset level is optional — some symbols sit directly under data/eodhd_csv)
 with columns ``date, open, high, low, close, adjusted_close, volume`` (plus metadata).
 A symbol can appear in several datasets; copies must agree or the build fails.
 """
@@ -29,7 +30,7 @@ class PanelReport:
 
 def find_ticker_files(archive_dir: Path, ticker: str) -> list[Path]:
     """All archive CSVs for a ticker, latest run date only."""
-    pattern = f"data/*/eodhd_csv/*/eod/{ticker}_US_eod_daily.csv"
+    pattern = f"data/**/eodhd_csv/*/eod/{ticker}_US_eod_daily.csv"  # ** = zero or more dirs
     files = sorted(Path(archive_dir).glob(pattern))
     if not files:
         near = sorted(str(p.relative_to(archive_dir)) for p in Path(archive_dir).glob(f"**/{ticker}[._]*"))[:10]
