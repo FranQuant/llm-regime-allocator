@@ -25,3 +25,13 @@ def test_block_bootstrap_ci_brackets_mean():
     d = pd.Series(np.random.default_rng(1).normal(0.1, 0.05, 120))
     lo, hi = block_bootstrap_ci(d)
     assert lo < d.mean() < hi
+
+
+def test_sharpe_diff_ci_identical_series_is_zero():
+    from lra.evaluation import sharpe_diff_ci
+    x = pd.Series(np.random.default_rng(2).normal(0.005, 0.03, 200))
+    d, lo, hi = sharpe_diff_ci(x, x, n_boot=200)
+    assert d == 0 and lo == 0 and hi == 0
+    better = x + 0.01
+    d, lo, hi = sharpe_diff_ci(better, x, n_boot=500)
+    assert d > 0 and lo > 0
