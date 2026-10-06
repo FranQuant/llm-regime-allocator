@@ -2,6 +2,8 @@
 
 - ml_logit_blinded / ml_gbt_blinded: walk-forward ML on the blinded feature matrix
   (exactly what the blinded prompt shows).
+- *_nocfnai: the same without CFNAI features (CFNAI uses revised values before its first ALFRED
+  vintage, 2011-05 — a robustness check for that known point-in-time gap).
 - climatology: point-in-time frequency of the forward labels published by D
   (Laplace-smoothed) - the honest "no-skill" forecaster, better than 25% each.
 
@@ -43,6 +45,10 @@ def main() -> None:
         walk_forward_probs(store, blind, dates, cfg, "logit").add_prefix("logit_blinded_"),
         walk_forward_probs(store, blind, dates, cfg, "gbt").add_prefix("gbt_blinded_"),
         climatology(store, feats, dates, cfg).add_prefix("climatology_"),
+        walk_forward_probs(store, feats.drop(columns=[c for c in feats if "cfnai" in c]), dates, cfg, "logit")
+            .add_prefix("logit_nocfnai_"),
+        walk_forward_probs(store, blind.drop(columns=[c for c in blind if "cfnai" in c]), dates, cfg, "logit")
+            .add_prefix("logit_blinded_nocfnai_"),
     ], axis=1)
     out.index.name = "date"
     out.to_csv(OUT / "regimes_fair.csv", float_format="%.4f", date_format="%Y-%m-%d")

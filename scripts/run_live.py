@@ -10,6 +10,10 @@ Steps (on the Mac; needs ANTHROPIC_API_KEY, and fresh data from
      results/live/log.csv. --dry-run prints the plan and prompts' sizes without calling.
 
 Months before Sonnet's documented cutoff (configs/llm.toml [cutoffs]) are logged but flagged.
+
+The log is APPEND-ONLY: existing rows are never rewritten; if a re-run would produce a different
+answer for a logged month, the script stops. A row is `prospective` only if it was logged within
+PROSPECTIVE_DAYS of its decision date (Jun-Sep 2026 were logged on 2026-10-06: retrospective).
 """
 
 from __future__ import annotations
@@ -36,6 +40,7 @@ RAW = REPO_ROOT / "data" / "raw" / "eodhd_live"
 OUT = REPO_ROOT / "results" / "live"
 CACHE = REPO_ROOT / "results" / "llm_cache"
 MODEL, MAX_TOKENS = "claude_sonnet", 1500   # blinded outputs so far: max 1,123 tokens
+PROSPECTIVE_DAYS = 15                        # run within ~2 weeks of month-end, before outcomes exist
 
 
 def spliced_prices(dcfg: dict) -> pd.DataFrame:
@@ -105,22 +110,35 @@ def main() -> None:
     cache = ResponseCache(CACHE)
     probs, diag = classify(blind, live, client=client, cache=cache, variant="blinded", run=0,
                            max_retries=llm_cfg["defaults"]["max_retries"], progress=True)
+    now = datetime.now(timezone.utc)
+    log_path = OUT / "log.csv"
+    old = pd.read_csv(log_path, dtype={"date": str}) if log_path.exists() else pd.DataFrame()
+    logged = set(old["date"]) if len(old) else set()
     rows = []
     for d in live:
+        p = probs.loc[d, list(REGIMES)].astype(float)
+        if str(d.date()) in logged:   # append-only: verify, never rewrite
+            prev = old.loc[old["date"] == str(d.date()), list(REGIMES)].iloc[0].to_numpy(float)
+            if not np.allclose(prev, p.to_numpy(), atol=1e-4):
+                raise SystemExit(f"{d.date()}: re-run differs from the logged forecast — refusing to overwrite")
+            continue
         user = build_user_prompt(blind.loc[d], d, "blinded")
-        rows.append({"date": d.date(), **{k: probs.loc[d, k] for k in REGIMES},
-                     "top_call": probs.loc[d, list(REGIMES)].astype(float).idxmax() if probs.loc[d, list(REGIMES)].notna().all() else None,
+        rows.append({"date": str(d.date()), **p.to_dict(),
+                     "top_call": p.idxmax() if p.notna().all() else None,
                      "confidence": probs.loc[d, "confidence"], "model_returned": probs.loc[d, "model_returned"],
                      "response_id": probs.loc[d, "response_id"],
                      "prompt_sha256": hashlib.sha256((SYSTEM + "\n" + user).encode()).hexdigest()[:16],
-                     "after_model_cutoff": bool(d > cutoff), "max_tokens": MAX_TOKENS})
-    log = pd.DataFrame(rows)
-    log.to_csv(OUT / "log.csv", index=False, float_format="%.4f")
+                     "after_model_cutoff": bool(d > cutoff), "max_tokens": MAX_TOKENS,
+                     "logged_utc": now.isoformat(timespec="seconds"),
+                     "prospective": bool((now - d.tz_localize("UTC")).days <= PROSPECTIVE_DAYS)})
+    log = pd.concat([old, pd.DataFrame(rows)], ignore_index=True) if rows else old
+    log.to_csv(log_path, index=False, float_format="%.4f")
+    print(f"{len(rows)} new row(s) appended; {len(logged)} existing row(s) verified unchanged")
     (OUT / "log_meta.json").write_text(json.dumps(
         {"updated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"), "model": MODEL,
          "model_id": client.model, **{k: v for k, v in diag.as_dict().items()}}, indent=1) + "\n")
     cache.manifest().to_csv(CACHE / "manifest.csv", index=False)
-    print(log[["date", "top_call", *REGIMES, "after_model_cutoff"]].round(2).to_string(index=False))
+    print(log[["date", "top_call", *REGIMES, "after_model_cutoff", "prospective"]].round(2).to_string(index=False))
 
 
 if __name__ == "__main__":

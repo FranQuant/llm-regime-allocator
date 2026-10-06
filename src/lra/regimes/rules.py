@@ -63,3 +63,19 @@ def forward_labels(store: MacroStore, decision_dates, scoring_date: pd.Timestamp
 def regime_one_hot(labels: pd.Series, regimes: list[str]) -> pd.DataFrame:
     return pd.DataFrame({k: (labels == k).astype(float) for k in regimes}, index=labels.index).replace(
         {np.nan: 0.0})
+
+
+def first_release_labels(store: MacroStore, decision_dates, cfg: dict, max_days: int = 150, step: int = 7) -> pd.Series:
+    """Forward regime as first knowable: scored at the earliest date (in `step`-day increments after the
+    target month ends) on which both anchor and target observations are published."""
+    h = cfg["rules"]["forward_months"]
+    out = {}
+    for d in decision_dates:
+        d = pd.Timestamp(d)
+        target_end = d + pd.offsets.MonthEnd(0) - pd.offsets.MonthEnd(1) + pd.offsets.MonthEnd(h)
+        for k in range(step, max_days + 1, step):
+            lab = forward_labels(store, [d], target_end + pd.Timedelta(days=k), cfg)
+            if len(lab):
+                out[d] = lab.iloc[0]
+                break
+    return pd.Series(out, dtype=object)

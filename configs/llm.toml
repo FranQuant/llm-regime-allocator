@@ -13,6 +13,8 @@ params = {}
 
 # Anthropic — docs: platform.claude.com/docs/en/models/overview (checked 2026-10-06)
 # Sonnet 5.5: reliable knowledge cutoff Jun 2026. Haiku 4.5: Feb 2025.
+# NOTE: params = {} means the provider's default sampling temperature; answers are not deterministic and
+# only one run per variant exists. Changing params changes cache keys (new calls), so it is left as run.
 [models.claude_sonnet]
 provider = "anthropic"
 model = "claude-sonnet-5-5"

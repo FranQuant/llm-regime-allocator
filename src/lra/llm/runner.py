@@ -65,6 +65,10 @@ def run_task(
         for attempt in range(max_retries + 1):
             key = cache_key(client.provider, client.model, client.params, system, user, run, attempt)
             rec = cache.get(client.model, key)
+            mt = getattr(client, "max_tokens", None)
+            if rec is not None and rec.get("max_tokens") not in (None, mt):
+                raise ValueError(f"cached answer for {d.date()} was made with max_tokens={rec['max_tokens']}, "
+                                 f"client now uses {mt}; use a different run id or restore the setting")
             if rec is None:
                 if replay_only:
                     diag.cache_misses += 1
@@ -79,6 +83,7 @@ def run_task(
                     rec = {"text": resp.text, "model_returned": resp.model_returned,
                            "response_id": resp.response_id, "usage": resp.usage}
                 rec |= {"provider": client.provider, "model": client.model, "params": client.params,
+                        "max_tokens": mt,
                         "system": system, "user": user, **meta, "run": run, "attempt": attempt,
                         "decision_date": str(d.date()), "prompt_version": PROMPT_VERSION}
                 try:
