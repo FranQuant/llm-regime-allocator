@@ -68,7 +68,8 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     for run in range(args.runs):
         probs, diag = classify(feats, dates, client=client, cache=cache, variant=args.variant, run=run,
-                               max_retries=cfg["defaults"]["max_retries"], replay_only=args.replay_only)
+                               max_retries=cfg["defaults"]["max_retries"], replay_only=args.replay_only,
+                               progress=not args.replay_only)
         stem = f"{args.variant}_run{run}"
         if args.start or args.end:
             stem += f"_{dates[0]:%Y%m}-{dates[-1]:%Y%m}"

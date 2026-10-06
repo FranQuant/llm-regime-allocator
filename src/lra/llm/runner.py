@@ -7,6 +7,8 @@ counted in the diagnostics and the date gets NaN probabilities.
 
 from __future__ import annotations
 
+import sys
+import time
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -41,11 +43,14 @@ def classify(
     run: int = 0,
     max_retries: int = 2,
     replay_only: bool = False,
+    progress: bool = False,
 ) -> tuple[pd.DataFrame, Diagnostics]:
     """Rows = decision dates; columns = REGIMES + confidence + attempts + response metadata."""
     diag = Diagnostics()
     rows = {}
-    for d in dates:
+    t0 = time.time()
+    dates = list(dates)
+    for i, d in enumerate(dates, 1):
         d = pd.Timestamp(d)
         user = build_user_prompt(features.loc[d], d, variant)
         row = None
@@ -92,6 +97,10 @@ def classify(
             row = {**{k: np.nan for k in REGIMES}, "confidence": np.nan, "attempts": np.nan,
                    "response_id": None, "model_returned": None}
         rows[d] = row
+        if progress:
+            top = max(REGIMES, key=lambda k: row[k]) if row["attempts"] == row["attempts"] else "FAILED"
+            print(f"[{i}/{len(dates)}] {d.date()} {top:<11} calls={diag.calls} hits={diag.cache_hits} "
+                  f"fail={len(diag.dates_failed)} {time.time() - t0:,.0f}s", file=sys.stderr, flush=True)
     out = pd.DataFrame(rows).T
     out[list(REGIMES) + ["confidence", "attempts"]] = out[list(REGIMES) + ["confidence", "attempts"]].astype(float)
     out.index.name = "date"
