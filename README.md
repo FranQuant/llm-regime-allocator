@@ -2,7 +2,7 @@
 
 LLM macro-regime classification as a constrained input to Black-Litterman allocation, with a contamination audit.
 
-**Status:** Phase 2 — context pack + baselines (`scripts/run_baselines.py`, `notebooks/nb01_data_and_baselines.ipynb`). Next: Phase 3, LLM plumbing.
+**Status:** Phase 3 — LLM plumbing (`lra.llm`, `scripts/run_llm_regimes.py`, committed response cache in `results/llm_cache/`). Next: Phase 4, LLM regime classifier.
 
 ## Setup
 ```bash

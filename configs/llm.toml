@@ -1,0 +1,49 @@
+# Phase 3/4 LLM configuration. Model IDs come from provider documentation
+# (checked 2026-10-06), never from memory. `params` are passed to the provider
+# verbatim and are part of the cache key.
+
+[defaults]
+max_retries = 2              # extra attempts after a parse/validation failure
+max_tokens = 4000
+
+[models.mock]
+provider = "mock"
+model = "mock-regime-v1"
+params = {}
+
+# Anthropic — docs: platform.claude.com/docs/en/models/overview (reliable knowledge cutoff Jun 2026)
+[models.claude_sonnet]
+provider = "anthropic"
+model = "claude-sonnet-5-5"
+api_key_env = "ANTHROPIC_API_KEY"
+params = {}
+
+[models.claude_opus]
+provider = "anthropic"
+model = "claude-opus-5-5"
+api_key_env = "ANTHROPIC_API_KEY"
+params = {}
+
+# OpenAI — docs: developers.openai.com/api/docs/models/gpt-5.5 (knowledge cutoff 2025-12-01)
+[models.gpt]
+provider = "openai"
+model = "gpt-5.5-2026-04-23"
+api_key_env = "OPENAI_API_KEY"
+params = { reasoning = { effort = "low" } }
+
+# Open-weight, documented cutoff Dec 2023 (HF model card). Any OpenAI-compatible
+# endpoint: a hosted provider or a local server (e.g. Ollama). Set base_url / model
+# to match the chosen host.
+[models.llama70b]
+provider = "openai_compatible"
+model = "meta-llama/llama-3.3-70b-instruct"
+base_url = "https://openrouter.ai/api/v1"
+api_key_env = "OPENROUTER_API_KEY"
+params = { temperature = 0.0, seed = 7 }
+
+[cutoffs]
+# Documented knowledge cutoffs used to split clean / contaminated windows (Phase 6).
+claude_sonnet = "2026-06-30"
+claude_opus = "2026-06-30"
+gpt = "2025-12-01"
+llama70b = "2023-12-31"

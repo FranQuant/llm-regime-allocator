@@ -12,3 +12,7 @@ data/raw/
 data/cache/
 !data/README.md
 !data/manifest.json
+
+# mock LLM runs are local checks only
+results/llm_cache/mock-*/
+results/llm/mock/

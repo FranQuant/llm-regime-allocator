@@ -19,7 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 data = ["requests>=2.31,<3", "python-dotenv>=1,<2"]
-llm = ["anthropic>=0.40,<1", "openai>=2,<3"]
+llm = ["anthropic>=0.40", "openai>=2", "python-dotenv>=1,<2"]
 research = ["matplotlib>=3.8,<4", "jupyter>=1,<2", "ipykernel>=6.29,<8"]
 dev = ["pytest>=8,<9"]
 
