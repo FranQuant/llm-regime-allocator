@@ -92,13 +92,19 @@ def main() -> None:
             stem += f"_{dates[0]:%Y%m}-{dates[-1]:%Y%m}"
         if args.every > 1:
             stem += f"_every{args.every}"
-        probs.to_csv(out_dir / f"{stem}.csv", float_format="%.4f", date_format="%Y-%m-%d")
         d = diag.as_dict() | {"model": args.model, "model_id": client.model, "variant": args.variant,
                               "run": run, "n_dates": len(dates)}
-        (out_dir / f"{stem}_diagnostics.json").write_text(json.dumps(d, indent=1) + "\n")
+        target = out_dir / f"{stem}.csv"
+        if args.replay_only and target.exists():   # verify, never overwrite the committed run
+            fresh = probs.to_csv(float_format="%.4f", date_format="%Y-%m-%d")
+            same = fresh == target.read_text()
+            print(f"replay vs committed {target.name}: {'IDENTICAL' if same else 'DIFFERENT'}")
+        else:
+            probs.to_csv(target, float_format="%.4f", date_format="%Y-%m-%d")
+            (out_dir / f"{stem}_diagnostics.json").write_text(json.dumps(d, indent=1) + "\n")
         print(json.dumps({k: v for k, v in d.items() if k != "dates_failed"}),
               f"failed dates: {len(diag.dates_failed)}")
-    if args.model != "mock":
+    if args.model != "mock" and not args.replay_only:
         cache.manifest().to_csv(CACHE / "manifest.csv", index=False)
 
 
