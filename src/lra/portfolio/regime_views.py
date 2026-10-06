@@ -78,3 +78,30 @@ def bl_regime_weights(
     k = kappa(p, rb["kappa_min"])
     mu = posterior_mean(pi, sigma, b["tau"], P, Q, he_litterman_omega(P, sigma, b["tau"], np.full(len(Q), k)))
     return mv_weights(mu, sigma, b["delta"], w0=w_ref), {"kappa": k}
+
+
+def bl_playbook_weights(
+    probs: pd.DataFrame,
+    sigma: np.ndarray,
+    playbook: pd.DataFrame,
+    w_ref: np.ndarray,
+    cfg: dict,
+    D: pd.Timestamp,
+) -> tuple[np.ndarray, dict]:
+    """POST-HOC variant (Phase 5b, declared after the pre-registered run).
+
+    Views = returns implied by the probability-weighted playbook: Q = delta * Sigma * (p @ playbook),
+    P = I, Omega = He-Litterman / kappa(p). Uses no historical regime returns; a uniform p carries
+    kappa_min confidence, so the posterior stays close to equilibrium.
+    """
+    b, rb = cfg["bl"], cfg["regime_bl"]
+    pi = equilibrium(sigma, w_ref, b["delta"])
+    p = probs.loc[D, cfg["regimes"]].to_numpy(float)
+    if not np.isfinite(p).all():
+        return mv_weights(pi, sigma, b["delta"], w0=w_ref), {"kappa": np.nan}
+    w_pb = p @ playbook.loc[cfg["regimes"]].to_numpy()
+    Q = b["delta"] * sigma @ w_pb
+    P = np.eye(len(w_ref))
+    k = kappa(p, rb["kappa_min"])
+    mu = posterior_mean(pi, sigma, b["tau"], P, Q, he_litterman_omega(P, sigma, b["tau"], np.full(len(Q), k)))
+    return mv_weights(mu, sigma, b["delta"], w0=w_ref), {"kappa": k}

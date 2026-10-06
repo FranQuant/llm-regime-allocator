@@ -18,7 +18,7 @@ from lra.backtest import metrics, run_backtest
 from lra.config import REPO_ROOT, load_config
 from lra.context import MacroStore
 from lra.data.etf import simple_returns
-from lra.portfolio.regime_views import (bl_regime_weights, conditional_means, eligible_labels,
+from lra.portfolio.regime_views import (bl_playbook_weights, bl_regime_weights, conditional_means, eligible_labels,
                                         forward_window_returns, monthly_returns)
 from lra.regimes.rules import forward_labels
 
@@ -77,7 +77,9 @@ def main() -> None:
     ref = cfg["bl"]["reference"]
     w_ref = np.array([ref.get(a, 0.0) for a in assets])
 
+    pb = S.playbook_matrix(cfg, assets)
     bl_rows = {k: {} for k in probs}
+    pb_rows = {k: {} for k in probs}   # Phase 5b, post-hoc: playbook-implied views
     view_rows = []
     for D in trade:
         sigma = S._cov_window(rets, D, cfg["bl"]["cov_lookback"], cfg["bl"]["cov_min_obs"])
@@ -91,6 +93,7 @@ def main() -> None:
                 w, info = S.mv_weights(S.equilibrium(sigma, w_ref, cfg["bl"]["delta"]), sigma,
                                        cfg["bl"]["delta"], w0=w_ref), {"kappa": np.nan}
             bl_rows[name][D] = w
+            pb_rows[name][D], _ = bl_playbook_weights(p, sigma, pb, w_ref, cfg, D)
             view_rows.append({"date": D, "forecaster": name, "n_labelled": int(counts.sum()) if counts is not None else 0,
                               **info})
     print(f"BL views done  [{time.time() - t0:.0f}s]")
@@ -104,13 +107,15 @@ def main() -> None:
     for name, p in probs.items():
         weights[f"playbook__{name}"] = S.from_regime_probs(p, cfg, assets, ref)
         weights[f"bl_regime__{name}"] = pd.DataFrame(bl_rows[name], index=assets).T
+        weights[f"bl_playbook__{name}"] = pd.DataFrame(pb_rows[name], index=assets).T  # post-hoc
 
     rows, daily = [], {}
     for name, w in weights.items():
         for bps in cfg["backtest"]["cost_sensitivity_bps"]:
             net, to = run_backtest(w, rets, bps)
             fc = name.split("__")[-1] if "__" in name else ""
-            rows.append({"strategy": name, "cost_bps": bps, "note": FLAGS.get(fc, ""), **metrics(net, rets[cash], to)})
+            note = FLAGS.get(fc, "") + (" | POST-HOC design (5b)" if name.startswith("bl_playbook__") else "")
+            rows.append({"strategy": name, "cost_bps": bps, "note": note, **metrics(net, rets[cash], to)})
             if bps == cfg["backtest"]["cost_bps"]:
                 daily[name] = net
     met = pd.DataFrame(rows)
