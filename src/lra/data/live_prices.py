@@ -1,47 +1,57 @@
-"""Free daily prices from Stooq for the live log (Phase 7), checked against the EODHD panel.
+"""Recent daily prices for the live log (Phase 7), checked against the committed EODHD panel.
 
-Stooq serves one CSV per symbol (``Date,Open,High,Low,Close,Volume``) at
-https://stooq.com/q/d/l/?s=<ticker>.us&i=d  — no key. Raw files go to data/raw/stooq/
-(git-ignored); only derived features are committed.
+Source: EODHD free plan (personal use; 20 calls/day; 1 year of end-of-day history) - the same
+vendor as the archive, so ``adjusted_close`` should match it exactly on the overlap.
+    https://eodhd.com/api/eod/<TICKER>.US?api_token=<KEY>&fmt=csv&from=<YYYY-MM-DD>
+Key: EODHD_API_KEY in the git-ignored .env. Raw CSVs go to data/raw/eodhd_live/ (git-ignored);
+only derived features and check statistics are committed.
 
-Whether Stooq's Close is dividend-adjusted is not documented in a way we rely on, so it is
-**measured**: on the overlap with EODHD adjusted_close we compare daily returns and the
-annualised return gap. A gap of ~ the ETF's yield means Close is price-only.
+(Stooq was tried first: on 2026-10-06 its CSV endpoint returned an HTML bot page.)
 """
 
 from __future__ import annotations
 
 import io
+import os
 from pathlib import Path
 
 import pandas as pd
 
-URL = "https://stooq.com/q/d/l/?s={symbol}.us&i=d"
+URL = "https://eodhd.com/api/eod/{ticker}.US"
 
 
-class StooqError(RuntimeError):
+class PriceSourceError(RuntimeError):
     pass
 
 
 def parse_csv(text: str, ticker: str) -> pd.Series:
     head = text.lstrip()[:200].lower()
     if not head.startswith("date,"):
-        raise StooqError(f"{ticker}: not a price CSV (got: {text.strip()[:120]!r})")
-    df = pd.read_csv(io.StringIO(text), parse_dates=["Date"])
+        raise PriceSourceError(f"{ticker}: not a price CSV (got: {text.strip()[:120]!r})")
+    df = pd.read_csv(io.StringIO(text))
+    df.columns = [c.strip().lower() for c in df.columns]
+    if "adjusted_close" not in df.columns:
+        raise PriceSourceError(f"{ticker}: no adjusted_close column ({list(df.columns)})")
+    df = df[pd.to_datetime(df["date"], errors="coerce").notna()]   # drop trailing footer lines
     if df.empty:
-        raise StooqError(f"{ticker}: empty CSV")
-    s = df.set_index("Date")["Close"].astype(float).sort_index()
+        raise PriceSourceError(f"{ticker}: empty CSV")
+    s = pd.Series(df["adjusted_close"].astype(float).to_numpy(), index=pd.to_datetime(df["date"]), name=ticker)
+    s = s.sort_index()
     if s.index.has_duplicates:
-        raise StooqError(f"{ticker}: duplicate dates")
-    return s.rename(ticker)
+        raise PriceSourceError(f"{ticker}: duplicate dates")
+    return s
 
 
-def fetch(ticker: str, raw_dir: Path, timeout: float = 30.0) -> pd.Series:
+def fetch(ticker: str, raw_dir: Path, start: str, timeout: float = 30.0) -> pd.Series:
     import requests
 
-    r = requests.get(URL.format(symbol=ticker.lower()), timeout=timeout,
-                     headers={"User-Agent": "llm-regime-allocator research (personal use)"})
-    r.raise_for_status()
+    key = os.environ.get("EODHD_API_KEY")
+    if not key:
+        raise PriceSourceError("EODHD_API_KEY not set (add it to .env)")
+    r = requests.get(URL.format(ticker=ticker), timeout=timeout,
+                     params={"api_token": key, "fmt": "csv", "from": start})
+    if r.status_code != 200:
+        raise PriceSourceError(f"{ticker}: HTTP {r.status_code}: {r.text.strip()[:120]!r}")
     s = parse_csv(r.text, ticker)
     raw_dir.mkdir(parents=True, exist_ok=True)
     (raw_dir / f"{ticker}.csv").write_text(r.text)
@@ -86,9 +96,9 @@ def verdict(c: dict, max_gap_pct: float = 0.25, min_corr: float = 0.999) -> str:
 
 
 def splice(eod: pd.Series, stq: pd.Series) -> pd.Series:
-    """EODHD up to its last date, then Stooq returns chained on (no level jump)."""
+    """EODHD up to its last date, then the live source returns chained on (no level jump)."""
     last = eod.dropna().index[-1]
     if last not in stq.index:
-        raise StooqError(f"{eod.name}: Stooq has no price on the splice date {last.date()}")
+        raise PriceSourceError(f"{eod.name}: the live source has no price on the splice date {last.date()}")
     tail = stq.loc[stq.index > last] / stq.loc[last] * eod.loc[last]
     return pd.concat([eod.dropna(), tail]).rename(eod.name)

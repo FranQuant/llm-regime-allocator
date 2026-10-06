@@ -2,22 +2,23 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from lra.data.stooq import StooqError, compare, parse_csv, splice, verdict
+from lra.data.live_prices import PriceSourceError, compare, parse_csv, splice, verdict
 
 IDX = pd.bdate_range("2024-01-01", periods=300)
 
 
 def _csv(close):
     df = pd.DataFrame({"Date": IDX.strftime("%Y-%m-%d"), "Open": close, "High": close, "Low": close,
-                       "Close": close, "Volume": 1})
+                       "Close": close, "Adjusted_close": close, "Volume": 1})
     return df.to_csv(index=False)
 
 
 def test_parse_and_reject_non_csv():
     s = parse_csv(_csv(np.linspace(100, 110, 300)), "SPY")
     assert len(s) == 300 and s.name == "SPY"
-    for bad in ("<html>blocked</html>", "No data", "Exceeded the daily hits limit"):
-        with pytest.raises(StooqError):
+    assert len(parse_csv(_csv(np.linspace(100, 110, 300)) + "Value\n", "SPY")) == 300  # footer line
+    for bad in ("<html>blocked</html>", "Unauthenticated", "You exceeded your daily API requests limit"):
+        with pytest.raises(PriceSourceError):
             parse_csv(bad, "SPY")
 
 
