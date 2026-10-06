@@ -8,11 +8,15 @@ Committed, so the project reproduces from a clone with no vendor access or API k
 | `macro_pit.csv` | `scripts/build_macro.py` | Long point-in-time FRED/ALFRED table: `series_id, date, realtime_start, realtime_end, value`. Use `lra.data.macro.as_of` — never read the latest value directly. |
 | `manifest.json` | both scripts | Source, build time, row counts, cleaning report, SHA-256 per file. |
 
-Rebuild (machine with the EODHD archive and `FRED_API_KEY` in `.env`):
+Rebuild (machine with the local EODHD archive and `FRED_API_KEY` in `.env`):
 ```bash
 python scripts/build_etf_panel.py --archive ~/Projects/research-data-eodhd
 python scripts/build_macro.py
 ```
 Check integrity: `python -c "from pathlib import Path; from lra.data.manifest import verify_manifest; print(verify_manifest(Path('data/manifest.json')))"`
 
-Before making the repo public: confirm EODHD and per-series FRED redistribution terms.
+Sources: EODHD end-of-day data; FRED®/ALFRED®, Federal Reserve Bank of St. Louis (third-party series such as
+VIXCLS and BAA10Y remain subject to their owners' terms). Included for reproducibility of this study only.
+
+Live months (Phase 7) are not stored here: `scripts/run_live.py` splices EODHD free-plan prices
+(`data/raw/eodhd_live/`, git-ignored) onto this panel and commits only derived features.
