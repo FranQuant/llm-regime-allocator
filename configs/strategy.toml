@@ -100,3 +100,9 @@ reference = { SPY = 0.35, EEM = 0.10, IEF = 0.25, TIP = 0.05, HYG = 0.10, DBC = 
 [backtest]
 cost_bps = 2.5
 cost_sensitivity_bps = [0.0, 2.5, 5.0, 10.0]
+
+# Phase 5 — regime forecasts -> BL views (pre-registered 2026-10-06, before any Phase 5 backtest).
+[regime_bl]
+shrink_n0 = 12          # shrink regime-conditional means toward the unconditional mean: n_k / (n_k + n0)
+min_labelled = 24       # fewer eligible labelled months -> no views (equilibrium)
+kappa_min = 0.05        # floor on view confidence; kappa = 1 - H(p)/ln 4
