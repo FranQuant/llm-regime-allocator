@@ -6,5 +6,7 @@ ml_gbt,full,217,0.3226,0.8796,1.7301,0.0398,0.2048
 claude_haiku:anonymized,full,217,0.2442,0.8637,1.5722,0.0490,0.1755
 claude_haiku:anonymized,after cutoff 2025-02-28,10,0.1000,0.9260,1.7038,,
 claude_sonnet:anonymized,full,217,0.3687,0.7016,1.3241,-0.1115,0.0126
+claude_sonnet:date_only,full,217,0.2212,0.7468,1.3804,-0.0078,0.0004
+claude_sonnet:dated,full,217,0.4700,0.6506,1.2274,-0.1663,-0.0395
 llama8b:anonymized,full,217,0.2442,0.8735,1.6806,0.0472,0.1876
 llama8b:anonymized,after cutoff 2023-12-31,24,0.2917,0.8367,1.6029,,
