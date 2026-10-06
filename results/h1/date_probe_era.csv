@@ -1,0 +1,6 @@
+era,bucket,n,brier_minus_uniform,ci_lo,ci_hi
+2007-2019,can date,47,-0.1391,,
+2007-2019,cannot date,98,-0.0468,,
+2020-2026,can date,61,-0.0937,,
+2020-2026,cannot date,11,-0.0845,,
+"all, year fixed effects",datable minus cannot-date,217,0.0371,-0.0760,0.1335

@@ -54,9 +54,10 @@ def hard(labels: pd.Series, confidence: float = 0.85) -> pd.DataFrame:
 
 
 def monthly_excess(daily: pd.DataFrame, rf_daily: pd.Series) -> pd.DataFrame:
-    """Daily strategy returns -> monthly returns in excess of the cash ETF."""
-    ex = daily.sub(rf_daily.reindex(daily.index).fillna(0.0), axis=0)
-    return (1.0 + ex).resample("ME").prod() - 1.0
+    """Monthly strategy return minus monthly cash return (each compounded within the month)."""
+    strat = (1.0 + daily).resample("ME").prod() - 1.0
+    cash = (1.0 + rf_daily.reindex(daily.index).fillna(0.0)).resample("ME").prod() - 1.0
+    return strat.sub(cash, axis=0)
 
 
 def sharpe(x) -> float:

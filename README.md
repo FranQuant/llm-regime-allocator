@@ -6,9 +6,10 @@ An LLM reads a point-in-time macro + market snapshot and outputs next-quarter re
 
 ## Findings
 1. **Removing the date and tickers is not anonymisation.** From a raw snapshot, Claude Sonnet 5.5 names the exact
-   month 84% of the time, and adding the date significantly improves its forecasts — memory, not reasoning.
+   month 84% of the time, and adding the date significantly improves its forecasts — the signature of memory.
 2. **Blinding fixes most of it.** Showing every figure as a z-score vs its own last 36 months drops month recovery
-   to 14% and *improves* forecasts. The edge survives in months it cannot date and beats ML on identical inputs.
+   to 14% and *improves* forecasts; it beats ML on identical inputs, including in months it cannot date.
+   This part is exploratory: the blinding was designed after step 1, on the same history.
 3. **It helps portfolios, but not significantly.** 2008–2026, monthly, net of costs:
 
 | | Forecast Brier ↓ | Playbook Sharpe | Max DD |
@@ -21,8 +22,15 @@ An LLM reads a point-in-time macro + market snapshot and outputs next-quarter re
 
    Sonnet vs control: +0.14 Sharpe, 95% CI [−0.03, +0.31]. Return-based Black-Litterman views fail even with the oracle.
 
-4. **The clean test is live:** one blinded call per month since the model's cutoff (June 2026), committed before
-   the outcome is known — [`results/live/log.csv`](results/live/log.csv).
+4. **The confirmatory test is live:** from the October 2026 month-end, one blinded call per month, committed within
+   two weeks and before the outcome is known, in an append-only log ([`results/live/log.csv`](results/live/log.csv)).
+   June–September 2026 are after the model's cutoff but were run retrospectively and are marked so.
+
+**Limitations** (from an external adversarial review — see nb02 §6): one LLM run per variant at the provider's
+default temperature; "cannot date" is confounded with the 2008–2019 period; CFNAI uses revised values before
+2011-05 (dropping it leaves the ML baselines unchanged); outcomes are scored with the data-end vintage
+(first-release scoring changes 33/217 labels and slightly improves every forecaster); parameters were fixed before
+running but not independently timestamped.
 
 Details, caveats and all baselines: [nb01](notebooks/nb01_data_and_baselines.ipynb) data & baselines ·
 [nb02](notebooks/nb02_llm_regimes_and_memory.ipynb) contamination audit · [nb03](notebooks/nb03_regimes_to_portfolios.ipynb) portfolios.
