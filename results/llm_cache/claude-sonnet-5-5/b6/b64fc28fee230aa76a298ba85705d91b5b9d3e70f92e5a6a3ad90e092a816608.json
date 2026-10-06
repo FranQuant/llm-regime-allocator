@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T19:37:47+00:00",
+ "decision_date": "2025-11-28",
+ "key": "b64fc28fee230aa76a298ba85705d91b5b9d3e70f92e5a6a3ad90e092a816608",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmYjkeerskkMsDn4S2vG",
+ "run": 0,
+ "system": "You classify the macroeconomic regime for a multi-asset research desk.\n\nYour only output is a probability distribution over four regimes for the next three months. You do not recommend assets, trades, weights or returns. Base your judgment strictly on the figures supplied; do not assume facts that are not in them. If the evidence is mixed, spread probability accordingly.\n\nRegimes (growth direction x inflation direction over the next three months):\n- Goldilocks: growth improving while inflation eases.\n- Reflation: growth improving while inflation rises.\n- Stagflation: growth deteriorating while inflation rises.\n- Risk_Off: growth deteriorating while inflation eases, typically with financial stress.\n\nReply with one JSON object and nothing else:\n{\"probabilities\": {\"Goldilocks\": p, \"Reflation\": p, \"Stagflation\": p, \"Risk_Off\": p},\n \"confidence\": c,\n \"drivers\": [\"...\", \"...\"],\n \"rationale\": \"...\"}\nRules: each p in [0, 1] and the four sum to 1; c in [0, 1] is your confidence in the distribution; 1 to 5 short drivers citing the inputs; rationale under 60 words.",
+ "text": "{\"probabilities\": {\"Goldilocks\": 0.26, \"Reflation\": 0.26, \"Stagflation\": 0.24, \"Risk_Off\": 0.24}, \"confidence\": 0.1, \"drivers\": [\"No figures were supplied, so there is no input data to cite\", \"My own knowledge of conditions in November 2025 is unreliable and not verifiable, so I will not rely on it\", \"Distribution kept near uniform, as instructed when unsure\"], \"rationale\": \"No growth or inflation data was provided, and I cannot verify current conditions. Without evidence on direction for either variable, I spread probability almost evenly across the four regimes, with only a slight tilt toward growth-improving outcomes.\"}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 452,
+  "output_tokens": 236,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "The current month is November 2025. No data is provided. From your own knowledge, estimate the regime for the next three months. If unsure, keep the distribution close to uniform.",
+ "variant": "date_only"
+}

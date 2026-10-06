@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:22:48+00:00",
+ "decision_date": "2020-08-31",
+ "key": "82f3b1ca8cca863a69552dfc2734f32e67935065cd2a9de4333e55f903e9fbe3",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcAdeWodfFvkzGBFTg4",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like the post-COVID recovery. Unemployment is 10.2%, which fits October 2020 (October 2020 was 6.9%, so it does not fit). Unemployment was 10.2% in the data as of August 2020 (8.4%) or in July 2020 (10.2%), so July 2020 fits best.\n\nChecking the other figures against July 2020:\n- Industrial production was about -8% YoY, consistent with July 2020.\n- Payrolls averaged +3.1 million over three months, consistent with May\u2013July 2020.\n- CPI was 1.0% YoY, consistent with July 2020.\n- The 10-year yield was 0.55\u20130.74%. At July's end it was about 0.53%, which is somewhat below the 0.74 shown. The 10y-2y spread of 0.60 is also off for July, when it was about 0.45.\n\nThe unemployment rate looks like the July reading, but the yields look closer to August. At the end of August 2020 the 10-year was about 0.70% and the 2-year about 0.13%. That fits the snapshot's 0.74 and 0.14, with a spread of 0.60. August 2020 returns also fit: US equities gained about 7% in the month, and the 20+ year Treasuries fell about 5%. The unemployment figure of 10.2% would be the July reading, still the latest published at that time, since August's was released in September.\n\nThe VIX of 22.96 matches the end of August 2020 (about 26), roughly. The snapshot matches August 2020 overall.\n\n{\"year\":2020,\"month\":8,\"confidence\":0.9,\"cues\":[\"Unemployment 10.2% with payroll gains of about 3.1M/month and IP -8% YoY point to the summer 2020 recovery\",\"US equities +7% in the month while 20y+ Treasuries fell -5%, and 10y yield 0.74% with 2y 0.14%, match August 2020\",\"Gold up 28.6% over 12 months with the fed funds rate near zero\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1192,
+  "output_tokens": 649,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -8.18 | +8.14 | -8.57 | -1.62\nNational activity index, 3m avg | index, 0 = trend growth | +3.58 | +10.98 | +3.62 | +2.23\nUnemployment rate | % | +10.20 | -4.50 | +6.50 | +1.95\nPayrolls, avg monthly change over 3m | thousands | +3093.00 | +10396.00 | +2939.33 | +1.79\nHeadline CPI | YoY % | +1.03 | +0.65 | -0.80 | -1.49\nCore CPI | YoY % | +1.57 | +0.13 | -0.64 | -1.46\nPolicy rate (fed funds) | % | +0.09 | +0.04 | -2.04 | -1.86\n2-year Treasury yield | % | +0.14 | -0.02 | -1.36 | -1.88\n10-year Treasury yield | % | +0.74 | +0.09 | -0.76 | -1.66\n10y minus 2y Treasury spread | pp | +0.60 | +0.11 | +0.60 | +1.24\nEquity implied volatility (VIX) | index points | +22.96 | -4.55 | +3.98 | +0.45\nBaa corporate minus 10y Treasury spread | pp | +2.71 | -0.37 | +0.45 | +1.02\nBroad trade-weighted dollar | YoY % | -1.60 | -5.55 | -5.04 | -0.68\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +7.0% | +13.9% | +17.5% | +21.8% | +42.9% | -0.4%\nDeveloped ex-US equity | +4.7% | +7.1% | +5.4% | +5.4% | +40.6% | -6.4%\nEmerging-market equity | +2.9% | +13.4% | +8.9% | +13.8% | +44.2% | -3.2%\nUS Treasuries 7-10y | -1.0% | +0.1% | +3.1% | +8.2% | +8.9% | -1.3%\nUS Treasuries 20y+ | -5.0% | +0.5% | +4.4% | +12.1% | +27.8% | -5.5%\nUS investment-grade credit | -1.8% | +3.1% | +3.0% | +8.5% | +23.4% | -2.6%\nGold | -0.3% | +13.7% | +20.1% | +28.6% | +22.6% | -4.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.53\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

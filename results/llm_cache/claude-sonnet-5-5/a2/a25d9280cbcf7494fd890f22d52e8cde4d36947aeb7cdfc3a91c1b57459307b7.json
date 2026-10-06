@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:17:09+00:00",
+ "decision_date": "2015-08-31",
+ "key": "a25d9280cbcf7494fd890f22d52e8cde4d36947aeb7cdfc3a91c1b57459307b7",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbjkLecPg74unrTbK1Z",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like September 2015, shortly after the August 2015 volatility spike.\n\n- Unemployment is 5.3%, which fits mid-2015 (it was 5.1% in August and 5.3% in June or July).\n- Fed funds is at 0.14%, with no hike yet. The first hike came in December 2015.\n- The VIX is 26 and the 1-month US equity return is -6.1%, which points to August 2015, when the VIX spiked and the S&P fell about 6%.\n- The trade-weighted dollar is up 16% year over year, and emerging-market equities are down sharply, both consistent with 2015.\n- Headline CPI is at 0.21% year over year, which matches the summer of 2015.\n\nUnemployment of 5.3% matches July 2015 (5.3%) better than August (5.1%). Data published at the end of August would show the July unemployment rate, so the snapshot is most likely August 2015. The VIX of 26.05 is plausible for the August 31 close (about 28), and the -6.1% monthly equity return matches August.\n\nI settle on August 2015.\n\n{\"year\":2015,\"month\":8,\"confidence\":0.85,\"cues\":[\"VIX at 26 and S&P down about 6% in the month fits the August 2015 selloff\",\"Unemployment 5.3% with fed funds at 0.14%, before the first hike\",\"Dollar up 16% year over year, EM equities down 23%, headline CPI near 0.2%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 475,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.32 | -0.79 | -3.43 | -1.19\nNational activity index, 3m avg | index, 0 = trend growth | -0.01 | +0.16 | -0.31 | -0.05\nUnemployment rate | % | +5.30 | -0.10 | -0.90 | -1.49\nPayrolls, avg monthly change over 3m | thousands | +235.33 | +44.67 | -21.67 | +0.35\nHeadline CPI | YoY % | +0.21 | +0.32 | -1.77 | -1.49\nCore CPI | YoY % | +1.80 | -0.01 | -0.05 | +0.19\nPolicy rate (fed funds) | % | +0.14 | +0.06 | +0.07 | +1.67\n2-year Treasury yield | % | +0.72 | +0.11 | +0.24 | +2.03\n10-year Treasury yield | % | +2.19 | +0.07 | -0.16 | -0.21\n10y minus 2y Treasury spread | pp | +1.47 | -0.04 | -0.40 | -0.96\nEquity implied volatility (VIX) | index points | +26.05 | +12.21 | +14.07 | +3.62\nBaa corporate minus 10y Treasury spread | pp | +3.13 | +0.41 | +0.90 | +1.91\nBroad trade-weighted dollar | YoY % | +16.05 | +2.21 | +16.08 | +2.12\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -6.1% | -6.0% | -5.5% | +0.4% | +15.0% | -7.0%\nDeveloped ex-US equity | -7.4% | -8.7% | -5.9% | -7.7% | +17.0% | -10.9%\nEmerging-market equity | -8.8% | -17.1% | -15.5% | -23.3% | +21.0% | -24.6%\nUS Treasuries 7-10y | +0.1% | +1.1% | +0.7% | +3.4% | +6.7% | -2.7%\nUS Treasuries 20y+ | -0.7% | +2.1% | -2.9% | +4.7% | +16.4% | -10.9%\nUS investment-grade credit | -0.8% | -0.8% | -3.1% | -1.3% | +6.3% | -5.4%\nGold | +3.7% | -4.9% | -5.8% | -12.1% | +13.1% | -13.1%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.20\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

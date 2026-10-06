@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:44:00+00:00",
+ "decision_date": "2012-08-31",
+ "key": "5b57ce8b97cb96b780c1980897ec85329dfff63264799ea8e0fb3b2e8a689f10",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmdn8Pyd8XDsGbVXbGFW",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: unemployment rate low (-1.5 z) but rising over 3m (+1.0), the dollar strong (+1.5, up 1.5 over 12m), the 2-year yield up 1.5 over 12m, gold down sharply over 12m (-2.5), and the 10y-2y spread very negative (-1.5).\n\nGold down 12m with a strong dollar points to 2013 or 2014-15, or possibly 2021-22. But the 36-month window matters. The unemployment rate is below its 3-year average, which fits a falling trend through 2014-2016. A 2-year yield up over 12m together with a policy rate near its average fits late 2016 or 2017.\n\nLate 2016 looks plausible: the dollar was strong after the election, gold fell from its mid-2016 peak, and the 2-year yield rose. But the 10y minus 2y spread at -1.5 relative to its 3-year average would fit a flattening, which happened in 2017. Headline CPI at -0.5 with a -1.0 change doesn't fit late 2016, when inflation was rising.\n\nAnother candidate is early 2025. The dollar was strong over 12m (about +1.5), gold was up strongly, and that contradicts the gold reading, so it is out.\n\nConsider 2018 instead. Gold was down about 8% over 12m in late 2018. The dollar was up, and the 2-year yield was up strongly over 12m. The policy rate was near its 3-year average, since the Fed was hiking steadily. Unemployment was low at 3.7%. Core CPI at +1.0 fits. Headline CPI falling in Dec 2018 because of oil is also consistent. The spread was flat. The VIX would be elevated in Dec 2018, though, whereas the snapshot shows -1.0, so that fits better earlier in 2018 or in a calmer month.\n\nA fit for November 2018 is imperfect: equities were weak over 6m in the snapshot (-0.5) but the 3m return was +1.0. A 3m return of +1.0 and a 1m return of +0.5 with a 12m drawdown of +1.0 (meaning a small drawdown) fits a market near its high. Developed ex-US 3m at +1.5 is a strong rally. This could be early 2019 or mid-2019 instead.\n\nAnother possibility is January 2024 or a similar period, but gold was rising then. Mid-2018 had a strong dollar after April, but unemployment wasn't rising then.\n\nOverall, the date is most likely mid-2018 to 2019, but the evidence is weak. Gold at -1.5 over 6m and -2.5 over 12m points to roughly Q2 2018 to early 2019. I'll pick a month near the end of that range.\n\n{\"year\":2018,\"month\":9,\"confidence\":0.25,\"cues\":[\"Gold down sharply over 12m (-2.5) while the dollar is strong (+1.5)\",\"2-year yield up over 12m (+1.5) with a low unemployment rate and core CPI above average\",\"Flat-to-inverted spread (-1.5) fits a late-cycle flattening\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1021,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | -0.5 | -0.5\nNational activity index, 3m avg | -0.5 | +0.0 | -0.5\nUnemployment rate | -1.5 | +1.0 | -0.5\nPayrolls, avg monthly change over 3m | +0.5 | -0.5 | -0.5\nHeadline CPI | -0.5 | -1.0 | -1.0\nCore CPI | +1.0 | -0.5 | +0.5\nPolicy rate (fed funds) | +0.0 | -0.5 | +0.5\n2-year Treasury yield | -1.0 | +0.5 | +1.5\n10-year Treasury yield | -1.5 | +0.5 | +0.0\n10y minus 2y Treasury spread | -1.5 | +0.5 | -0.5\nEquity implied volatility (VIX) | -1.0 | -0.5 | -0.5\nBaa corporate minus 10y Treasury spread | +1.0 | -0.5 | +0.5\nBroad trade-weighted dollar | +1.5 | -0.5 | +1.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +1.0 | -0.5 | +0.5 | -1.0 | +1.0\nDeveloped ex-US equity | +1.0 | +1.5 | -0.5 | -0.5 | -1.0 | +0.5\nEmerging-market equity | +0.0 | +0.5 | -1.0 | -1.0 | -1.0 | -0.5\nUS Treasuries 7-10y | -0.5 | -0.5 | +0.0 | +0.0 | -1.5 | +1.0\nUS Treasuries 20y+ | -0.5 | -0.5 | +0.5 | +0.5 | -0.5 | +1.0\nUS investment-grade credit | -0.5 | +1.0 | +0.0 | +0.0 | -1.0 | +1.0\nGold | +1.0 | +0.0 | -1.5 | -2.5 | -1.0 | -0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

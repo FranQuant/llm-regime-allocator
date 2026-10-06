@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:13:27+00:00",
+ "decision_date": "2012-07-31",
+ "key": "b147b46aa746df5451db35ee44b555766252b1dcc65f1b22895ca5af9d895b51",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbT6V87gnT66bq6vjry",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2012. Unemployment is 8.2%, which matches May 2012. The 10-year yield at 1.53% fits the same period, as does a fed funds rate of 0.14%. Payroll growth averaged 75k over three months, consistent with the weak May 2012 report, and headline CPI at 1.68% also fits. Long Treasuries returned +35% over 12 months, which fits too. The dollar was strong because of the euro crisis, and the 10-year yield was falling toward 1.5% in May and June 2012.\n\nUnemployment was 8.2% in April, May and June 2012. Payroll 3-month averages were about 226k in March, 100k in April, and 75k in May (the May report had 77k, with revisions for April and March), and about 75k in June. The 3-month change of -150k suggests that three months earlier the average was about 225k, which is February 2012 data with the 3-month average near 225k. That points to May 2012 as the end of the month.\n\nThe 10-year yield ended May 2012 at about 1.58%. Treasury 20y+ returned +3.8% in the month, consistent with May. The 10-year yield average for May was 1.80% and the end-of-month value was 1.58%, so 1.53 is plausible for the data as of May's end.\n\nUS large-cap equity returned +1.2% in the month, which is inconsistent with May 2012 (S&P 500 was about -6%). June 2012 had S&P +4%. Neither matches. This may be a different period.\n\nConsider the alternatives. Unemployment of 8.2% with a 12-month change of -0.9 means it was 9.1% a year earlier, which matches mid-2011 to mid-2012 (June 2011 was 9.1%). Dollar YoY +9.96% fits mid-2012, and the 12-month equity return of +9.2% fits June 2012 (S&P up about 5% to 9%). The 1-month equity return of +1.2% is closer to a June 2012 figure of about +4%, or July 2012 (+1.4%). In July 2012, unemployment was 8.3%, though. Headline CPI was 1.7% in June 2012 and 1.4% in July, so June 2012 fits CPI at 1.68%. Core CPI at 2.2% also fits June. The 10-year yield was 1.64% at the end of June and 1.53% in July. Investment-grade credit +3.5% in the month is high, which could fit July 2012. The 3m change of +1.01 in industrial production is plausible either way. Payrolls averaged about 75k in the three months ended June 2012.\n\nI'll choose July 2012, as the 10-year yield of 1.53% and the credit and long-bond returns favor it.\n\n{\"year\": 2012, \"month\": 7, \"confidence\": 0.6, \"cues\": [\"Unemployment 8.2% down 0.9pp over 12m\", \"10y yield 1.53% with 20y+ Treasuries +35% over 12m\", \"CPI 1.7% headline, 2.2% core, with weak payroll average of 75k\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 1002,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +4.68 | +1.01 | +1.55 | +0.39\nNational activity index, 3m avg | index, 0 = trend growth | -0.20 | -0.13 | +0.28 | -0.12\nUnemployment rate | % | +8.20 | +0.00 | -0.90 | -1.72\nPayrolls, avg monthly change over 3m | thousands | +75.00 | -150.67 | -54.67 | +0.10\nHeadline CPI | YoY % | +1.68 | -0.96 | -1.83 | -0.21\nCore CPI | YoY % | +2.22 | -0.03 | +0.60 | +1.31\nPolicy rate (fed funds) | % | +0.14 | -0.02 | +0.03 | +0.37\n2-year Treasury yield | % | +0.23 | -0.04 | -0.13 | -1.14\n10-year Treasury yield | % | +1.53 | -0.42 | -1.29 | -1.78\n10y minus 2y Treasury spread | pp | +1.30 | -0.38 | -1.16 | -1.97\nEquity implied volatility (VIX) | index points | +18.03 | +0.88 | -7.22 | -0.80\nBaa corporate minus 10y Treasury spread | pp | +3.26 | +0.06 | +0.49 | +1.16\nBroad trade-weighted dollar | YoY % | +9.96 | +4.39 | +18.05 | +2.14\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.2% | -1.6% | +5.9% | +9.2% | +14.1% | -2.4%\nDeveloped ex-US equity | +0.1% | -5.2% | -1.9% | -10.7% | +20.2% | -8.8%\nEmerging-market equity | -0.0% | -6.9% | -6.0% | -15.1% | +22.3% | -12.4%\nUS Treasuries 7-10y | +1.4% | +4.1% | +3.6% | +12.8% | +5.9% | -0.5%\nUS Treasuries 20y+ | +3.8% | +11.9% | +8.8% | +35.3% | +14.9% | -1.9%\nUS investment-grade credit | +3.5% | +5.4% | +6.5% | +12.2% | +4.7% | +0.0%\nGold | +0.8% | -3.0% | -7.6% | -0.8% | +17.3% | -15.2%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.63\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:22:21+00:00",
+ "decision_date": "2020-04-30",
+ "key": "66a58abf005d58a45ca162a187f95d286ea00e18e4d5e8d4a1388fc2e318875c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc8gXqpG1JvPRYBdgbc",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like April 2020. Equities rebounded 12.7% in the latest month after a -10.8% three-month return, and the VIX is 31. The fed funds rate is 0.04% and the 10-year yield is 0.63%, both consistent with April 2020. The unemployment rate of 4.4% looks like March 2020 data, and the payroll average of -70k fits a 3-month average that includes the March drop. The industrial production YoY of -5.49% is consistent with March or April 2020.\n\nHeadline CPI of 1.52% is the March 2020 figure. The April 2020 CPI was 0.33%, and it had not been published by the end of April. The snapshot is therefore consistent with April 2020, using the latest published values. The equity 1m return of +12.7% matches April 2020, when the S&P rose about 12.8%.\n\n\n{\"year\":2020,\"month\":4,\"confidence\":0.93,\"cues\":[\"Fed funds at 0.04% and 10y yield at 0.63% after emergency cuts\",\"S&P +12.7% in 1m after a -10.8% 3m return, with VIX at 31\",\"Unemployment 4.4% and CPI 1.5% are March 2020 prints, the latest published by end of April\"]}\n</br>\n\nCorrection: the reply must be only the JSON object.\n\n{\"year\":2020,\"month\":4,\"confidence\":0.93,\"cues\":[\"Fed funds at 0.04% and 10y yield at 0.63% after emergency cuts\",\"S&P +12.7% in 1m after a -10.8% 3m return, with VIX at 31\",\"Unemployment 4.4% and CPI 1.5% are March 2020 prints, the latest published by end of April\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 553,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -5.49 | -4.64 | -7.75 | -3.48\nNational activity index, 3m avg | index, 0 = trend growth | -1.47 | -1.28 | -1.23 | -4.18\nUnemployment rate | % | +4.40 | +0.90 | +0.60 | +1.70\nPayrolls, avg monthly change over 3m | thousands | -70.67 | -280.67 | -209.67 | -4.72\nHeadline CPI | YoY % | +1.52 | -0.77 | -0.36 | -1.53\nCore CPI | YoY % | +2.10 | -0.15 | +0.05 | +0.12\nPolicy rate (fed funds) | % | +0.04 | -1.55 | -2.41 | -2.56\n2-year Treasury yield | % | +0.20 | -1.13 | -2.07 | -2.53\n10-year Treasury yield | % | +0.63 | -0.88 | -1.88 | -2.60\n10y minus 2y Treasury spread | pp | +0.43 | +0.25 | +0.19 | +0.14\nEquity implied volatility (VIX) | index points | +31.23 | +12.39 | +18.11 | +1.62\nBaa corporate minus 10y Treasury spread | pp | +3.24 | +1.11 | +1.10 | +2.60\nBroad trade-weighted dollar | YoY % | +8.04 | +6.01 | +2.64 | +1.60\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +12.7% | -10.8% | -3.2% | +1.6% | +42.1% | -13.6%\nDeveloped ex-US equity | +5.8% | -17.6% | -15.0% | -12.0% | +38.2% | -19.6%\nEmerging-market equity | +7.4% | -14.8% | -12.4% | -13.5% | +42.2% | -20.9%\nUS Treasuries 7-10y | +0.3% | +7.6% | +10.2% | +17.1% | +9.6% | -0.6%\nUS Treasuries 20y+ | +1.2% | +15.9% | +22.6% | +37.2% | +27.8% | -2.7%\nUS investment-grade credit | +4.8% | -0.4% | +3.7% | +12.0% | +23.0% | -3.6%\nGold | +7.3% | +7.0% | +13.2% | +31.9% | +20.0% | -2.8%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.53\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

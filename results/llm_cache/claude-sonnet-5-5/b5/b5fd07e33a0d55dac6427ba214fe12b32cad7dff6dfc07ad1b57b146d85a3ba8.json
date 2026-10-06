@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:10:32+00:00",
+ "decision_date": "2015-09-30",
+ "key": "b5fd07e33a0d55dac6427ba214fe12b32cad7dff6dfc07ad1b57b146d85a3ba8",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfofmdS8JxwwcK6WkF1",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a stress episode with a high VIX, wide credit spreads, falling equities, and a strong dollar. The policy rate is high relative to its 3-year average and rising over the past 12 months, which fits a hiking cycle.\n\nHeadline CPI is low (-1.5) while core CPI is high, which suggests energy prices fell. The unemployment rate is low relative to its history (-1.5) and falling.\n\nCandidate periods:\n- Late 2008 is ruled out. The policy rate would have been far below its average, and the unemployment rate was rising.\n- Dec 2018 fits well. The Fed had been hiking, the VIX spiked, equities fell about 2.5 sigma over 3 to 12 months, and oil fell, which pulled headline CPI down. The 10-year yield was falling, the 2-year was at a high level, and the curve was flat. Unemployment was at a low of 3.7%, and the dollar was strong. Baa spreads widened.\n\nThe 3-year window for Dec 2018 starts at the end of 2015, when rates were near zero, so the policy rate z-score would be high. IP at -1.5 is odd for Dec 2018, though. The z-score for the 12m change in core CPI is +1, which is plausible.\n\nAnother candidate is Mar 2020, but the policy rate had been cut by then, VIX would be capped at +3, and the Fed would have been at zero. That doesn't fit.\n\nMid-2022 is also possible, but the 10-year yield would be high then, not -0.5.\n\nDec 2018 is the best match. Equities were down about 2.5 sigma over 1m to 12m, and the S&P was down about -4.4% over 12m including dividends. Treasuries 7-10y rose in December 2018. I'll go with Dec 2018.\n\n{\"year\":2018,\"month\":12,\"confidence\":0.6,\"cues\":[\"VIX z +3 and Baa spread widening with equities in ~3 sigma drawdown while Treasuries rally\",\"Policy rate and 2y yield high vs 3y history, curve flat, 10y falling\",\"Headline CPI low (oil drop) with core firm and unemployment very low\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 710,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +0.0 | -1.5\nNational activity index, 3m avg | +0.0 | +0.5 | -0.5\nUnemployment rate | -1.5 | -1.0 | +0.0\nPayrolls, avg monthly change over 3m | +0.5 | +0.5 | -0.5\nHeadline CPI | -1.5 | +0.5 | -1.0\nCore CPI | +0.5 | +1.0 | +1.0\nPolicy rate (fed funds) | +1.0 | +1.0 | +1.0\n2-year Treasury yield | +1.5 | -0.5 | -0.5\n10-year Treasury yield | -0.5 | -1.0 | -1.0\n10y minus 2y Treasury spread | -1.0 | -1.0 | -0.5\nEquity implied volatility (VIX) | +3.0 | +2.0 | +2.5\nBaa corporate minus 10y Treasury spread | +2.5 | +2.0 | +2.5\nBroad trade-weighted dollar | +2.0 | +0.0 | +1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.0 | -2.5 | -2.5 | -2.5 | +3.0 | -3.0\nDeveloped ex-US equity | -1.5 | -2.5 | -2.0 | -1.5 | +2.0 | -3.0\nEmerging-market equity | -0.5 | -2.0 | -2.0 | -2.0 | +2.0 | -3.0\nUS Treasuries 7-10y | +1.0 | +1.5 | -0.5 | +1.0 | +1.0 | +0.5\nUS Treasuries 20y+ | +0.5 | +1.0 | -1.0 | +0.5 | +1.5 | +0.0\nUS investment-grade credit | +0.5 | +0.5 | -1.5 | -0.5 | +0.5 | -1.0\nGold | +0.0 | +0.0 | +0.0 | +0.5 | -1.0 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:41:47+00:00",
+ "decision_date": "2007-12-31",
+ "key": "81bf86dd2eb33e603a4e5020e79727896d69d9baaca942027deb2910a2f22f70",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmdcQFSs2nKsXw6Z4uQw",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "{\"year\":2008,\"month\":3,\"confidence\":0.6,\"cues\":[\"Fed funds fell sharply over 3m and 12m while the 2y yield collapsed, so the curve steepened (10y-2y z +2.5).\",\"Baa-Treasury spread is at the +3 cap and VIX is elevated, with equities down over 6m and 12m: credit stress and a flight to Treasuries (stock-bond correlation z -3).\",\"Headline CPI is rising fast (3m +2.0) with a weak dollar and gold up, while payrolls are weak and unemployment is only starting to rise: early 2008.\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1093,
+  "output_tokens": 935,
+  "output_tokens_details": {
+   "thinking_tokens": 730
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.0 | +1.0 | +0.0\nNational activity index, 3m avg | -1.0 | +0.0 | +0.5\nUnemployment rate | -0.5 | +1.0 | +2.5\nPayrolls, avg monthly change over 3m | -1.0 | +0.5 | -0.5\nHeadline CPI | +1.5 | +2.0 | +1.5\nCore CPI | +0.0 | +1.0 | -1.0\nPolicy rate (fed funds) | -0.5 | -2.0 | -2.5\n2-year Treasury yield | -2.0 | -2.0 | -2.5\n10-year Treasury yield | -1.5 | -1.5 | -1.5\n10y minus 2y Treasury spread | +2.5 | +1.5 | +2.0\nEquity implied volatility (VIX) | +1.5 | +0.5 | +2.0\nBaa corporate minus 10y Treasury spread | +3.0 | +2.5 | +3.0\nBroad trade-weighted dollar | -1.0 | n/a | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.5 | -2.0 | -2.0 | -1.5 | +3.0 | -2.0\nDeveloped ex-US equity | -1.5 | -1.5 | -2.0 | -2.0 | +2.5 | -1.5\nEmerging-market equity | -0.5 | -1.0 | -0.5 | +0.0 | +2.5 | -1.0\nUS Treasuries 7-10y | +0.0 | +1.5 | +2.5 | +2.0 | +3.0 | +0.5\nUS Treasuries 20y+ | -0.5 | +1.0 | +1.5 | +0.5 | +2.5 | +0.5\nUS investment-grade credit | -0.5 | +0.5 | +1.0 | +0.0 | +3.0 | +0.0\nGold | +0.5 | +1.0 | +1.5 | +0.5 | +0.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -3.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

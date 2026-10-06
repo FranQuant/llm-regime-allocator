@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:25:52+00:00",
+ "decision_date": "2023-09-29",
+ "key": "53040e425e333a31e9a93fd5092f323a4df9be1711e903e8c00b0f4fd412e9a5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcQHYRc8Y8MpD8ci1tt",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like October 2023. The fed funds rate is 5.33%, the 10-year yield is 4.59% after a sharp rise, and the 20y+ Treasuries fell 7.5% in one month. Headline CPI of 3.7% matches September 2023, and the 12-month equity returns also fit.\n\nA check against the other candidate months: September 2023 had a 10-year yield of about 4.57% and CPI of 3.7% (August 3.7%, September 3.7%). Equity returns were -4.9% in September, against about -2.1% in October. Payrolls over three months averaged about 150k in September, which fits. The 10-year yield rose 0.78 over three months, from about 3.81% in June to 4.59% in September, which also fits. Treasuries 20y+ fell 7.5% in September, a better match than October. So the snapshot is September 2023.\n\n{\"year\":2023,\"month\":9,\"confidence\":0.85,\"cues\":[\"Fed funds 5.33% with 10y at 4.59% after a 78bp three-month jump\",\"US large-cap equity -4.9% in the month and 20y+ Treasuries -7.5%\",\"Headline CPI 3.7% YoY and unemployment 3.8%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 401,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.25 | +0.24 | -2.86 | -0.40\nNational activity index, 3m avg | index, 0 = trend growth | -0.14 | +0.05 | -0.21 | -0.91\nUnemployment rate | % | +3.80 | +0.10 | +0.10 | -0.60\nPayrolls, avg monthly change over 3m | thousands | +149.67 | -88.67 | -280.33 | -1.26\nHeadline CPI | YoY % | +3.71 | -0.42 | -4.52 | -0.67\nCore CPI | YoY % | +4.39 | -0.94 | -1.91 | -0.11\nPolicy rate (fed funds) | % | +5.33 | +0.25 | +2.25 | +1.60\n2-year Treasury yield | % | +5.04 | +0.17 | +0.82 | +1.42\n10-year Treasury yield | % | +4.59 | +0.78 | +0.76 | +1.78\n10y minus 2y Treasury spread | pp | -0.45 | +0.61 | -0.06 | -0.84\nEquity implied volatility (VIX) | index points | +17.34 | +3.75 | -14.28 | -0.76\nBaa corporate minus 10y Treasury spread | pp | +1.80 | -0.08 | -0.44 | -1.22\nBroad trade-weighted dollar | YoY % | -4.23 | -3.41 | -15.36 | -0.97\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -4.9% | -3.2% | +6.7% | +17.2% | +11.5% | -6.3%\nDeveloped ex-US equity | -4.0% | -4.9% | -1.4% | +23.9% | +12.5% | -7.4%\nEmerging-market equity | -4.3% | -4.1% | -3.2% | +8.4% | +14.9% | -10.0%\nUS Treasuries 7-10y | -2.9% | -4.5% | -5.8% | -2.7% | +8.1% | -7.7%\nUS Treasuries 20y+ | -7.5% | -13.1% | -14.0% | -12.3% | +15.7% | -17.2%\nUS investment-grade credit | -3.4% | -4.7% | -4.2% | +2.5% | +8.5% | -6.6%\nGold | -4.9% | -3.8% | -6.9% | +10.8% | +10.9% | -10.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.03\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

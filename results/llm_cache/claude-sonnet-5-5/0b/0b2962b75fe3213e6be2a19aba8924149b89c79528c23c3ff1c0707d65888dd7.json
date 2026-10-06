@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:27:21+00:00",
+ "decision_date": "2024-12-31",
+ "key": "0b2962b75fe3213e6be2a19aba8924149b89c79528c23c3ff1c0707d65888dd7",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcWpbd96ffoJ1AP5jm6",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like January 2025. The fed funds rate is 4.33%, which fits the range left after the December 2024 cut. The 10-year yield is 4.55% and the 2-year is 4.24%, and the 10-year rose about 74bp over 3 months, consistent with Sept 2024 to Jan 2025. The unemployment rate is 4.2% (December 2024 was 4.1%, and November was 4.2%). The dollar is up strongly year over year, and gold is up 26.7% over 12 months. Large-cap equity is up 24.9% over 12 months, though the 1m return of -2.4% is odd for January 2025. That return fits December 2024 better, when the S&P fell about 2.4% in the month.\n\nIn December 2024 the 10-year ended at 4.57%, the 2-year at 4.24%, and fed funds at 4.33%. The 3-month change in policy rate of -0.50 fits too, since the cuts were Sept 50bp, Nov 25bp, and Dec 25bp. Between end-September and end-December that is a change of -0.50, which matches. Unemployment was 4.2% in November 2024 and 4.1% in December, so the 4.2% is likely the latest value as published at the time. Core CPI at 3.3% and headline at 2.73% match November 2024 (2.7% headline, 3.3% core). So the snapshot is December 2024.\n\n{\"year\": 2024, \"month\": 12, \"confidence\": 0.9, \"cues\": [\"Fed funds 4.33% after 100bp of cuts over 12m, -50bp over 3m\", \"10y 4.55%, 2y 4.24%, long bonds -6.4% in the month\", \"Core CPI 3.3% and headline 2.7% with S&P -2.4% in the month\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 586,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.90 | -0.89 | -0.69 | -1.04\nNational activity index, 3m avg | index, 0 = trend growth | -0.31 | -0.15 | -0.16 | -1.09\nUnemployment rate | % | +4.20 | +0.00 | +0.50 | +1.84\nPayrolls, avg monthly change over 3m | thousands | +172.67 | +59.33 | -25.00 | -0.90\nHeadline CPI | YoY % | +2.73 | +0.14 | -0.41 | -1.05\nCore CPI | YoY % | +3.30 | +0.03 | -0.71 | -1.32\nPolicy rate (fed funds) | % | +4.33 | -0.50 | -1.00 | +0.18\n2-year Treasury yield | % | +4.24 | +0.58 | +0.01 | +0.23\n10-year Treasury yield | % | +4.55 | +0.74 | +0.67 | +1.09\n10y minus 2y Treasury spread | pp | +0.31 | +0.16 | +0.66 | +1.50\nEquity implied volatility (VIX) | index points | +17.40 | +0.67 | +4.95 | -0.29\nBaa corporate minus 10y Treasury spread | pp | +1.43 | -0.20 | -0.18 | -1.46\nBroad trade-weighted dollar | YoY % | +8.36 | +9.26 | +10.56 | +1.31\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.4% | +3.4% | +7.4% | +24.9% | +14.3% | -3.3%\nDeveloped ex-US equity | -3.0% | -7.7% | -2.6% | +3.5% | +14.2% | -9.2%\nEmerging-market equity | -1.7% | -7.9% | -0.7% | +6.5% | +17.6% | -10.2%\nUS Treasuries 7-10y | -2.3% | -5.0% | +1.2% | -0.6% | +6.3% | -5.6%\nUS Treasuries 20y+ | -6.4% | -10.4% | -1.6% | -8.1% | +14.2% | -12.6%\nUS investment-grade credit | -2.7% | -4.5% | +2.2% | +0.9% | +6.9% | -4.7%\nGold | -1.4% | -1.4% | +12.3% | +26.7% | +15.5% | -6.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.07\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

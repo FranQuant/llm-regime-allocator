@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:10:41+00:00",
+ "decision_date": "2015-10-30",
+ "key": "b37eb50fc9f678902f5d0582df599a04cb37ee3ec423f2f8ab4f7804058c58e0",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfpCKfS4LFC5A1wJYfo",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: industrial production very low, unemployment low relative to the 3-year average, payrolls weak, headline CPI low while core CPI is high, policy rate rising, 2-year yield high, Baa spread very wide, dollar strong, equities down over 6-12 months, and equity volatility high.\n\nThis looks like late 2008 or 2009, but the unemployment rate is low relative to its 3-year average, which does not fit those years. Core CPI is high and the policy rate is rising, which points to 2022 or 2023. Fed funds at only +0.5 and the 2-year at +2.0 suggest the 3-year window includes the zero-rate era. Credit spreads at +2.0 are puzzling for that period, though.\n\nAlternatively, this could be 2019-2020. In early 2020, though, the 2-year yield would not be this high.\n\nAnother candidate is October 2022, when equities were down over 12 months, the dollar was strong, and the 1m equity return was positive. But industrial production at -2.0 does not fit 2022.\n\nConsider 2007-2008 instead. In mid-2008 the window covers 2005-2008, so fed funds would be low relative to that window, which does not match. The same problem applies to early 2008.\n\nConsider 2023-2025. In April 2025, IP z-score might be low, but equities there were up over 12 months.\n\nConsider late 2023: the dollar was high but falling, and equities were up. Consider late 2022/early 2023 again: headline CPI at -1.5 does not fit, since inflation was high.\n\nConsider 2001-style conditions in a window that does not apply. In 2019, the Baa spread was not +2.0.\n\nConsider late 2008 again. Headline CPI at -1.5 and the dollar at +1.5 with falling dollar over 3 months might fit November-December 2008. But equities fell sharply then, and 1m equity at +2.0 with 3m at -1.0 does not match. A rising policy rate also does not fit.\n\nConsider early 2016 (Feb-Mar 2016). IP was weak, the Baa spread was wide, the dollar was strong, headline CPI was low, core CPI was high, the Fed had hiked in December 2015, and the 2-year yield was elevated. Equities were down over 12 months, with a rebound in March 2016 (1m +2.0 or so). Gold was up strongly over 3 months, which fits Q1 2016. The VIX was near average. The unemployment rate being low relative to its 3-year average fits too. This matches March 2016 well.\n\n{\"year\":2016,\"month\":3,\"confidence\":0.7,\"cues\":[\"Wide Baa spread, strong dollar, weak IP and falling payrolls\",\"Equities negative over 3-12m but rebounding 1m, gold strong 3m\",\"Low headline CPI with high core CPI, policy rate rising after Dec 2015 hike\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 942,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | +0.0 | -1.5\nNational activity index, 3m avg | -0.5 | +0.0 | -0.5\nUnemployment rate | -1.5 | +0.0 | +0.5\nPayrolls, avg monthly change over 3m | -1.0 | -1.0 | -1.5\nHeadline CPI | -1.5 | +0.0 | -1.0\nCore CPI | +1.0 | +1.0 | +1.0\nPolicy rate (fed funds) | +0.5 | +0.5 | +1.0\n2-year Treasury yield | +2.0 | +0.5 | +1.0\n10-year Treasury yield | -0.5 | +0.0 | -0.5\n10y minus 2y Treasury spread | -1.0 | -0.5 | -0.5\nEquity implied volatility (VIX) | +0.0 | +0.5 | +0.5\nBaa corporate minus 10y Treasury spread | +2.0 | +1.0 | +2.0\nBroad trade-weighted dollar | +1.5 | -1.0 | +0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.0 | -1.0 | -1.5 | -1.5 | +3.0 | +0.0\nDeveloped ex-US equity | +1.5 | -1.5 | -1.5 | -1.0 | +2.5 | -1.5\nEmerging-market equity | +1.5 | -0.5 | -2.0 | -1.5 | +2.0 | -2.0\nUS Treasuries 7-10y | -0.5 | +0.0 | +0.0 | +0.5 | +1.0 | +0.5\nUS Treasuries 20y+ | -0.5 | +0.0 | +0.0 | +0.0 | +1.5 | -0.5\nUS investment-grade credit | +0.5 | +0.0 | -0.5 | -0.5 | +0.5 | -0.5\nGold | +1.0 | +1.5 | +0.5 | +0.5 | -1.0 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

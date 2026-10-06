@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:19:15+00:00",
+ "decision_date": "2017-05-31",
+ "key": "73524b77a334bb3234e592d3e3d2ddb23b2958bd051e858bd1933f7cab5cca47",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmbtt9T62SVCvmhds928",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2017. Unemployment is 4.4%, the policy rate is 0.91%, and VIX is about 10.4. The 2-year yield is 1.28% and the 10-year is 2.21%.\n\nThe fed funds rate near 0.91% fits mid-2017, after the March and June hikes. Unemployment of 4.4% fits either May 2017 (4.3%) or a later month. The 3-month change in the unemployment rate is -0.4, which is hard to square with 2017, so I checked 2017 values: Jan 4.7, Feb 4.6, Mar 4.4, Apr 4.4, May 4.4 (as first published), Jun 4.3.\n\nFed funds at 0.91% matches Mar\u2013May 2017 (0.79 in March, 0.91 in April and May, 1.04 in June). The 3-month change of +0.34 fits May, since February was about 0.55. Unemployment was 4.4% in March, 4.4% in April and 4.3% in May at first print, and was later revised to 4.4% in May. The 3-month change of -0.4 against February's 4.7% (as revised then) also fits May, as does the 12m change of -0.6.\n\nHeadline CPI at 2.2% YoY fits May 2017 (1.9%) less well than April (2.2%). Core CPI at 1.89% fits April (1.9%). The 10-year yield at 2.21% fits April\u2013May (it was 2.30% in April and 2.21% at end of May), and the 2-year at 1.28% fits May.\n\nUS equities returned +1.2% in the month, which fits May (+1.4%). The 3-month return of +1.1% is low, which fits April or May. I'll pick May 2017 with the CPI caveat, since CPI is published mid-month and May's CPI would only be released in June.\n\n{\"year\": 2017, \"month\": 5, \"confidence\": 0.8, \"cues\": [\"Fed funds at 0.91% with unemployment at 4.4% and VIX around 10\", \"10-year yield at 2.21% and 2-year at 1.28%\", \"Core CPI at 1.89% and headline CPI at 2.2% fit spring 2017\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 713,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.19 | +2.18 | +3.90 | +0.89\nNational activity index, 3m avg | index, 0 = trend growth | +0.24 | +0.19 | +0.51 | +1.64\nUnemployment rate | % | +4.40 | -0.40 | -0.60 | -1.58\nPayrolls, avg monthly change over 3m | thousands | +174.00 | -4.33 | -31.00 | -1.09\nHeadline CPI | YoY % | +2.20 | -0.34 | +1.05 | +1.28\nCore CPI | YoY % | +1.89 | -0.38 | -0.25 | -0.41\nPolicy rate (fed funds) | % | +0.91 | +0.34 | +0.62 | +2.78\n2-year Treasury yield | % | +1.28 | +0.06 | +0.41 | +1.93\n10-year Treasury yield | % | +2.21 | -0.15 | +0.37 | +0.36\n10y minus 2y Treasury spread | pp | +0.93 | -0.21 | -0.04 | -1.09\nEquity implied volatility (VIX) | index points | +10.38 | -2.54 | -3.81 | -1.31\nBaa corporate minus 10y Treasury spread | pp | +2.25 | +0.06 | -0.59 | -1.08\nBroad trade-weighted dollar | YoY % | +1.11 | -0.43 | -4.22 | -1.13\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.2% | +1.1% | +10.6% | +17.4% | +7.2% | -0.1%\nDeveloped ex-US equity | +3.1% | +8.3% | +18.2% | +16.7% | +8.7% | -0.3%\nEmerging-market equity | +2.3% | +6.8% | +17.7% | +26.8% | +13.3% | -1.3%\nUS Treasuries 7-10y | +1.0% | +2.7% | +2.3% | -0.5% | +5.0% | -4.3%\nUS Treasuries 20y+ | +2.7% | +4.6% | +3.5% | -2.1% | +10.5% | -11.6%\nUS investment-grade credit | +1.6% | +2.8% | +4.4% | +4.0% | +4.6% | -0.7%\nGold | +0.8% | +1.3% | +6.0% | +3.9% | +10.7% | -7.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.32\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

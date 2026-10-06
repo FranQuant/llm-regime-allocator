@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:13:42+00:00",
+ "decision_date": "2012-09-28",
+ "key": "dda329caa87a5c91a10c05a037aab25c9eacc86a99225c4bdc32d634e6d2619c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbUQ6ZWtq4HAAMJtBDm",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2012 to early 2013. The unemployment rate is 8.1%, the fed funds rate is about 0.14%, and the 10-year yield is 1.66%. Headline CPI is 1.7%.\n\nUS large-cap equity is up 26.7% over 12 months, which fits the period ending around September 2012 (the S&P 500 returned about 30% from September 2011 to September 2012). VIX at 14.84 also fits September 2012. The unemployment rate was 8.1% in August 2012 and 7.8% in September. Payroll growth averaged about 94k over three months, which matches August 2012. The 10-year yield was around 1.66% at the end of August 2012. Gold rose 7% in the month, consistent with August\u2013September 2012.\n\nEquity returns of +2.3% over 1 month, +6.3% over 3 months, and +26.7% over 12 months fit August 2012 reasonably. The S&P 500 was up about 2.3% in August 2012 after rising about 1.3% in July. Gold was up about 7% in the month of September 2012, but August was up around 5%, so the gold figure is a loose match. The 10-year yield ended August 2012 at about 1.57% and September at 1.63%, which favors September. But the 8.1% unemployment rate was the August reading, published in early September, so it fits a snapshot taken at the end of August. The 12-month equity return was about 18% in August 2012 and about 30% in September 2012, so +26.7% is closer to September, though the data is ambiguous. I'll go with August/September 2012, leaning August.\n\n{\"year\":2012,\"month\":8,\"confidence\":0.6,\"cues\":[\"Unemployment 8.1% with fed funds ~0.14% and 10y at 1.66%\",\"VIX ~14.8 and 12m US equity return +26.7%\",\"Headline CPI 1.7% and payroll average ~94k\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 624,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.80 | -1.89 | -0.63 | -0.17\nNational activity index, 3m avg | index, 0 = trend growth | -0.47 | -0.14 | -0.34 | -1.40\nUnemployment rate | % | +8.10 | -0.10 | -1.00 | -1.66\nPayrolls, avg monthly change over 3m | thousands | +94.00 | -5.33 | +5.67 | +0.08\nHeadline CPI | YoY % | +1.70 | -0.04 | -2.07 | -0.41\nCore CPI | YoY % | +1.92 | -0.34 | -0.02 | +0.68\nPolicy rate (fed funds) | % | +0.14 | +0.05 | +0.08 | +0.36\n2-year Treasury yield | % | +0.25 | -0.08 | +0.00 | -0.96\n10-year Treasury yield | % | +1.66 | -0.01 | -0.26 | -1.39\n10y minus 2y Treasury spread | pp | +1.41 | +0.07 | -0.26 | -1.50\nEquity implied volatility (VIX) | index points | +14.84 | -2.24 | -28.12 | -1.20\nBaa corporate minus 10y Treasury spread | pp | +3.05 | -0.34 | -0.25 | +0.38\nBroad trade-weighted dollar | YoY % | -1.59 | -9.03 | -2.31 | +0.13\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.3% | +6.3% | +3.3% | +26.7% | +14.1% | -1.7%\nDeveloped ex-US equity | +2.1% | +6.1% | -1.2% | +11.0% | +19.9% | -3.9%\nEmerging-market equity | +5.0% | +5.6% | -2.6% | +14.3% | +21.4% | -6.5%\nUS Treasuries 7-10y | +0.5% | +0.9% | +6.0% | +6.0% | +5.6% | -1.0%\nUS Treasuries 20y+ | -0.6% | -0.1% | +12.2% | +8.5% | +14.5% | -5.6%\nUS investment-grade credit | +1.8% | +4.6% | +7.4% | +13.5% | +4.6% | +0.0%\nGold | +7.0% | +10.8% | +6.0% | +9.0% | +14.8% | -1.8%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.62\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:08:48+00:00",
+ "decision_date": "2014-06-30",
+ "key": "2b291f2ea1683e9f739f30ff631c92f086cc3b6f3c394362e82a54eb6759d876",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmffs1qKC9WDLXAbrxJL",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate is very low relative to its 3-year window, with payrolls strong and industrial production and the activity index rising. Headline CPI is rising fast over 3 months, which suggests an inflation pickup, while the policy rate is flat in level but up a bit. The 2-year yield is high (+2) and the Baa spread is tight. VIX is low.\n\nThis could be early 2018, but the 36-month window for 2018 would include the 2015-2016 period, when the unemployment rate was higher, so a low unemployment z-score fits. The policy rate at 0 z with a +1 3m change fits a hiking cycle that is only partway through. In early 2018, the 2-year yield z would be high, and the 10y-2y spread would be narrowing.\n\nThe alternative is late 2016 to early 2017, but then unemployment would not be at -2. Another is late 2023 or 2024, when unemployment z would be low and the policy rate z around +0. In 2024 the 2-year yield z would be near 0 or negative.\n\nEarly 2018 looks best. Equities at 0 for 1m, 3m and 6m but +1 for 12m fits January-February 2018, though the Feb 2018 VIX spike would raise the VIX z. Industrial production up and CPI up 2.0 over 3m fits a Jan-Mar 2018 reading. The bond 1m return of -0.5 and gold +1.0 fit January 2018 (gold rallied, yields rose), but the 10y 3m change of -0.5 does not fit that month, since the 10y rose strongly in late 2017 into 2018.\n\nAnother candidate is mid-2006, but that is outside the data range. Another is late 2019, which doesn't fit the CPI. Another is 2022, which doesn't fit either.\n\nMaybe late 2024 or early 2025: the 10y z at +1 with a 3m change of -0.5, and the 2y at +2 with a flat change. Unemployment would be -2 in 2018 but not in 2025 (z would be about 0). I'll go with mid-2018 instead: the 2-year at +2, the Baa spread tight, the dollar down in the 3m change... the dollar rose in Q2 2018, so that doesn't fit. I'll pick January 2018.\n\n{\"year\": 2018, \"month\": 1, \"confidence\": 0.3, \"cues\": [\"Unemployment z -2 with strong payrolls and rising industrial production\", \"2-year yield z +2, tight Baa spread, low VIX\", \"Gold up 1m while Treasuries fell, dollar weakening\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 842,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | +1.0 | +1.5\nNational activity index, 3m avg | +1.0 | +1.0 | +1.5\nUnemployment rate | -2.0 | -1.0 | -1.5\nPayrolls, avg monthly change over 3m | +1.5 | +1.5 | +0.5\nHeadline CPI | +0.0 | +2.0 | +0.5\nCore CPI | +0.0 | +1.5 | +0.0\nPolicy rate (fed funds) | +0.0 | +1.0 | +0.5\n2-year Treasury yield | +2.0 | +0.0 | +1.0\n10-year Treasury yield | +1.0 | -0.5 | +0.0\n10y minus 2y Treasury spread | +0.5 | -0.5 | +0.0\nEquity implied volatility (VIX) | -1.0 | -0.5 | -0.5\nBaa corporate minus 10y Treasury spread | -2.0 | +0.0 | -1.0\nBroad trade-weighted dollar | -0.5 | -1.0 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | +0.0 | +0.0 | +1.0 | -1.0 | +1.0\nDeveloped ex-US equity | +0.0 | +0.5 | +0.0 | +1.0 | -1.0 | +1.0\nEmerging-market equity | +0.5 | +0.5 | +0.5 | +1.5 | -1.0 | +1.5\nUS Treasuries 7-10y | -0.5 | +0.5 | +0.5 | +0.0 | -1.0 | +1.0\nUS Treasuries 20y+ | -0.5 | +0.5 | +0.5 | +0.0 | -1.0 | +1.5\nUS investment-grade credit | -0.5 | +0.5 | +0.5 | +0.5 | -1.0 | +0.5\nGold | +1.0 | +0.5 | +1.0 | +0.5 | -1.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

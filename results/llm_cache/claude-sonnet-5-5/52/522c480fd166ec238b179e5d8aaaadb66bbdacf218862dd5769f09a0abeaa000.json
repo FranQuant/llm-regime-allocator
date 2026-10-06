@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:06:18+00:00",
+ "decision_date": "2013-05-31",
+ "key": "522c480fd166ec238b179e5d8aaaadb66bbdacf218862dd5769f09a0abeaa000",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfUaenAooQcKSqFTMr3",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like early 2022 or late 2024/early 2025. The yields have risen sharply over 12 months (2y +1.5, 10y +2.0), with the policy rate low relative to its 36-month history (-1.5). The policy rate is low against the last three years, so the 36-month window probably includes a period of very low rates. The rate also fell 1.5 over the past 3 months, which points to cuts.\n\nLate 2024 fits well. The policy rate was cut from 5.33 to 4.58 by December 2024, but the 36-month average was around 4, which would make the level z-score positive rather than -1.5. That fails.\n\nAnother candidate is late 2016. The Fed hiked in December 2016, yields spiked in November 2016, and Treasuries fell hard (-2.5 for 1m). The 36-month window of 2014-2016 had a low policy rate, but a hike would give a rising 3m change, not -1.5.\n\nA third candidate is a fall in rates of 1.5 z-scores over 3m with a low level. Fall 2008 doesn't fit because the window starts in 2007, and the data starts in 2007 so z-scores would need 36 months of history. The earliest usable snapshot is therefore 2010.\n\nConsider late 2024 again, with the window from late 2021 to late 2024. Rates were 0.08 in early 2022 and 5.3 in 2023-24. The average is about 3.8, with a standard deviation near 2. At 4.6 the z-score would be about +0.4, which fails.\n\nNow consider Jan 2021 or mid-2020. Rates were near 0, the 36-month window includes 2018-2019 at 2%, and the z-score would be about -1.5. A 3m change of -1.5 would fit March 2020, but yields rose over 12 months, which doesn't fit.\n\nNext, consider late 2016 to early 2017. The policy rate was 0.5-0.75, and the window of 2014-2016 was near 0.1-0.4, so the z-score would be positive. That doesn't fit.\n\nThe remaining option is Jan 2021 to Mar 2021. Yields rose sharply over 3m (+1.0 for 10y), but the 12m change is +2.0 even though yields were falling from Feb 2020 to Aug 2020. Treasuries -2.5 for 1m fits Feb or Mar 2021. Gold -2.5 over 6m fits as well. The VIX z of -1.0 doesn't fit Feb 2021, though. Unemployment at -1.5 with a -1.0 3m change also doesn't fit, since unemployment was high. Headline CPI at -1.0 is also wrong.\n\nAlternative: late 2023 / early 2024, the Fed on hold. Policy rate z would be high, so no.\n\nBack to the 2013 taper tantrum. Treasuries had a large 1m loss in June 2013, 10y rose, the policy rate was near zero, but the 36-month window of 2010-2013 would be flat. Gold fell sharply in 2013 (-2.5 on 6m), and credit spreads were narrowing (-2.0 over 12m). The VIX was low. Unemployment was falling. The 3m policy change of -1.5 is odd, but z-scores on near-constant series can be erratic. Headline CPI was low in 2013. Equity was strong over 12m (+1.5). Industrial production at -1.5 is odd but possible. The best fit is mid-2013, probably June or July.\n\n{\"year\":2013,\"month\":6,\"confidence\":0.45,\"cues\":[\"Treasuries 7-10y 1m -2.5 with 10y yield 3m +1.0: taper-tantrum-style bond selloff\",\"Gold 6m -2.5 and drawdown -2.5; credit spread -2.0 over 12m, low VIX\",\"Unemployment falling, equities strong over 12m, policy rate pinned near zero\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1287,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +0.0 | -0.5\nNational activity index, 3m avg | +0.5 | -0.5 | +0.0\nUnemployment rate | -1.5 | -1.0 | +0.0\nPayrolls, avg monthly change over 3m | +1.0 | +0.0 | -0.5\nHeadline CPI | -1.0 | -0.5 | -1.0\nCore CPI | +0.0 | -1.0 | -1.0\nPolicy rate (fed funds) | -1.5 | -1.5 | -1.0\n2-year Treasury yield | -0.5 | +0.5 | +1.5\n10-year Treasury yield | -0.5 | +1.0 | +2.0\n10y minus 2y Treasury spread | -0.5 | +1.0 | +2.0\nEquity implied volatility (VIX) | -1.0 | +0.0 | -1.0\nBaa corporate minus 10y Treasury spread | -1.0 | -0.5 | -2.0\nBroad trade-weighted dollar | -0.5 | -1.0 | -1.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +0.5 | +1.0 | +1.5 | -1.0 | +0.5\nDeveloped ex-US equity | -0.5 | +0.0 | +0.5 | +1.5 | -1.5 | +0.5\nEmerging-market equity | -0.5 | -0.5 | +0.0 | +0.5 | -1.5 | +0.0\nUS Treasuries 7-10y | -2.5 | -1.0 | -1.5 | -2.0 | -1.5 | -1.0\nUS Treasuries 20y+ | -2.0 | -1.0 | -1.0 | -1.5 | -1.0 | -1.5\nUS investment-grade credit | -2.5 | -1.5 | -2.0 | -1.5 | -1.0 | -2.0\nGold | -1.0 | -2.0 | -2.5 | -1.5 | +0.5 | -2.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

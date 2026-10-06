@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:23:39+00:00",
+ "decision_date": "2021-07-30",
+ "key": "ba7af3852646311c742ab4c5423863a7c0ca1b7b7b5d20e8446b5b0e3ae0d2ee",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcEBffo2fge444j4WD9",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like mid-2021. Unemployment is 5.9%, headline CPI is 5.32% and core CPI is 4.45%. The fed funds rate is 0.10%, the 10-year yield is 1.28%, and US equities are up 37.4% over 12 months.\n\nCore CPI at 4.45% year over year fits June 2021, when it was about 4.5%. Headline CPI in June 2021 was 5.4%, and the figure here is close to that. The 5.9% unemployment rate matches June 2021 as well. The 10-year yield was about 1.45% at the end of June and 1.22% at the end of July. Long Treasuries returned +3.7% over the month, which suggests yields fell, so the snapshot is probably June or July.\n\nPayrolls averaged 567k over three months, and for June 2021 that figure was about (614+269+583)/3 = 489k. That is a weaker match than I'd like. For July, the average of 583, 938 and 1091 revisions would be higher, near 700k. Using the data as first published, the June jobs report showed 850k, giving an average of about 567k for 3 months (583 + 269 + 850)/3 \u2248 567. That matches exactly, so the month is June 2021.\n\nThe 10-year yield ended June 2021 at about 1.47%, not 1.28%, but I'm treating the other matches as stronger. The Treasury figures may reflect a different measurement date. Emerging-market equities fell 6.4% over the month, which doesn't fit June, so there is some uncertainty. In July 2021, EM equities did drop sharply (about -6.7%, driven by the China selloff), and the 10-year ended July at 1.22%. That fits July better. The payroll data would then be the vintage published in early August: (938+614+...) is less clear, but the July jobs report showed 943k, with revisions giving a three-month average of about (938+938+943)/3... uncertain. The unemployment rate in July 2021 was 5.4%, though, and 5.9% matches June.\n\nSince the market data fits July and the labor and CPI data fit June, the snapshot most likely describes the end of July 2021, with macro data lagging by a month.\n\n```json\n{\"year\":2021,\"month\":7,\"confidence\":0.8,\"cues\":[\"CPI 5.3% and core 4.45% YoY, unemployment 5.9%, fed funds 0.10%\",\"10y yield 1.28% after falling, long Treasuries +3.7% in 1m\",\"EM equities -6.4% in 1m (China selloff), US equities +37% 12m\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1190,
+  "output_tokens": 847,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +9.80 | +8.27 | +20.76 | +1.57\nNational activity index, 3m avg | index, 0 = trend growth | +0.06 | -0.55 | +2.47 | +0.12\nUnemployment rate | % | +5.90 | -0.10 | -5.20 | +0.11\nPayrolls, avg monthly change over 3m | thousands | +567.33 | +49.33 | +4900.67 | +0.34\nHeadline CPI | YoY % | +5.32 | +2.69 | +4.60 | +3.15\nCore CPI | YoY % | +4.45 | +2.81 | +3.25 | +3.70\nPolicy rate (fed funds) | % | +0.10 | +0.05 | +0.00 | -0.99\n2-year Treasury yield | % | +0.20 | +0.04 | +0.09 | -0.92\n10-year Treasury yield | % | +1.28 | -0.37 | +0.73 | -0.48\n10y minus 2y Treasury spread | pp | +1.08 | -0.41 | +0.64 | +1.28\nEquity implied volatility (VIX) | index points | +17.70 | -0.91 | -6.76 | -0.45\nBaa corporate minus 10y Treasury spread | pp | +1.94 | -0.02 | -0.66 | -0.91\nBroad trade-weighted dollar | YoY % | -3.16 | +5.21 | -4.85 | -0.97\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.4% | +5.4% | +19.3% | +37.4% | +12.6% | -0.6%\nDeveloped ex-US equity | +0.8% | +3.2% | +11.3% | +28.3% | +12.9% | -2.2%\nEmerging-market equity | -6.4% | -4.0% | -2.8% | +20.1% | +18.9% | -10.6%\nUS Treasuries 7-10y | +2.0% | +3.5% | -0.4% | -3.4% | +5.3% | -3.7%\nUS Treasuries 20y+ | +3.7% | +8.3% | -0.8% | -11.4% | +13.6% | -11.7%\nUS investment-grade credit | +1.4% | +4.3% | +1.5% | +0.9% | +6.6% | -0.4%\nGold | +2.5% | +2.5% | -1.6% | -7.6% | +13.7% | -12.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.12\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

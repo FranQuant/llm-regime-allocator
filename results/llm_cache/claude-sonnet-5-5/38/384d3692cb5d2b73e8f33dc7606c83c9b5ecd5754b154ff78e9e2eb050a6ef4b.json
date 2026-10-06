@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:25:08+00:00",
+ "decision_date": "2026-03-31",
+ "key": "384d3692cb5d2b73e8f33dc7606c83c9b5ecd5754b154ff78e9e2eb050a6ef4b",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmgv1ttnvMWzjuBTXuC7",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot shows a VIX spike (z +3, with a 3m change of +3), a fed funds rate well below its 3-year average (-1.5), and unemployment above its 3-year average (+1.5). Low CPI relative to the past 36 months points to a period after high inflation had faded. Equities are down 2 sigma in the month, and gold is down sharply, which suggests a liquidation episode.\n\nCandidate: October 2008 does not fit, because the 3-year window would include a very different regime. Another candidate is March 2020, but the rate would then be falling sharply and the 2-year yield would not be up. August 2015 does not fit well either.\n\nApril 2025 looks more plausible. The VIX spiked, the dollar fell over the past 12 months, and equities were down. However, the 1m equity return of -2.0 is mild for April 2025, and gold would have been strong. Gold at -3.0 for the month with a drawdown of -3.0 suggests a sharp gold drop.\n\nOther options are early 2026, such as a January or February 2026 gold crash after a late-January peak. Gold fell sharply at the end of January 2026, but fed funds at -1.5 does not fit, since 2023\u20132025 rates were high. If the 36-month window is 2023\u20132026, the rate would be around average or higher.\n\nRate z of -1.5 with a 3m change of +0.5 and a 12m change of -0.5 suggests a period of low and slightly rising rates. Unemployment z of +1.5 with a 12m change of +1.0 fits 2016 to 2017, but VIX +3 does not fit those years.\n\nMarch 2020 gives unemployment a z of +1.5? No, because unemployment would be extremely high by April 2020.\n\nFebruary 2018 fits a VIX spike with a +3 z, and the 2-year yield rising by 1.0 over 3 months. Equities were down in February 2018, and the 10y-2y spread narrowing fits. But the unemployment z in 2018 would be negative, since it was falling.\n\nAlternatively, consider August 2011 or May 2010. The 36-month window in 2010 includes the crisis, which would put unemployment, VIX and credit spreads all high. In 2010 the VIX would have been a +3 spike against a window that includes 2008, which is unlikely.\n\nLate 2018 (December) or August 2019 fit less well. Payrolls at -2.0 while the unemployment rate is high suggests a post-recession period in which payroll growth is low relative to the strong 2021\u20132022 data. This points to 2024\u20132025. In August 2024, the VIX spiked, but equities were only slightly down for the month and gold was strong, so that does not fit.\n\nApril 2025 fits on unemployment, payrolls, and the VIX. However, the fed funds z would be around +0.5, not -1.5, so it does not fit. Overall, fed funds low and rising with a VIX spike points to 2018 or 2022.\n\nI'll go with February 2018.\n\n```json\n{\"year\":2018,\"month\":2,\"confidence\":0.15,\"cues\":[\"VIX z +3 with +3 3m change\",\"fed funds low but rising, 2y yield up\",\"equities and gold both sold off in the month\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1049,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | -1.0 | +0.5\nNational activity index, 3m avg | +1.0 | +1.5 | -0.5\nUnemployment rate | +1.5 | -1.0 | +1.0\nPayrolls, avg monthly change over 3m | -2.0 | +0.5 | +0.0\nHeadline CPI | -1.0 | +0.0 | +0.5\nCore CPI | -1.5 | +0.5 | +0.5\nPolicy rate (fed funds) | -1.5 | +0.5 | -0.5\n2-year Treasury yield | -0.5 | +1.0 | +0.0\n10-year Treasury yield | +0.5 | +0.5 | -0.5\n10y minus 2y Treasury spread | +1.0 | -1.0 | +0.0\nEquity implied volatility (VIX) | +3.0 | +3.0 | +1.5\nBaa corporate minus 10y Treasury spread | +0.5 | +0.5 | +0.5\nBroad trade-weighted dollar | -1.0 | +1.0 | -1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.0 | -1.5 | -1.5 | +0.0 | -0.5 | -1.5\nDeveloped ex-US equity | -2.0 | -0.5 | -0.5 | +1.0 | +0.5 | -2.0\nEmerging-market equity | -2.5 | +0.0 | +0.0 | +1.5 | +2.0 | -1.5\nUS Treasuries 7-10y | -1.0 | -0.5 | -0.5 | +0.5 | -1.5 | +0.5\nUS Treasuries 20y+ | -1.0 | +0.0 | +0.0 | +0.5 | -2.0 | +1.0\nUS investment-grade credit | -1.0 | -0.5 | -1.0 | +0.0 | -1.5 | +0.0\nGold | -3.0 | +0.0 | +0.5 | +1.0 | +3.0 | -3.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: positive (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

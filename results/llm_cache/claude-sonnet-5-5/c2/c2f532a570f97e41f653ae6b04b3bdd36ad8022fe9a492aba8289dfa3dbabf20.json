@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:19:27+00:00",
+ "decision_date": "2021-10-29",
+ "key": "c2f532a570f97e41f653ae6b04b3bdd36ad8022fe9a492aba8289dfa3dbabf20",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgUitVPBWfgp6zyXSHc",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot shows high inflation with CPI up sharply over 12 months, rising yields over 3 and 12 months, and a policy rate that is low relative to the last 3 years but rising. Credit spreads are tight, VIX is low, and unemployment is low. That fits roughly 2022, but the policy rate z-score of -1.0 relative to the prior 36 months points to a time soon after a period of higher rates.\n\nConsidering 2022: by early 2022 the 36-month window includes 2019 to 2021, with the rate near zero, so the policy rate z-score would not be negative. That rules out 2022.\n\nConsidering late 2016 to early 2017: headline CPI had risen but the 36-month window would not show a +2.5 z-score for CPI.\n\nConsidering 2004 to 2005: outside the sample range.\n\nConsidering 2021: CPI z-score would be high, but the policy rate would be at zero, which is a low z-score. Yet the 12-month change in the policy rate is +0.5, so the rate rose. The 2-year yield is up 1.5 over 3 months. The VIX is down 1.5 over 12 months. Gold is weak at -1.5 over 12 months. A negative stock-bond correlation (z +1) means the correlation is lower than in the recent past, which was positive in 2022-23.\n\nConsidering late 2024 to early 2025: the window covers 2022-2024, with a high policy rate, so a policy rate z of -1.0 is unlikely.\n\nConsidering 2026: the window of 2023-2025 has a policy rate of 5.25 down to 3.6, giving a negative z. CPI z would be unlikely to be +2.5 though.\n\nConsidering 2018: the window covers 2015-2017, when CPI was low and rising and the policy rate was rising, but a z of -1.0 for the policy rate is unlikely.\n\nConsidering late 2009 to 2010: the window includes 2007-2008, with a high policy rate at the start, so a negative z is plausible, but not with high CPI.\n\nConsidering mid-2022 onward, or 2023: the policy rate z would be positive.\n\nConsidering 2024 spring: CPI z over 36 months would be about +1, not +2.5.\n\nConsidering late 2021: the policy rate is at zero, the window of 2019-2021 includes 2019 rates at 2.4, so z around -1. Headline CPI z is +2.5, core +2.0, and the 2-year yield rose 1.5 over 3 months, which fits Q4 2021. The 10-year yield rose 1.0 over 3 months. Gold is down over 12 months, and equities are strong at +1.5 over 12 months. The unemployment rate at -0.5 z fits that period too. Industrial production is up 1.0 over 12 months, which fits. The policy rate 12m change of +0.5 is odd, though, since rates did not rise in 2021. Possibly it is a later month, such as February 2022, when the 3-month 2-year change is large. Yet the 3m policy rate change of +0.5 suggests a hike had occurred, pointing to March 2022. But the equity 3m of 0 and VIX at -0.5 do not fit March 2022 well, and drawdown of +1.0 seems odd. Credit spreads at -1.5 suggest tight, which would fit October-November 2021.\n\nI settle on about November 2021, though the signals are mixed.\n\n{\"year\": 2021, \"month\": 11, \"confidence\": 0.3, \"cues\": [\"CPI z +2.5 with core +2.0 and the 2y yield up 1.5 over 3m, as in the late-2021 inflation surge\", \"Policy rate still low versus the 36m window, with tight Baa spreads and low VIX\", \"Gold weak over 12m while equities strong\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1236,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | -1.0 | +1.0\nNational activity index, 3m avg | +0.0 | +0.0 | -0.5\nUnemployment rate | -0.5 | -0.5 | -1.0\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | -0.5\nHeadline CPI | +2.5 | +0.0 | +2.0\nCore CPI | +2.0 | -0.5 | +2.0\nPolicy rate (fed funds) | -1.0 | +0.5 | +0.5\n2-year Treasury yield | -0.5 | +1.5 | +1.5\n10-year Treasury yield | +0.0 | +1.0 | +1.5\n10y minus 2y Treasury spread | +1.0 | +0.0 | +0.0\nEquity implied volatility (VIX) | -0.5 | +0.0 | -1.5\nBaa corporate minus 10y Treasury spread | -1.5 | -0.5 | -1.5\nBroad trade-weighted dollar | -0.5 | +0.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +0.0 | +0.0 | +1.5 | -1.0 | +1.0\nDeveloped ex-US equity | +0.5 | +0.0 | +0.0 | +1.5 | -0.5 | +0.5\nEmerging-market equity | +0.0 | -0.5 | -1.0 | +0.5 | -0.5 | -0.5\nUS Treasuries 7-10y | -0.5 | -1.5 | -0.5 | -1.5 | -0.5 | -1.0\nUS Treasuries 20y+ | +0.5 | -0.5 | +0.0 | -1.0 | +0.0 | +0.0\nUS investment-grade credit | +0.0 | -1.0 | -0.5 | -1.0 | -0.5 | +0.0\nGold | +0.0 | -1.0 | -1.0 | -1.5 | -0.5 | -0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

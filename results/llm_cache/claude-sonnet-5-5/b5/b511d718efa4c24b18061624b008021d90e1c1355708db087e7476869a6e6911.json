@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:28:48+00:00",
+ "decision_date": "2026-03-31",
+ "key": "b511d718efa4c24b18061624b008021d90e1c1355708db087e7476869a6e6911",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcdAkzpyMNjB8rB2DdR",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The fed funds rate is 3.64%, so the cuts have already happened, and the unemployment rate is 4.4%. That fits late 2025 or early 2026. Fed funds sat near 3.64% from December 2025 onward, since the December cut brought it to 3.50-3.75%.\n\nVIX is at 30.6 and gold fell 12.2% in one month after rising 51.5% over 12 months. A drop like that suggests a spike near its peak followed by a sharp correction. Gold peaked in late January 2026 and then fell sharply, so the snapshot could be February or March 2026. US equities are down 5% over the month, and the VIX jump of +15.66 over 3 months implies a high reading now. The 10-year yield at 4.35% and 2-year at 3.82% fit a March 2026 reading, with the 2-year up 0.35 over 3 months.\n\nCore CPI at 2.47% and headline at 2.43% are low, which fits the lagged data in early 2026. The 12-month change in the fed funds rate is -0.69, which means a year earlier it was about 4.33%. That is consistent with February or March 2026, since the rate was 4.33% through the first part of 2025. Payrolls averaging +5.67k over 3 months are weak. I'll go with March 2026.\n\n```json\n{\"year\":2026,\"month\":3,\"confidence\":0.5,\"cues\":[\"Fed funds 3.64% after 2025 cuts, unemployment 4.4%\",\"Gold -12% in one month after +51% over 12 months, a post-peak crash\",\"VIX at 30.6 with equities -5% in the month\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 533,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.44 | -0.65 | +0.62 | +1.17\nNational activity index, 3m avg | index, 0 = trend growth | -0.01 | +0.31 | -0.08 | +1.37\nUnemployment rate | % | +4.40 | -0.10 | +0.40 | +1.34\nPayrolls, avg monthly change over 3m | thousands | +5.67 | +13.33 | -71.33 | -1.19\nHeadline CPI | YoY % | +2.43 | -0.26 | -0.56 | -0.91\nCore CPI | YoY % | +2.47 | -0.13 | -0.81 | -1.30\nPolicy rate (fed funds) | % | +3.64 | +0.00 | -0.69 | -1.72\n2-year Treasury yield | % | +3.82 | +0.35 | -0.07 | -0.68\n10-year Treasury yield | % | +4.35 | +0.17 | +0.12 | +0.53\n10y minus 2y Treasury spread | pp | +0.53 | -0.18 | +0.19 | +0.99\nEquity implied volatility (VIX) | index points | +30.61 | +15.66 | +8.33 | +3.66\nBaa corporate minus 10y Treasury spread | pp | +1.79 | +0.07 | +0.03 | +0.55\nBroad trade-weighted dollar | YoY % | -4.59 | +2.78 | -9.29 | -1.04\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -5.0% | -5.2% | -1.5% | +18.4% | +13.4% | -6.2%\nDeveloped ex-US equity | -6.0% | +0.9% | +6.3% | +22.0% | +15.7% | -8.1%\nEmerging-market equity | -7.7% | +3.9% | +8.3% | +32.9% | +21.3% | -10.3%\nUS Treasuries 7-10y | -1.7% | -0.6% | +0.8% | +4.3% | +4.5% | -2.3%\nUS Treasuries 20y+ | -3.3% | -0.9% | -1.2% | +0.5% | +9.3% | -4.2%\nUS investment-grade credit | -1.7% | -0.9% | -0.1% | +5.1% | +5.3% | -2.1%\nGold | -12.2% | +8.0% | +22.1% | +51.5% | +34.0% | -13.2%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.10\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

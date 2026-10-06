@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:21:29+00:00",
+ "decision_date": "2019-07-31",
+ "key": "60137471c5332fd724fd45ef21462e5f032256e4034c9a7c48aa8150c22daf05",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc4fAdNfiqsczRSEFUM",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2019. The fed funds rate is 2.39%, which fits the period before the July 2019 cut. The 10-year yield at 2.06% and the 2-year at 1.85% match June 2019, and unemployment of 3.7% and core CPI of 2.13% fit as well.\n\nSeveral other readings point the same way. US large-cap equity is up 12.2% over 6 months, gold is up 10.6% over 3 months, and the 7-10y Treasury return of 4.4% over 3 months fits a falling-yield period. The 10-year yield had fallen 0.45 over 3 months, from about 2.5% in March to about 2.0% in June.\n\nMonth-end June 2019 fits best. The 1-month equity return of +0.6% looks low for June 2019, when the S&P gained about 7%. May 2019 returned about -6%, so neither month matches cleanly. The 3-month equity return of 2.4% would instead fit a different month-end.\n\nChecking July 2019: the S&P returned about +1.4%, and the fed funds rate was 2.40 in July. The 10-year yield at the end of July was 2.01%, and the 2-year was 1.88%. The 3-month equity return of about 2.4% (May -6.3%, June +7%, July +1.4%) works out to roughly +1.5%, which is close. For July, developed ex-US fell about 1.5-2%, and gold was up about 0.5%. Gold rose about 8% in June, so +2.0% for 1 month does not fit well for either month.\n\nAugust 2019 is another option. The 10-year yield ended August at 1.50%, which is too low. That leaves July or June, and the fed funds rate of 2.39 suits July (June was also 2.38). The 3-month change in the policy rate of -0.06 suggests a rate that had edged down, which fits June or July. I'll go with July.\n\n```json\n{\"year\":2019,\"month\":7,\"confidence\":0.6,\"cues\":[\"Fed funds 2.39% with 10y at 2.06% and 2y at 1.85%, flat curve before the first cut\",\"Unemployment 3.7%, core CPI 2.13%, headline CPI 1.66%\",\"Gold +10.6% over 3m and long Treasuries +7.7% over 3m, with equities up 12% over 6m\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 760,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.32 | -0.95 | -2.11 | -0.48\nNational activity index, 3m avg | index, 0 = trend growth | -0.26 | +0.01 | -0.41 | -1.51\nUnemployment rate | % | +3.70 | -0.10 | -0.30 | -1.17\nPayrolls, avg monthly change over 3m | thousands | +170.67 | -3.00 | -72.00 | -0.84\nHeadline CPI | YoY % | +1.66 | -0.20 | -1.19 | -0.84\nCore CPI | YoY % | +2.13 | +0.09 | -0.11 | +0.42\nPolicy rate (fed funds) | % | +2.39 | -0.06 | +0.48 | +1.25\n2-year Treasury yield | % | +1.85 | -0.42 | -0.82 | -0.02\n10-year Treasury yield | % | +2.06 | -0.45 | -0.90 | -1.07\n10y minus 2y Treasury spread | pp | +0.21 | -0.03 | -0.08 | -1.07\nEquity implied volatility (VIX) | index points | +13.94 | +0.82 | +1.11 | -0.09\nBaa corporate minus 10y Treasury spread | pp | +2.14 | +0.00 | +0.31 | +0.05\nBroad trade-weighted dollar | YoY % | +2.45 | -2.99 | -0.26 | +0.33\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.6% | +2.4% | +12.2% | +8.3% | +10.7% | -1.5%\nDeveloped ex-US equity | -2.4% | -0.8% | +5.1% | -3.3% | +10.5% | -3.4%\nEmerging-market equity | -3.8% | -3.5% | -1.5% | -4.3% | +14.7% | -5.6%\nUS Treasuries 7-10y | +0.2% | +4.4% | +6.5% | +10.7% | +4.4% | -0.4%\nUS Treasuries 20y+ | +0.5% | +7.7% | +11.3% | +14.6% | +9.3% | -1.0%\nUS investment-grade credit | +0.1% | +5.3% | +9.3% | +11.8% | +4.3% | -0.5%\nGold | +2.0% | +10.6% | +6.8% | +15.2% | +11.6% | -2.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.37\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

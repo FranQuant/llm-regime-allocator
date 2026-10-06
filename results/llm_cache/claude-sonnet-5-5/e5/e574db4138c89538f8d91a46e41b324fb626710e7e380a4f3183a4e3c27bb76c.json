@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:18:00+00:00",
+ "decision_date": "2016-05-31",
+ "key": "e574db4138c89538f8d91a46e41b324fb626710e7e380a4f3183a4e3c27bb76c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmboDWMsL1VrvzH2cydy",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2016. Unemployment is 5.0%, the fed funds rate is 0.37%, and the 10-year yield is 1.85%. Headline CPI is 1.14% year over year, and core CPI is 2.15%.\n\nThe 10-year at 1.85% with a 12-month change of -0.27 fits either November or December 2016, though the 10-year was around 2.4% by December. The fed funds rate at 0.37% fits October 2016, when the effective rate was about 0.40%. In September it was 0.29%, and in October 0.40%, so this is probably October.\n\nUS equity returned 1.3% over 12 months, and the 3-month return was 6.5%. Emerging-market equity was down 17.3% over 12 months, which matches the year to October 2016 less well but is plausible. Gold fell 6.1% in the month, which fits October 2016 (gold dropped from about 1315 to 1270). The VIX at 13 doesn't fit October 2016, though, since it was around 13 at month-end in October and rose to about 14 in November. Industrial production at -1.07% year over year also fits late 2016.\n\nThe 10-year at 1.85% matches the end of October 2016. The dollar's 12-month change of -8.64 looks odd, but it is probably a quirk of how that series is measured.\n\nThe unemployment rate rose 0.1 over 3 months, which could be 4.9 to 5.0 in 2016. That fits October 2016, when the published figure was 4.9, so the snapshot may describe a different month. Still, the evidence points to a month near October 2016.\n\nEquity 12-month returns were around 4% by October 2016, so +1.3% is slightly low. Gold's 6-month return of +14.6% is consistent with the period.\n\nAlternatively, this could be a month in early 2016. The unemployment rate was 5.0% in January and February 2016, and the 10-year was 1.85% in February 2016 at around 1.74%. Core CPI at 2.15% fits that time too. But the fed funds rate in early 2016 was about 0.34-0.38, and US equity's 12-month return of +1.3% fits end of January 2016 or end of October 2016 about equally. Gold's -6.1% 1-month drop fits October better than January 2016, when gold rose. The VIX falling 7.43 over 3 months, and the 3-month equity return of +6.5%, fit October 2016 rather than early 2016, when equities fell. I'll go with October 2016.\n\n{\"year\": 2016, \"month\": 10, \"confidence\": 0.6, \"cues\": [\"Unemployment 5.0%, fed funds 0.37%, 10-year 1.85%\", \"Gold fell 6.1% in the month, VIX around 13\", \"Core CPI 2.15% with headline CPI 1.14%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 921,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -1.07 | +0.25 | -2.06 | -1.34\nNational activity index, 3m avg | index, 0 = trend growth | -0.22 | -0.06 | -0.07 | -0.96\nUnemployment rate | % | +5.00 | +0.10 | -0.40 | -1.14\nPayrolls, avg monthly change over 3m | thousands | +200.33 | -39.33 | +0.33 | -0.59\nHeadline CPI | YoY % | +1.14 | -0.20 | +1.27 | +0.18\nCore CPI | YoY % | +2.15 | -0.07 | +0.34 | +1.76\nPolicy rate (fed funds) | % | +0.37 | +0.08 | +0.29 | +3.16\n2-year Treasury yield | % | +0.90 | +0.12 | +0.29 | +1.73\n10-year Treasury yield | % | +1.85 | +0.11 | -0.27 | -1.35\n10y minus 2y Treasury spread | pp | +0.95 | -0.01 | -0.56 | -1.61\nEquity implied volatility (VIX) | index points | +13.12 | -7.43 | -0.72 | -0.77\nBaa corporate minus 10y Treasury spread | pp | +2.85 | -0.70 | +0.13 | +0.42\nBroad trade-weighted dollar | YoY % | +5.20 | -2.98 | -8.64 | -0.28\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.7% | +6.5% | +1.2% | +1.3% | +16.0% | -0.2%\nDeveloped ex-US equity | -0.1% | +6.1% | -3.0% | -9.9% | +18.6% | -11.3%\nEmerging-market equity | -3.7% | +5.5% | -0.9% | -17.3% | +23.1% | -17.6%\nUS Treasuries 7-10y | -0.1% | +0.5% | +4.1% | +5.0% | +5.5% | -1.1%\nUS Treasuries 20y+ | +0.8% | +1.8% | +8.9% | +9.9% | +12.8% | -2.1%\nUS investment-grade credit | -0.5% | +5.3% | +4.8% | +5.0% | +5.0% | -0.6%\nGold | -6.1% | -1.5% | +14.6% | +1.8% | +17.7% | -6.1%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.45\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

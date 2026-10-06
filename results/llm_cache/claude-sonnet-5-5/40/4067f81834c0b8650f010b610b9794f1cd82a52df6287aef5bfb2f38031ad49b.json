@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:13:37+00:00",
+ "decision_date": "2012-08-31",
+ "key": "4067f81834c0b8650f010b610b9794f1cd82a52df6287aef5bfb2f38031ad49b",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbTifyowcpn7HHZJS2n",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate is 8.3% with a 12m change of -0.8, so it was about 9.1% a year earlier. That fits early 2012 (8.3% in Feb 2012; 9.1% in Aug\u2013Sep 2011 and 8.3% in Jan\u2013Feb 2012). A 12m decline of 0.8 from Feb 2011 (8.9%) would give 8.1%, so the match is not exact. The other data point to the same period.\n\n- The fed funds rate of 0.14% fits 2012.\n- The 10-year yield of 1.63% fits March 2012 (about 2.2%) less well than it fits the end of the year. The 10-year was about 1.6% in Dec 2012, but unemployment was 7.8% then. In mid-2012 it was around 1.6% in June (unemployment 8.2%) and 1.5% in July.\n- Headline CPI of 1.42% YoY fits June 2012 (1.7%) or July 2012 (1.4%). The 3m change of -0.87 fits a falling CPI path, with CPI at 2.3% in April, 1.7% in June and 1.4% in July.\n- US large-cap equity returned +19.2% over 12 months and +10.8% over 3 months. That fits the 12 months to Sept 2012, when the 3m return was about 6%. It also fits the 12 months to Dec 2012, when the figure was about 16%.\n- Unemployment was 8.1% in Aug 2012 and 7.8% in Sep 2012, so 8.3% points to June\u2013July 2012. The 3m payroll average of 105k fits June\u2013July 2012.\n- The dollar was up 14.7% over 12m, which fits mid-2012 after the Euro crisis.\n- Gold was +6.5% in 1m, which fits July\u2013Aug 2012. The VIX at 17.8 down 6 over 3m, with developed ex-US equity up 4.6% in 1m, fits the Draghi rally.\n\nDev ex-US was +4.6% in 1m, and 3m +12.5% points to Sept 2012, with the gold 1m gain also fitting then. Gold rose about 6.5% in Sept 2012, and the 10-year was about 1.63%. Unemployment, though, was 7.8% in Sep 2012 as published then. It was later revised, and the snapshot may use the latest vintage, where unemployment was about 8.3%? Probably not. Still, the other cues point to Sep 2012.\n\nIndustrial production YoY of 4.37% was about right for Sep 2012 in the data as then published.\n\n{\"year\":2012,\"month\":9,\"confidence\":0.6,\"cues\":[\"10y yield 1.63% with fed funds 0.14%\",\"Gold +6.5% in 1m and ex-US equity rally fit the Sept 2012 QE3/Draghi period\",\"Unemployment 8.3% down 0.8 over 12m and headline CPI 1.4% fit 2012\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 972,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +4.37 | -0.53 | +1.01 | +0.28\nNational activity index, 3m avg | index, 0 = trend growth | -0.21 | -0.03 | -0.13 | -0.36\nUnemployment rate | % | +8.30 | +0.20 | -0.80 | -1.45\nPayrolls, avg monthly change over 3m | thousands | +104.67 | -52.00 | +26.67 | +0.22\nHeadline CPI | YoY % | +1.42 | -0.87 | -2.19 | -0.51\nCore CPI | YoY % | +2.11 | -0.20 | +0.36 | +1.06\nPolicy rate (fed funds) | % | +0.14 | -0.02 | +0.06 | +0.39\n2-year Treasury yield | % | +0.27 | +0.00 | +0.07 | -0.95\n10-year Treasury yield | % | +1.63 | +0.04 | -0.60 | -1.52\n10y minus 2y Treasury spread | pp | +1.36 | +0.04 | -0.67 | -1.71\nEquity implied volatility (VIX) | index points | +17.83 | -6.23 | -13.79 | -0.80\nBaa corporate minus 10y Treasury spread | pp | +3.20 | -0.20 | -0.05 | +0.92\nBroad trade-weighted dollar | YoY % | +6.34 | -2.92 | +14.73 | +1.52\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.3% | +10.8% | +4.2% | +19.2% | +14.2% | -0.7%\nDeveloped ex-US equity | +4.6% | +12.5% | -3.1% | +1.0% | +20.2% | -5.4%\nEmerging-market equity | +1.4% | +7.9% | -9.4% | -5.6% | +21.9% | -11.2%\nUS Treasuries 7-10y | +0.0% | +0.6% | +4.8% | +7.2% | +5.8% | -0.7%\nUS Treasuries 20y+ | -1.4% | -0.8% | +11.1% | +20.4% | +14.7% | -3.2%\nUS investment-grade credit | -0.0% | +4.5% | +5.1% | +12.0% | +4.9% | -0.1%\nGold | +6.5% | +4.4% | -0.9% | -7.7% | +15.2% | -10.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.60\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

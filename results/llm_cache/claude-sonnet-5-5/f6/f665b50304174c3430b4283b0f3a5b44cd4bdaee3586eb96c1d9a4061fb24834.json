@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:49:35+00:00",
+ "decision_date": "2025-04-30",
+ "key": "f665b50304174c3430b4283b0f3a5b44cd4bdaee3586eb96c1d9a4061fb24834",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmeCygZN8nGGAvHG4tuw",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: the policy rate has fallen over the past year (-1.5 on 12m), and unemployment is high versus its 3-year average and rising. Core CPI is low versus its own history. The curve is steep. VIX is up, credit spreads have widened sharply, and gold is strong. The dollar is weak and US equities are weak.\n\nThis looks like spring 2025. Credit spreads widened in April 2025 and gold surged, but the policy rate then was flat since December 2024, so a 12m change of -1.5 doesn't fit well. The 2y yield falling 1.5 z over 12 months and the 10y falling too fit late 2025 better. Core CPI at -1.5 would also fit that period.\n\nOther candidates:\n- Early 2020 (Feb 2020): the policy rate had been cut in 2019, but unemployment was low then, so no.\n- Aug 2007: unemployment was not high.\n- Late 2007 to 2008: the 36-month window includes rate hikes, and the policy rate 12m change would be negative, but gold and spreads fit. Unemployment z of +1.5 does not fit 2007, though.\n- 2019 does not fit either, since unemployment was low.\n\nFor late 2025 and early 2026, the policy rate was cut in Sept, Oct and Dec 2025. The 12m change would be about -0.75 points against a 3-year std of about 1.5, which gives roughly -0.5 to -1.5. The 3m change of -0.5 fits. Unemployment rose to about 4.4\u20134.6%. Gold up strongly over 3m (+2.0) fits Oct 2025 to Jan 2026. VIX up 1.5 on 3m with a credit spread widening of +2.0 suggests a stress episode. The spread widened in Nov 2025 on AI worries, and again in early 2026 with software and private credit concerns. US equities -1.5 on 3m and -0.5 on 1m fit Feb or Mar 2026. Developed ex-US is better than US, which fits too.\n\nI'll pick Feb 2026.\n\n{\"year\":2026,\"month\":2,\"confidence\":0.4,\"cues\":[\"Credit spread widening sharply (+2.0 on 3m) with VIX up and US equities weak on 3m\",\"Gold surging, dollar weak, ex-US equities beating US\",\"Policy rate cut over the past year, unemployment elevated and rising, steep curve\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 793,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.0 | +0.5 | +1.0\nNational activity index, 3m avg | +0.5 | +0.0 | +1.0\nUnemployment rate | +1.5 | +0.5 | +0.5\nPayrolls, avg monthly change over 3m | -1.0 | -0.5 | +0.5\nHeadline CPI | -1.0 | +0.0 | +0.0\nCore CPI | -1.5 | -0.5 | -0.5\nPolicy rate (fed funds) | +0.0 | -0.5 | -1.5\n2-year Treasury yield | -1.0 | -1.0 | -1.5\n10-year Treasury yield | +0.5 | -1.0 | -1.5\n10y minus 2y Treasury spread | +2.0 | +0.5 | +1.5\nEquity implied volatility (VIX) | +1.0 | +1.5 | +1.0\nBaa corporate minus 10y Treasury spread | +0.0 | +2.0 | +1.5\nBroad trade-weighted dollar | -1.0 | -1.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.5 | -1.5 | -1.0 | +0.0 | +1.5 | -0.5\nDeveloped ex-US equity | +0.5 | +0.5 | +0.5 | +0.5 | +1.0 | +1.0\nEmerging-market equity | +0.0 | +0.5 | +0.0 | +0.5 | +1.0 | +0.5\nUS Treasuries 7-10y | +0.5 | +1.0 | +1.0 | +1.5 | -1.0 | +1.0\nUS Treasuries 20y+ | -0.5 | +0.5 | +0.5 | +1.5 | -1.0 | +0.5\nUS investment-grade credit | +0.0 | +0.0 | +0.0 | +1.0 | -0.5 | +0.5\nGold | +1.0 | +2.0 | +1.5 | +1.5 | +2.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

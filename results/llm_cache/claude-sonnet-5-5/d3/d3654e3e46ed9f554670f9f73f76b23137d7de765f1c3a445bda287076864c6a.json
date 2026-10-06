@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:59:08+00:00",
+ "decision_date": "2009-01-30",
+ "key": "d3654e3e46ed9f554670f9f73f76b23137d7de765f1c3a445bda287076864c6a",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmew5ht6QbfSsBjFGVoP",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a deep recession with a collapse in payrolls, unemployment rising sharply, and falling inflation. The stress in the markets is high. Candidates are late 2008 and the spring of 2020.\n\nAgainst 2020: the 3-year window would include the 2017-2019 period, and the fed funds rate would sit at a very negative z (zero rate vs. 1-2% averages). Here the policy rate is -2.0, with a 3m change of +0.5, which doesn't fit March-April 2020, when the rate was cut sharply. The VIX 3m change is -2.0, so VIX was much higher 3 months earlier and has since fallen, though it is still elevated at +1.5. Equities show a 12m drawdown of -2.5 and are negative over 1m.\n\nAgainst late 2008: the 10y Treasury yield z is -2.0 with a 3m change of -2.0, and Treasuries 1m are -3.0 (a sharp yield rise), consistent with December 2008 to early 2009. The VIX 3m change of -2.0 would fit a falling VIX versus the October 2008 peak, so November or December 2008 is out if VIX is still lower than the peak. The dollar at +2.5 fits 2008-09. Payrolls at -3.0 and unemployment at +3.0 fit early 2009. Headline CPI at -2.5 with a 3m change of -3.0 fits the energy collapse around December 2008 to early 2009. The policy rate z of -2.0 with a +0.5 3m change is odd, since the rate was about 0-0.25% by then and the 3-year average was about 3%.\n\nThe 1m Treasury drop of -3.0 and the 10y yield bottoming in December 2008 would make that month's return strongly positive, so a -3.0 month fits January 2009 or possibly March 2009. Equities were -1.5 over 1m and -2.5 over 6m. January 2009 saw the S&P down about 8.4%, while February was down another 11%. The 3m change in investment-grade credit is +2.5, which fits a rally after the Dec 2008 spreads. The 12m equity return of -2.5 fits January 2009 (about -37%), and 6m is also bad. The 20y+ 1m return of -3.0 fits January 2009 when the long bond fell around 10%. I'll say January 2009. The unemployment 3m change of +2.5 also fits that.\n\n```json\n{\"year\":2009,\"month\":1,\"confidence\":0.6,\"cues\":[\"Payrolls z -3.0 and unemployment z +3.0 with falling CPI\",\"Long Treasuries 1m -3.0 after a 3m rally, with the 10y yield z -2.0 and VIX falling from its peak\",\"Dollar z +2.5, Baa spread z +2.0, equities -2.5 over 12m\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 933,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -3.0 | -0.5 | -3.0\nNational activity index, 3m avg | -2.5 | -0.5 | -2.5\nUnemployment rate | +3.0 | +2.5 | +2.5\nPayrolls, avg monthly change over 3m | -3.0 | -3.0 | -3.0\nHeadline CPI | -2.5 | -3.0 | -2.0\nCore CPI | -2.5 | -2.5 | -1.5\nPolicy rate (fed funds) | -2.0 | +0.5 | -1.0\n2-year Treasury yield | -2.0 | -0.5 | -0.5\n10-year Treasury yield | -2.0 | -2.0 | -1.0\n10y minus 2y Treasury spread | +1.5 | -1.5 | +0.0\nEquity implied volatility (VIX) | +1.5 | -2.0 | +1.0\nBaa corporate minus 10y Treasury spread | +2.0 | -0.5 | +1.5\nBroad trade-weighted dollar | +2.5 | +0.0 | +1.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.5 | -1.0 | -2.5 | -2.5 | +3.0 | -2.5\nDeveloped ex-US equity | -2.0 | -0.5 | -2.5 | -2.0 | +3.0 | -2.5\nEmerging-market equity | -1.0 | +0.0 | -2.0 | -2.0 | +3.0 | -2.5\nUS Treasuries 7-10y | -3.0 | +1.5 | +1.0 | +0.5 | +2.0 | -2.0\nUS Treasuries 20y+ | -3.0 | +1.5 | +1.5 | +1.0 | +3.0 | -3.0\nUS investment-grade credit | -0.5 | +2.5 | +0.0 | -1.0 | +2.5 | +0.0\nGold | +0.5 | +2.0 | -0.5 | -1.5 | +2.5 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

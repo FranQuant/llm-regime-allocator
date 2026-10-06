@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:17:44+00:00",
+ "decision_date": "2016-03-31",
+ "key": "fe2cc314f421b11f0f70731f38de60f84777a6def5e92a34f32e1e4a0e6e008f",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbnD2ZUo5JG4h9RyDiD",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2016. The unemployment rate is 4.9%, the fed funds rate is about 0.37%, and the 10-year yield is 1.83%, which suggests roughly November 2016 or earlier. Core CPI at 2.34% fits the same period.\n\nThe 10-year yield fell 0.44 over the past 3 months, so it was higher 3 months earlier. That rules out November 2016, when yields jumped, and points to a date around February or March 2016 instead. Fed funds at 0.37% fits February 2016 (0.38%) or March 2016 (0.36%).\n\nThe 10-year yield was 2.24% in December 2015 and about 1.78% in February 2016. A 3-month change of -0.44 from 2.27% in November 2015 gives roughly 1.83%, which matches February 2016 at about 1.78% or March 2016 at about 1.89%. February's average was 1.78%, while the end-of-month value was about 1.74%. March's end value was 1.78%, so this is ambiguous.\n\nThe market data points to March 2016:\n- US equity returned +4.3% over 1 month, while February was about flat, so March fits better.\n- Emerging-market equity returned +9.1% over 1 month, which fits March 2016.\n- Gold returned +15.1% over 3 months, which fits the January\u2013March 2016 rally.\n- Headline CPI at 0.97% year over year fits February 2016 (1.0%).\n- Unemployment at 4.9% fits both months.\n- The 12-month dollar change is -9.93, which is odd, but the 3-month change in the dollar's YoY rate is plausible.\n\nI pick March 2016.\n\n{\"year\": 2016, \"month\": 3, \"confidence\": 0.8, \"cues\": [\"Unemployment 4.9%, fed funds ~0.37%, 10y at 1.83% after falling 0.44 in 3 months\", \"Gold +15% over 3m and EM equity +9% in 1m match the Q1 2016 rally\", \"Core CPI 2.3% and headline CPI ~1%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 678,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -1.03 | +0.14 | -4.53 | -1.90\nNational activity index, 3m avg | index, 0 = trend growth | -0.06 | +0.16 | +0.07 | -0.36\nUnemployment rate | % | +4.90 | -0.10 | -0.60 | -1.36\nPayrolls, avg monthly change over 3m | thousands | +228.33 | -13.00 | -31.00 | +0.14\nHeadline CPI | YoY % | +0.97 | +0.53 | +1.06 | -0.07\nCore CPI | YoY % | +2.34 | +0.32 | +0.64 | +3.26\nPolicy rate (fed funds) | % | +0.37 | +0.17 | +0.31 | +3.76\n2-year Treasury yield | % | +0.76 | -0.30 | +0.20 | +1.17\n10-year Treasury yield | % | +1.83 | -0.44 | -0.11 | -1.44\n10y minus 2y Treasury spread | pp | +1.07 | -0.14 | -0.31 | -1.55\nEquity implied volatility (VIX) | index points | +13.56 | -4.65 | -1.73 | -0.66\nBaa corporate minus 10y Treasury spread | pp | +3.11 | -0.12 | +0.56 | +1.10\nBroad trade-weighted dollar | YoY % | +4.07 | -6.74 | -9.93 | -0.44\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +4.3% | -0.4% | +10.5% | +1.7% | +16.8% | -1.7%\nDeveloped ex-US equity | +3.9% | -4.5% | +2.5% | -8.6% | +18.0% | -14.3%\nEmerging-market equity | +9.1% | +4.4% | +9.2% | -12.7% | +24.1% | -20.5%\nUS Treasuries 7-10y | +0.7% | +5.0% | +3.2% | +3.7% | +5.5% | -0.8%\nUS Treasuries 20y+ | +1.7% | +9.1% | +6.7% | +2.5% | +12.7% | -2.1%\nUS investment-grade credit | +4.2% | +5.0% | +4.1% | +1.0% | +5.1% | +0.0%\nGold | -0.1% | +15.1% | +8.9% | +3.5% | +17.3% | -3.2%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.42\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

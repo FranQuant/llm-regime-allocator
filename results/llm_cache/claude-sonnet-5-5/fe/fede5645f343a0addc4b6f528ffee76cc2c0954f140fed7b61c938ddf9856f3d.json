@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:26:20+00:00",
+ "decision_date": "2024-02-29",
+ "key": "fede5645f343a0addc4b6f528ffee76cc2c0954f140fed7b61c938ddf9856f3d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcSE3e8HvPaYya8iD7y",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2024. The fed funds rate is 5.33, which was in place from July 2023 to September 2024. Headline CPI at 3.11% matches January 2024 (3.1%), and core CPI at 3.87% also fits January 2024 (3.9%). The unemployment rate of 3.7% fits December 2023, but January 2024 was 3.7% as well.\n\nEquity data supports a month-end of January or February 2024. The 12-month US equity return of 30% is consistent with the period ending January 2024 (around 20%) or February 2024 (around 30%). Equities returned +12.1% over 3 months, which fits the November\u2013January window less well than the December\u2013February window. The 1-month equity return of +3.5% suggests February (S&P was up 5.3% in February and 1.7% in January), so the figure is somewhat ambiguous.\n\nOther cues point to February 2024. The 10-year yield at 4.27% fits end of February (4.25%), and the 2-year at 4.64% fits end of February (4.62%). Treasuries fell 1.3% in the month, which also fits February, when yields rose. Headline CPI of 3.11% fits January 2024 data, which was the latest published in February. Payrolls averaging 289k reflect the large upward revisions, with Dec, Jan and Feb all strong. That fits February 2024.\n\nThe 1-month equity return of 3.5% is a little low versus the S&P's 5.3% for February, but the figures may be adjusted. I'm going with February 2024.\n\n{\"year\": 2024, \"month\": 2, \"confidence\": 0.8, \"cues\": [\"Fed funds 5.33 with CPI 3.1% and core 3.9% matches the January 2024 CPI release\", \"10y 4.27% and 2y 4.64% with Treasuries down 1.3% in the month fit end of February 2024\", \"US equities +30% over 12m with VIX near 13.8 fit early 2024\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 636,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.03 | +1.03 | -1.48 | -0.68\nNational activity index, 3m avg | index, 0 = trend growth | -0.02 | +0.29 | +0.18 | -0.35\nUnemployment rate | % | +3.70 | -0.10 | +0.30 | -0.48\nPayrolls, avg monthly change over 3m | thousands | +289.33 | +82.33 | -2.67 | -0.69\nHeadline CPI | YoY % | +3.11 | -0.14 | -3.26 | -1.22\nCore CPI | YoY % | +3.87 | -0.15 | -1.67 | -0.80\nPolicy rate (fed funds) | % | +5.33 | +0.00 | +0.76 | +1.18\n2-year Treasury yield | % | +4.64 | -0.09 | -0.17 | +0.93\n10-year Treasury yield | % | +4.27 | -0.10 | +0.35 | +1.14\n10y minus 2y Treasury spread | pp | -0.37 | -0.01 | +0.52 | -0.56\nEquity implied volatility (VIX) | index points | +13.84 | +0.92 | -6.86 | -1.11\nBaa corporate minus 10y Treasury spread | pp | +1.55 | -0.12 | -0.35 | -1.94\nBroad trade-weighted dollar | YoY % | -0.01 | +2.41 | -5.36 | -0.23\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.5% | +12.1% | +14.0% | +30.2% | +11.8% | +0.0%\nDeveloped ex-US equity | +2.5% | +8.1% | +8.9% | +14.9% | +12.2% | -0.3%\nEmerging-market equity | +3.6% | +2.6% | +2.4% | +7.4% | +14.6% | -2.9%\nUS Treasuries 7-10y | -1.3% | +1.7% | +1.2% | +1.4% | +8.6% | -3.8%\nUS Treasuries 20y+ | -1.3% | +3.9% | -0.3% | -4.1% | +19.0% | -10.6%\nUS investment-grade credit | -1.7% | +2.7% | +3.7% | +6.0% | +9.5% | -3.0%\nGold | +0.4% | +0.0% | +5.2% | +11.5% | +12.0% | -1.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.27\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

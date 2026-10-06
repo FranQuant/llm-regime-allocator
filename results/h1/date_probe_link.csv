@@ -1,0 +1,9 @@
+model,probe,regime_variant,probe_bucket,n,brier_minus_uniform
+claude_sonnet,date_probe_blinded,blinded,|err| <= 12m,108,-0.1135
+claude_sonnet,date_probe_blinded,blinded,|err| > 12m,109,-0.0506
+claude_sonnet,date_probe_blinded_every4,blinded,|err| <= 12m,27,-0.1522
+claude_sonnet,date_probe_blinded_every4,blinded,|err| > 12m,27,-0.0182
+claude_sonnet,date_probe,anonymized,|err| <= 12m,217,-0.0484
+claude_sonnet,date_probe,anonymized,|err| > 12m,0,
+claude_sonnet,date_probe,dated,|err| <= 12m,217,-0.0994
+claude_sonnet,date_probe,dated,|err| > 12m,0,

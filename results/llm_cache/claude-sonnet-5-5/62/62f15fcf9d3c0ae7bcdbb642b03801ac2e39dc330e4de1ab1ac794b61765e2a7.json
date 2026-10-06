@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:25:08+00:00",
+ "decision_date": "2023-01-31",
+ "key": "62f15fcf9d3c0ae7bcdbb642b03801ac2e39dc330e4de1ab1ac794b61765e2a7",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcLtbwxweygFZftCEDr",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like December 2022 or January 2023. Fed funds at 4.33% points to December 2022, when the effective rate was about 4.33% after the mid-December hike to a 4.25\u20134.50% target range. In January 2023 the effective rate was about 4.33% as well, because the rate was unchanged until the February meeting.\n\nOther readings fit January 2023 better:\n- The unemployment rate of 3.5% fits both December 2022 and January 2023 (January 2023 was 3.4%, though that figure was released in February).\n- Headline CPI of 6.42% is the figure for December 2022 (6.5%) or November 2022 (7.1%), while core CPI of 5.69% fits neither cleanly. December 2022 headline was 6.5% and core 5.7%, so these are close to December's published values.\n- The three-month change in the fed funds rate is +1.25. From September 2022 (about 3.08%) to December 2022 (4.33%) that is +1.25, which matches December. From October 2022 (3.08%) to January 2023 (4.33%) it would also be +1.25.\n- Equity 1m return of +6.0% and 3m of +5.0% fits January 2023 (S&P +6.3%) better than December 2022 (-5.8%), so the month is January 2023.\n- Emerging-market equity 3m of +22.5% and developed ex-US 3m of +20% fit January 2023, following the strong rally from October 2022.\n- The 10-year yield of 3.55% fits January 2023, which ended near 3.5%. December 2022 ended near 3.88%.\n- Payrolls averaging +247K over three months fits the data available at the end of January 2023, which includes the January report released in early February, and the CPI figure is the December reading.\n\nThe tension is CPI at 6.42%, which is somewhat off the published 6.5%, but the market figures settle it.\n\n{\"year\":2023,\"month\":1,\"confidence\":0.9,\"cues\":[\"Fed funds 4.33% with 10y at 3.55% and 2y at 4.25%\",\"Equities +6% 1m and EM +22.5% 3m after the late-2022 rally\",\"CPI 6.4% and core 5.7% YoY, unemployment 3.5%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 736,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.65 | -3.34 | -2.04 | +0.13\nNational activity index, 3m avg | index, 0 = trend growth | -0.33 | -0.50 | -0.82 | -0.16\nUnemployment rate | % | +3.50 | +0.00 | -0.40 | -0.79\nPayrolls, avg monthly change over 3m | thousands | +247.33 | -118.67 | -390.00 | +0.10\nHeadline CPI | YoY % | +6.42 | -1.80 | -0.68 | +0.59\nCore CPI | YoY % | +5.69 | -0.97 | +0.21 | +0.93\nPolicy rate (fed funds) | % | +4.33 | +1.25 | +4.25 | +2.60\n2-year Treasury yield | % | +4.25 | -0.26 | +3.07 | +1.87\n10-year Treasury yield | % | +3.55 | -0.55 | +1.76 | +1.61\n10y minus 2y Treasury spread | pp | -0.70 | -0.29 | -1.31 | -1.94\nEquity implied volatility (VIX) | index points | +19.94 | -5.94 | -4.89 | -0.73\nBaa corporate minus 10y Treasury spread | pp | +1.87 | -0.41 | -0.06 | -0.86\nBroad trade-weighted dollar | YoY % | +2.99 | -8.95 | -0.28 | +0.25\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +6.0% | +5.0% | -0.2% | -6.5% | +22.9% | -10.8%\nDeveloped ex-US equity | +7.9% | +20.0% | +9.2% | -1.7% | +21.6% | -5.7%\nEmerging-market equity | +7.6% | +22.5% | +6.0% | -10.5% | +21.4% | -15.0%\nUS Treasuries 7-10y | +3.2% | +5.2% | -5.1% | -10.2% | +10.7% | -10.8%\nUS Treasuries 20y+ | +6.4% | +11.5% | -9.7% | -23.4% | +21.4% | -23.0%\nUS investment-grade credit | +4.5% | +9.8% | -1.7% | -10.4% | +13.1% | -10.6%\nGold | +6.3% | +17.1% | +8.7% | +7.4% | +15.4% | -6.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.40\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:07:37+00:00",
+ "decision_date": "2008-01-31",
+ "key": "4e2c7349ce0ad1bcff3c3ae2a82171e493f958143a587c319b90f3096107176b",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmb1UMo6PK72AgPUEBVY",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2008. Fed funds at 3.26% with the 2-year at 2.30% suggests the Fed had been cutting, and a 3-month drop of 1.34pp fits January-March 2008. Headline CPI at 4.12% fits March 2008 (it was 4.0% in March and 3.97% in February). Unemployment at 5.0% matches March 2008 (5.1%) or February (4.8%). Gold up 41% over 12 months fits March 2008, and the 12-month dollar decline of 8.9% fits too. The VIX at 27.6 fits March 2008 as well.\n\nFed funds averaged about 3.0% in March 2008 and 3.5% in February, so a monthly average of 3.26 might be a blend. The 2-year at 2.30 matches end of March 2008 (about 1.6%) less well, but a monthly average could be about 2.3 in March. The 10-year at 3.78 also fits a March average, which was about 3.5%, or roughly February's 3.74. The 10y-2y spread of 1.48 suggests about March 2008. Core CPI at 2.43 fits as well.\n\nEmerging markets up 21% over 12 months and down 15% over 3 months fits March 2008. Payrolls averaging +97k over 3 months is a poor fit, though; in early 2008 the figure was negative. The 3-month change of +20 and a 12-month change of -80 are inconsistent with that, unless later revisions are in play. Given the unemployment rate at 5.0, I'll go with March 2008.\n\n{\"year\":2008,\"month\":3,\"confidence\":0.6,\"cues\":[\"Fed funds fell 1.34pp in 3 months with a steep 10y-2y spread of 1.48pp\",\"Headline CPI at 4.1% with core at 2.4%, plus gold up 41% in 12 months\",\"VIX at 27.6, Baa spread widened, equities down about 10% in 3 months\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 644,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.55 | -0.27 | -1.27 | -1.37\nNational activity index, 3m avg | index, 0 = trend growth | -0.27 | -0.08 | -0.40 | -1.71\nUnemployment rate | % | +5.00 | +0.30 | +0.60 | +0.89\nPayrolls, avg monthly change over 3m | thousands | +97.33 | +20.67 | -79.67 | -1.37\nHeadline CPI | YoY % | +4.12 | +1.36 | +1.59 | +1.18\nCore CPI | YoY % | +2.43 | +0.30 | -0.14 | +0.35\nPolicy rate (fed funds) | % | +3.26 | -1.34 | -2.07 | -1.35\n2-year Treasury yield | % | +2.30 | -1.64 | -2.64 | -3.08\n10-year Treasury yield | % | +3.78 | -0.70 | -1.05 | -2.16\n10y minus 2y Treasury spread | pp | +1.48 | +0.94 | +1.59 | +3.33\nEquity implied volatility (VIX) | index points | +27.62 | +9.09 | +17.20 | +3.01\nBaa corporate minus 10y Treasury spread | pp | +2.94 | +0.95 | +1.37 | +3.91\nBroad trade-weighted dollar | YoY % | -8.94 | -0.47 | -7.47 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -6.0% | -9.8% | -5.2% | -2.7% | +20.1% | -11.7%\nDeveloped ex-US equity | -7.8% | -12.6% | -6.1% | -0.1% | +22.6% | -13.8%\nEmerging-market equity | -8.9% | -15.3% | +5.0% | +21.3% | +40.1% | -17.1%\nUS Treasuries 7-10y | +3.4% | +6.9% | +11.6% | +14.5% | +7.7% | -0.8%\nUS Treasuries 20y+ | +2.1% | +5.9% | +11.3% | +13.7% | +12.2% | -1.6%\nUS investment-grade credit | +2.6% | +2.3% | +6.7% | +6.3% | +7.9% | +0.0%\nGold | +10.8% | +18.2% | +38.6% | +41.0% | +19.9% | -0.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.65\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

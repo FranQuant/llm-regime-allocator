@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:47:58+00:00",
+ "decision_date": "2020-12-31",
+ "key": "73e010188ef5b2d530f782df5aee7e89518607cda35c8c2a151b79bbead2b4a9",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfme5hNavVJ2PcPzLGDeC",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "My best guess is late 2010 to early 2011, though the low-rate, steep-curve pattern could also fit other periods, so confidence is modest.\n\nReading the cues:\n- The policy rate is low relative to its 3-year average (-1.5), and the 10y-2y spread is very steep (+2.5), up 1.5 over 3 months.\n- The 10-year yield rose 1.0 over 3 months while the 2-year rose 0.5, so the curve is steepening on higher long rates.\n- Equities rallied strongly over 6 months (US +1.5, developed ex-US and EM +2.0), and gold has been rising.\n- Inflation is low (CPI -1.0, core CPI -1.0), and the unemployment rate is slightly above its 3-year average.\n- The stock-bond correlation is negative (z +2.5), which is more typical of a flight-to-quality regime than of 2022-23.\n\nCandidates I considered:\n- **Late 2010 to early 2011:** the 3-year window of 2008-2010 would show high unemployment, but the unemployment rate here is only +0.5. The 2-year yield 3m change of +0.5 fits Q4 2010. The 3-year window would include the 2008 crash, so the VIX would be high and the VIX z-score would be negative, but it is 0.\n- **Late 2016:** the 3-year window of 2013-2016 fits. The 10-year yield rose after the November election, and the 10y-2y spread widened. The policy rate would be low relative to its average, but the 2-year yield at -1.5 does not fit, since 2-year yields rose in 2016. Unemployment would be below average, not above.\n- **Late 2024:** the policy rate was cut, but the 3-year average included the high rates of 2023, so the policy rate z-score would not be -1.5.\n- **Mid-2013:** the 10-year yield jumped, but equities would not have shown strong 3-month returns like this.\n\nLate 2016 has an equity rally, a steepening curve, rising 10-year yields, and gold falling, but the unemployment and VIX figures fit poorly. Late 2010 fits the yield moves and the recovery in equities, with Q4 2010 as the likely month.\n\n```json\n{\"year\": 2010, \"month\": 12, \"confidence\": 0.25, \"cues\": [\"10y-2y spread very steep (+2.5) and steepening, 10y yield up over 3m\", \"Equities up strongly over 6m with low inflation and low policy rate\", \"Negative stock-bond correlation with gold rising\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 840,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.0 | +0.5 | -0.5\nNational activity index, 3m avg | +0.5 | -1.0 | +0.5\nUnemployment rate | +0.5 | -0.5 | +0.5\nPayrolls, avg monthly change over 3m | +0.5 | -0.5 | +0.5\nHeadline CPI | -1.0 | +0.0 | -1.0\nCore CPI | -1.0 | +0.0 | -1.5\nPolicy rate (fed funds) | -1.5 | +0.0 | -1.0\n2-year Treasury yield | -1.5 | +0.5 | -1.0\n10-year Treasury yield | -1.0 | +1.0 | -0.5\n10y minus 2y Treasury spread | +2.5 | +1.5 | +1.5\nEquity implied volatility (VIX) | +0.0 | -0.5 | +0.0\nBaa corporate minus 10y Treasury spread | +0.0 | -1.0 | +0.0\nBroad trade-weighted dollar | -1.0 | -0.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +1.0 | +1.5 | +0.5 | -0.5 | +1.0\nDeveloped ex-US equity | +0.5 | +1.5 | +2.0 | +0.5 | +0.0 | +1.5\nEmerging-market equity | +1.0 | +1.5 | +2.0 | +1.0 | -0.5 | +1.5\nUS Treasuries 7-10y | +0.0 | -1.0 | -1.0 | +0.5 | -1.0 | +0.0\nUS Treasuries 20y+ | +0.0 | -1.0 | -1.0 | +0.5 | -0.5 | -1.5\nUS investment-grade credit | +0.0 | +0.5 | +0.0 | +0.5 | -0.5 | +1.0\nGold | +1.0 | -0.5 | +0.0 | +1.0 | +1.0 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +2.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

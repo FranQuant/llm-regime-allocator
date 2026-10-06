@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:15:54+00:00",
+ "decision_date": "2019-06-28",
+ "key": "d32a21595599c3064dbc2745bb434eec3ab340c56d75a6fd6caeebca351d102d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgDGDTQdb567Sqizmjs",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The pattern points to a period of Fed easing, with the policy rate still high relative to its 3-year average (+1.5) but falling (-2.0 over 3m). The 2-year yield is down sharply over 3m and 12m, headline CPI has fallen over 12m, and unemployment is low relative to its recent history but rising over 12m.\n\nLate 2024 fits best. The Fed cut in September, November and December 2024. The 2-year yield fell from about 4.8% in late 2023 to about 3.6% in September 2024, but it then rose again in Q4 2024, so the 3m change would not be that negative by December.\n\nSeptember 2024 fits better:\n- The 2-year yield had dropped from about 4.9% in July 2024 to about 3.6%, a large 3m fall.\n- The 10-year yield was about 3.8%, against a 3-year average of around 3.5\u20134%, which would be a low z-score.\n- Gold rose strongly in the month, consistent with September 2024.\n- Equities were only +1.0 for 1m and 12m was -0.5, which doesn't fit September 2024, when 12m equity returns were very strong. The equity data therefore points elsewhere.\n\nOther candidates are 2019 and 2020, but the 36-month z-scores there would look different. In August 2019 the 3m 2-year yield change was strongly negative, but the policy rate z was not +1.5, and the equity 12m return was about 0. Credit returns were strong. Gold +3 for 1m fits August 2019, but the 36-month window then covers 2016\u20132019, when the policy rate was rising, which would make the z-score high, so that is plausible. The unemployment rate at -1.5 with a 12m rise of +1.0 doesn't fit 2019, when unemployment was falling. Core CPI is flat, and 12m headline CPI is down.\n\nThe remaining candidate is 2024 with a different window. Equity 12m at -0.5 is odd then. Another option is mid-2007 to 2008, but the window would not exist before 2010.\n\nPayrolls at -1.0 and an activity index at -1.0 point to slowing growth. September 2025 fits: the Fed cut in September 2025, the 2-year yield fell, gold surged (+3 for 1m), the payroll slowdown was clear, and unemployment had risen over 12m. The equity 12m z of -0.5 is still odd, but z-scores against a strong 3-year period could explain that. The dollar fell over 3m (-1.5), which fits 2025.\n\nI'll go with September 2025.\n\n{\"year\":2025,\"month\":9,\"confidence\":0.4,\"cues\":[\"Fed cutting: policy rate z +1.5 but down -2.0 over 3m, 2y yield down sharply\",\"Gold +3 for the month, dollar down over 3m\",\"Weak payrolls and rising unemployment over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 940,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.0 | -1.0 | -1.5\nNational activity index, 3m avg | -1.0 | +0.5 | -1.0\nUnemployment rate | -1.5 | -0.5 | +1.0\nPayrolls, avg monthly change over 3m | -1.0 | -1.0 | -1.0\nHeadline CPI | -0.5 | +0.5 | -2.0\nCore CPI | +0.0 | -0.5 | -0.5\nPolicy rate (fed funds) | +1.5 | -2.0 | -1.0\n2-year Treasury yield | +0.0 | -2.5 | -2.5\n10-year Treasury yield | -1.0 | -1.5 | -2.0\n10y minus 2y Treasury spread | -1.0 | +1.0 | +1.0\nEquity implied volatility (VIX) | +0.5 | +0.5 | +0.0\nBaa corporate minus 10y Treasury spread | +0.5 | +0.5 | +1.0\nBroad trade-weighted dollar | +0.0 | -1.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +0.0 | +2.0 | -0.5 | +0.0 | +0.5\nDeveloped ex-US equity | +1.5 | +0.5 | +1.5 | -0.5 | +0.0 | +0.5\nEmerging-market equity | +1.5 | -0.5 | +0.5 | -0.5 | -0.5 | +0.5\nUS Treasuries 7-10y | +1.0 | +1.5 | +2.0 | +2.0 | +0.5 | +1.5\nUS Treasuries 20y+ | +0.5 | +1.0 | +1.5 | +1.5 | -0.5 | +1.5\nUS investment-grade credit | +2.0 | +1.5 | +2.5 | +2.0 | -0.5 | +1.0\nGold | +3.0 | +1.5 | +1.5 | +1.5 | -0.5 | +1.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:03:22+00:00",
+ "decision_date": "2011-07-29",
+ "key": "45847fa9f68d6282692f087493afab786ac497820211e24e04e081f3cc455d9a",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfFiyE9mt42rxnAp56X",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Reading the cues: policy rate and 2-year yield are low relative to the past 3 years, yet both are rising over 12 months, so the rate is climbing from a low base. Core CPI is up sharply, with a 12-month z change of +2. Headline CPI is high. Unemployment is up modestly but down over 12 months. Payrolls are strong. The dollar is weak, gold is strong, and VIX is rising.\n\nOne candidate is early 2022: the policy rate was near zero, but the 3-year window would include 2019 rates at 1.5-2.4%, so the z-score would be negative. Yet core CPI z over 12m would be much higher than +2 there. The 2-year yield at -1 with a 12m change of +1 fits early 2022 loosely, though the 10-year z of -0.5 is less obvious.\n\nA second candidate is 2018: the policy rate at about 2% would have a z near +1 against a 2015-2018 window, which doesn't fit.\n\nA third is early 2017, or 2016-2017, with a 3-year window of 2014-2016 at near-zero rates. That would give a policy rate z that is positive, not negative.\n\nA fourth is 2025: the policy rate is about 4.3%, versus a 3-year window of 2022-2025 averaging about 4%. That gives a z near 0 to +0.5 rather than -0.5. A 2-year yield at -1 with a 12m change of +1 doesn't fit a falling-rate 2025.\n\nA fifth is 2026 or late 2025: the rate would be about 3.6%, which gives a z of -0.5 to -1. But a +0.5 rise over 12m in the policy rate doesn't fit.\n\nA sixth is early 2022, with a window of 2019-2022 where policy rate z is about -0.5 to -1. In March 2022, the fed funds rate had just risen to 0.33%. Over 3 months it rose, and the 2-year yield rose a lot, which doesn't fit the 0.0 3m change.\n\nA seventh is 2024 spring: the policy rate was at 5.3%, which is high relative to its window, so that doesn't fit.\n\nAn eighth is mid-2019: the policy rate of 2.4% has a window of 2016-2019 with a z near +1.\n\nA ninth is 2010-2011, which has a large unemployment drop. Doesn't fit.\n\nA tenth is early 2008: a 2005-2008 window gives a policy rate z that is negative as it falls, which conflicts with the +0.5 12m change.\n\nAn eleventh is 2023, where core CPI 12m changes would be negative.\n\nA twelfth is 2022 H2: the policy rate z is not negative.\n\nA thirteenth is 2026, which has high gold, a weak dollar, and a 12m rise in core CPI. Possible but doubtful.\n\nThe best fit is early 2022 with spring 2022 as a variant, but equities with 12m +0.5 and drawdown +0.5 suggest a mild market. I'll choose a time in 2022 that reflects the rise in core CPI, around March or April, and weight this with low confidence.\n\n```json\n{\"year\":2022,\"month\":3,\"confidence\":0.2,\"cues\":[\"Core CPI z change +2 over 12m with the policy rate low and rising\",\"Gold strong and weak dollar relative to the 3-year window\",\"Payrolls strong with unemployment down over 12m\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1114,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | -0.5 | -0.5\nNational activity index, 3m avg | +0.0 | -1.0 | -0.5\nUnemployment rate | +0.5 | +0.0 | -1.0\nPayrolls, avg monthly change over 3m | +1.0 | -0.5 | -0.5\nHeadline CPI | +1.0 | +0.5 | +1.0\nCore CPI | +0.5 | +1.5 | +2.0\nPolicy rate (fed funds) | -0.5 | +0.5 | +0.5\n2-year Treasury yield | -1.0 | +0.0 | +1.0\n10-year Treasury yield | -0.5 | -0.5 | +0.5\n10y minus 2y Treasury spread | +0.5 | -0.5 | -0.5\nEquity implied volatility (VIX) | -0.5 | +1.0 | +0.0\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | +0.0\nBroad trade-weighted dollar | -1.0 | +0.0 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.5 | -0.5 | +0.0 | +0.5 | -1.0 | +0.5\nDeveloped ex-US equity | +0.0 | -0.5 | +0.0 | +0.5 | -0.5 | +0.5\nEmerging-market equity | +0.0 | -0.5 | +0.0 | +0.0 | -1.0 | +0.5\nUS Treasuries 7-10y | +1.0 | +1.0 | +0.5 | -0.5 | -1.0 | +1.5\nUS Treasuries 20y+ | +0.5 | +0.5 | +0.5 | -0.5 | -1.0 | +0.5\nUS investment-grade credit | +0.5 | +0.0 | +0.0 | +0.0 | -0.5 | +0.5\nGold | +1.0 | +0.0 | +1.5 | +1.5 | -1.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

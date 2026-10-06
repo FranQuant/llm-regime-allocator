@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:19:49+00:00",
+ "decision_date": "2022-02-28",
+ "key": "c2108748161ba39e94d24b7ad3306995797935b6b82ba76f4bb756c7f25a6c66",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgWjXzVFUQVRGR9uJcL",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2022 to early 2023. CPI is very high in z-score terms, core CPI is high, and the 2-year yield has risen sharply over 3 and 12 months. The policy rate is only slightly below its 3-year average, which means it is still low relative to the window. The spread is falling fast, consistent with a hiking cycle. The unemployment rate is low.\n\nA policy rate z of -0.5 with a 3-year window that includes 2020-21 near-zero rates puts this in spring 2022. The 2-year yield is +1.0 and was up 2.5 over 3 months, which fits March-April 2022. Equities show a 3m return of -1.5 and 12m of -0.5, which fits roughly April-May 2022. Investment-grade credit at -2.0 on 3m and 1m -1.0 fits April 2022, when bonds fell sharply. Gold at +1.5 for the month would fit March 2022, but gold was down in April. The 10-year at z +1.0 with a 3m change of +1.5 fits March-April 2022.\n\nThe 12m change in the policy rate is only +0.5, so the fed funds rate was still low. The 1m equity return of 0.0 suggests March 2022, when equities rose about 3% (S&P up ~3.7%) and gold rose in the month. However, the 1m equity z-score of 0 against a 3m of -1.5 fits March, since January-February were weak. IG credit at -1.0 for the month fits March 2022 as yields spiked. I'll go with March 2022.\n\n{\"year\": 2022, \"month\": 3, \"confidence\": 0.6, \"cues\": [\"CPI and core CPI z about +2.5 while the policy rate is still below its 3-year average\", \"2-year yield up 2.5 over 3 months with the 10y-2y spread collapsing\", \"Equities down over 3 and 6 months, IG credit weak, gold up 1.5 for the month\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 635,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.0 | +0.5\nNational activity index, 3m avg | +0.5 | +0.0 | +0.0\nUnemployment rate | -0.5 | +0.0 | -0.5\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | +0.0\nHeadline CPI | +2.5 | +1.0 | +2.0\nCore CPI | +2.5 | +1.5 | +2.5\nPolicy rate (fed funds) | -0.5 | +0.5 | +0.5\n2-year Treasury yield | +1.0 | +2.5 | +2.5\n10-year Treasury yield | +1.0 | +1.5 | +1.0\n10y minus 2y Treasury spread | -0.5 | -2.0 | -2.5\nEquity implied volatility (VIX) | +0.5 | +0.0 | +0.0\nBaa corporate minus 10y Treasury spread | +0.0 | +1.0 | +0.0\nBroad trade-weighted dollar | +0.5 | +0.0 | +1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | -1.5 | -1.5 | -0.5 | -0.5 | -1.0\nDeveloped ex-US equity | -0.5 | -0.5 | -1.0 | -0.5 | -0.5 | -0.5\nEmerging-market equity | +0.0 | -0.5 | -1.0 | -1.0 | -0.5 | -1.0\nUS Treasuries 7-10y | +0.0 | -1.0 | -1.0 | -1.0 | +0.5 | -1.0\nUS Treasuries 20y+ | -0.5 | -1.0 | -1.0 | -0.5 | +0.0 | -0.5\nUS investment-grade credit | -1.0 | -2.0 | -2.0 | -2.0 | +0.0 | -2.5\nGold | +1.5 | +0.5 | +0.0 | +0.0 | -0.5 | +1.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

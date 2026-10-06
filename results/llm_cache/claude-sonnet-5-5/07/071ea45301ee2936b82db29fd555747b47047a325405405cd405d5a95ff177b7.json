@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:16:04+00:00",
+ "decision_date": "2014-09-30",
+ "key": "071ea45301ee2936b82db29fd555747b47047a325405405cd405d5a95ff177b7",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmberpBTXaG8rAW1PgSJ",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Unemployment at 6.1% with a 12-month decline of 1.1pp points to mid-2014, when the rate was 6.1% in April\u2013June 2014. The 10-year yield at 2.50% and the 2-year at 0.58% fit that period too.\n\nThe VIX at 15.98 with a 3-month rise of 4.41 suggests a spike from a low base. That fits October 2014, when the VIX hit about 26 intraday, but unemployment was 5.9% by then. September 2014 had unemployment at 5.9% and the 10-year near 2.5%, so the match isn't exact. Revisions could explain the gap, because the figures are \"as known\" and the rate may have been 6.1% in the data at that time.\n\nOther cues:\n- The dollar was up 5% over 3 months, consistent with the strong dollar rally of summer 2014.\n- Gold fell 6.2% in the month, which fits September 2014.\n- EM equity fell 7.8% and developed ex-US fell 3.9% in the month, which also fits September 2014.\n- US large-cap equity at -1.4% for the month fits September 2014, when the S&P fell about 1.4%.\n- The 2-year yield rose in September 2014 to about 0.58%, which fits.\n\nUnemployment was reported as 6.1% for August 2014, released in early September, but the September report (5.9%) came out on October 3. If the snapshot used a lagged release, the rate would still read 6.1%. So September 2014 is the best match.\n\n{\"year\":2014,\"month\":9,\"confidence\":0.9,\"cues\":[\"Gold -6.2% and EM equity -7.8% in the month, with a dollar surge, fit September 2014\",\"Unemployment 6.1%, 10y yield 2.50% and 2y yield 0.58%\",\"S&P 500 -1.4% on the month and a VIX of about 16\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 611,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +4.12 | -0.14 | +1.15 | +0.93\nNational activity index, 3m avg | index, 0 = trend growth | +0.07 | -0.21 | +0.18 | +0.36\nUnemployment rate | % | +6.10 | -0.20 | -1.10 | -1.78\nPayrolls, avg monthly change over 3m | thousands | +207.00 | -38.33 | +23.00 | +0.31\nHeadline CPI | YoY % | +1.71 | -0.42 | +0.20 | -0.35\nCore CPI | YoY % | +1.73 | -0.22 | -0.04 | -0.87\nPolicy rate (fed funds) | % | +0.08 | -0.01 | +0.02 | -0.51\n2-year Treasury yield | % | +0.58 | +0.11 | +0.25 | +2.85\n10-year Treasury yield | % | +2.50 | -0.03 | -0.14 | +0.70\n10y minus 2y Treasury spread | pp | +1.92 | -0.14 | -0.39 | +0.12\nEquity implied volatility (VIX) | index points | +15.98 | +4.41 | -0.62 | -0.18\nBaa corporate minus 10y Treasury spread | pp | +2.27 | +0.09 | -0.48 | -1.30\nBroad trade-weighted dollar | YoY % | +3.86 | +5.03 | +1.57 | +0.65\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.4% | +0.5% | +5.7% | +19.5% | +9.2% | -1.9%\nDeveloped ex-US equity | -3.9% | -7.0% | -2.9% | +3.9% | +8.9% | -7.4%\nEmerging-market equity | -7.8% | -4.8% | +1.0% | +3.7% | +12.7% | -9.4%\nUS Treasuries 7-10y | -1.0% | +0.9% | +3.2% | +3.6% | +4.3% | -1.1%\nUS Treasuries 20y+ | -2.1% | +4.1% | +9.1% | +12.8% | +10.2% | -2.1%\nUS investment-grade credit | -1.7% | +0.4% | +3.1% | +7.9% | +4.0% | -1.7%\nGold | -6.2% | -9.0% | -5.8% | -9.3% | +11.7% | -12.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.41\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

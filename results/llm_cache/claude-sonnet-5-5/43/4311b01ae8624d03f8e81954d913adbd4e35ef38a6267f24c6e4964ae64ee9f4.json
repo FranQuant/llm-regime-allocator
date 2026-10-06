@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:17:23+00:00",
+ "decision_date": "2015-11-30",
+ "key": "4311b01ae8624d03f8e81954d913adbd4e35ef38a6267f24c6e4964ae64ee9f4",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbknB4J4SvHPMoudqja",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate is 5.0% and the fed funds rate is 0.12%, so this is before the December 2015 hike. The 2-year yield at 0.92% and the dollar up 12% year on year point to late 2015. Gold fell 7.1% in the month, which fits November 2015 (gold dropped from about 1140 to 1060). The VIX at 15.12 is down 13 points over 3 months, consistent with the August spike fading. The 10-year yield at 2.22% also fits November 2015. Unemployment was 5.0% in the October 2015 report, released in early November. Headline CPI at 0.12% YoY matches October 2015 (0.2%). US large-cap equities were -0.1% in the month, which is consistent with November 2015 (+0.3%).\n\n{\"year\":2015,\"month\":11,\"confidence\":0.85,\"cues\":[\"Unemployment 5.0% with fed funds ~0.12% (pre-liftoff)\",\"Dollar +12% YoY, EM equities -16% and gold -7% in the month\",\"2y yield 0.92% with VIX falling after the August spike\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 365,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.34 | -1.01 | -3.74 | -1.78\nNational activity index, 3m avg | index, 0 = trend growth | -0.21 | -0.25 | -0.26 | -1.18\nUnemployment rate | % | +5.00 | -0.30 | -0.70 | -1.53\nPayrolls, avg monthly change over 3m | thousands | +187.00 | -55.67 | -41.00 | -0.81\nHeadline CPI | YoY % | +0.12 | -0.09 | -1.52 | -1.33\nCore CPI | YoY % | +1.91 | +0.11 | +0.10 | +1.27\nPolicy rate (fed funds) | % | +0.12 | +0.04 | +0.04 | +1.71\n2-year Treasury yield | % | +0.92 | +0.18 | +0.45 | +2.65\n10-year Treasury yield | % | +2.22 | +0.01 | +0.04 | -0.27\n10y minus 2y Treasury spread | pp | +1.30 | -0.17 | -0.41 | -1.38\nEquity implied volatility (VIX) | index points | +15.12 | -13.31 | +1.79 | -0.13\nBaa corporate minus 10y Treasury spread | pp | +3.22 | +0.07 | +0.70 | +1.87\nBroad trade-weighted dollar | YoY % | +12.03 | -4.69 | +5.15 | +1.12\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.1% | +6.1% | -0.3% | +2.8% | +17.3% | -1.3%\nDeveloped ex-US equity | -1.0% | +1.1% | -7.6% | -2.7% | +18.5% | -9.9%\nEmerging-market equity | -2.4% | +0.4% | -16.7% | -16.3% | +24.2% | -22.3%\nUS Treasuries 7-10y | -0.2% | +0.5% | +1.6% | +2.1% | +6.1% | -2.2%\nUS Treasuries 20y+ | -0.1% | +0.7% | +2.8% | +1.7% | +14.6% | -10.3%\nUS investment-grade credit | +0.1% | +1.6% | +0.8% | -0.2% | +5.4% | -3.9%\nGold | -7.1% | -6.3% | -11.0% | -9.1% | +12.5% | -18.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.48\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

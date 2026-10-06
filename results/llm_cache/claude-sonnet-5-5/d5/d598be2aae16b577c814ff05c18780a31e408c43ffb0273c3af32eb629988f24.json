@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:15:02+00:00",
+ "decision_date": "2013-10-31",
+ "key": "d598be2aae16b577c814ff05c18780a31e408c43ffb0273c3af32eb629988f24",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbaE7TatexYoMp5jJBt",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like the end of 2013 or early 2014. Unemployment is 7.2%, which fits roughly September 2013. The 12m equity return of +27% fits late 2013, and gold is down 23% over 12m, which fits as well. The 10-year yield at 2.55% is lower than the 3%+ level of December 2013, so the date is probably earlier.\n\nChecking the details: unemployment was 7.2% in September 2013 and 7.0% in November 2013. The 10-year yield was about 2.64% at the end of September 2013 and 2.75% at the end of October. The 3m change in unemployment is -0.4, and June 2013 was 7.5%, so that gives 7.1-7.2% around September or October. Headline CPI of 1.18% fits September 2013 (1.2%). The 3m change in the 10-year yield is -0.05, and the end of June 2013 was about 2.5%, so the end of September at about 2.6% fits. The 12m change of +0.83 also works, since September 2012 was about 1.65%.\n\nUS equities rose 3.9% in the month, which matches September 2013 (+3.1%) or October (+4.6%). Over 6 months the 10-year Treasury return of -4.3% fits September. Payrolls averaged about 143k, which fits the data as published then. The VIX at 13.65 is somewhat low for September 2013, when it closed around 16.6, but it fits October better, when it closed near 13.8. The October 2013 unemployment rate was 7.3%, though, and the CPI was 1.0%. The 10-year yield at end-October was 2.55%, which matches. The 3m change in the 10-year yield would then be from 2.60% at end-July, which gives -0.05. Fed funds at 0.08 also fits.\n\nSo October 2013 is the best fit.\n\n{\"year\":2013,\"month\":10,\"confidence\":0.8,\"cues\":[\"Unemployment 7.2% with 10y yield ~2.55% and fed funds ~0.08%\",\"12m US equity +27% and gold -23% fit late 2013\",\"VIX 13.65 and headline CPI ~1.2% YoY\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 702,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.19 | +1.11 | +0.29 | -0.20\nNational activity index, 3m avg | index, 0 = trend growth | -0.18 | +0.11 | +0.33 | -0.38\nUnemployment rate | % | +7.20 | -0.40 | -0.60 | -1.67\nPayrolls, avg monthly change over 3m | thousands | +143.33 | -39.00 | -8.67 | -0.57\nHeadline CPI | YoY % | +1.18 | -0.58 | -0.80 | -1.21\nCore CPI | YoY % | +1.73 | +0.10 | -0.26 | -0.04\nPolicy rate (fed funds) | % | +0.08 | -0.01 | -0.10 | -0.79\n2-year Treasury yield | % | +0.33 | +0.02 | +0.03 | -0.10\n10-year Treasury yield | % | +2.55 | -0.05 | +0.83 | +0.40\n10y minus 2y Treasury spread | pp | +2.22 | -0.07 | +0.80 | +0.53\nEquity implied volatility (VIX) | index points | +13.65 | +0.20 | -4.95 | -0.91\nBaa corporate minus 10y Treasury spread | pp | +2.68 | +0.00 | -0.05 | -0.97\nBroad trade-weighted dollar | YoY % | +1.13 | +0.34 | -1.07 | +0.26\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.9% | +3.3% | +10.0% | +27.1% | +11.3% | -0.8%\nDeveloped ex-US equity | +2.7% | +6.8% | +7.5% | +26.8% | +14.5% | -1.4%\nEmerging-market equity | +1.7% | +6.9% | -1.2% | +5.2% | +21.3% | -4.9%\nUS Treasuries 7-10y | +0.8% | +1.2% | -4.3% | -3.2% | +7.1% | -5.1%\nUS Treasuries 20y+ | +1.6% | +1.6% | -9.9% | -10.3% | +14.0% | -12.9%\nUS investment-grade credit | +1.6% | +1.9% | -3.4% | -2.8% | +7.5% | -4.3%\nGold | +0.5% | +1.1% | -10.1% | -23.4% | +23.0% | -24.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.09\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

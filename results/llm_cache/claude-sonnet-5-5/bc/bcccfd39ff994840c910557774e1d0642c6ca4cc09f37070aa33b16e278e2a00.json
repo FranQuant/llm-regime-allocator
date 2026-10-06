@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:11:14+00:00",
+ "decision_date": "2010-10-29",
+ "key": "bcccfd39ff994840c910557774e1d0642c6ca4cc09f37070aa33b16e278e2a00",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbHMP39Qji7dVwhQNVq",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate of 9.6% with core CPI at 0.79% and a fed funds rate of 0.19% points to late 2010. The 10-year yield at 2.69% and the VIX at 20.88 fit that period too.\n\nThe month is probably October or November 2010. In September 2010 the 10-year yield was about 2.5%, and in October it was about 2.6%. It then rose to roughly 2.8% in November and 3.3% in December.\n\nTreasury returns for the 20y+ bucket were -4.5% over the month, which suggests yields rose sharply, so that points to November or December. But the 10-year yield fell 0.25 over 3 months. From August 2010, when it was about 2.7%, that means a roughly 2.69% yield in November. The 20y+ bucket fell in November, which is consistent.\n\nThe unemployment rate was 9.8% in November 2010 as first reported, but the 9.6% reading was for August and September, and the November report came out in December. The figure of 9.6% fits October, published in early November. Payrolls averaged -72k over 3 months, which fits the mid-2010 pattern of census job losses and government layoffs.\n\nEquities rose 3.8% in the month. October 2010 gained about 3.8% for the S&P 500, and gold rose 3.7%. A VIX of 20.88 fits the end of October, but the 20y+ drop of -4.5% fits November better. Core CPI at 0.79% was the October reading. I settle on November 2010, with the 9.6% unemployment rate possibly being a stale figure.\n\nIndustrial production at +5.42% YoY is consistent with late 2010.\n\nI'll go with October 2010, because the 3.8% equity return matches it, though the 20y+ drop leaves some doubt.\n\n{\"year\":2010,\"month\":10,\"confidence\":0.6,\"cues\":[\"Unemployment 9.6% with core CPI under 1% and fed funds near 0.19%\",\"10y yield 2.69% and VIX near 21, with equities up 3.8% on the month\",\"Payrolls averaging negative, consistent with mid-2010 census and government job losses\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 694,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +5.42 | -2.85 | +10.34 | +1.20\nNational activity index, 3m avg | index, 0 = trend growth | -0.07 | -0.25 | -0.04 | +0.79\nUnemployment rate | % | +9.60 | +0.10 | -0.20 | +0.86\nPayrolls, avg monthly change over 3m | thousands | -72.67 | -262.67 | +188.33 | +0.45\nHeadline CPI | YoY % | +1.14 | +0.03 | +2.48 | -0.37\nCore CPI | YoY % | +0.79 | -0.17 | -0.71 | -1.89\nPolicy rate (fed funds) | % | +0.19 | +0.01 | +0.08 | -0.60\n2-year Treasury yield | % | +0.37 | -0.18 | -0.53 | -1.22\n10-year Treasury yield | % | +2.69 | -0.25 | -0.72 | -1.44\n10y minus 2y Treasury spread | pp | +2.32 | -0.07 | -0.19 | +0.46\nEquity implied volatility (VIX) | index points | +20.88 | -2.62 | -9.81 | -0.80\nBaa corporate minus 10y Treasury spread | pp | +3.16 | +0.25 | +0.30 | -0.32\nBroad trade-weighted dollar | YoY % | -2.39 | -1.36 | +4.77 | -0.25\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.8% | +5.6% | -0.5% | +13.3% | +21.4% | -1.7%\nDeveloped ex-US equity | +3.8% | +6.2% | +5.9% | +6.2% | +28.2% | -1.2%\nEmerging-market equity | +3.0% | +8.6% | +9.8% | +18.8% | +28.6% | -1.6%\nUS Treasuries 7-10y | -0.0% | +3.7% | +10.9% | +12.3% | +7.5% | -1.3%\nUS Treasuries 20y+ | -4.5% | +2.4% | +11.3% | +10.7% | +17.3% | -6.9%\nUS investment-grade credit | -0.3% | +3.3% | +7.2% | +12.8% | +6.1% | -0.8%\nGold | +3.7% | +14.8% | +14.6% | +29.1% | +15.8% | -1.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.67\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

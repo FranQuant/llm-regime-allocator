@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:24:29+00:00",
+ "decision_date": "2022-06-30",
+ "key": "4ba7be923ce1b2c24bf9aa07fbe5232ef52added460990cd030422444330e5a8",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcJ4Yeyx5jvh1d9maBf",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like April 2022. Headline CPI is 8.52% YoY, which matches the March 2022 print released in April. The unemployment rate is 3.6%, and the fed funds rate averaged about 1.58%, which fits May 2022 better than April. But CPI of 8.52% is the March figure, and the April CPI was 8.26%.\n\nChecking the other readings against the calendar:\n- The 10-year yield is 3.10% and the 2-year is 3.06%. In May 2022 the 10-year ended near 2.85%, and it was about 3.0% in mid-June. At the end of April it was about 2.89%. A 10-year at 3.10% fits mid-June 2022, or a snapshot for June.\n- The fed funds rate at 1.58% fits June 2022 (effective rate 1.21% in June, then 1.68% in July). The 3-month change of +1.25 suggests a rise from about 0.33% in March, which gives 1.58% in June. That fits June.\n- CPI of 8.52% does not match the May print of 8.56% exactly, though it is close. Core CPI of 6.01% is close to the May figure of 6.0%.\n- US large-cap equity is down 8.2% over 1 month and 20.4% from its 12-month high, which fits June 2022. The S&P was down about 8.4% in June.\n- The VIX at 28.16 is also consistent with June 2022.\n- The unemployment rate of 3.6% and the 3-month average payroll gain of 408k both fit May 2022.\n\nMy estimate is June 2022.\n\n{\"year\": 2022, \"month\": 6, \"confidence\": 0.85, \"cues\": [\"CPI about 8.5% with core about 6.0%, and the 10-year at 3.10% after a 0.78pp rise over 3 months\", \"S&P down 8.2% in the month and 20.4% from its high, with the VIX at 28\", \"Fed funds at 1.58%, up 1.25pp over 3 months, and unemployment at 3.6%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 660,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +5.43 | -1.64 | -10.15 | +0.78\nNational activity index, 3m avg | index, 0 = trend growth | +0.20 | -0.19 | -0.56 | +0.12\nUnemployment rate | % | +3.60 | -0.20 | -2.20 | -0.75\nPayrolls, avg monthly change over 3m | thousands | +408.00 | -194.00 | -63.33 | +0.20\nHeadline CPI | YoY % | +8.52 | +0.60 | +3.57 | +1.89\nCore CPI | YoY % | +6.01 | -0.40 | +2.21 | +1.72\nPolicy rate (fed funds) | % | +1.58 | +1.25 | +1.50 | +1.40\n2-year Treasury yield | % | +3.06 | +0.78 | +2.81 | +2.55\n10-year Treasury yield | % | +3.10 | +0.78 | +1.65 | +2.55\n10y minus 2y Treasury spread | pp | +0.04 | +0.00 | -1.16 | -1.29\nEquity implied volatility (VIX) | index points | +28.16 | +7.60 | +12.33 | +0.46\nBaa corporate minus 10y Treasury spread | pp | +2.24 | +0.31 | +0.37 | -0.05\nBroad trade-weighted dollar | YoY % | +7.08 | +5.78 | +13.62 | +1.56\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -8.2% | -17.4% | -20.4% | -10.6% | +25.0% | -20.4%\nDeveloped ex-US equity | -8.8% | -14.7% | -19.1% | -17.4% | +22.2% | -20.7%\nEmerging-market equity | -5.2% | -11.8% | -16.7% | -25.6% | +25.7% | -25.2%\nUS Treasuries 7-10y | -0.9% | -4.3% | -10.4% | -10.5% | +9.7% | -12.6%\nUS Treasuries 20y+ | -1.3% | -12.4% | -21.1% | -19.1% | +19.5% | -24.9%\nUS investment-grade credit | -3.6% | -8.6% | -15.9% | -16.1% | +11.3% | -17.7%\nGold | -1.6% | -6.7% | -0.1% | +1.7% | +15.1% | -12.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.01\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

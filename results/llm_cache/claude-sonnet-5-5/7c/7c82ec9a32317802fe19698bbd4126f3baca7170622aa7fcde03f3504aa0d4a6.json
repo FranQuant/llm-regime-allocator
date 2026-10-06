@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:42:21+00:00",
+ "decision_date": "2009-04-30",
+ "key": "7c82ec9a32317802fe19698bbd4126f3baca7170622aa7fcde03f3504aa0d4a6",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmdexP2b8jPVEdHNVGvf",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This pattern looks like mid-2020. Unemployment is up sharply, industrial production is very low, and CPI is low. The fed funds rate is low relative to its 3-year average, and the 2-year yield is down. Equities rose over 1m and 3m but are still down over 12m, which fits a recovery from the COVID crash.\n\nThe 12m equity return of -1.5 argues against a date much later than March 2020, and the 3m equity return of +1.0 argues against March itself. Equities were positive on a 12m basis by mid-2020, so the match isn't perfect. The 10y yield is up 1.0 over 3m, and Treasuries are down over 1m and 3m, which is odd for 2020 but could fit a different episode.\n\nAn alternative is 2009. Unemployment was rising and payrolls were very negative. Industrial production was weak, and headline CPI was low (deflation in mid-2009). Equities were up 1m and 3m but still negative over 12m, which fits roughly May\u2013June 2009. The 10y yield rose sharply over 3m (from about 2.5% to 3.5%), and Treasuries sold off. The Baa spread was still high but narrowing. VIX was elevated but falling. The dollar was strong on a 12m basis. Gold was down 1m, which fits June 2009. Emerging-market equity 12m at -1.5 is also consistent with that period.\n\nFed funds near zero would be a z-score of about -1.5, since the prior 3 years included rates of 5%. That is consistent with 2009. Core CPI at -2.0 fits as well.\n\nI pick June 2009. Equities were up about 0% in June 2009 and 2% in May, so the 1m +2.0 fits better with May 2009. The 3m return in May was very strong (March low to May), which would be a larger z-score than +1.0. By June 2009 the 3m return was about +15%, and the 12m was about -26%. The 10y Treasury 1m return was -1.5 in both May and June. I'll go with June.\n\n{\"year\":2009,\"month\":6,\"confidence\":0.6,\"cues\":[\"Unemployment z +3 and payrolls and IP deeply negative with CPI deflationary\",\"Equities rebounding 1m/3m but still down 12m, VIX falling, Baa spread falling\",\"10y yield rising sharply over 3m with long Treasuries selling off\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 776,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -3.0 | -1.5 | -2.5\nNational activity index, 3m avg | -2.0 | +0.0 | -1.5\nUnemployment rate | +3.0 | +2.5 | +2.5\nPayrolls, avg monthly change over 3m | -2.5 | -0.5 | -2.0\nHeadline CPI | -2.0 | +0.0 | -2.0\nCore CPI | -2.0 | +0.0 | -1.0\nPolicy rate (fed funds) | -1.5 | +0.5 | -0.5\n2-year Treasury yield | -1.5 | +0.5 | -0.5\n10-year Treasury yield | -1.5 | +1.0 | -0.5\n10y minus 2y Treasury spread | +1.5 | +0.0 | +0.0\nEquity implied volatility (VIX) | +1.0 | -1.0 | +0.5\nBaa corporate minus 10y Treasury spread | +1.5 | -0.5 | +1.0\nBroad trade-weighted dollar | +1.5 | +0.0 | +1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.0 | +1.0 | +0.0 | -1.5 | +1.5 | -1.5\nDeveloped ex-US equity | +1.5 | +1.0 | +0.0 | -1.5 | +1.5 | -1.5\nEmerging-market equity | +1.5 | +1.5 | +1.0 | -1.5 | +1.0 | -1.5\nUS Treasuries 7-10y | -1.5 | -1.0 | +0.5 | +0.5 | +1.5 | -2.0\nUS Treasuries 20y+ | -1.5 | -1.0 | +0.0 | +0.5 | +2.0 | -3.0\nUS investment-grade credit | +1.0 | -0.5 | +2.0 | -1.0 | +0.5 | -0.5\nGold | -1.0 | -0.5 | +0.5 | -1.5 | +1.0 | -0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

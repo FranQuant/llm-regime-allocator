@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:09:04+00:00",
+ "decision_date": "2014-09-30",
+ "key": "b58f38007ffb5831cb35386a24fb9554c3d17b20c632bf6dc2aee1629a06a3f1",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmfh5LXLNXSbXr654J8c",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: the 2-year yield is very high relative to its 3-year history (+3.0) and rising, while the policy rate is low relative to that history (-1.0). The unemployment rate is very low (-2.0), and core CPI is low relative to its history (-1.0). Credit spreads are tight.\n\nThis pattern suggests the 2-year yield is rising ahead of Fed hikes. The 2-year z-score being highest while the policy rate is still below average points to early 2022 or to 2016-2018. Core CPI at -1.0 versus its 36-month history does not fit early 2022, because inflation was surging then. Late 2017 to 2018 fits better: the 36-month window covers 2015-2017 with a low policy rate, so a policy rate at -1.0 is odd. Unemployment at -2.0 fits 2018, as does a policy rate near the window's middle.\n\nAnother candidate is a 2-year yield that jumps in a short span. In early 2018 the 2-year rose sharply, equities fell in February 2018 (1m -1.0), and VIX rose. But the policy rate z of -1.0 doesn't fit well, since the rate was 1.5%, above the 2015-2017 average. So consider 2007 instead. The window then would only be 2004-2007, with rates high, so no.\n\nWhat about 2024-2025? The policy rate z of -1.0 would mean rates are below the 2022-2024 average. The 2-year yield at +3.0 doesn't fit that either.\n\nConsider mid-2023 instead: no, the policy rate there was high.\n\nConsider 2022 again. In early 2022, the 2-year surged, and the policy rate was near zero against a 2019-2021 window, which would be about -1.0. Core CPI would be well above average, though, so that doesn't fit.\n\nConsider 2018 with the dollar rising (+1.0 over 3m), which fits April 2018. Equities were down in 1m, 3m, and 6m, and the 2-year yield was at a high. Gold fell. Emerging markets fell 1m, consistent with the 2018 dollar rally. Core CPI at -1.0 relative to 2015-2018 is plausible, and so is headline CPI at -0.5. The policy rate at -1.0 is an oddity, but I'll go with a date around 2018. Another candidate is October 2018, when equities fell, though the 3m returns there would be mixed. Equity 12m at +0.5 and a 3m return of -1.0 point to February-April 2018. I'll choose March 2018.\n\n```json\n{\"year\":2018,\"month\":3,\"confidence\":0.35,\"cues\":[\"2-year yield very high and rising while 10y spread flattening\",\"unemployment very low, core CPI subdued\",\"equities, EM and credit down 1m with VIX rising and dollar up\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 922,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | +0.0 | +1.0\nNational activity index, 3m avg | +0.5 | -0.5 | +0.5\nUnemployment rate | -2.0 | +0.0 | -1.0\nPayrolls, avg monthly change over 3m | +1.0 | -0.5 | +0.0\nHeadline CPI | -0.5 | -0.5 | +0.5\nCore CPI | -1.0 | -1.0 | -0.5\nPolicy rate (fed funds) | -1.0 | -0.5 | +0.5\n2-year Treasury yield | +3.0 | +1.5 | +1.5\n10-year Treasury yield | +0.5 | +0.0 | +0.0\n10y minus 2y Treasury spread | +0.0 | -0.5 | -0.5\nEquity implied volatility (VIX) | +0.0 | +1.0 | +0.5\nBaa corporate minus 10y Treasury spread | -1.5 | +1.0 | -0.5\nBroad trade-weighted dollar | +0.5 | +1.0 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.0 | -1.0 | -0.5 | +0.5 | -1.0 | +0.0\nDeveloped ex-US equity | -1.0 | -1.5 | -1.0 | -0.5 | -1.0 | +0.0\nEmerging-market equity | -1.5 | -1.0 | +0.0 | +0.5 | -1.0 | +0.0\nUS Treasuries 7-10y | -1.0 | +0.0 | +0.5 | +0.0 | -1.5 | +0.5\nUS Treasuries 20y+ | -0.5 | +0.5 | +0.5 | +0.0 | -1.0 | +1.0\nUS investment-grade credit | -1.5 | -0.5 | +0.0 | +0.5 | -1.0 | +0.0\nGold | -1.0 | -1.0 | -0.5 | -0.5 | -1.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

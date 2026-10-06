@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:24:42+00:00",
+ "decision_date": "2025-11-28",
+ "key": "eea45f44884ec2e34d654555159c22c115f1b711a80506a44fb1f508c49cf58c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgtDgVsk9mLeqxBW2jC",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like a period after a big policy rate cut, with a high unemployment rate relative to the last 36 months, weak payrolls, low inflation relative to its own history, and a very low policy rate. Gold is strongly up and the dollar is weak.\n\nCandidate: mid-2020 to early 2021. Over a 36-month window, the unemployment z-score would be high, and the policy rate would be low (z of -2.0 versus a 2017-2020 average). But the 3m change in the policy rate of -1.0 doesn't fit mid-2020, since the cut was in March 2020. The unemployment 3m change of +1.5 is also at odds with that timing.\n\nAnother candidate: late 2025. Unemployment has been rising (4.1 to 4.4%), payrolls are weak, and the Fed has cut since September 2024. Gold is surging (+2.5 on 12m), and the dollar is down 12m. However, headline CPI at -0.5 versus the 3-year average (which includes 2023's 3-4%) fits, and core CPI at -1.0 fits too. The 2y yield at -1.5 and the 10y at -0.5 fit, giving a steep spread. The policy rate at -2.0 is odd given that it is still around 4%, but the 36-month window includes 5.3%, so this works only roughly. EM equity up 2.0 on 12m also fits 2025. VIX at 0 and a 1m equity return of -0.5 suggest a mild pullback, which matches November 2025. A 3m unemployment change of +1.5 fits too.\n\nI'll go with November 2025.\n\n{\"year\":2025,\"month\":11,\"confidence\":0.5,\"cues\":[\"Unemployment z +1.5 and rising, payrolls weak, while policy rate is well below its 3-year average after cuts\",\"Gold strongly up (12m +2.5) and dollar weak (-1.5)\",\"Steep 10y-2y spread with inflation below its 3-year average and EM equities strong over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 658,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.5 | +1.0\nNational activity index, 3m avg | -0.5 | +0.0 | +0.5\nUnemployment rate | +1.5 | +1.5 | +0.5\nPayrolls, avg monthly change over 3m | -1.5 | +0.5 | +0.5\nHeadline CPI | -0.5 | +1.0 | +1.5\nCore CPI | -1.0 | +1.0 | +1.0\nPolicy rate (fed funds) | -2.0 | -1.0 | -1.0\n2-year Treasury yield | -1.5 | +0.0 | -1.0\n10-year Treasury yield | -0.5 | -0.5 | -1.0\n10y minus 2y Treasury spread | +1.5 | -0.5 | +0.5\nEquity implied volatility (VIX) | +0.0 | +0.5 | +1.0\nBaa corporate minus 10y Treasury spread | +0.5 | +0.0 | +1.5\nBroad trade-weighted dollar | -1.5 | +0.0 | -1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.5 | +0.0 | +1.0 | +0.0 | -1.0 | +0.5\nDeveloped ex-US equity | -0.5 | +0.0 | +0.0 | +1.5 | -1.0 | +0.5\nEmerging-market equity | -1.0 | +0.5 | +1.5 | +2.0 | -1.0 | +0.5\nUS Treasuries 7-10y | +0.0 | +0.5 | +1.0 | +1.0 | -2.0 | +1.0\nUS Treasuries 20y+ | -0.5 | +0.5 | +1.0 | +0.5 | -2.0 | +1.5\nUS investment-grade credit | -0.5 | +0.5 | +1.0 | +0.5 | -1.5 | +0.5\nGold | +1.0 | +2.0 | +1.5 | +2.5 | +1.5 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

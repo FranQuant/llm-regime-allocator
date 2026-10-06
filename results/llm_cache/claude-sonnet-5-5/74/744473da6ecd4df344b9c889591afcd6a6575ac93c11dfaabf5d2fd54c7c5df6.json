@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:58:32+00:00",
+ "decision_date": "2008-06-30",
+ "key": "744473da6ecd4df344b9c889591afcd6a6575ac93c11dfaabf5d2fd54c7c5df6",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmetVo8of3jsG2TqPyLq",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a crisis period in which unemployment has risen sharply (+3.0 z, with a +3.0 change over 3 months), and the policy rate is low and falling. The dollar has jumped over 3 months (+2.0), and Baa spreads are wide.\n\nTwo candidates stand out: late 2008 and spring 2020.\n\n**Spring 2020.** Unemployment jumped enormously in April 2020, but a z-score of +3.0 over a 3-month change fits that spike. However, payrolls averaged -2.5 over 3 months with no 3-month change, which does not fit April 2020 well, since payrolls would then be extremely negative. The 2-year yield would also have fallen sharply, not risen +1.5. The 10-year yield rising +1.5 over 3 months and the 2-year rising +1.5 also don't fit early 2020.\n\n**Late 2008 to early 2009.** Equities are down only modestly at 1 month (-3.0 is the cap), and 12-month returns are about -2.5. Yields rising over 3 months does not fit the sharp 2008 yield drop.\n\n**Mid-2009.** Yields rose from their December 2008 lows by roughly March to June 2009. The 3-month dollar change is +2.0, and the 3-month spread change is -1.5 (Baa spreads narrowing from their peak). The VIX is still elevated, and unemployment is rising. Policy rate is at its floor, and the 12-month change is -2.0. Equities are weak over 12 months, with a drawdown of -3.0 and a 1-month return of -3.0, which would fit February 2009 better. In February 2009, however, the 3-month dollar change was positive, and yields had risen from December lows. The Baa spread was near its peak in Dec 2008 and still high in Feb 2009, but a 3m change of -1.5 suggests it has already come down. The 10y-2y spread of +1.5 is consistent with early 2009. The cap at -3.0 on equity returns fits February 2009 (S&P fell about 11%). The 12-month Treasury return of +1.5 also fits.\n\nFebruary 2009 is a reasonable fit. Unemployment z of +3.0 fits as well, as does a National Activity Index at -2.5.\n\n{\"year\":2009,\"month\":2,\"confidence\":0.45,\"cues\":[\"Unemployment z +3.0 with fast 3m rise, activity index deeply negative\",\"Policy rate near floor, 2y/10y yields up over 3m from Dec lows, dollar up\",\"Equities -3.0 over 1m and drawdown, Baa spread very wide\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1095,
+  "output_tokens": 859,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | -1.0 | -0.5\nNational activity index, 3m avg | -2.5 | -1.0 | -2.5\nUnemployment rate | +3.0 | +3.0 | +3.0\nPayrolls, avg monthly change over 3m | -2.5 | +0.0 | -2.0\nHeadline CPI | +1.0 | +0.0 | +1.0\nCore CPI | +0.0 | +0.0 | +0.0\nPolicy rate (fed funds) | -2.5 | -1.0 | -2.0\n2-year Treasury yield | -1.5 | +1.5 | -1.5\n10-year Treasury yield | -1.0 | +1.5 | -1.5\n10y minus 2y Treasury spread | +1.5 | -1.5 | +1.0\nEquity implied volatility (VIX) | +1.5 | -0.5 | +1.0\nBaa corporate minus 10y Treasury spread | +2.0 | -1.5 | +2.0\nBroad trade-weighted dollar | -0.5 | +2.0 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -3.0 | -1.5 | -2.5 | -2.5 | +1.5 | -3.0\nDeveloped ex-US equity | -3.0 | -1.5 | -2.0 | -2.5 | +1.5 | -2.5\nEmerging-market equity | -2.0 | -1.0 | -2.0 | -2.0 | +0.5 | -1.5\nUS Treasuries 7-10y | +0.5 | -1.5 | +0.0 | +1.5 | +2.0 | -1.5\nUS Treasuries 20y+ | +1.0 | -0.5 | +0.0 | +1.5 | +2.0 | +0.0\nUS investment-grade credit | -1.0 | -1.5 | -1.0 | -0.5 | +1.5 | -2.0\nGold | +0.5 | +0.0 | -0.5 | +1.0 | +1.0 | -0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

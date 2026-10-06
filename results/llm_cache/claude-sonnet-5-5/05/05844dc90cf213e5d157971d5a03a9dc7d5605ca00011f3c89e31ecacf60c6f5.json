@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:09:09+00:00",
+ "decision_date": "2009-03-31",
+ "key": "05844dc90cf213e5d157971d5a03a9dc7d5605ca00011f3c89e31ecacf60c6f5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmb8BbRrqsHeCBwV4Z1p",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like April 2009. Equities rebounded sharply over the month (US large-cap +13.4%, emerging markets +24.4%), which fits a market bottoming in March 2009 and rallying into April. The 12-month drawdown of about -43% also fits.\n\nThe macro figures point the same way. Unemployment is 8.1%, which matches the February 2009 reading, and the fed funds rate is near zero. Payrolls are averaging about -660k a month, consistent with early 2009. Headline CPI at roughly 0% YoY fits March 2009, which was about -0.4%, while February was +0.2%.\n\nThat leaves the choice between March and April. If the month were March 2009, the S&P 500 1-month return would be about +8.5%. The S&P 500 rose from 735 at the end of February to 797 at the end of March, then to 872 at the end of April, so a +13.4% month does not match March for US large-caps. Emerging markets rose about 24% in the month, which is closer to the March 9 to April run. The 3-month return of -7.8% fits end-March better: from end-December 2008 (903) to end-March (797) is about -11.7%, or about -8% with dividends and some difference in the index. April's 3-month return, from end-January (825) to end-April (872), would be positive, so April does not fit.\n\nThe reported unemployment of 8.1% matches February 2009, and the data available at the end of March would show the February figure. Headline CPI of +0.07 fits February's +0.2% reading less well, but the figure could be a rounded or revised value. The 10-year yield at 2.73% is also lower than the end-March level of about 2.67%.\n\nThe 1-month +13.4% for US equities is hard to square with March. However, a lag in the data could explain it, and the month is most likely March 2009 on the other evidence.\n\n{\"year\": 2009, \"month\": 3, \"confidence\": 0.6, \"cues\": [\"Unemployment 8.1% with payrolls losing about 660k a month\", \"Fed funds near zero and headline CPI about 0% YoY\", \"Equities down about 40% over 12 months with a sharp 1-month rebound\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 698,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -11.83 | -5.48 | -12.92 | -2.97\nNational activity index, 3m avg | index, 0 = trend growth | -2.32 | -0.30 | -1.83 | -2.29\nUnemployment rate | % | +8.10 | +1.30 | +3.30 | +2.97\nPayrolls, avg monthly change over 3m | thousands | -662.33 | -229.67 | -630.33 | -2.64\nHeadline CPI | YoY % | +0.07 | -0.92 | -4.09 | -2.08\nCore CPI | YoY % | +1.78 | -0.20 | -0.50 | -1.96\nPolicy rate (fed funds) | % | +0.16 | +0.02 | -2.35 | -1.77\n2-year Treasury yield | % | +0.84 | +0.08 | -0.78 | -1.65\n10-year Treasury yield | % | +2.73 | +0.48 | -0.72 | -1.94\n10y minus 2y Treasury spread | pp | +1.89 | +0.40 | +0.06 | +1.27\nEquity implied volatility (VIX) | index points | +45.54 | +5.54 | +19.93 | +1.67\nBaa corporate minus 10y Treasury spread | pp | +5.75 | -0.07 | +2.30 | +2.03\nBroad trade-weighted dollar | YoY % | +16.55 | +6.48 | +26.54 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +13.4% | -7.8% | -27.5% | -40.3% | +57.9% | -42.9%\nDeveloped ex-US equity | +15.0% | -12.5% | -28.3% | -47.7% | +66.1% | -50.6%\nEmerging-market equity | +24.4% | +3.4% | -20.4% | -45.3% | +97.4% | -50.8%\nUS Treasuries 7-10y | +2.3% | -2.4% | +9.3% | +10.6% | +12.0% | -2.5%\nUS Treasuries 20y+ | +2.4% | -12.0% | +10.8% | +16.8% | +23.8% | -12.8%\nUS investment-grade credit | +0.5% | -5.5% | +18.4% | -5.2% | +23.1% | -7.3%\nGold | -0.7% | +4.6% | +0.8% | +3.9% | +36.2% | -7.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.34\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:13:43+00:00",
+ "decision_date": "2017-11-30",
+ "key": "34b2473460c5560ebd54f798b94f61de64154ed79a85d2680637a61c2c80310d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmg3dRdg4J2KBxN8vC1v",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The policy rate is high relative to its 3-year average, and the 2-year yield is rising sharply (+2.0 over 3 months). The unemployment rate is very low (-2.0 versus its 3-year average), the yield curve is inverted, and the dollar is weak and falling. Industrial production and the national activity index are strong.\n\nThat combination points to a period after a long stretch of low rates, with the Fed hiking or about to. Z-scores against the prior 36 months only make sense with that baseline. The 2-year yield is +2.5 with a +2.0 three-month change, which fits a sharp rise in rates. The inverted curve also fits.\n\nCandidate periods:\n- **Late 2005 to 2006:** outside the 2007+ range.\n- **2018:** unemployment was low, rates were rising, and the curve was flattening rather than deeply inverted. The dollar was not weak then.\n- **Late 2022 to 2023:** the dollar would be high.\n- **Late 2024 to early 2025:** the policy rate is +2.0 versus a 3-year average that includes 2022 lows, but the 12m change is +1.5, which doesn't fit.\n- **Late 2023:** unemployment was low, but the 3-month rise in the 2-year yield doesn't fit.\n\nTaking the rise in the 2-year yield, a weak dollar, and a curve at -2.0 together suggests a rebound in 2-year yields after a dip. In 2026 the 3-year window would run from 2023 to 2026. The policy rate would be near average, so +2.0 doesn't fit.\n\nAnother option is 2007, though the data wouldn't be normalized that way. For early 2007 the 3-year window covers 2004 to 2007, when rates rose. Unemployment at -2.0 fits 2006 to 2007 (about 4.4%), the curve was inverted, and the VIX was low. But the 2-year yield +2.0 over 3 months doesn't fit February 2007.\n\nAlternatively, mid-2007 (June): the 2-year yield rose in May-June 2007 and the 10-year rose to 5.2%. The dollar was weak, equities were strong, and the VIX was low. Core CPI was low versus its window, and the 12-month change of -1.5 fits core CPI falling in 2007. Credit spreads were tight (-1.5). Payrolls were weak at -1.0. Everything lines up with June 2007.\n\n{\"year\":2007,\"month\":6,\"confidence\":0.6,\"cues\":[\"Inverted curve (-2.0) with very low unemployment (-2.0) and tight Baa spreads (-1.5)\",\"2-year yield up sharply over 3m (+2.0) with a weak dollar (-2.0) and low VIX\",\"Strong equities, soft core CPI, and bonds falling over 3m fit mid-2007\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 933,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | +1.0 | +1.5\nNational activity index, 3m avg | +1.5 | +1.5 | +1.5\nUnemployment rate | -2.0 | -0.5 | +0.0\nPayrolls, avg monthly change over 3m | -1.0 | +0.0 | +0.0\nHeadline CPI | +1.0 | +0.5 | +0.0\nCore CPI | -1.0 | +0.5 | -1.5\nPolicy rate (fed funds) | +2.0 | -0.5 | +1.5\n2-year Treasury yield | +2.5 | +2.0 | +1.5\n10-year Treasury yield | +1.0 | +0.5 | +0.0\n10y minus 2y Treasury spread | -2.0 | -0.5 | -1.0\nEquity implied volatility (VIX) | -1.0 | +0.0 | -0.5\nBaa corporate minus 10y Treasury spread | -1.5 | -0.5 | -0.5\nBroad trade-weighted dollar | -2.0 | -1.0 | -1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +1.5 | +1.0 | +1.5 | -1.5 | +1.0\nDeveloped ex-US equity | +0.0 | +0.5 | +0.5 | +2.0 | -1.5 | +1.0\nEmerging-market equity | +0.0 | +0.0 | +0.5 | +1.5 | -1.5 | +0.5\nUS Treasuries 7-10y | -0.5 | -1.0 | -0.5 | +0.0 | -2.0 | +0.0\nUS Treasuries 20y+ | +0.0 | -0.5 | -0.5 | +0.0 | -1.5 | +1.0\nUS investment-grade credit | -0.5 | -0.5 | +0.0 | +0.5 | -2.0 | +1.0\nGold | +0.0 | -0.5 | +0.0 | +1.0 | -1.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

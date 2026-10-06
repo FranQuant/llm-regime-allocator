@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:09:44+00:00",
+ "decision_date": "2009-08-31",
+ "key": "ed2ec14262d217f884b54c2d2617f2bd61541cb63cfd6225faea53d16fc8f878",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbAi1KkUTvH4WZG4shG",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like late 2009. Unemployment is 9.4%, which matches roughly May 2009. Headline CPI at -1.89% YoY is close to the July 2009 trough of about -2.1%, though June 2009 was about -1.4%. Industrial production at -13% YoY also fits mid-2009.\n\nSeveral details help pin the month:\n- Fed funds at 0.14% and a 10-year yield of 3.46% are consistent with mid-2009.\n- US equities returned +48% over 6 months, which means the window starts at the March 2009 low. The 12-month return of -18.3% fits a June\u2013July window.\n- The 3-month return of +8.6% is consistent with the S&P gaining from about 890 at end-March to about 919 at end-June, or from end-April to end-July.\n- VIX at 24.76 fits end-June 2009 (about 26) or end-July (about 25).\n- Unemployment of 9.4% was the May reading (released in June). June was 9.5%, so the latest value is May and the snapshot is end of June 2009.\n- Headline CPI for May 2009 was -1.28%, while the June figure was -1.43% and July's was -2.1%. A reading of -1.89 is not an exact match, but the data may be differently defined.\n- Core CPI at 1.56% fits roughly mid-2009.\n\nChecking the equity returns against July 2009: the 1-month return was +7.4%, which does not match the +3.7% here. June 2009 returned about +0.2%, which doesn't match either. Looking at August 2009, the 1-month return was +3.7%, the 6-month return from end-February (735) to end-August (1020) was +39%, and the 12-month return was about -18%. That fits better, with unemployment at 9.4% for July (the August release would show 9.6% for August, so July's 9.4% fits as the latest value). July's headline CPI was -2.1%, near the -1.89 shown. So the snapshot is end of August 2009.\n\n{\"year\":2009,\"month\":8,\"confidence\":0.6,\"cues\":[\"Unemployment 9.4% with headline CPI about -1.9% YoY\",\"US equity 6m +48% but 12m -18%, 1m +3.7%\",\"Fed funds 0.14%, 10y 3.46%, VIX about 25\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 756,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -13.05 | -0.42 | -12.01 | -1.86\nNational activity index, 3m avg | index, 0 = trend growth | -0.67 | +1.07 | +0.26 | +0.08\nUnemployment rate | % | +9.40 | +0.50 | +3.60 | +2.15\nPayrolls, avg monthly change over 3m | thousands | -331.00 | +286.33 | -189.00 | -0.75\nHeadline CPI | YoY % | -1.89 | -1.27 | -7.33 | -2.15\nCore CPI | YoY % | +1.56 | -0.35 | -0.95 | -2.02\nPolicy rate (fed funds) | % | +0.14 | -0.05 | -1.80 | -1.29\n2-year Treasury yield | % | +1.01 | +0.09 | -1.35 | -1.15\n10-year Treasury yield | % | +3.46 | -0.01 | -0.37 | -0.71\n10y minus 2y Treasury spread | pp | +2.45 | -0.10 | +0.98 | +1.39\nEquity implied volatility (VIX) | index points | +24.76 | -4.16 | +4.11 | -0.05\nBaa corporate minus 10y Treasury spread | pp | +2.95 | -1.34 | -0.34 | -0.10\nBroad trade-weighted dollar | YoY % | +4.31 | -5.77 | +8.16 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.7% | +8.6% | +48.1% | -18.3% | +27.8% | -17.8%\nDeveloped ex-US equity | +4.5% | +9.7% | +65.2% | -14.3% | +32.2% | -13.0%\nEmerging-market equity | -1.3% | +4.3% | +76.1% | -9.9% | +40.5% | -7.1%\nUS Treasuries 7-10y | +0.8% | +2.4% | -1.5% | +6.4% | +10.6% | -6.2%\nUS Treasuries 20y+ | +2.2% | +6.2% | -4.3% | +7.0% | +19.5% | -19.1%\nUS investment-grade credit | +1.3% | +8.3% | +15.8% | +10.5% | +9.7% | +0.0%\nGold | +0.1% | -3.1% | +3.7% | +14.3% | +18.5% | -4.5%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.25\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

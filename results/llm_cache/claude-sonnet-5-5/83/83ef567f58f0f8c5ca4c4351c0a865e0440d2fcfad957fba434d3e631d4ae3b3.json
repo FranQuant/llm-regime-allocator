@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:04:19+00:00",
+ "decision_date": "2012-01-31",
+ "key": "83ef567f58f0f8c5ca4c4351c0a865e0440d2fcfad957fba434d3e631d4ae3b3",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfKqBA5cKasHReS5cXQ",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: unemployment low relative to the past 3 years (-1.5) and falling, core CPI high (+1.5) and rising over 12m, policy rate slightly below average, 10y yield very low relative to its 3-year average (-2.0) with a 12m fall of -2.0, and a very inverted curve spread (-2.0). Treasuries have strong 12m returns.\n\nThe 10y yield being well below its 3-year average with an inverted curve suggests a period after yields had risen sharply and then fallen. Candidates are 2020 or 2023-2024, but unemployment at -1.5 and core CPI at +1.5 do not fit 2020.\n\nAn alternative is early 2008. The 3-year window would be 2005-2007, with the fed funds rate then rising and a curve that was inverted in 2006-07. But the curve was positive in early 2008, and core CPI was not high.\n\nAnother is 2019. The 3-year window of 2016-2019 has a low 10y yield at the end of 2019, with a flat curve. But core CPI at +1.5 with a 12m change of +2.0 doesn't fit.\n\nWhat about 2024-25? Unemployment was low in 2023 and rising in 2024, so -1.5 with -1.0 for 3m doesn't fit. In 2023 the 10y yield was high, not low.\n\nConsider 2007: the window is 2004-2007, and the data begins in 2007. The 10y yield is -2.0 against its average, with a 12m change of -2.0. That fits 2012 or 2020-21 more. The 10y spread at -2.0 suggests an inverted curve, though. In late 2007, unemployment was low (4.7%) and fell from the prior year. But the 2y yield at -1.5 doesn't fit the 2004-07 window.\n\nThink about the 2y at -1.5 and the policy rate at -1.0 against the average. The 10y yield is low and the curve is flat or inverted relative to the past. Mid-2019 has a 10y yield at 2.0%, with a window of 2016-19 averaging about 2.4%. But the 2y at -1.5 is wrong, as it was about 1.8% against an average of 1.7%.\n\nWhat about late 2025/2026? The window of 2023-2026 has an average 10y around 4.2%, and the 2y around 4.3%. The 10y at 4.0% would be only -0.7. Core CPI at +1.5 doesn't fit either.\n\nConsider late 2022-23 with the window of 2020-2022: the 10y is high, which doesn't fit.\n\nBack to 2007: the data may begin with fewer than 36 months, but the 36-month window for 2007 would use 2004-2007. The 10y at 4.0-4.5% would be close to average, and the 2y high. The curve was inverted in mid-2007. Then the 12m 10y change of -2.0 doesn't fit.\n\nPerhaps early 2008, say January 2008: the 10y fell to 3.6%, with a 12m change of -1.2%. The 2y fell to 2.5%, against a 2004-07 average of about 3.8%, so -1.5 fits. The policy rate was down at 3.0%, close to average. The VIX at -1.0 doesn't fit, though.\n\nAlternatively, 2019 might fit if the thresholds were different. But the VIX of -1.0 with a 3m change of -1.0 means calm, and gold up 2.0 in 1m. Gold +2.0 in 1m with the dollar rising... Perhaps Dec 2023? No, the rates there are high.\n\nI'll go with mid-2019 or 2007, but the evidence fits neither. I'll guess late 2007.\n\n{\"year\": 2007, \"month\": 12, \"confidence\": 0.1, \"cues\": [\"10y yield z -2.0 with a 12m fall of -2.0\", \"unemployment low (z -1.5), core CPI high and rising\", \"long Treasuries strong over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1296,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | -0.5 | -0.5\nNational activity index, 3m avg | +0.5 | +0.0 | -0.5\nUnemployment rate | -1.5 | -1.0 | -1.0\nPayrolls, avg monthly change over 3m | +1.0 | -0.5 | -0.5\nHeadline CPI | +1.0 | -1.0 | +0.5\nCore CPI | +1.5 | +0.5 | +2.0\nPolicy rate (fed funds) | -1.0 | +0.0 | +0.5\n2-year Treasury yield | -1.5 | +0.0 | +0.0\n10-year Treasury yield | -2.0 | -0.5 | -2.0\n10y minus 2y Treasury spread | -2.0 | -0.5 | -2.5\nEquity implied volatility (VIX) | -1.0 | -1.0 | +0.5\nBaa corporate minus 10y Treasury spread | +0.0 | +0.5 | +0.5\nBroad trade-weighted dollar | +0.5 | +0.5 | +0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +0.0 | +0.0 | +0.0 | +0.5 | +0.5\nDeveloped ex-US equity | +0.5 | -0.5 | -0.5 | -0.5 | +0.5 | +0.0\nEmerging-market equity | +1.0 | -0.5 | -1.0 | -0.5 | +0.5 | +0.0\nUS Treasuries 7-10y | +0.5 | +1.0 | +1.0 | +2.0 | +0.5 | +1.5\nUS Treasuries 20y+ | +0.0 | +1.0 | +1.5 | +2.5 | +2.0 | +1.0\nUS investment-grade credit | +1.0 | +0.0 | +0.0 | +0.5 | +0.0 | +1.0\nGold | +2.0 | -1.0 | -1.0 | +0.5 | +1.0 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

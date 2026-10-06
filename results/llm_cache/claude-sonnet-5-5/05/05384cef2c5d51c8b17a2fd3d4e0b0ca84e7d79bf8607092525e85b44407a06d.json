@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:24:55+00:00",
+ "decision_date": "2022-10-31",
+ "key": "05384cef2c5d51c8b17a2fd3d4e0b0ca84e7d79bf8607092525e85b44407a06d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcL6sNf2Bi2uNrMmrpd",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like 2022. Headline CPI is 8.22% YoY, which matches the August 2022 print (8.3%) or September (8.2%). Fed funds at 3.08% fits September 2022 (the effective rate was 2.56% in August and 3.08% in September). The 10-year yield at 4.02% is consistent with the end of September 2022, when it was about 3.8\u20134.0%. Core CPI at 6.66% matches September 2022. The unemployment rate of 3.5% also fits September.\n\nThe 1-month US equity return of +8.1% does not fit September, which was down about 9%. October 2022 was up about 8%, so the market data points to October. At the end of October 2022, though, CPI would be the September print of 8.2% and core 6.6%, and the fed funds rate would be 3.08% for October. The 10-year yield at the end of October was about 4.05%, and the 2-year about 4.4%. So the snapshot describes October 2022.\n\n{\"year\":2022,\"month\":10,\"confidence\":0.93,\"cues\":[\"CPI 8.22% and core 6.66% match the September 2022 print, published in October\",\"Fed funds 3.08%, 2y 4.41%, 10y 4.02% match late October 2022\",\"US equities +8.1% in 1m after a drawdown fits the October 2022 rebound\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 436,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +5.33 | +1.44 | +1.40 | +0.68\nNational activity index, 3m avg | index, 0 = trend growth | +0.16 | +0.27 | -0.08 | +0.10\nUnemployment rate | % | +3.50 | -0.10 | -1.20 | -0.79\nPayrolls, avg monthly change over 3m | thousands | +371.67 | +22.67 | -171.67 | +0.16\nHeadline CPI | YoY % | +8.22 | -0.77 | +2.83 | +1.33\nCore CPI | YoY % | +6.66 | +0.75 | +2.62 | +1.62\nPolicy rate (fed funds) | % | +3.08 | +0.76 | +3.01 | +2.68\n2-year Treasury yield | % | +4.41 | +1.52 | +3.93 | +2.63\n10-year Treasury yield | % | +4.02 | +1.35 | +2.47 | +2.61\n10y minus 2y Treasury spread | pp | -0.39 | -0.17 | -1.46 | -1.86\nEquity implied volatility (VIX) | index points | +25.75 | +4.42 | +9.49 | +0.06\nBaa corporate minus 10y Treasury spread | pp | +2.30 | -0.06 | +0.61 | +0.06\nBroad trade-weighted dollar | YoY % | +11.58 | +3.45 | +13.28 | +1.94\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +8.1% | -5.0% | -6.0% | -14.6% | +25.8% | -18.2%\nDeveloped ex-US equity | +5.9% | -8.4% | -11.5% | -23.2% | +23.1% | -24.5%\nEmerging-market equity | -2.0% | -13.3% | -18.5% | -31.3% | +22.1% | -32.7%\nUS Treasuries 7-10y | -1.5% | -9.0% | -6.6% | -16.4% | +10.9% | -17.8%\nUS Treasuries 20y+ | -6.0% | -17.8% | -17.2% | -33.6% | +20.7% | -36.7%\nUS investment-grade credit | -0.7% | -9.9% | -8.0% | -21.9% | +12.5% | -22.9%\nGold | -1.8% | -7.4% | -12.5% | -8.8% | +14.1% | -20.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.23\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

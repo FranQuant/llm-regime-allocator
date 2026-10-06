@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:15:22+00:00",
+ "decision_date": "2014-02-28",
+ "key": "16cf2a30e233585d9cda46fbe214dda2e72ed44416e67b7fb8cccf0646749e36",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbbkS8YKYe7vfWzaY5d",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2014, probably February.\n\n- Unemployment of 6.6% matches January 2014, when the rate was 6.6%.\n- Fed funds at 0.07% and a 10-year yield of 2.65% fit that period.\n- US large-cap equity returned 25.4% over 12 months, which fits the strong 2013 run.\n- Gold was down 16.6% over 12 months, consistent with its 2013 decline, and the 1-month gain of 4.2% fits January 2014 gold, which rose.\n- Equities gained 5.0% in the latest month. In January 2014 the S&P 500 fell about 3%, whereas February 2014 rose about 4.6%, which fits a February snapshot.\n- Headline CPI of 1.56% year over year fits February 2014, when it was 1.1% in January and 1.1% in February by my recollection. Headline CPI rising 0.64 over three months is odd for that window. However, the 12-month and 3-month changes may be on a different basis than I remember.\n- The 10-year yield was 2.65% at the end of February 2014 and 2.67% at the end of January. The 3-month change of \u22120.10 would then reference a November 2013 level of 2.75%, which fits.\n- Unemployment fell 0.6 over three months. It was 7.2% in November 2013 (actually 7.0% in November and 6.7% in December), so the snapshot would put the latest month at 6.6% with February 2014 at 6.7%. January 2014 was 6.6%, so the data may be as of January, but the equity return points to February.\n\nI'll go with February 2014.\n\n{\"year\":2014,\"month\":2,\"confidence\":0.6,\"cues\":[\"Unemployment 6.6% with fed funds near 0.07%\",\"S&P 500 up 25% over 12m while gold down 16.6%\",\"10-year yield 2.65% and strong 1-month equity rebound\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 622,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.91 | -0.74 | +0.86 | -0.26\nNational activity index, 3m avg | index, 0 = trend growth | +0.10 | -0.08 | -0.02 | +0.76\nUnemployment rate | % | +6.60 | -0.60 | -1.30 | -2.01\nPayrolls, avg monthly change over 3m | thousands | +154.00 | -47.00 | -50.67 | -0.76\nHeadline CPI | YoY % | +1.56 | +0.64 | -0.04 | -0.76\nCore CPI | YoY % | +1.62 | -0.06 | -0.29 | -0.81\nPolicy rate (fed funds) | % | +0.07 | +0.00 | -0.07 | -0.87\n2-year Treasury yield | % | +0.33 | +0.05 | +0.08 | +0.12\n10-year Treasury yield | % | +2.65 | -0.10 | +0.76 | +0.72\n10y minus 2y Treasury spread | pp | +2.32 | -0.15 | +0.68 | +0.82\nEquity implied volatility (VIX) | index points | +14.04 | +0.34 | -1.47 | -0.74\nBaa corporate minus 10y Treasury spread | pp | +2.36 | -0.25 | -0.53 | -1.79\nBroad trade-weighted dollar | YoY % | +2.56 | -0.21 | -0.28 | +0.42\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +5.0% | +3.7% | +14.8% | +25.4% | +10.8% | +0.0%\nDeveloped ex-US equity | +4.9% | +3.3% | +13.5% | +19.3% | +12.9% | -0.1%\nEmerging-market equity | +4.5% | -4.4% | +6.4% | -6.6% | +19.7% | -8.7%\nUS Treasuries 7-10y | +0.7% | +1.0% | +2.9% | -2.7% | +5.5% | -4.7%\nUS Treasuries 20y+ | +0.9% | +4.7% | +4.9% | -5.6% | +10.6% | -10.3%\nUS investment-grade credit | +1.5% | +3.2% | +5.9% | +1.2% | +5.2% | -1.3%\nGold | +4.2% | +6.5% | -6.6% | -16.6% | +18.5% | -18.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.17\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

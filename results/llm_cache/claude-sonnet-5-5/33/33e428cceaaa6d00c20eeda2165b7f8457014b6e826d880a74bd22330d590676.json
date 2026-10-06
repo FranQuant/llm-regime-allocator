@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:19:53+00:00",
+ "decision_date": "2017-12-29",
+ "key": "33e428cceaaa6d00c20eeda2165b7f8457014b6e826d880a74bd22330d590676",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmbwq3zpGo9aExdeJndb",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like December 2017 or possibly January 2018. Fed funds at 1.42% matches December 2017 (the rate was 1.30\u20131.42%). The unemployment rate of 4.1% matches both November and December 2017. CPI of 2.23% YoY matches November 2017 (2.2%), while core CPI at 1.71% matches November or December. The 10-year yield at 2.43% fits late November or December 2017. The VIX at 10.18 is low, and the dollar is down 6% YoY.\n\nPayrolls over 3 months averaging 170k fits November 2017. The 12m equity return of 21.3% is consistent with November 2017 (S&P up about 22%). The 1m equity return of 2.1% fits November 2017 (+3.1%) or December (+1.1%), so it is unclear which. The 2-year yield at 1.91% fits end of December 2017 (1.88%), and end of November was 1.78%. Fed funds effective at 1.42% is more consistent with December (after the December hike, effective was 1.42%). The 10-year yield ended December at 2.40%. I'll go with December 2017.\n\n{\"year\":2017,\"month\":12,\"confidence\":0.85,\"cues\":[\"Fed funds 1.42% after the December 2017 hike, unemployment 4.1%\",\"VIX near 10 with the dollar down about 6% YoY and EM equity up 36% over 12m\",\"Core CPI 1.71% and 10y yield 2.43%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 486,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.35 | +1.89 | +3.78 | +1.80\nNational activity index, 3m avg | index, 0 = trend growth | +0.41 | +0.49 | +0.49 | +2.73\nUnemployment rate | % | +4.10 | -0.30 | -0.50 | -1.80\nPayrolls, avg monthly change over 3m | thousands | +170.00 | -15.33 | -9.00 | -0.72\nHeadline CPI | YoY % | +2.23 | +0.30 | +0.53 | +1.23\nCore CPI | YoY % | +1.71 | +0.02 | -0.44 | -1.07\nPolicy rate (fed funds) | % | +1.42 | +0.36 | +0.87 | +2.43\n2-year Treasury yield | % | +1.91 | +0.44 | +0.71 | +2.51\n10-year Treasury yield | % | +2.43 | +0.10 | -0.02 | +1.16\n10y minus 2y Treasury spread | pp | +0.52 | -0.34 | -0.73 | -2.11\nEquity implied volatility (VIX) | index points | +10.18 | +0.67 | -3.86 | -1.05\nBaa corporate minus 10y Treasury spread | pp | +1.76 | -0.24 | -0.52 | -1.79\nBroad trade-weighted dollar | YoY % | -6.12 | -4.17 | -10.54 | -1.83\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.1% | +6.8% | +11.5% | +21.3% | +6.4% | -0.5%\nDeveloped ex-US equity | +1.5% | +3.8% | +9.0% | +25.5% | +6.6% | +0.0%\nEmerging-market equity | +2.6% | +6.7% | +15.6% | +36.3% | +12.1% | +0.0%\nUS Treasuries 7-10y | -0.1% | -0.3% | +0.1% | +2.9% | +3.7% | -2.3%\nUS Treasuries 20y+ | +1.5% | +2.5% | +2.9% | +9.3% | +9.3% | -1.1%\nUS investment-grade credit | +1.1% | +1.3% | +2.7% | +7.2% | +3.7% | +0.0%\nGold | +1.3% | +1.7% | +4.8% | +12.1% | +9.7% | -3.5%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.35\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

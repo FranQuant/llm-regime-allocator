@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:25:35+00:00",
+ "decision_date": "2023-06-30",
+ "key": "7ace87bf41835d70a156ba93076b27466fc19f45d608ee9d389429b9c0deaf5e",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcNuRcspX7kVAeE9uc4",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like mid-to-late 2023. Several figures point there:\n\n- The fed funds rate is 5.07%, which fits the period after the July 2023 hike.\n- Core CPI is 5.33% year over year, and headline CPI is 4.13%, down 4.37 points over 12 months. Headline CPI was about 9% in mid-2022, so it was falling fast.\n- The 10y-2y spread is -1.02, which fits mid-2023.\n- The 2-year yield is 4.87%, and the 10-year yield is 3.85%, up 0.37 over 3 months. The 10-year was around 3.8% in early June 2023, and it was about 4.1% at the end of July.\n- Headline CPI of 4.13% year over year matches May 2023 (4.0%) or April (4.9%). June 2023 was 3.0%, so the CPI reading is closest to May. Core CPI in May was 5.3%, which also matches.\n- Unemployment of 3.7% matches May 2023 (3.7%), though it was 3.6% in June. Payrolls averaged about 283k over 3 months, which fits March-May 2023 once revisions are included.\n- The VIX is 13.54, which fits the end of May or June 2023 (June ended near 13.6).\n- US large-cap equity returned +6.5% over 1 month, which matches June 2023 (S&P up about 6.5%). The 3-month return of +10.2% also fits June.\n- The 10-year yield at the end of June 2023 was about 3.84%. The 2-year was 4.87%. Both match June.\n\nSo the end of June 2023 fits best. The CPI and unemployment figures are the latest published values, so they would still be May data at that point.\n\n```json\n{\"year\":2023,\"month\":6,\"confidence\":0.93,\"cues\":[\"Fed funds 5.07%, 2y 4.87%, 10y 3.85%, 10y-2y spread -1.02\",\"S&P 1m +6.5% and VIX 13.5, with headline CPI 4.1% and core 5.3% (May data)\",\"Unemployment 3.7% and payrolls averaging ~283k\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 706,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.23 | -0.58 | -3.43 | -0.23\nNational activity index, 3m avg | index, 0 = trend growth | -0.14 | +0.00 | -0.17 | -0.49\nUnemployment rate | % | +3.70 | +0.10 | +0.10 | -0.71\nPayrolls, avg monthly change over 3m | thousands | +283.33 | -36.33 | -60.67 | -0.20\nHeadline CPI | YoY % | +4.13 | -1.86 | -4.37 | -0.39\nCore CPI | YoY % | +5.33 | -0.20 | -0.69 | +0.53\nPolicy rate (fed funds) | % | +5.07 | +0.24 | +3.49 | +1.89\n2-year Treasury yield | % | +4.87 | +0.81 | +1.95 | +1.62\n10-year Treasury yield | % | +3.85 | +0.37 | +0.87 | +1.42\n10y minus 2y Treasury spread | pp | -1.02 | -0.44 | -1.08 | -1.76\nEquity implied volatility (VIX) | index points | +13.54 | -5.16 | -15.17 | -1.62\nBaa corporate minus 10y Treasury spread | pp | +1.92 | -0.19 | -0.39 | -0.79\nBroad trade-weighted dollar | YoY % | -1.05 | -4.72 | -8.43 | -0.43\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +6.5% | +10.2% | +18.6% | +18.5% | +14.6% | +0.0%\nDeveloped ex-US equity | +4.5% | +3.8% | +13.1% | +18.0% | +14.1% | -1.4%\nEmerging-market equity | +4.4% | +0.9% | +5.5% | +0.5% | +15.9% | -6.2%\nUS Treasuries 7-10y | -1.3% | -1.3% | +2.0% | -2.5% | +9.9% | -6.6%\nUS Treasuries 20y+ | +0.2% | -1.0% | +4.7% | -7.0% | +17.6% | -12.1%\nUS investment-grade credit | +0.8% | +0.5% | +4.3% | +2.3% | +9.3% | -2.6%\nGold | -2.2% | -3.2% | +6.2% | +5.2% | +14.6% | -6.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.17\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

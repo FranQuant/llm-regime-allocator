@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:03:12+00:00",
+ "decision_date": "2011-06-30",
+ "key": "5a51b1845d2920ccf67ff78523b3ce2dd4052b94ad655e9832c9ab76d906b202",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfEqrh2Nckj9z1s8Eb9",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key clues: core CPI z 3m change +1.5 and 12m +2.0, with the policy rate still below its 3-year average (-0.5) but rising over 12 months (+1.0). The 2-year yield is low relative to its 3-year average (-1.0) but up over 12 months. Unemployment is average and down over 12 months. VIX is low. The equity-bond correlation is negative.\n\nThe 3-year window would include a period of lower rates, with the policy rate below average while rising. That suggests early in a tightening cycle, or a rise after a low period. Candidates are 2017 and 2022. In 2022 the Fed was far above the average of the prior 36 months by late in the year, and VIX was high, so 2022 doesn't fit.\n\nThe 2017-2018 window: the 36-month average of the funds rate in 2017 would include the near-zero 2015-2016 period, so the rate would be above average. That doesn't fit either.\n\nAnother option is 2005, but the data starts in 2007. What about a 2024 reading? The prior 36 months (2021-2024) include zero rates in 2021-22 and 5.3% in 2023-24. Average roughly 3%, so a rate of 4.3% would be positive. That doesn't fit.\n\nConsider 2026: the prior 36 months (2023-2026) averaged about 4.7%. Rates of about 3.6% would give -0.5 to -1, but the 12m change would be negative. Doesn't fit.\n\nConsider 2018-2019: the window 2015-2018 includes low rates, so the rate would be above average.\n\nConsider 2010s: early 2022 (March), with a rate near 0.25-0.5% against a 36-month average of about 1%, gives -0.5. Core CPI up sharply, 12m change of the funds rate +1.0 would be odd, though. For late 2021, the funds rate hadn't risen.\n\nConsider 2008: the rate fell then. Consider 2005-2007, where the window begins at 2007, so Jan 2007+ data would be needed.\n\nConsider 2023: the 36-month window from 2020-2023 averaged low, so a 5% rate would be high.\n\nConsider 2016-2017: the VIX is low, the dollar is low (-1.0), and the 12m dollar change is -0.5. The 10y minus 2y spread is +1.0 with equity returns around average. Payrolls are +1.0. Core CPI z 0 with a 12m change of +2.0 suggests core was low a year ago, as in 2010 (low core). Early 2011 may fit: the policy rate near 0.1%, though, would not rise.\n\nMaybe 2018 Q1 or 2017 Q4? The rate in Dec 2017 was 1.4%, with the 36-month average at about 0.6%, which is positive. The z-scores are relative to the standard deviation, though, so it's ambiguous.\n\nConsider mid-2022 with a long window... no.\n\nConsider early 2022 anyway: the 12m change in the policy rate would be about 0, so no. Consider 2010 through 2011: the window 2008-2011 included high rates in 2008, so the rate would be below average at -0.5, but the 12m change wouldn't be +1.0.\n\nConsider 2018-2019 again: dollar low, VIX low, but the 12m drawdown of equity is positive. A mid-2018 reading would have the dollar high.\n\nI'll guess early 2017, with the 12m rate change at +1.0 (0.4 to 0.9) and a core CPI rebound in early 2017... though core CPI 3m change +1.5 doesn't fit 2017. Mid-2016 doesn't fit either. I'll go with 2017.\n\n{\"year\":2017,\"month\":2,\"confidence\":0.15,\"cues\":[\"Low VIX and weak dollar with positive equity 12m returns\",\"Policy rate rising over 12m from a low base\",\"Core CPI up sharply over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1287,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | -0.5 | -0.5\nNational activity index, 3m avg | +0.5 | -0.5 | -0.5\nUnemployment rate | +0.0 | +0.0 | -1.0\nPayrolls, avg monthly change over 3m | +1.0 | +0.0 | -0.5\nHeadline CPI | +1.0 | +0.5 | +0.5\nCore CPI | +0.0 | +1.5 | +2.0\nPolicy rate (fed funds) | -0.5 | +0.5 | +1.0\n2-year Treasury yield | -1.0 | -0.5 | +1.0\n10-year Treasury yield | -0.5 | -0.5 | +1.0\n10y minus 2y Treasury spread | +1.0 | -0.5 | -0.5\nEquity implied volatility (VIX) | -1.0 | +0.0 | -1.0\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | +0.0\nBroad trade-weighted dollar | -1.0 | -0.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | +0.0 | +0.0 | +1.0 | -1.0 | +1.0\nDeveloped ex-US equity | +0.0 | +0.0 | +0.0 | +1.0 | -1.0 | +1.0\nEmerging-market equity | +0.0 | +0.0 | +0.0 | +0.5 | -1.0 | +0.5\nUS Treasuries 7-10y | -1.0 | +0.5 | +0.0 | -1.0 | -1.0 | +0.5\nUS Treasuries 20y+ | -1.0 | +0.0 | +0.0 | -1.0 | -1.0 | +0.0\nUS investment-grade credit | -0.5 | +0.0 | +0.0 | +0.0 | -1.0 | +0.5\nGold | -0.5 | +0.0 | +0.0 | +0.5 | -1.0 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

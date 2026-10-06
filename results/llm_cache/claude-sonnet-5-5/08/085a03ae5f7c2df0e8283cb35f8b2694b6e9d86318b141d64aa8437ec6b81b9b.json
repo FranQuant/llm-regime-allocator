@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:15:31+00:00",
+ "decision_date": "2014-03-31",
+ "key": "085a03ae5f7c2df0e8283cb35f8b2694b6e9d86318b141d64aa8437ec6b81b9b",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbcAKZBNNGuiWRQfczk",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2014. Unemployment is 6.7%, which matches December 2013 or January 2014 (6.6% in January). The 10-year yield is 2.73% and the fed funds rate is 0.08%. Gold fell about 20% over 12 months, consistent with a snapshot near the end of January 2014. US equities returned 22.3% over 12 months, which also fits.\n\nPayrolls averaged 129k over the 3 months. That is low because the December 2013 payroll gain was only 75k. With the unemployment rate at 6.7%, the snapshot is probably December 2013 data, published in January 2014, though possibly the January 2014 report.\n\nThe 10-year yield was about 3.0% at the end of December 2013 and about 2.65% at the end of January 2014. The 3-month change of -0.31 means the yield was about 3.04 three months earlier, which fits an end-January 2014 reading of roughly 2.73. At the end of October 2013 it was about 2.55, and the end-of-November reading was 2.75, so the data points to a different month than I first read.\n\nChecking the 20y+ Treasury 3-month return of +7.7%, which fits a window to the end of January 2014. The 1-month emerging-market return of +3.9% does not fit January 2014, when emerging markets fell. The month could instead be February 2014, when emerging markets rebounded, gold rose, and the 10-year yield was about 2.65%. But gold's 1-month return is -3.1%, which does not fit February.\n\nThe 3-month return of +2.7% for the 7-10y Treasury and the 1-month return of -0.6% are consistent with the yield rising during the month. The unemployment rate of 6.7% fits November 2013, when it was 7.0%, only loosely. Revisions to the data may account for the gap. Gold falling 3.1% fits December 2013 (-3.6%). The 10-year yield was 2.75% at the end of November 2013 and 3.04% at the end of December 2013. I am therefore leaning toward a month with a yield near 2.73%.\n\nThe 12-month change in the 10-year yield of +0.86 implies a year-earlier yield of about 1.87, which matches the end of February 2013 or the end of March 2013. That fits an end-of-February 2014 snapshot. The 3-month change of -0.31 implies about 3.04 at the end of November 2013 or December 2013. This is consistent with a March 2014 date or a February 2014 date. Emerging-market equities gained 3.3% in February 2014, and gold gained about 6.6% that month, which contradicts the data. In March 2014 the 10-year yield was 2.72% at month-end, which matches the 2.73 reading. Gold fell 3.1% in March 2014 (from 1327 to 1284), and emerging markets rose about 3 to 4%. Unemployment was 6.7% in March 2014, which matches. The 3-month average of payrolls was about 129k. March 2014 therefore fits.\n\n```json\n{\"year\":2014,\"month\":3,\"confidence\":0.8,\"cues\":[\"Unemployment 6.7% and 10y yield 2.73% match March 2014\",\"Gold -3.1% 1m and -20% 12m, EM equity rebound +3.9%\",\"Fed funds 0.08% with CPI 1.1% YoY\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 1097,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.84 | -0.34 | +0.60 | -0.30\nNational activity index, 3m avg | index, 0 = trend growth | -0.18 | -0.55 | -0.23 | -0.64\nUnemployment rate | % | +6.70 | -0.30 | -1.00 | -1.75\nPayrolls, avg monthly change over 3m | thousands | +129.33 | -95.67 | -101.00 | -1.44\nHeadline CPI | YoY % | +1.10 | -0.12 | -0.85 | -1.23\nCore CPI | YoY % | +1.56 | -0.16 | -0.45 | -1.15\nPolicy rate (fed funds) | % | +0.08 | +0.01 | -0.01 | -0.54\n2-year Treasury yield | % | +0.45 | +0.07 | +0.20 | +1.69\n10-year Treasury yield | % | +2.73 | -0.31 | +0.86 | +0.96\n10y minus 2y Treasury spread | pp | +2.28 | -0.38 | +0.66 | +0.78\nEquity implied volatility (VIX) | index points | +14.41 | +0.69 | +1.71 | -0.66\nBaa corporate minus 10y Treasury spread | pp | +2.25 | -0.08 | -0.71 | -2.02\nBroad trade-weighted dollar | YoY % | +2.66 | -0.05 | +0.62 | +0.41\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.8% | +2.2% | +11.8% | +22.3% | +11.1% | -0.2%\nDeveloped ex-US equity | -0.5% | +0.9% | +5.5% | +18.9% | +13.1% | -1.2%\nEmerging-market equity | +3.9% | -0.7% | +0.4% | -0.9% | +18.9% | -5.2%\nUS Treasuries 7-10y | -0.6% | +2.7% | +0.8% | -3.8% | +5.4% | -5.3%\nUS Treasuries 20y+ | +0.7% | +7.7% | +4.1% | -5.2% | +10.5% | -9.7%\nUS investment-grade credit | -0.0% | +3.1% | +4.7% | +1.4% | +4.6% | -1.3%\nGold | -3.1% | +5.5% | -4.2% | -20.1% | +16.7% | -19.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.27\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

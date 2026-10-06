@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:28:35+00:00",
+ "decision_date": "2026-01-30",
+ "key": "c7ee11e82d2ce1065994b0edee38ebfc756bed8c2eea4b72dd552cebfba4bf89",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmccKTMKau822G1JT6X3",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2026. Fed funds at 3.64% means the Fed has cut to around 3.50-3.75%, which happened by December 2025. Unemployment is 4.4%, and the dollar is down 7% YoY. Gold is up 75% over 12 months and up 11.5% in the last month, which fits January 2026, when gold spiked before a sharp drop at the end of the month. The 12m drawdown of -10.3% suggests the snapshot is after a peak, so possibly end of January or February.\n\nFed funds effective was about 3.64% in December 2025, January 2026 and February 2026. Gold's 1m gain of +11.5% with a 3m gain of +22.6% fits January 2026, since gold rose from about 4,320 to about 4,900 (+13%). The 12m drawdown of -10.3% would reflect the late-January crash from about 5,400 to 4,900. Emerging-market equity +7.7% in one month also fits January 2026. CPI of 2.65% fits too, since January CPI came in at 2.4%, and December CPI was 2.7%. I'll go with January 2026.\n\n```json\n{\"year\":2026,\"month\":1,\"confidence\":0.6,\"cues\":[\"Fed funds 3.64% after cuts, unemployment 4.4%\",\"Gold +75% 12m, +11.5% 1m with -10% drawdown from peak\",\"EM equity +7.7% 1m, dollar down 7% YoY\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 482,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.99 | +0.02 | +2.27 | +1.75\nNational activity index, 3m avg | index, 0 = trend growth | -0.23 | -0.09 | +0.03 | -0.66\nUnemployment rate | % | +4.40 | +0.10 | +0.20 | +1.46\nPayrolls, avg monthly change over 3m | thousands | -22.33 | -73.67 | -231.67 | -2.03\nHeadline CPI | YoY % | +2.65 | -0.29 | -0.06 | -0.67\nCore CPI | YoY % | +2.65 | -0.46 | -0.63 | -1.21\nPolicy rate (fed funds) | % | +3.64 | -0.22 | -0.69 | -1.99\n2-year Treasury yield | % | +3.53 | -0.07 | -0.69 | -1.35\n10-year Treasury yield | % | +4.24 | +0.13 | -0.34 | +0.22\n10y minus 2y Treasury spread | pp | +0.71 | +0.20 | +0.35 | +1.46\nEquity implied volatility (VIX) | index points | +16.88 | -0.56 | +0.45 | +0.15\nBaa corporate minus 10y Treasury spread | pp | +1.63 | -0.06 | +0.18 | -0.39\nBroad trade-weighted dollar | YoY % | -7.29 | -4.69 | -13.83 | -2.01\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.7% | +1.0% | +10.1% | +16.3% | +11.3% | -0.5%\nDeveloped ex-US equity | +4.5% | +7.8% | +17.2% | +31.9% | +11.1% | -1.3%\nEmerging-market equity | +7.7% | +7.0% | +23.4% | +42.4% | +14.6% | -2.7%\nUS Treasuries 7-10y | -0.6% | -0.1% | +3.0% | +7.2% | +4.1% | -1.2%\nUS Treasuries 20y+ | -0.8% | -3.3% | +2.5% | +3.4% | +9.0% | -4.3%\nUS investment-grade credit | -0.1% | -0.4% | +3.6% | +7.5% | +4.7% | -1.0%\nGold | +11.5% | +22.6% | +46.9% | +75.0% | +26.2% | -10.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.01\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:23:14+00:00",
+ "decision_date": "2021-02-26",
+ "key": "c5bc76900781b75cb321aa6bee6e32a81f7e67889cce38cf7e516ea4245332a6",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcCciVubaB781TcjRMS",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like February 2021. The unemployment rate is 6.3%, which matches January 2021. The fed funds rate is 0.07% and the 10-year yield is 1.54%, which fits late February 2021, when the 10-year was about 1.4%. A VIX near 28.9 also fits late February 2021, and gold fell 6.2% that month.\n\nOther figures fit as well. Headline CPI of 1.37% matches January 2021 (1.4%), and core CPI of 1.4% matches too. US equities returned +30% over 12 months and the 10-year yield rose 0.70 points over 3 months. The payroll average over 3 months is +28.67k, which is consistent with the weak job gains of late 2020 and January 2021.\n\nIndustrial production is -1.83% year on year, which fits January 2021 (roughly -1.8%). Gold's one-month drop of 6.2% matches February 2021, as does the 20-year-plus Treasury loss of 6.8%.\n\nThe snapshot therefore describes February 2021.\n\n{\"year\":2021,\"month\":2,\"confidence\":0.93,\"cues\":[\"Unemployment 6.3%, fed funds 0.07%, 10y yield 1.54% after a 70bp rise in 3 months\",\"Gold -6.2% and long Treasuries -6.8% in the month, VIX near 29\",\"CPI 1.4% YoY with 12m equity return +30% from the post-COVID rebound\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 474,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -1.83 | +2.83 | -0.98 | -0.20\nNational activity index, 3m avg | index, 0 = trend growth | +0.47 | -0.42 | +0.48 | +0.33\nUnemployment rate | % | +6.30 | -0.60 | +2.80 | +0.35\nPayrolls, avg monthly change over 3m | thousands | +28.67 | -964.33 | -208.00 | +0.08\nHeadline CPI | YoY % | +1.37 | +0.18 | -1.10 | -0.67\nCore CPI | YoY % | +1.40 | -0.24 | -0.86 | -1.80\nPolicy rate (fed funds) | % | +0.07 | -0.02 | -1.51 | -1.35\n2-year Treasury yield | % | +0.17 | +0.01 | -0.69 | -1.25\n10-year Treasury yield | % | +1.54 | +0.70 | +0.41 | -0.35\n10y minus 2y Treasury spread | pp | +1.37 | +0.69 | +1.10 | +3.58\nEquity implied volatility (VIX) | index points | +28.89 | +8.32 | -11.22 | +0.78\nBaa corporate minus 10y Treasury spread | pp | +2.12 | -0.17 | -0.26 | -0.45\nBroad trade-weighted dollar | YoY % | -4.89 | -1.79 | -7.99 | -1.86\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.6% | +5.2% | +10.3% | +30.2% | +17.4% | -3.1%\nDeveloped ex-US equity | +0.8% | +4.8% | +13.8% | +21.0% | +16.4% | -3.7%\nEmerging-market equity | -1.0% | +8.9% | +19.7% | +34.3% | +18.9% | -7.3%\nUS Treasuries 7-10y | -2.8% | -3.4% | -4.4% | +0.8% | +4.5% | -5.6%\nUS Treasuries 20y+ | -6.8% | -9.8% | -12.2% | -4.4% | +13.1% | -16.0%\nUS investment-grade credit | -2.6% | -3.2% | -1.3% | +4.0% | +6.4% | -4.1%\nGold | -6.2% | -4.6% | -11.8% | +5.1% | +16.6% | -16.5%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.07\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

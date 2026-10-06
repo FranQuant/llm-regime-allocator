@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:11:57+00:00",
+ "decision_date": "2011-04-29",
+ "key": "0b8d2d56ecb0996614d01ccb56cbd09442868d9bee0d5d612fb382993406cc23",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbLWr9fJEYtokXRs2Uf",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate is 8.8% and falling (down 0.6 over 3 months), with fed funds at 0.09%, so this looks like early 2011. Headline CPI is 2.7% YoY, which fits February 2011 (it was 2.1% in February and 2.7% in March 2011). Core CPI at 1.19% matches roughly early 2011. The 10-year yield at 3.34% fits March 2011 (about 3.4%).\n\nUnemployment was 8.8% in March 2011, and 8.9% in February. Payrolls averaged about 159k over three months, which also fits March 2011.\n\nGold rose 9.9% in the month, which doesn't fit March 2011, when gold was roughly +1%. Gold gained about 32% over 12 months, consistent with early 2011. A 1-month gain of 9.9% fits better with the period from Aug to Dec 2010. VIX at 14.62 is low, which suggests a month like December 2010 or February 2011, but December 2010 had unemployment at 9.4%, so it doesn't fit.\n\nEquity gains of +2.8% over 1 month and 17% over 12 months, with developed ex-US +5.1%, fit March 2011 less well, because the Japan earthquake pulled markets down that month. April 2011 fits better: unemployment was 9.0% then, and the VIX was around 14.6. Gold rose about 7.6% in April, and ex-US equities rose about 5%. Headline CPI was 3.2% in April.\n\nUnemployment at 8.8% was reported for March 2011 and the CPI figure was 2.7%, so the data seem to be a March reading. But the market numbers look like April, with the 10-year yield at 3.34% and 7-10y Treasuries up 1.6% in the month. Mixed signals, so I'll settle on April 2011 with the 3-month unemployment change of -0.6 (9.4 to 8.8), which is consistent with a reference date of March or April.\n\n{\"year\": 2011, \"month\": 4, \"confidence\": 0.6, \"cues\": [\"Unemployment 8.8% and falling with fed funds near zero\", \"Headline CPI 2.7% YoY with core CPI near 1.2%\", \"Gold +9.9% in the month, VIX 14.6, ex-US equity +5.1%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 763,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +5.88 | -0.96 | +2.54 | +1.08\nNational activity index, 3m avg | index, 0 = trend growth | +0.02 | +0.09 | -0.08 | +0.82\nUnemployment rate | % | +8.80 | -0.60 | -0.90 | +0.15\nPayrolls, avg monthly change over 3m | thousands | +159.33 | +20.67 | +120.00 | +1.20\nHeadline CPI | YoY % | +2.70 | +1.31 | +0.33 | +0.57\nCore CPI | YoY % | +1.19 | +0.55 | +0.01 | -0.61\nPolicy rate (fed funds) | % | +0.09 | -0.08 | -0.11 | -0.50\n2-year Treasury yield | % | +0.62 | +0.04 | -0.35 | -0.68\n10-year Treasury yield | % | +3.34 | -0.08 | -0.35 | +0.03\n10y minus 2y Treasury spread | pp | +2.72 | -0.12 | +0.00 | +0.98\nEquity implied volatility (VIX) | index points | +14.62 | -4.91 | -7.43 | -1.24\nBaa corporate minus 10y Treasury spread | pp | +2.59 | -0.09 | +0.21 | -0.79\nBroad trade-weighted dollar | YoY % | -6.97 | -2.63 | +0.29 | -0.87\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.8% | +7.3% | +16.3% | +17.1% | +12.0% | +0.0%\nDeveloped ex-US equity | +5.1% | +7.7% | +12.3% | +19.8% | +18.3% | -0.5%\nEmerging-market equity | +3.6% | +10.3% | +9.6% | +20.7% | +19.7% | -0.4%\nUS Treasuries 7-10y | +1.6% | +1.1% | -2.5% | +7.4% | +8.3% | -4.2%\nUS Treasuries 20y+ | +2.1% | +3.3% | -3.6% | +6.2% | +15.4% | -11.1%\nUS investment-grade credit | +2.2% | +2.8% | +0.9% | +8.0% | +6.1% | -0.4%\nGold | +9.9% | +17.0% | +16.1% | +32.1% | +15.0% | +0.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.35\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

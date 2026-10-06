@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:14:22+00:00",
+ "decision_date": "2013-03-28",
+ "key": "f022a2347f285fe88b59b0f869e5384c77c3c5b5d9d3fac0b1b43e44d9d672db",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbXG5wZTQSs563VQKEs",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2013. Unemployment was 7.7% in February 2013, and the fed funds rate was about 0.12%. The 10-year yield was 1.87%, and VIX was 13.15 at the end of February 2013. US equities were up 11% over three months, consistent with a strong run from December 2012 through February 2013. Gold was down about 9.7% over six months, which also fits.\n\nHeadline CPI at 1.98% year over year matches January 2013 (1.6%) or February 2013 (2.0%). The latest CPI value is therefore February 2013, which was published in March, so the snapshot is probably end of February or March. The February 2013 unemployment rate of 7.7% was released in early March, and the S&P 500 returned about 1.4% in February. March 2013 was +3.8%, which matches the 1m return of +3.6%. The March 10-year yield was about 1.85%, also a match.\n\nThe unemployment rate in March 2013 was 7.6%, but it would not have been published until April. Because the 7.7% reading was the February figure, the snapshot is most likely end of March 2013, when the latest published CPI was still February's. Gold fell only 0.1% in March 2013, which fits.\n\n{\"year\":2013,\"month\":3,\"confidence\":0.85,\"cues\":[\"Unemployment 7.7% with fed funds ~0.12% and 10y at 1.87%\",\"VIX ~13 and US equities +11% over 3m with a 3.6% 1m gain\",\"Gold down ~10% over 6m, CPI ~2%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 507,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.46 | -0.76 | -2.41 | -1.02\nNational activity index, 3m avg | index, 0 = trend growth | +0.09 | -0.04 | -0.37 | +0.50\nUnemployment rate | % | +7.70 | -0.10 | -0.60 | -1.58\nPayrolls, avg monthly change over 3m | thousands | +191.33 | +9.67 | -79.33 | +0.49\nHeadline CPI | YoY % | +1.98 | +0.21 | -0.88 | -0.32\nCore CPI | YoY % | +2.00 | +0.06 | -0.17 | +0.69\nPolicy rate (fed funds) | % | +0.12 | +0.03 | +0.03 | -0.19\n2-year Treasury yield | % | +0.25 | +0.00 | -0.08 | -0.75\n10-year Treasury yield | % | +1.87 | +0.09 | -0.36 | -0.78\n10y minus 2y Treasury spread | pp | +1.62 | +0.09 | -0.28 | -0.75\nEquity implied volatility (VIX) | index points | +13.15 | -4.87 | -2.35 | -1.24\nBaa corporate minus 10y Treasury spread | pp | +2.93 | +0.08 | -0.14 | -0.15\nBroad trade-weighted dollar | YoY % | +2.07 | +3.52 | -0.69 | +0.57\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.6% | +11.0% | +8.8% | +13.1% | +11.6% | +0.0%\nDeveloped ex-US equity | +1.2% | +4.7% | +9.7% | +10.0% | +13.3% | -1.5%\nEmerging-market equity | -1.5% | -1.2% | +3.1% | -0.2% | +12.9% | -5.4%\nUS Treasuries 7-10y | +0.4% | +0.0% | +0.3% | +6.0% | +4.7% | -1.3%\nUS Treasuries 20y+ | -0.2% | -3.2% | -2.6% | +7.3% | +11.9% | -9.4%\nUS investment-grade credit | -0.0% | -0.3% | +1.0% | +8.3% | +3.4% | -1.1%\nGold | -0.1% | -3.9% | -9.7% | -6.0% | +10.9% | -11.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.60\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

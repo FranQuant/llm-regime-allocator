@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:23:00+00:00",
+ "decision_date": "2020-11-30",
+ "key": "645c885619669ef25e306e1ba04faedfa9f278fb5dc8601563d1cbaee6691afd",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcBfQwz59VWnvC6XPfc",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like November 2020.\n\n- Unemployment is 6.9%, which matches October 2020 data published in November 2020.\n- The fed funds rate is 0.08% and the 10-year yield is 0.84%, both consistent with late 2020.\n- US large-cap equity returned +9.7% in the month, and developed ex-US equity returned +13.7%. That fits the November 2020 vaccine rally.\n- Gold fell 5.0% in the month, which also fits November 2020.\n- Payrolls averaged +934k over 3 months, consistent with the recovery after the spring collapse.\n- Headline CPI is 1.2% YoY, consistent with October 2020.\n\nThe 6-month equity return of 18.5% and the VIX at 20.84 are also in line with November 2020.\n\n{\"year\": 2020, \"month\": 11, \"confidence\": 0.95, \"cues\": [\"Unemployment 6.9% with fed funds 0.08% and 10y yield 0.84%\", \"Equities +9.7% and developed ex-US +13.7% in the month, gold -5%, matching the vaccine rally\", \"Payrolls 3m average +934k, CPI 1.2% YoY\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1190,
+  "output_tokens": 393,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -5.34 | +1.38 | -4.53 | -0.93\nNational activity index, 3m avg | index, 0 = trend growth | +0.75 | -3.53 | +0.94 | +0.49\nUnemployment rate | % | +6.90 | -3.30 | +3.30 | +0.63\nPayrolls, avg monthly change over 3m | thousands | +934.33 | -2154.67 | +734.33 | +0.55\nHeadline CPI | YoY % | +1.20 | +0.17 | -0.56 | -1.07\nCore CPI | YoY % | +1.63 | +0.06 | -0.69 | -1.25\nPolicy rate (fed funds) | % | +0.08 | -0.01 | -1.48 | -1.58\n2-year Treasury yield | % | +0.16 | +0.02 | -1.45 | -1.52\n10-year Treasury yield | % | +0.84 | +0.12 | -0.94 | -1.27\n10y minus 2y Treasury spread | pp | +0.68 | +0.10 | +0.51 | +1.84\nEquity implied volatility (VIX) | index points | +20.84 | -5.57 | +8.22 | +0.04\nBaa corporate minus 10y Treasury spread | pp | +2.32 | -0.35 | +0.24 | +0.09\nBroad trade-weighted dollar | YoY % | -3.12 | -1.36 | -3.74 | -1.12\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +9.7% | +4.1% | +18.5% | +17.4% | +19.9% | -0.4%\nDeveloped ex-US equity | +13.7% | +8.0% | +15.6% | +5.5% | +19.4% | -2.2%\nEmerging-market equity | +7.8% | +9.4% | +24.0% | +17.7% | +20.2% | -2.6%\nUS Treasuries 7-10y | +0.0% | -0.7% | -0.6% | +9.2% | +3.9% | -2.0%\nUS Treasuries 20y+ | +0.7% | -1.0% | -0.5% | +15.8% | +12.6% | -6.4%\nUS investment-grade credit | +3.2% | +2.8% | +6.0% | +11.4% | +6.2% | +0.0%\nGold | -5.0% | -9.8% | +2.5% | +20.9% | +18.2% | -14.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.30\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

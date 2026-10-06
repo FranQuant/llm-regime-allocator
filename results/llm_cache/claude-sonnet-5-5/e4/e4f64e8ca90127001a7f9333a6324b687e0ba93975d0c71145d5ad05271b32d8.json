@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:17:00+00:00",
+ "decision_date": "2019-11-29",
+ "key": "e4f64e8ca90127001a7f9333a6324b687e0ba93975d0c71145d5ad05271b32d8",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgJ7duqVNy4YNyZkbuE",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The pattern suggests a period of weak industrial production, with the policy rate falling sharply over 3 and 12 months. Core CPI is high relative to its recent history while headline CPI is low. The 10-year yield rose over 3 months but fell over 12 months, so a rebound followed a large decline.\n\nOne candidate is early 2020, but the fed funds rate there was 1.5%, and a z-score near 0 for the policy rate doesn't fit, since the rate had been steady in 2019 before the cut. Another is late 2024: the Fed cut 100bp from September to December 2024, and the 10-year yield rose about 80bp over 3 months, which fits +1.0. The 12-month policy rate change of -3.0 is hard to reconcile with this, since the rate was cut only 100bp over that period.\n\nLate 2024 doesn't match the low industrial production or the weak national activity index. The unemployment rate z of -1.0 with a 12m change of +1.0 is also awkward. Mid-2008 is another option, but the 10y yield, VIX and spreads don't fit there.\n\nLate 2025 is the better fit. The policy rate was cut in Sept, Oct and Dec 2025, which gives a 3m change of about -2.5 and a 12m change of -3.0 after the 36-month window's high. The z of 0 for the policy rate fits roughly 3.6-3.75% against a 3-year average near 4.5%. Core CPI at +1.0 doesn't fit, though, as core inflation was falling. Headline CPI at -1.0 would fit late 2025.\n\nThe 10y yield z of -1.5 and its 3m change of +1.0 suggest a bounce from a low. In 2020 the 10y yield was very low relative to the prior 36 months. Then the policy rate would be near zero after the March 2020 cuts, but the 3m change would be much larger than -2.5.\n\nAnother option is 2019-2020, or 2001-style declines, but the data starts in 2007. After the 2008 cuts, the policy rate z could be low, not 0. Late 2025 seems most plausible, with the 10y yield at about 4.1% against a 3-year mean of 4.2% \u2014 that gives a z near 0, not -1.5. Industrial production at -2.0 doesn't fit either.\n\nConsider mid-2020 instead: IP was down, the policy rate near zero, and VIX high. That doesn't fit the equity moves. Late 2008 does not fit either.\n\nI'll go with the late 2025 guess, with low confidence.\n\n{\"year\": 2025, \"month\": 12, \"confidence\": 0.2, \"cues\": [\"Policy rate 3m change -2.5 and 12m change -3.0 suggest a recent cutting cycle\", \"Core CPI above average while headline CPI is below average\", \"10y yield bounced over 3m after a large 12m fall, with equities near highs\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 945,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | -1.5 | -2.5\nNational activity index, 3m avg | -1.5 | -0.5 | -1.5\nUnemployment rate | -1.0 | +0.0 | +1.0\nPayrolls, avg monthly change over 3m | +0.0 | +1.0 | -0.5\nHeadline CPI | -1.0 | +0.0 | -1.0\nCore CPI | +1.0 | +0.5 | +0.5\nPolicy rate (fed funds) | +0.0 | -2.5 | -3.0\n2-year Treasury yield | -0.5 | +0.0 | -2.0\n10-year Treasury yield | -1.5 | +1.0 | -2.0\n10y minus 2y Treasury spread | -1.0 | +1.5 | +0.5\nEquity implied volatility (VIX) | -0.5 | -1.5 | -1.0\nBaa corporate minus 10y Treasury spread | +0.0 | -0.5 | +0.0\nBroad trade-weighted dollar | +0.0 | -1.0 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +1.0 | +1.5 | +0.5 | +0.0 | +0.5\nDeveloped ex-US equity | +0.0 | +1.0 | +0.5 | +0.5 | +0.0 | +1.0\nEmerging-market equity | -0.5 | +0.5 | +0.0 | -0.5 | -1.0 | +0.5\nUS Treasuries 7-10y | -0.5 | -1.0 | +0.5 | +2.0 | +2.0 | +0.5\nUS Treasuries 20y+ | +0.0 | -1.0 | +0.5 | +2.5 | +2.5 | +0.5\nUS investment-grade credit | +0.5 | -0.5 | +1.0 | +2.5 | +2.0 | +1.0\nGold | -1.0 | -1.0 | +1.0 | +1.5 | +2.5 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

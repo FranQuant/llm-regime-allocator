@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:11:32+00:00",
+ "decision_date": "2011-01-31",
+ "key": "024fba13e3bb1afc99e95c30f24302f3a0405f3bc690c5ce58a9a40b0c887649",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbJfJLBCuY2hymvDeic",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like early 2010, with unemployment at 9.4% and the fed funds rate near 0.17%.\n\nUnemployment of 9.4% with a falling 3-month change (-0.2) suggests the rate peaked around 10.0% in October 2009 and had eased to about 9.7% by early 2010. A 9.4% reading would fit better in mid-2010 or later, but then the 12m change would be -0.5, meaning a year earlier it was 9.9%. That doesn't fit 2010, since the rate was about 9.5% in mid-2009. It fits December 2010 better: the rate was 9.4% then, versus 9.9% in December 2009 (about -0.5), and 9.8% in September 2010 (-0.4 over 3 months, close to the -0.2 shown).\n\nOther readings fit December 2010 as well:\n- The 10-year yield was about 3.36% at the end of December 2010, up from about 2.5% in September, a rise of roughly 0.73 over 3 months.\n- Headline CPI was 1.5% year on year, and core CPI was 0.8%, close to the figures shown.\n- The S&P 500 gained about 6.7% in December and 10.8% in the quarter, which is a little higher than shown, but the pattern is similar.\n- Gold fell in December 2010 after its earlier rally, which matches the -5.2% 1-month return (the month shows a drop in early December and a partial recovery).\n- The VIX ended 2010 near 17.5, a bit under the 20.04 shown.\n\nIndustrial production was up about 5.9% year on year in late 2010, which fits. Equities may not match exactly, but November 2010 fits less well: the 10-year yield was about 2.8% then. I'm going with December 2010 for the overall fit.\n\n```json\n{\"year\": 2010, \"month\": 12, \"confidence\": 0.6, \"cues\": [\"Unemployment 9.4% with 12m change of -0.5 and 10y yield up 0.73pp over 3m\", \"Fed funds ~0.17% with core CPI 0.64% YoY, low inflation\", \"20y+ Treasuries down 8.2% over 3m while equities gained, a late-2010 rate-rise pattern\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 735,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +5.91 | -0.39 | +7.50 | +1.17\nNational activity index, 3m avg | index, 0 = trend growth | -0.07 | -0.01 | +0.10 | +0.77\nUnemployment rate | % | +9.40 | -0.20 | -0.50 | +0.63\nPayrolls, avg monthly change over 3m | thousands | +128.00 | +158.33 | +217.67 | +1.11\nHeadline CPI | YoY % | +1.39 | +0.25 | -1.39 | -0.15\nCore CPI | YoY % | +0.64 | -0.15 | -1.16 | -1.70\nPolicy rate (fed funds) | % | +0.17 | -0.03 | +0.05 | -0.52\n2-year Treasury yield | % | +0.54 | +0.20 | -0.28 | -0.90\n10-year Treasury yield | % | +3.36 | +0.73 | -0.27 | +0.04\n10y minus 2y Treasury spread | pp | +2.82 | +0.53 | +0.01 | +1.36\nEquity implied volatility (VIX) | index points | +20.04 | -1.16 | -4.58 | -0.84\nBaa corporate minus 10y Treasury spread | pp | +2.70 | -0.45 | +0.13 | -0.76\nBroad trade-weighted dollar | YoY % | -4.51 | -1.78 | +3.67 | -0.54\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.4% | +9.2% | +15.3% | +20.3% | +13.2% | -1.0%\nDeveloped ex-US equity | +2.7% | +5.2% | +11.8% | +14.2% | +18.6% | -1.4%\nEmerging-market equity | -3.2% | +0.2% | +8.8% | +18.3% | +19.3% | -5.2%\nUS Treasuries 7-10y | +0.5% | -4.3% | -0.8% | +7.2% | +8.8% | -5.6%\nUS Treasuries 20y+ | -2.0% | -8.2% | -6.1% | +3.8% | +17.7% | -14.6%\nUS investment-grade credit | +0.3% | -2.3% | +0.9% | +8.5% | +6.9% | -3.3%\nGold | -5.2% | -2.1% | +12.4% | +19.9% | +15.3% | -6.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.37\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

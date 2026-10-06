@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:01:58+00:00",
+ "decision_date": "2010-09-30",
+ "key": "682614e0e08dad67656d655abf620d8097618f7adf100bde992b57c7275b8630",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmf9VH3up1e82NSB77yY",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Policy rate z of -0.5 with a 12m change of +1.5 and a 3m change of +1.0 suggests the Fed is hiking, or has just finished. The 10-year yield z of -2.0 is very low relative to its 3-year history, which points to a period after a big yield rise has already been absorbed. A negative equity-bond correlation is unusual for 2022-2024, though it fits 2007 and 2019, and it also fits 2025.\n\nUnemployment is z +1.0 with a 12m change of -1.5, so it has been falling from a high level. Core CPI at z -1.5 means inflation is low relative to the last 3 years. Payrolls are around average. Industrial production is up strongly over 12 months.\n\nOne candidate is 2017. The 3-year window of 2014-2017 would put the 10-year yield low relative to 2014 levels, but the policy rate would be well above its average, since it was near zero in 2014-15. That fits poorly.\n\nA second candidate is 2018-2019. Unemployment would then be low rather than high.\n\nA third is 2022 after the pandemic, though a z of -2.0 for the 10-year yield doesn't fit there.\n\nA fourth is 2021: the window 2018-2021 gives a policy rate near its average. But the 10-year yield would then be low, which fits, and the policy rate would be low, which doesn't fit with a 12m change of +1.5.\n\nA fifth is 2007. The data begin in 2007, so the window would need earlier history, which makes it unlikely.\n\nA sixth is late 2009-2010, but the policy rate was at zero then.\n\nA seventh is 2025-2026. The window 2022-2025 includes the high-rate period, so the policy rate z would be negative, and the 10-year would be near its average rather than at -2.0. That doesn't fit.\n\nAn eighth is 2017 again. The 10-year yield z would be around 0 and the policy rate would be high, so that doesn't fit either.\n\nThe ninth is 2012-2013. The window of 2010-2013 has unemployment falling and core CPI low, but the policy rate was at zero, so a 12m change of +1.5 doesn't fit.\n\nThe tenth is 2019-2020. In mid-2019 the window of 2016-2019 would put the policy rate high, not -0.5.\n\nThe eleventh is late 2023. The window 2020-2023 would put the policy rate high, so that doesn't fit.\n\nThe twelfth is mid-2006, which is outside the range.\n\nThe thirteenth is 2016. The window 2013-2016 has the 10-year yield low, around z -1 to -2, since yields fell in 2016. In mid-2016 the policy rate had risen only slightly, and the 12m change in the policy rate was about +0.25 (z +1.5 is plausible given the small variance). Unemployment would be low but 2013 levels were high, giving a falling trend. Core CPI would be -1.5 in the window, which is plausible. The negative stock-bond correlation also fits. Gold would be strong in mid-2016. Payrolls would be slowing. This is the best fit, with a date around Jan 2017, when the policy rate had risen to 0.5-0.75, though the 10-year was higher by then. I'll go with late 2016.\n\n```json\n{\"year\":2016,\"month\":12,\"confidence\":0.3,\"cues\":[\"10y yield z -2.0 and policy rate up 12m by +1.5 fits the first hike after the zero-rate era\",\"unemployment falling, core CPI low, equity-bond correlation negative\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1161,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.5 | -0.5 | +1.5\nNational activity index, 3m avg | +1.0 | -1.0 | +0.0\nUnemployment rate | +1.0 | -1.0 | -1.5\nPayrolls, avg monthly change over 3m | +0.0 | -2.5 | +0.5\nHeadline CPI | -0.5 | -0.5 | +1.0\nCore CPI | -1.5 | +0.5 | -0.5\nPolicy rate (fed funds) | -0.5 | +1.0 | +1.5\n2-year Treasury yield | -1.0 | +0.0 | +1.0\n10-year Treasury yield | -2.0 | -0.5 | -0.5\n10y minus 2y Treasury spread | +0.0 | -1.0 | -2.0\nEquity implied volatility (VIX) | -0.5 | -1.0 | -0.5\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | +0.0\nBroad trade-weighted dollar | +0.0 | +0.0 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.5 | +1.0 | +0.0 | +0.5 | -0.5 | +1.0\nDeveloped ex-US equity | +1.0 | +1.0 | +0.0 | +0.5 | +0.0 | +1.0\nEmerging-market equity | +1.0 | +1.0 | +0.0 | +0.0 | -0.5 | +1.0\nUS Treasuries 7-10y | -0.5 | +0.5 | +1.5 | +0.5 | -0.5 | +1.0\nUS Treasuries 20y+ | -0.5 | +0.0 | +1.5 | +0.5 | +0.0 | +1.0\nUS investment-grade credit | +0.0 | +0.5 | +0.5 | +0.5 | -0.5 | +0.5\nGold | +0.5 | +0.5 | +0.5 | +0.5 | -1.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

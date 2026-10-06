@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:09:37+00:00",
+ "decision_date": "2009-07-31",
+ "key": "8ef2fade45f3671b8e1a1f81c22ad798c620ea022950ec59abab0f24732ff076",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbAH1AYHx1dkS5et3EN",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate of 9.5% and the policy rate near 0.17% point to mid-2009. Headline CPI at -1.19% YoY fits June\u2013July 2009, since CPI bottomed around -2.1% in July 2009. Payrolls averaged -436k over three months, which fits June 2009 (April -700, May -350, June -460 roughly). The unemployment rate was 9.5% in June 2009.\n\nThe market data fit as well. The S&P 500 was up 7% in the month (June 2009 was about +0.2%, so that does not match), while 3m +13.1% (March to June) does match. In July 2009 the S&P rose about 7.6%, but unemployment was 9.4% then. Revised data, however, put the unemployment rate at 9.5% in July 2009 (the 9.5% was June's initial print, and the 9.4% for July was initial), so the figures are ambiguous. CPI YoY was -1.4% in June and -2.1% in July, so -1.19% does not fit either cleanly.\n\nThe 12m equity return of -20% fits July 2009, because July 2008 to July 2009 was about -20%. In June 2009 the 12m return was about -26%. The 1m +7% also fits July. Core CPI at 1.75% fits July 2009 as well. The 10-year yield at 3.67% fits July (3.5% at the end of July; 3.53% in June). The VIX at 25.4 fits July (end of July about 25.9). I therefore choose July 2009.\n\n{\"year\":2009,\"month\":7,\"confidence\":0.8,\"cues\":[\"Unemployment 9.5% with fed funds near 0.17% and negative headline CPI\",\"Equities +7% 1m, +13% 3m, but -20% 12m, consistent with the rebound from the March 2009 low\",\"Payrolls averaging -436k and VIX of 25 fit mid-2009\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 619,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -13.63 | -1.09 | -12.96 | -2.12\nNational activity index, 3m avg | index, 0 = trend growth | -1.25 | +0.96 | -0.51 | -0.63\nUnemployment rate | % | +9.50 | +1.00 | +3.90 | +2.45\nPayrolls, avg monthly change over 3m | thousands | -436.00 | +255.33 | -283.33 | -1.15\nHeadline CPI | YoY % | -1.19 | -0.74 | -6.02 | -2.00\nCore CPI | YoY % | +1.75 | -0.02 | -0.67 | -1.64\nPolicy rate (fed funds) | % | +0.17 | -0.03 | -1.92 | -1.35\n2-year Treasury yield | % | +1.19 | +0.28 | -1.33 | -1.10\n10-year Treasury yield | % | +3.67 | +0.51 | -0.32 | -0.47\n10y minus 2y Treasury spread | pp | +2.48 | +0.23 | +1.01 | +1.50\nEquity implied volatility (VIX) | index points | +25.40 | -11.10 | +2.46 | +0.03\nBaa corporate minus 10y Treasury spread | pp | +3.13 | -1.95 | -0.09 | +0.05\nBroad trade-weighted dollar | YoY % | +9.04 | -6.17 | +16.07 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +7.0% | +13.1% | +20.8% | -20.0% | +31.2% | -22.4%\nDeveloped ex-US equity | +8.2% | +21.4% | +33.0% | -21.5% | +36.0% | -21.5%\nEmerging-market equity | +9.0% | +24.0% | +59.3% | -14.4% | +44.5% | -14.0%\nUS Treasuries 7-10y | +0.9% | -1.5% | -2.1% | +7.2% | +11.1% | -6.9%\nUS Treasuries 20y+ | +0.8% | -1.7% | -7.0% | +7.5% | +20.5% | -20.8%\nUS investment-grade credit | +4.8% | +9.9% | +7.8% | +9.2% | +10.1% | +0.0%\nGold | +1.0% | +7.4% | +2.2% | +3.6% | +20.9% | -4.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.28\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

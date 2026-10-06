@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:11:17+00:00",
+ "decision_date": "2016-03-31",
+ "key": "aa1a7a057adb3d13c57690b9bcc74d40558b0c8f79d6a8266f87c8f74bf1280c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfrpCUXAbWrDkiNd43f",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: policy rate high relative to the 3-year average and rising over 12m (+2.5), core CPI very high (+3.0), 2-year yield down sharply over 3 months, and the dollar falling. Industrial production is weak. Unemployment is low relative to its 3-year average but rising. Gold is strong.\n\nCandidates: the policy rate z of +2.5 with a 12m rise of +2.5 and a 3m rise of +1.5 suggests a hiking cycle that is still going, but the 2-year yield fell sharply over 3 months. That fits late 2007 to early 2008 (no, the Fed was cutting then), or late 2023 (the Fed was near its peak). In late 2023, the 2-year fell from 5.0 to 4.4 in Nov-Dec. The 10-year fell from 4.9 to 3.9. Core CPI would not be at +3.0 in late 2023, though.\n\nAlternative: 2022-23. The policy rate 12m change would then be larger. Consider the December 2023 36-month window (Jan 2021 to Dec 2023): the policy rate average was about 2%, now 5.33%, giving a z of about +1.5 or higher. The dollar fell 2% over 3m in late 2023, and the 12m change was about -2.\n\nThe 3m change in the policy rate of +1.5 does not fit late 2023, when the Fed was on hold. It fits a window in which it rose recently, e.g. 2023 Q1-Q2. In a March 2023 snapshot, the 2-year would have been down sharply, from 5.0 in March to 4.0 after SVB, and the 10-year fell too. Core CPI z +3.0 in early 2023 is plausible, and the unemployment rate was low, but the 3m rise of +1.0 is odd, as it was 3.4% in Jan 2023 and 3.5% in Mar. A 12m rise of +1.0 does not fit either. Equity 12m -1.5 is consistent with March 2023, as is the drawdown. IG credit +2.5 for 1m fits March 2023 too, as do gold +2.5 over 3m and the Baa spread up 12m. VIX is low at -0.5, which is plausible in March 2023 when the VIX was about 19. The dollar is down 2 over 3m, consistent with the move from Dec 2022 to Mar 2023. Industrial production at -2.0 is odd, though. Still, March 2023 fits best. EM equity +2.0 over 1m is a bit odd, but acceptable.\n\n{\"year\":2023,\"month\":3,\"confidence\":0.45,\"cues\":[\"Core CPI z +3 with policy rate up sharply over 12m\",\"2y yield down 3 sigma over 3m (SVB-style rally), gold +2.5 3m\",\"Equities negative 12m while IG credit rallied strongly in the month\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 945,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | +0.5 | -1.5\nNational activity index, 3m avg | -0.5 | +0.5 | +0.5\nUnemployment rate | -1.5 | +1.0 | +1.0\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | -0.5\nHeadline CPI | +0.0 | +1.0 | +1.5\nCore CPI | +3.0 | +2.0 | +2.0\nPolicy rate (fed funds) | +2.5 | +1.5 | +2.5\n2-year Treasury yield | +1.0 | -3.0 | +0.0\n10-year Treasury yield | -1.5 | -1.5 | -0.5\n10y minus 2y Treasury spread | -1.5 | -0.5 | -0.5\nEquity implied volatility (VIX) | -0.5 | -1.0 | -0.5\nBaa corporate minus 10y Treasury spread | +1.0 | -1.0 | +1.0\nBroad trade-weighted dollar | -0.5 | -2.0 | -2.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | -0.5 | +0.5 | -1.5 | +1.5 | +0.0\nDeveloped ex-US equity | +1.0 | -1.0 | +0.0 | -1.5 | +1.5 | -1.5\nEmerging-market equity | +2.0 | +1.0 | +1.5 | -1.0 | +1.5 | -1.0\nUS Treasuries 7-10y | +0.0 | +1.5 | +0.5 | +0.5 | -0.5 | +1.0\nUS Treasuries 20y+ | +0.0 | +1.0 | +0.5 | +0.0 | +0.0 | +1.0\nUS investment-grade credit | +2.5 | +1.5 | +1.0 | -0.5 | -0.5 | +1.5\nGold | +0.0 | +2.5 | +2.0 | +1.5 | +0.0 | +2.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

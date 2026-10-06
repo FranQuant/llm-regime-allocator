@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:16:55+00:00",
+ "decision_date": "2015-06-30",
+ "key": "6b7f50e2bb0e13c1a61fb8f667105e0c1512f6dcec682a2f2046831469182849",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbiYu2yCjVgipwX5oPF",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like mid-2015: unemployment is 5.5%, headline CPI is about 0%, and the fed funds rate is 0.14%. The dollar is up about 14% year on year, which fits the 2014\u201315 surge. The 10-year yield is 2.33%, up 0.39 over 3 months, and the 2-year is 0.64%.\n\nThe 10-year yield was about 1.9% in January/February 2015, rose to about 2.3% in May\u2013June, and was about 2.2% in June. The 20+ year Treasury 3-month return of -9.6% points to a sharp rise in long yields, which fits May or June 2015. Unemployment was 5.5% in both April and May, and 5.3% in June, though the latest published value at the end of May would be 5.5% (May's 5.5% figure was published in early June). Headline CPI YoY was about 0.0% in April and 0.0% in May. Equities were -2.2% over 1m in June 2015 (the S&P fell about 2.1%), and the VIX was about 18.9 at the end of June. Payrolls averaged about 207k over 3 months, which fits the revised figures available at end of June, if unemployment was still 5.3% in June, but it is 5.5% here. This is probably the data available at the end of June, with the May unemployment value of 5.5% as the latest published figure. The June jobs report came out on July 2, so it was not yet published at the end of June. That makes June 2015 the best fit.\n\n```json\n{\"year\":2015,\"month\":6,\"confidence\":0.8,\"cues\":[\"Unemployment 5.5%, headline CPI ~0%, fed funds 0.14%\",\"Dollar +13.7% YoY and 20y+ Treasuries -9.6% over 3m, consistent with the spring 2015 yield spike\",\"VIX ~18.9 and S&P -2.2% in the month, consistent with the June 2015 Greece-related selloff\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 635,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.37 | -2.10 | -2.93 | -2.28\nNational activity index, 3m avg | index, 0 = trend growth | -0.16 | +0.02 | -0.46 | -0.81\nUnemployment rate | % | +5.50 | +0.00 | -0.80 | -1.44\nPayrolls, avg monthly change over 3m | thousands | +206.67 | -58.67 | -57.00 | -0.11\nHeadline CPI | YoY % | +0.03 | +0.11 | -2.10 | -1.97\nCore CPI | YoY % | +1.73 | +0.03 | -0.21 | -0.50\nPolicy rate (fed funds) | % | +0.14 | +0.08 | +0.05 | +1.52\n2-year Treasury yield | % | +0.64 | +0.08 | +0.17 | +1.78\n10-year Treasury yield | % | +2.33 | +0.39 | -0.20 | +0.23\n10y minus 2y Treasury spread | pp | +1.69 | +0.31 | -0.37 | -0.36\nEquity implied volatility (VIX) | index points | +18.85 | +3.56 | +7.28 | +1.46\nBaa corporate minus 10y Treasury spread | pp | +2.84 | +0.29 | +0.66 | +0.75\nBroad trade-weighted dollar | YoY % | +13.69 | -0.31 | +14.86 | +2.04\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.2% | +0.2% | -0.5% | +7.2% | +12.1% | -3.1%\nDeveloped ex-US equity | -2.9% | +0.6% | +4.5% | -4.6% | +15.1% | -5.8%\nEmerging-market equity | -2.6% | -0.5% | +1.9% | -6.3% | +17.0% | -11.7%\nUS Treasuries 7-10y | -1.2% | -2.7% | +0.1% | +3.4% | +7.3% | -4.3%\nUS Treasuries 20y+ | -3.0% | -9.6% | -5.3% | +6.3% | +17.0% | -14.2%\nUS investment-grade credit | -1.3% | -4.1% | -1.6% | +0.3% | +6.8% | -5.4%\nGold | -1.4% | -1.1% | -1.1% | -12.2% | +14.6% | -12.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.27\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

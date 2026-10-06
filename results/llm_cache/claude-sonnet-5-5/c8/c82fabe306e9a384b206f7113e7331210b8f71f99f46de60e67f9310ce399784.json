@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:08:21+00:00",
+ "decision_date": "2008-08-29",
+ "key": "c82fabe306e9a384b206f7113e7331210b8f71f99f46de60e67f9310ce399784",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmb4iCKE2b4xTxnB5dn8",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2008: fed funds near 2%, headline CPI at 5.5% (peak was 5.6% in July 2008), and unemployment at 5.7%. Unemployment was 5.7% in July 2008 and 6.1% in August, so July or August is plausible.\n\nHeadline CPI of 5.52% fits June 2008 (5.0%) or July 2008 (5.6%). The actual figures are June 5.02%, July 5.60%, August 5.37%, so 5.52 is roughly July. Unemployment of 5.7% with a 3m change of +0.7 would be consistent with a series that was 5.0% in April, which doesn't match. The unemployment series may be a different vintage.\n\nGold fell 9.3% in the month, which fits July 2008 (gold went from about 930 to 913 and then fell further in August to about 830). A 3m equity return of -6.8% is also more consistent with August than with July. The 2-year yield at 2.37% fits August (about 2.3%), and the 10-year at 3.79% fits August (about 3.8%). US large-cap equity returned +1.5% in the month, which matches August 2008 (S&P +1.2%). EM equity at -6.3% fits August too.\n\nSo the snapshot is most likely August 2008.\n\n{\"year\":2008,\"month\":8,\"confidence\":0.8,\"cues\":[\"Fed funds ~2% with headline CPI ~5.5% YoY\",\"Gold -9.3% in the month and 10y yield ~3.8%\",\"Unemployment 5.7% with equities down over 12m and EM weak\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 522,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.14 | -0.50 | -1.83 | -2.25\nNational activity index, 3m avg | index, 0 = trend growth | -0.92 | -0.17 | -0.80 | -2.42\nUnemployment rate | % | +5.70 | +0.70 | +1.00 | +2.97\nPayrolls, avg monthly change over 3m | thousands | -49.67 | +29.67 | -158.33 | -1.64\nHeadline CPI | YoY % | +5.52 | +1.64 | +3.15 | +2.14\nCore CPI | YoY % | +2.51 | +0.25 | +0.32 | +0.59\nPolicy rate (fed funds) | % | +1.99 | +0.01 | -2.97 | -2.02\n2-year Treasury yield | % | +2.37 | -0.29 | -1.78 | -1.52\n10-year Treasury yield | % | +3.79 | -0.27 | -0.75 | -1.46\n10y minus 2y Treasury spread | pp | +1.42 | +0.02 | +1.03 | +1.48\nEquity implied volatility (VIX) | index points | +19.43 | +1.60 | -3.95 | +0.55\nBaa corporate minus 10y Treasury spread | pp | +3.29 | +0.29 | +1.24 | +1.93\nBroad trade-weighted dollar | YoY % | -4.73 | +3.51 | -0.66 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.5% | -6.8% | -2.6% | -10.1% | +20.4% | -16.4%\nDeveloped ex-US equity | -4.2% | -14.7% | -9.8% | -13.8% | +19.4% | -22.8%\nEmerging-market equity | -6.3% | -18.7% | -13.4% | -5.7% | +30.8% | -26.4%\nUS Treasuries 7-10y | +1.5% | +2.8% | +0.7% | +10.7% | +8.1% | -1.8%\nUS Treasuries 20y+ | +2.7% | +4.7% | +2.1% | +10.7% | +11.9% | -1.6%\nUS investment-grade credit | +0.1% | -1.1% | -2.3% | +1.9% | +7.3% | -3.5%\nGold | -9.3% | -7.1% | -16.0% | +24.2% | +24.9% | -17.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.62\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

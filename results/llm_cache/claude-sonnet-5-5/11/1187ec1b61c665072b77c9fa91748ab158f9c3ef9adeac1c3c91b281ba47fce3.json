@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:12:13+00:00",
+ "decision_date": "2011-06-30",
+ "key": "1187ec1b61c665072b77c9fa91748ab158f9c3ef9adeac1c3c91b281ba47fce3",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbMk7eCYyeJHTrJj8uD",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like early-to-mid 2011, most likely around April to June.\n\n- **Labor and rates:** unemployment is 9.1%, which matches May 2011. The fed funds rate is near 0.07%, consistent with the zero-rate policy of that period.\n- **Inflation:** headline CPI is 3.44% year over year and core is 1.51%. May 2011 headline CPI was about 3.6% and core about 1.5%. April's headline was 3.2%, so the figures sit close to that window.\n- **Yields:** the 10-year at 3.14% fits June 2011, when it was about 3.0%. It was near 3.2% at the end of May and about 3.46% in April. The 2-year at 0.47% fits May or June.\n- **VIX:** the VIX at 17.27 is a little low for June 2011, when it was around 16 to 19.\n- **Equities:** 12-month equity returns of 31% fit the year to mid-2011. The 6-month return of 5.9% fits May 2011, and the 1-month return of +0.6% fits May. The 3-month return of 0.0% is odd, since March to May 2011 was roughly +1%.\n- **Treasuries:** the 1-month return of -1.3% on the 7-10y and -3.6% on the 20y+ does not fit May 2011, when Treasuries rallied. It fits June 2011 less well, but could fit a month where yields rose.\n- **Dollar:** the year-over-year dollar change of -8.9% fits mid-2011.\n\nTaking the unemployment rate, CPI and 12-month equity return together, the best guess is May or June 2011. I settle on June 2011, though May is nearly as likely.\n\n```json\n{\"year\": 2011, \"month\": 5, \"confidence\": 0.6, \"cues\": [\"unemployment 9.1% with fed funds near 0.07%\", \"headline CPI 3.4% and core 1.5%, 10-year at 3.14%\", \"12-month equity return of 31% and weak dollar, -8.9% YoY\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 672,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.42 | -1.63 | -3.77 | +0.73\nNational activity index, 3m avg | index, 0 = trend growth | -0.20 | -0.31 | -0.51 | +0.71\nUnemployment rate | % | +9.10 | +0.20 | -0.50 | +0.24\nPayrolls, avg monthly change over 3m | thousands | +160.00 | +8.33 | -149.00 | +1.09\nHeadline CPI | YoY % | +3.44 | +1.28 | +1.45 | +0.98\nCore CPI | YoY % | +1.51 | +0.42 | +0.54 | +0.03\nPolicy rate (fed funds) | % | +0.07 | -0.03 | -0.02 | -0.47\n2-year Treasury yield | % | +0.47 | -0.33 | -0.14 | -0.91\n10-year Treasury yield | % | +3.14 | -0.33 | +0.17 | -0.30\n10y minus 2y Treasury spread | pp | +2.67 | +0.00 | +0.31 | +0.80\nEquity implied volatility (VIX) | index points | +17.27 | -0.47 | -17.27 | -0.96\nBaa corporate minus 10y Treasury spread | pp | +2.75 | +0.17 | -0.33 | -0.62\nBroad trade-weighted dollar | YoY % | -8.89 | -3.65 | -8.50 | -1.06\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.6% | +0.0% | +5.9% | +31.0% | +12.7% | -2.8%\nDeveloped ex-US equity | +1.2% | +2.0% | +5.9% | +31.1% | +19.2% | -4.0%\nEmerging-market equity | +0.9% | -1.2% | +1.6% | +29.0% | +19.5% | -4.2%\nUS Treasuries 7-10y | -1.3% | +3.9% | +4.0% | +3.3% | +6.8% | -2.3%\nUS Treasuries 20y+ | -3.6% | +3.4% | +3.0% | -3.7% | +12.7% | -10.2%\nUS investment-grade credit | -1.3% | +3.0% | +3.8% | +6.3% | +4.8% | -1.3%\nGold | -2.6% | +4.4% | +6.5% | +24.7% | +13.7% | -4.2%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.61\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:26:46+00:00",
+ "decision_date": "2024-06-28",
+ "key": "9e441ea73a20361452c7eca4930cdaf1e67cc3febc9dfe97588e3ad653e074e2",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcTtbuQ9dDPYzKWz7S1",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The fed funds rate is 5.33%, so policy is still at its peak. The 10-year yield is 4.29%, the 2-year is 4.70%, unemployment is 4.0%, and core CPI is 3.41% YoY. US large-cap equity is up 26.5% over 12 months, and gold is up 21% over 12 months.\n\nThat points to mid-2024 or earlier. Core CPI at 3.4% fits either December 2023 or sometime in spring 2024. Unemployment of 4.0% fits January or February 2024, since it was 3.7% in the autumn of 2023 and 3.9% in early 2024. Headline CPI of 3.25% fits a spring 2024 reading, such as 3.3% in February.\n\nTreasuries gained 2.2% in the latest month, so yields fell sharply. That does not fit February 2024 or early 2024 well, because yields rose then, and 10-year yields were about 4.0-4.3% in the first months of 2024. Core CPI at 3.41% is close to the February 2024 figure of 3.8% and the April 2024 figure of 3.6%, and neither matches exactly. A 12-month core CPI change of -1.92 would imply core CPI was about 5.3% a year earlier, which fits early 2023 (Feb 2023 was 5.5%).\n\nThe 12-month equity return of 26.5% is consistent with a window ending around the end of 2023 or in mid-2024. The 6-month return of 14.9% is high, which fits the period ending in April or May 2024 or the one ending around December 2023. Gold up 21% over 12 months and up 11.6% over 6 months fits a window ending in March 2024. But Treasuries up 2.2% in the latest month fits either November 2023 or December 2023.\n\nFor December 2023, the 10-year yield was 3.88%, so that does not match. For May 2024, the 10-year was 4.5%, and the 2-year was 4.88%. For the other candidate months, the 10-year yield was about 4.3% in the month ending June 2024, and the 2-year was 4.75%. Equities rose 3.8% in the month, which fits June 2024 (S&P up 3.5%). Unemployment was 4.0% in June 2024 (it had been 4.1%), and the 3-month payroll average was about 249K, which is plausible for a revised figure. The 2.2% gain for 7-10y Treasuries fits May 2024 better, since yields fell then (10-year from 4.68% to 4.51%). The 10-year yield of 4.29% in this snapshot fits June 2024 because the 10-year ended June at 4.36%. Core CPI at 3.4% was the May 2024 reading, released in June.\n\nHeadline CPI of 3.25% and core CPI of 3.41% fit May 2024 more closely. The 12-month change in the 2-year yield of -0.17 fits as well. I'll go with May or June 2024.\n\n{\"year\": 2024, \"month\": 6, \"confidence\": 0.5, \"cues\": [\"Fed funds at 5.33% with core CPI at 3.4% and headline CPI at 3.25%\", \"US equities up 26.5% over 12 months with VIX at 12\", \"10-year yield at 4.29% after a month in which Treasuries gained 2.2%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 1083,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.13 | +0.19 | +0.12 | -0.81\nNational activity index, 3m avg | index, 0 = trend growth | -0.09 | +0.13 | +0.12 | -0.40\nUnemployment rate | % | +4.00 | +0.10 | +0.30 | +0.20\nPayrolls, avg monthly change over 3m | thousands | +249.00 | -11.67 | +6.67 | -0.77\nHeadline CPI | YoY % | +3.25 | +0.08 | -0.87 | -1.18\nCore CPI | YoY % | +3.41 | -0.35 | -1.92 | -1.64\nPolicy rate (fed funds) | % | +5.33 | +0.00 | +0.25 | +0.95\n2-year Treasury yield | % | +4.70 | +0.11 | -0.17 | +0.77\n10-year Treasury yield | % | +4.29 | +0.09 | +0.48 | +0.91\n10y minus 2y Treasury spread | pp | -0.41 | -0.02 | +0.65 | -0.45\nEquity implied volatility (VIX) | index points | +12.24 | -0.77 | -1.35 | -1.23\nBaa corporate minus 10y Treasury spread | pp | +1.55 | +0.05 | -0.33 | -1.38\nBroad trade-weighted dollar | YoY % | +3.94 | +2.31 | +4.98 | +0.38\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.8% | +4.4% | +14.9% | +26.5% | +10.6% | -0.5%\nDeveloped ex-US equity | -0.1% | -0.2% | +5.6% | +12.5% | +11.2% | -3.0%\nEmerging-market equity | +1.3% | +4.4% | +7.4% | +10.7% | +13.2% | -2.1%\nUS Treasuries 7-10y | +2.2% | -0.2% | -2.1% | -0.7% | +7.0% | -2.2%\nUS Treasuries 20y+ | +3.5% | -2.0% | -7.2% | -8.0% | +14.1% | -7.6%\nUS investment-grade credit | +1.7% | -0.5% | -2.0% | +3.5% | +7.2% | -2.0%\nGold | -0.5% | +4.5% | +11.6% | +21.3% | +14.6% | -4.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.25\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:42:05+00:00",
+ "decision_date": "2008-08-29",
+ "key": "7fa65e57d8b6b93e9586f21c26579b4a7c5c8ad4abdd7a1cf32a4b351a74986f",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmddeP34wQ1txsKfat5K",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a crisis period with high headline CPI and a rising dollar. Unemployment is up sharply (+3.0 z), with a 3m change of +3.0, which points to April-May 2020. But headline CPI at +2.0 z with a 3m change of +1.5 doesn't fit 2020, when CPI was falling.\n\nLate 2008 is a better candidate: the dollar jumped (+2.0 over 3m), the Baa spread was wide, and equities were down. However, CPI in late 2008 was falling, and the 36-month window would only start in 2005 or 2006 and was therefore unusual. Headline CPI z-scores could still be high in mid-2008 because of the oil spike. Payrolls at -2.0 with a +1.0 3m change suggests payrolls were recovering from a worse reading, and unemployment was only just starting to rise.\n\nConsider mid-2008 against that: unemployment +3.0 z would be too high, since it only reached 5.5% in May 2008. The data begins in 2007, so the z-score window would need earlier data, which could be available.\n\nAnother possibility is 2022, but unemployment was low then.\n\nTry 2020 again: the policy rate at -2.0 z would be odd, since rates were near zero but the 36-month average was about 1.5%. Gold at -2.5 for 1m fits March 2020, when gold fell. The dollar rose +2.0 over 3m, which also fits March 2020. But CPI +2.0 z doesn't fit, as CPI was low then.\n\nConsider instead a later date, such as 2009-2010. Unemployment at +3.0 z with a 3m change of +3.0 is a spike, which suggests early 2009 rather than a gradual rise. But CPI headline z-scores in early 2009 would be negative.\n\nAlternatively, late 2008 with gold falling -2.5 for 1m (gold dropped sharply in Oct 2008) fits. The VIX at only +0.5 doesn't fit Oct 2008, though. Equity 12m at -2.0 and a 1m return of +0.5 could fit. With the policy rate -2.0 z and the 10-year at -1.5, the picture is odd.\n\nPerhaps the best match is mid-2020 with CPI the outlier? In 2020 the unemployment z-score would be huge (capped at +3), and the 3m change would be +3. Headline CPI +2.0 doesn't fit, and neither does VIX at +0.5. The 12m change in unemployment of +2.5 fits 2020 but not CPI.\n\nI'll settle on November 2008, after the October crash, since the dollar was up, the Baa spread was wide, and gold was down.\n\n```json\n{\"year\":2008,\"month\":11,\"confidence\":0.25,\"cues\":[\"Dollar up sharply over 3m and wide Baa spread\",\"Gold fell sharply, equities down over 12m\",\"Unemployment rising fast with weak payrolls and activity\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1095,
+  "output_tokens": 970,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | +0.0 | -0.5\nNational activity index, 3m avg | -2.5 | -0.5 | -2.0\nUnemployment rate | +3.0 | +3.0 | +2.5\nPayrolls, avg monthly change over 3m | -2.0 | +1.0 | -1.5\nHeadline CPI | +2.0 | +1.5 | +2.0\nCore CPI | +0.5 | +1.0 | +0.5\nPolicy rate (fed funds) | -2.0 | +0.0 | -1.5\n2-year Treasury yield | -1.5 | -0.5 | -1.0\n10-year Treasury yield | -1.5 | -0.5 | -1.0\n10y minus 2y Treasury spread | +1.5 | +0.0 | +1.0\nEquity implied volatility (VIX) | +0.5 | +0.0 | -1.0\nBaa corporate minus 10y Treasury spread | +2.0 | +0.5 | +1.5\nBroad trade-weighted dollar | +0.5 | +2.0 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | -1.5 | -1.0 | -2.0 | +1.5 | -2.0\nDeveloped ex-US equity | -1.5 | -2.5 | -1.5 | -2.5 | +0.5 | -3.0\nEmerging-market equity | -1.0 | -2.0 | -2.0 | -2.0 | +0.5 | -2.5\nUS Treasuries 7-10y | +0.5 | +0.5 | -0.5 | +1.0 | +1.5 | +0.0\nUS Treasuries 20y+ | +1.0 | +1.0 | +0.0 | +1.0 | +1.0 | +0.5\nUS investment-grade credit | +0.0 | -1.0 | -1.5 | -0.5 | +1.0 | -1.5\nGold | -2.5 | -1.5 | -2.0 | -0.5 | +1.0 | -2.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

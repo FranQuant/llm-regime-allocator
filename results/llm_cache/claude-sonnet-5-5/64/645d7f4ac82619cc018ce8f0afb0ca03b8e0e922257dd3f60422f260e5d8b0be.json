@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:20:24+00:00",
+ "decision_date": "2018-07-31",
+ "key": "645d7f4ac82619cc018ce8f0afb0ca03b8e0e922257dd3f60422f260e5d8b0be",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmbz5kaqE6tjLSSSsnJJ",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2018. Fed funds at 1.91% matches May/June 2018 (the effective rate was 1.91% in May and June). Headline CPI at 2.8% YoY matches May 2018 (2.8%), and core CPI at 2.2% is consistent. Unemployment at 4.0% fits May 2018 (3.8%) less well, but April 2018 was 3.9%, so the 4.0% may reflect a data vintage or a different measure. The 10-year yield at 2.98% fits May 2018, and the 2-year at 2.66% also fits.\n\nEquity returns show US large caps up 3.7% over the month, which fits May 2018 (S&P +2.4%) and June (+0.6%), though not perfectly. Gold fell 2.2% in the month, which fits May 2018 (-1.3%) roughly. The emerging-market 6m return of -10.7% is consistent with mid-2018. Of the two, May 2018 looks more likely given the 10-year yield, but the equity 1m return of +3.7% might instead point to a late-May snapshot.\n\nThe 3m change in the dollar is +7.83, which fits the April-May 2018 dollar rally. I will go with May 2018.\n\n{\"year\": 2018, \"month\": 5, \"confidence\": 0.6, \"cues\": [\"Fed funds 1.91% and CPI 2.8% YoY match spring 2018\", \"10y yield ~2.98% and 2y 2.66% with a flattening spread\", \"Dollar jump over 3m and EM equity weakness fit the April-May 2018 episode\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 523,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.80 | +0.21 | +2.01 | +1.51\nNational activity index, 3m avg | index, 0 = trend growth | +0.16 | -0.07 | +0.03 | +0.75\nUnemployment rate | % | +4.00 | -0.10 | -0.30 | -1.42\nPayrolls, avg monthly change over 3m | thousands | +210.67 | -7.67 | +21.00 | +0.32\nHeadline CPI | YoY % | +2.80 | +0.44 | +1.15 | +1.49\nCore CPI | YoY % | +2.23 | +0.12 | +0.51 | +1.02\nPolicy rate (fed funds) | % | +1.91 | +0.22 | +0.84 | +2.01\n2-year Treasury yield | % | +2.66 | +0.17 | +1.32 | +2.15\n10-year Treasury yield | % | +2.98 | +0.03 | +0.68 | +1.78\n10y minus 2y Treasury spread | pp | +0.32 | -0.14 | -0.64 | -1.90\nEquity implied volatility (VIX) | index points | +14.26 | -1.67 | +4.00 | -0.13\nBaa corporate minus 10y Treasury spread | pp | +1.84 | +0.05 | -0.22 | -1.05\nBroad trade-weighted dollar | YoY % | +3.08 | +7.83 | +4.92 | +0.11\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.7% | +6.6% | +0.7% | +16.1% | +16.3% | -1.0%\nDeveloped ex-US equity | +2.9% | -0.3% | -5.0% | +6.1% | +13.9% | -6.6%\nEmerging-market equity | +3.5% | -3.3% | -10.7% | +4.7% | +21.0% | -13.3%\nUS Treasuries 7-10y | -0.5% | +0.8% | -0.4% | -2.8% | +4.3% | -4.8%\nUS Treasuries 20y+ | -1.4% | +1.6% | -0.6% | -1.0% | +9.7% | -5.4%\nUS investment-grade credit | +1.3% | +1.7% | -1.7% | -1.2% | +4.2% | -3.1%\nGold | -2.2% | -6.2% | -8.5% | -3.9% | +9.5% | -10.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.38\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

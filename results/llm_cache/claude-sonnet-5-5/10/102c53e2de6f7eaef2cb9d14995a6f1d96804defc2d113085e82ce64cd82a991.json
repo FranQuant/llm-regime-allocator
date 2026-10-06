@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:48:31+00:00",
+ "decision_date": "2022-04-29",
+ "key": "102c53e2de6f7eaef2cb9d14995a6f1d96804defc2d113085e82ce64cd82a991",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfme85jokagTAmwGqJHaN",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a period of high inflation with a sharp rise in yields, a strong dollar, and falling equities and bonds. The fed funds z-score is -0.5 but rising by +1.0 over three months and +1.0 over twelve, so rates are still low relative to the past 36 months. That is early in a hiking cycle, or a rise from near zero. The 2-year yield z of +2.5 on a 12-month change of +2.5 fits 2022. Headline CPI at +2.5 and core at +2.5 also fit 2022.\n\nThe unemployment rate is low at -1.0, and the trade-weighted dollar is +1.0 with a +2.5 change over twelve months, which fits 2022. The 10y-2y spread of -1.0 with a 12-month change of -2.5 suggests the curve has flattened or inverted, so likely mid-2022 or later.\n\nEquity returns, though, are only mildly negative, around -2 on all horizons. That is odd for 2022, because by September 2022 the 12-month equity return was about -15%. In z-score terms against a prior 36 months that included the 2020-21 rally, it could be around -1.5. The 1-month return of -2.0 and 3-month of -1.5 suggest a down month.\n\nCandidates are March 2022, April 2022, May 2022, June 2022, September 2022 and October 2022. The fed funds z at -0.5 means the rate is still low relative to the 36-month window, which includes 2020-21 near zero. In March 2022 the funds rate was 0.33%, with a 36-month average of about 1%, so z would be about -0.5. By September 2022 it was 3.1%, with a z closer to +1.\n\nThe 3m change of +1.0 in fed funds fits March-April 2022. The 2y z of +2.5 with a 3m change of +2.5 suggests a sharp rise, consistent with the 2y moving from 0.7% to 2.3% in March 2022. The 12m equity return in March 2022 was about +15%, though, which doesn't match -1.5. Equity returns in September 2022 were about -15% over 12 months, and the z-score could be -1.5, but fed funds would be higher then.\n\nCompromise: investment-grade credit at -3.0 and Treasuries at -2.5 for 3m fit April-June 2022. In June 2022 the fed funds rate was 1.6%, with a 3m change of +1.0, and equities fell hard. Overall, I'll guess around May-June 2022.\n\n{\"year\": 2022, \"month\": 6, \"confidence\": 0.4, \"cues\": [\"2y yield z +2.5 with 3m change +2.5 signals a sharp hiking-cycle repricing\", \"CPI z +2.5 with fed funds still below average fits early-to-mid 2022\", \"IG credit and Treasuries deeply negative while the dollar is strong\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 939,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.5 | +0.0\nNational activity index, 3m avg | +0.5 | +0.0 | +0.0\nUnemployment rate | -1.0 | +0.0 | -0.5\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | +0.0\nHeadline CPI | +2.5 | +1.0 | +1.5\nCore CPI | +2.5 | +0.5 | +2.0\nPolicy rate (fed funds) | -0.5 | +1.0 | +1.0\n2-year Treasury yield | +2.5 | +2.5 | +2.5\n10-year Treasury yield | +2.5 | +2.0 | +1.5\n10y minus 2y Treasury spread | -1.0 | -1.0 | -2.5\nEquity implied volatility (VIX) | +1.0 | +0.5 | +0.5\nBaa corporate minus 10y Treasury spread | -0.5 | +0.5 | +0.0\nBroad trade-weighted dollar | +1.0 | +0.5 | +2.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.0 | -1.5 | -2.0 | -1.5 | +0.0 | -2.0\nDeveloped ex-US equity | -1.5 | -1.0 | -1.5 | -1.0 | +0.0 | -1.5\nEmerging-market equity | -1.5 | -1.0 | -1.5 | -1.5 | +0.0 | -2.0\nUS Treasuries 7-10y | -2.0 | -2.5 | -2.0 | -1.5 | +1.5 | -3.0\nUS Treasuries 20y+ | -2.0 | -2.0 | -2.0 | -1.5 | +0.5 | -2.5\nUS investment-grade credit | -3.0 | -2.5 | -3.0 | -2.5 | +0.0 | -3.0\nGold | -0.5 | +0.5 | +0.0 | -0.5 | -0.5 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}
