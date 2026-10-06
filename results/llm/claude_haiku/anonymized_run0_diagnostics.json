@@ -1,0 +1,13 @@
+{
+ "calls": 210,
+ "cache_hits": 12,
+ "cache_misses": 0,
+ "client_failures": 0,
+ "parse_failures": 0,
+ "dates_failed": [],
+ "model": "claude_haiku",
+ "model_id": "claude-haiku-4-5-20251001",
+ "variant": "anonymized",
+ "run": 0,
+ "n_dates": 222
+}

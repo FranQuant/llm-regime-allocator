@@ -1,0 +1,32 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T18:39:35+00:00",
+ "decision_date": "2012-02-29",
+ "key": "b707775bf36a9272fd8baff84426198b6cebc1bb3650b977f906ac0b42af963b",
+ "model": "claude-haiku-4-5-20251001",
+ "model_returned": "claude-haiku-4-5-20251001",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmUJBSD6fpdkCstVauZA",
+ "run": 0,
+ "system": "You classify the macroeconomic regime for a multi-asset research desk.\n\nYour only output is a probability distribution over four regimes for the next three months. You do not recommend assets, trades, weights or returns. Base your judgment strictly on the figures supplied; do not assume facts that are not in them. If the evidence is mixed, spread probability accordingly.\n\nRegimes (growth direction x inflation direction over the next three months):\n- Goldilocks: growth improving while inflation eases.\n- Reflation: growth improving while inflation rises.\n- Stagflation: growth deteriorating while inflation rises.\n- Risk_Off: growth deteriorating while inflation eases, typically with financial stress.\n\nReply with one JSON object and nothing else:\n{\"probabilities\": {\"Goldilocks\": p, \"Reflation\": p, \"Stagflation\": p, \"Risk_Off\": p},\n \"confidence\": c,\n \"drivers\": [\"...\", \"...\"],\n \"rationale\": \"...\"}\nRules: each p in [0, 1] and the four sum to 1; c in [0, 1] is your confidence in the distribution; 1 to 5 short drivers citing the inputs; rationale under 60 words.",
+ "text": "```json\n{\n  \"probabilities\": {\n    \"Goldilocks\": 0.62,\n    \"Reflation\": 0.18,\n    \"Stagflation\": 0.08,\n    \"Risk_Off\": 0.12\n  },\n  \"confidence\": 0.72,\n  \"drivers\": [\n    \"Growth momentum: industrial production +3.35% YoY, payrolls +201k/month, NAI above trend\",\n    \"Inflation moderating: headline CPI -0.63pp 3m change, policy rates near zero with curve flat\",\n    \"Labour market tightening: unemployment -0.60pp 3m, z-score -2.14 (very tight), but recent payroll strength softening slightly\",\n    \"Financial stress signals muted: VIX down 9.84pts, credit spreads stable, equity/bond correlation highly negative suggests risk-on\",\n    \"Yield curve inversion (-1.76 z-score on 10-2s) and long-end weakness indicate recession concerns, creating tail risk\"\n  ],\n  \"rationale\": \"Growth indicators support continued expansion (industrial production, payrolls, NAI positive). Inflation is decelerating across headline and core with policy accommodation intact. Labour tightness and modest growth momentum favour Goldilocks. However, inverted yield curve (z=-1.92), depressed long yields, and equity volatility spikes present material risk-off tail. Elevated unemployment z-score (-2.14) and weakening IP momentum introduce caution.\"\n}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "not_available",
+  "input_tokens": 1154,
+  "output_tokens": 364,
+  "output_tokens_details": null,
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.35 | -0.84 | -2.40 | +0.44\nNational activity index, 3m avg | index, 0 = trend growth | +0.14 | +0.31 | -0.01 | +0.68\nUnemployment rate | % | +8.30 | -0.60 | -0.80 | -2.14\nPayrolls, avg monthly change over 3m | thousands | +201.00 | +68.00 | +84.00 | +0.86\nHeadline CPI | YoY % | +2.93 | -0.63 | +1.29 | +0.79\nCore CPI | YoY % | +2.27 | +0.17 | +1.31 | +1.71\nPolicy rate (fed funds) | % | +0.10 | +0.00 | -0.06 | -0.62\n2-year Treasury yield | % | +0.30 | +0.05 | -0.39 | -1.16\n10-year Treasury yield | % | +1.94 | -0.14 | -1.48 | -1.76\n10y minus 2y Treasury spread | pp | +1.64 | -0.19 | -1.09 | -1.92\nEquity implied volatility (VIX) | index points | +17.96 | -9.84 | -0.39 | -0.99\nBaa corporate minus 10y Treasury spread | pp | +3.12 | -0.12 | +0.55 | +0.06\nBroad trade-weighted dollar | YoY % | +1.47 | +2.21 | +6.51 | +0.40\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +4.3% | +15.2% | +14.2% | +6.8% | +22.7% | -0.4%\nDeveloped ex-US equity | +5.4% | +14.2% | +4.5% | -7.1% | +30.0% | -11.7%\nEmerging-market equity | +6.2% | +18.3% | +7.0% | -0.3% | +35.3% | -10.0%\nUS Treasuries 7-10y | -0.7% | +0.9% | +3.6% | +15.5% | +7.8% | -1.1%\nUS Treasuries 20y+ | -1.5% | -2.0% | +11.6% | +31.7% | +21.9% | -4.7%\nUS investment-grade credit | +1.9% | +7.7% | +7.9% | +12.7% | +5.5% | +0.0%\nGold | -2.2% | -1.4% | -5.5% | +17.3% | +24.2% | -11.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.77\n\nClassify the regime for the next three months.",
+ "variant": "anonymized"
+}

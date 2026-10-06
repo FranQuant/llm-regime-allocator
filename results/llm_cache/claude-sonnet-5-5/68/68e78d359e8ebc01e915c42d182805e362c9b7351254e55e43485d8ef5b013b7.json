@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T19:04:19+00:00",
+ "decision_date": "2021-04-30",
+ "key": "68e78d359e8ebc01e915c42d182805e362c9b7351254e55e43485d8ef5b013b7",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmWBZADsLXWyGGxS2A4B",
+ "run": 0,
+ "system": "You classify the macroeconomic regime for a multi-asset research desk.\n\nYour only output is a probability distribution over four regimes for the next three months. You do not recommend assets, trades, weights or returns. Base your judgment strictly on the figures supplied; do not assume facts that are not in them. If the evidence is mixed, spread probability accordingly.\n\nRegimes (growth direction x inflation direction over the next three months):\n- Goldilocks: growth improving while inflation eases.\n- Reflation: growth improving while inflation rises.\n- Stagflation: growth deteriorating while inflation rises.\n- Risk_Off: growth deteriorating while inflation eases, typically with financial stress.\n\nReply with one JSON object and nothing else:\n{\"probabilities\": {\"Goldilocks\": p, \"Reflation\": p, \"Stagflation\": p, \"Risk_Off\": p},\n \"confidence\": c,\n \"drivers\": [\"...\", \"...\"],\n \"rationale\": \"...\"}\nRules: each p in [0, 1] and the four sum to 1; c in [0, 1] is your confidence in the distribution; 1 to 5 short drivers citing the inputs; rationale under 60 words.",
+ "text": "{\"probabilities\": {\"Goldilocks\": 0.2, \"Reflation\": 0.62, \"Stagflation\": 0.06, \"Risk_Off\": 0.12}, \"confidence\": 0.62, \"drivers\": [\"Payrolls 3m avg +539k (+326k over 3m) and unemployment down 0.7pp to 6.0% show improving growth\", \"Headline CPI 2.64% YoY, +1.34pp over 3m (z +1.26), so inflation is rising\", \"10y yield +0.54pp over 3m and 10y-2y spread +1.49pp (z +2.76) fit reflationary repricing\", \"VIX 17.6 (-15.5 over 3m), Baa spread 1.97 (-0.20), equities near highs: no financial stress\", \"Core CPI 1.65% (z -0.91), +0.03 over 3m: underlying inflation is subdued\"], \"rationale\": \"Labor and industrial data point to improving growth, and headline inflation is accelerating with higher long yields and a steep curve. Soft core CPI and a falling dollar leave some chance inflation eases (Goldilocks). The activity index is flat over 3m, which tempers growth conviction. Stress signals are low.\"}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1374,
+  "output_tokens": 407,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.02 | +4.44 | +5.72 | +0.39\nNational activity index, 3m avg | index, 0 = trend growth | +0.54 | -0.03 | +2.04 | +0.36\nUnemployment rate | % | +6.00 | -0.70 | +1.60 | +0.21\nPayrolls, avg monthly change over 3m | thousands | +539.00 | +326.33 | +898.67 | +0.34\nHeadline CPI | YoY % | +2.64 | +1.34 | +1.13 | +1.26\nCore CPI | YoY % | +1.65 | +0.03 | -0.45 | -0.91\nPolicy rate (fed funds) | % | +0.06 | -0.01 | +0.01 | -1.21\n2-year Treasury yield | % | +0.16 | +0.05 | -0.04 | -1.12\n10-year Treasury yield | % | +1.65 | +0.54 | +1.01 | -0.16\n10y minus 2y Treasury spread | pp | +1.49 | +0.49 | +1.05 | +2.76\nEquity implied volatility (VIX) | index points | +17.61 | -15.48 | -16.54 | -0.43\nBaa corporate minus 10y Treasury spread | pp | +1.97 | -0.20 | -1.26 | -0.83\nBroad trade-weighted dollar | YoY % | -8.39 | -5.33 | -14.74 | -2.63\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +5.3% | +13.1% | +28.7% | +46.0% | +14.1% | -0.7%\nDeveloped ex-US equity | +3.0% | +7.9% | +28.4% | +41.4% | +14.7% | -1.5%\nEmerging-market equity | +1.2% | +1.3% | +21.8% | +49.7% | +20.0% | -6.9%\nUS Treasuries 7-10y | +1.0% | -3.7% | -5.4% | -5.5% | +5.0% | -6.9%\nUS Treasuries 20y+ | +2.5% | -8.4% | -13.1% | -15.7% | +13.6% | -18.5%\nUS investment-grade credit | +1.0% | -2.7% | -1.5% | +4.2% | +6.9% | -4.5%\nGold | +3.6% | -4.0% | -5.9% | +4.3% | +16.3% | -14.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.08\n\nClassify the regime for the next three months.",
+ "variant": "anonymized"
+}

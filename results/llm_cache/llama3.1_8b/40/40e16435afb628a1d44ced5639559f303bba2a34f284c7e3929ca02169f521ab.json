@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T18:30:37+00:00",
+ "decision_date": "2024-03-28",
+ "key": "40e16435afb628a1d44ced5639559f303bba2a34f284c7e3929ca02169f521ab",
+ "model": "llama3.1:8b",
+ "model_returned": "llama3.1:8b",
+ "params": {
+  "seed": 7,
+  "temperature": 0.0
+ },
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "openai_compatible",
+ "response_id": "chatcmpl-605",
+ "run": 0,
+ "system": "You classify the macroeconomic regime for a multi-asset research desk.\n\nYour only output is a probability distribution over four regimes for the next three months. You do not recommend assets, trades, weights or returns. Base your judgment strictly on the figures supplied; do not assume facts that are not in them. If the evidence is mixed, spread probability accordingly.\n\nRegimes (growth direction x inflation direction over the next three months):\n- Goldilocks: growth improving while inflation eases.\n- Reflation: growth improving while inflation rises.\n- Stagflation: growth deteriorating while inflation rises.\n- Risk_Off: growth deteriorating while inflation eases, typically with financial stress.\n\nReply with one JSON object and nothing else:\n{\"probabilities\": {\"Goldilocks\": p, \"Reflation\": p, \"Stagflation\": p, \"Risk_Off\": p},\n \"confidence\": c,\n \"drivers\": [\"...\", \"...\"],\n \"rationale\": \"...\"}\nRules: each p in [0, 1] and the four sum to 1; c in [0, 1] is your confidence in the distribution; 1 to 5 short drivers citing the inputs; rationale under 60 words.",
+ "text": "{\n  \"probabilities\": {\"Goldilocks\": 0.35, \"Reflation\": 0.45, \"Stagflation\": 0.10, \"Risk_Off\": 0.10},\n  \"confidence\": 0.8,\n  \"drivers\": [\n    \"Industrial production and national activity index are still declining, but at a slower pace.\",\n    \"Unemployment rate is rising, but the change is small.\",\n    \"Headline and core CPI are rising, but at a slower pace.\",\n    \"Policy rate and Treasury yields are rising, indicating a tightening bias.\"\n  ],\n  \"rationale\": \"The data suggests a mixed picture, with some indicators pointing to a slowing economy and others indicating a potential rebound. The rise in Treasury yields and policy rate suggests a reflationary bias, but the slowing industrial production and national activity index suggest a risk of stagflation. The low probability of a Goldilocks scenario is due to the still-declining industrial production and national activity index.\"\n}",
+ "usage": {
+  "completion_tokens": 208,
+  "completion_tokens_details": null,
+  "prompt_tokens": 1057,
+  "prompt_tokens_details": {
+   "audio_tokens": null,
+   "cache_write_tokens": null,
+   "cached_tokens": 315,
+   "image_tokens": null,
+   "text_tokens": null
+  },
+  "total_tokens": 1265
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.23 | -0.16 | -1.11 | -0.84\nNational activity index, 3m avg | index, 0 = trend growth | -0.18 | -0.06 | -0.06 | -0.86\nUnemployment rate | % | +3.90 | +0.20 | +0.30 | -0.20\nPayrolls, avg monthly change over 3m | thousands | +264.67 | +67.00 | -37.00 | -0.82\nHeadline CPI | YoY % | +3.17 | +0.03 | -2.80 | -1.26\nCore CPI | YoY % | +3.76 | -0.25 | -1.73 | -1.06\nPolicy rate (fed funds) | % | +5.33 | +0.00 | +0.50 | +1.12\n2-year Treasury yield | % | +4.54 | +0.31 | +0.48 | +0.83\n10-year Treasury yield | % | +4.20 | +0.32 | +0.72 | +1.03\n10y minus 2y Treasury spread | pp | -0.34 | +0.01 | +0.24 | -0.48\nEquity implied volatility (VIX) | index points | +12.78 | +0.33 | -5.92 | -1.24\nBaa corporate minus 10y Treasury spread | pp | +1.54 | -0.07 | -0.57 | -1.83\nBroad trade-weighted dollar | YoY % | +1.76 | +3.96 | -1.91 | +0.06\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.6% | +10.1% | +23.7% | +34.1% | +11.4% | -0.0%\nDeveloped ex-US equity | +3.6% | +5.8% | +17.9% | +18.5% | +11.9% | -0.2%\nEmerging-market equity | +2.8% | +2.9% | +10.7% | +8.1% | +14.1% | -0.7%\nUS Treasuries 7-10y | +0.9% | -1.9% | +5.3% | -1.0% | +8.5% | -3.1%\nUS Treasuries 20y+ | +1.5% | -5.3% | +9.1% | -6.2% | +18.3% | -9.9%\nUS investment-grade credit | +1.6% | -1.5% | +9.1% | +5.2% | +9.3% | -1.5%\nGold | +9.2% | +6.8% | +18.2% | +12.1% | +12.6% | +0.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.25\n\nClassify the regime for the next three months.",
+ "variant": "anonymized"
+}

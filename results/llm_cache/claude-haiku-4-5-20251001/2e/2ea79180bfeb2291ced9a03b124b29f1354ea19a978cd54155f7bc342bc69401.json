@@ -1,0 +1,32 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T18:49:09+00:00",
+ "decision_date": "2022-12-30",
+ "key": "2ea79180bfeb2291ced9a03b124b29f1354ea19a978cd54155f7bc342bc69401",
+ "model": "claude-haiku-4-5-20251001",
+ "model_returned": "claude-haiku-4-5-20251001",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmV2XSfXzhzFk9StY3nL",
+ "run": 0,
+ "system": "You classify the macroeconomic regime for a multi-asset research desk.\n\nYour only output is a probability distribution over four regimes for the next three months. You do not recommend assets, trades, weights or returns. Base your judgment strictly on the figures supplied; do not assume facts that are not in them. If the evidence is mixed, spread probability accordingly.\n\nRegimes (growth direction x inflation direction over the next three months):\n- Goldilocks: growth improving while inflation eases.\n- Reflation: growth improving while inflation rises.\n- Stagflation: growth deteriorating while inflation rises.\n- Risk_Off: growth deteriorating while inflation eases, typically with financial stress.\n\nReply with one JSON object and nothing else:\n{\"probabilities\": {\"Goldilocks\": p, \"Reflation\": p, \"Stagflation\": p, \"Risk_Off\": p},\n \"confidence\": c,\n \"drivers\": [\"...\", \"...\"],\n \"rationale\": \"...\"}\nRules: each p in [0, 1] and the four sum to 1; c in [0, 1] is your confidence in the distribution; 1 to 5 short drivers citing the inputs; rationale under 60 words.",
+ "text": "```json\n{\n  \"probabilities\": {\n    \"Goldilocks\": 0.50,\n    \"Reflation\": 0.20,\n    \"Stagflation\": 0.15,\n    \"Risk_Off\": 0.15\n  },\n  \"confidence\": 0.65,\n  \"drivers\": [\n    \"Headline/core CPI declining sharply (-1.13pp, -0.35pp over 3m) signals disinflation momentum\",\n    \"Industrial production and activity near trend; unemployment stable at 3.7%\u2014growth modest but not deteriorating\",\n    \"Inverted yield curve (-51pp) and elevated financial stress indicators (VIX 21.4, credit spreads 201bp) suggest near-term headwinds\",\n    \"Recent equity rebound (+7.6% 3m) and gold strength (+9.7%) reflect flight-to-safety mixed with recovery hope\",\n    \"Policy rate held high (+4.33%) while forward rates stabilizing\u2014tightening cycle likely ended\"\n  ],\n  \"rationale\": \"Disinflation is clearly underway with both headline and core CPI rolling over significantly. Growth remains near-trend with no sharp deterioration in activity or employment. Yield curve inversion and elevated volatility signal financial stress, but credit spreads are stable and equity volatility has declined. The base case is easing inflation paired with resilient, modest growth\u2014Goldilocks\u2014though tail risks (yield shock, credit tightening) warrant material Risk_Off weight.\",\n  \"confidence\": 0.65\n}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "not_available",
+  "input_tokens": 1154,
+  "output_tokens": 367,
+  "output_tokens_details": null,
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.51 | -1.04 | -2.48 | +0.26\nNational activity index, 3m avg | index, 0 = trend growth | +0.09 | +0.17 | -0.19 | +0.06\nUnemployment rate | % | +3.70 | +0.00 | -0.50 | -0.72\nPayrolls, avg monthly change over 3m | thousands | +272.00 | -102.00 | -310.67 | +0.11\nHeadline CPI | YoY % | +7.12 | -1.13 | +0.29 | +0.85\nCore CPI | YoY % | +5.96 | -0.35 | +1.01 | +1.12\nPolicy rate (fed funds) | % | +4.33 | +1.25 | +4.26 | +2.95\n2-year Treasury yield | % | +4.34 | +0.12 | +3.61 | +2.09\n10-year Treasury yield | % | +3.83 | +0.00 | +2.31 | +2.00\n10y minus 2y Treasury spread | pp | -0.51 | -0.12 | -1.30 | -1.77\nEquity implied volatility (VIX) | index points | +21.44 | -10.18 | +4.22 | -0.54\nBaa corporate minus 10y Treasury spread | pp | +2.01 | -0.23 | +0.16 | -0.58\nBroad trade-weighted dollar | YoY % | +5.87 | -5.44 | +2.29 | +0.78\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -5.8% | +7.6% | +1.2% | -18.4% | +23.3% | -18.6%\nDeveloped ex-US equity | -1.8% | +17.7% | +5.2% | -14.5% | +22.5% | -15.4%\nEmerging-market equity | -2.6% | +10.3% | -3.4% | -21.0% | +21.4% | -23.7%\nUS Treasuries 7-10y | -1.5% | +0.6% | -6.1% | -15.3% | +10.6% | -15.2%\nUS Treasuries 20y+ | -2.6% | -1.9% | -12.9% | -31.1% | +21.1% | -31.2%\nUS investment-grade credit | -1.6% | +4.2% | -3.4% | -18.0% | +13.0% | -17.9%\nGold | +2.9% | +9.7% | +0.8% | -0.1% | +15.6% | -11.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.38\n\nClassify the regime for the next three months.",
+ "variant": "anonymized"
+}
