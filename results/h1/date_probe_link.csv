@@ -1,0 +1,5 @@
+model,regime_variant,probe_bucket,n,brier_minus_uniform
+claude_sonnet,anonymized,|err| <= 12m,217,-0.0484
+claude_sonnet,anonymized,|err| > 12m,0,
+claude_sonnet,dated,|err| <= 12m,217,-0.0994
+claude_sonnet,dated,|err| > 12m,0,
