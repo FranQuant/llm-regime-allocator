@@ -51,3 +51,29 @@ def hard(labels: pd.Series, confidence: float = 0.85) -> pd.DataFrame:
     """Turn hard labels into probabilities (confidence on the label, rest spread evenly)."""
     off = (1 - confidence) / 3
     return pd.DataFrame({k: np.where(labels == k, confidence, off) for k in R}, index=labels.index)
+
+
+def monthly_excess(daily: pd.DataFrame, rf_daily: pd.Series) -> pd.DataFrame:
+    """Daily strategy returns -> monthly returns in excess of the cash ETF."""
+    ex = daily.sub(rf_daily.reindex(daily.index).fillna(0.0), axis=0)
+    return (1.0 + ex).resample("ME").prod() - 1.0
+
+
+def sharpe(x) -> float:
+    x = np.asarray(x, float)
+    return float(x.mean() / x.std(ddof=1) * np.sqrt(12))
+
+
+def sharpe_diff_ci(a: pd.Series, b: pd.Series, block: int = 6, n_boot: int = 4000,
+                   seed: int = 0) -> tuple[float, float, float]:
+    """Annualised Sharpe(a) - Sharpe(b) on paired monthly returns, moving-block bootstrap 95% CI."""
+    A, B = a.to_numpy(), b.to_numpy()
+    n = len(A)
+    rng = np.random.default_rng(seed)
+    starts = rng.integers(0, n - block + 1, size=(n_boot, int(np.ceil(n / block))))
+    d = []
+    for row in starts:
+        i = np.concatenate([np.arange(s, s + block) for s in row])[:n]
+        d.append(sharpe(A[i]) - sharpe(B[i]))
+    lo, hi = np.percentile(d, [2.5, 97.5])
+    return sharpe(A) - sharpe(B), float(lo), float(hi)
