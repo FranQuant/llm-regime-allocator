@@ -1,0 +1,50 @@
+# Phase 3/4 LLM configuration. Model IDs come from provider documentation
+# (checked 2026-10-06), never from memory. `params` are passed to the provider
+# verbatim and are part of the cache key.
+
+[defaults]
+max_retries = 2              # extra attempts after a parse/validation failure
+max_tokens = 4000
+
+[models.mock]
+provider = "mock"
+model = "mock-regime-v1"
+params = {}
+
+# Anthropic — docs: platform.claude.com/docs/en/models/overview (checked 2026-10-06)
+# Sonnet 5.5: reliable knowledge cutoff Jun 2026. Haiku 4.5: Feb 2025.
+[models.claude_sonnet]
+provider = "anthropic"
+model = "claude-sonnet-5-5"
+api_key_env = "ANTHROPIC_API_KEY"
+params = {}
+
+[models.claude_haiku]
+provider = "anthropic"
+model = "claude-haiku-4-5-20251001"
+api_key_env = "ANTHROPIC_API_KEY"
+params = {}
+
+# Open-weight, run locally with Ollama (OpenAI-compatible endpoint).
+# Llama 3.1 8B Instruct — knowledge cutoff Dec 2023 (HF model card).
+# Record the exact local build with `ollama show llama3.1:8b` (quantisation matters).
+[models.llama8b]
+provider = "openai_compatible"
+model = "llama3.1:8b"
+base_url = "http://localhost:11434/v1"
+api_key_env = "OLLAMA_API_KEY"   # Ollama ignores it; unset is fine
+params = { temperature = 0.0, seed = 7 }
+
+# Optional, not in the current budget. Knowledge cutoff 2025-12-01 (OpenAI docs).
+[models.gpt]
+provider = "openai"
+model = "gpt-5.5-2026-04-23"
+api_key_env = "OPENAI_API_KEY"
+params = { reasoning = { effort = "none" } }
+
+[cutoffs]
+# Documented knowledge cutoffs used to split clean / contaminated windows (Phase 6).
+claude_sonnet = "2026-06-30"
+claude_haiku = "2025-02-28"
+llama8b = "2023-12-31"
+gpt = "2025-12-01"
