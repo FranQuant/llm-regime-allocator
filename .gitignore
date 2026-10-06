@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.env
+.DS_Store
+
+# Raw data pulls are not committed; data/manifest.json is.
+data/raw/
+data/cache/
+!data/README.md
+!data/manifest.json

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lra"
+version = "0.0.1"
+description = "LLM regime classification as a constrained input to Black-Litterman allocation"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<4",
+    "scipy>=1.13,<2",
+    "scikit-learn>=1.5,<2",
+    "pyarrow>=15,<25",
+    "pydantic>=2,<3",
+]
+
+[project.optional-dependencies]
+data = ["fredapi>=0.5,<1", "python-dotenv>=1,<2"]
+llm = ["anthropic>=0.40,<1", "openai>=2,<3"]
+research = ["matplotlib>=3.8,<4", "jupyter>=1,<2", "ipykernel>=6.29,<8"]
+dev = ["pytest>=8,<9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
