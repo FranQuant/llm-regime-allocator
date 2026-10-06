@@ -145,5 +145,9 @@ notebooks/    nb01–nb03
 
 Data files are included for reproducibility of this study only; refer to each provider's terms before reusing them.
 
+## License
+
+Code: [MIT](LICENSE). The licence covers the code only; data files remain subject to their providers' terms (see Data sources).
+
 ---
 Research code for education. Not investment advice.

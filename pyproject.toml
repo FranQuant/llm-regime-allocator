@@ -7,6 +7,7 @@ name = "lra"
 version = "0.0.1"
 description = "LLM regime classification as a constrained input to Black-Litterman allocation"
 readme = "README.md"
+license = { text = "MIT" }
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "numpy>=1.26,<3",
