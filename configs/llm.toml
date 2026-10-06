@@ -27,7 +27,8 @@ params = {}
 
 # Open-weight, run locally with Ollama (OpenAI-compatible endpoint).
 # Llama 3.1 8B Instruct — knowledge cutoff Dec 2023 (HF model card).
-# Record the exact local build with `ollama show llama3.1:8b` (quantisation matters).
+# Local build used (2026-10-06): Ollama 0.35.1, Q4_K_M, layer digest 667b0c1932bc.
+# Re-check with `ollama show llama3.1:8b` / `ollama list` before every run.
 [models.llama8b]
 provider = "openai_compatible"
 model = "llama3.1:8b"
