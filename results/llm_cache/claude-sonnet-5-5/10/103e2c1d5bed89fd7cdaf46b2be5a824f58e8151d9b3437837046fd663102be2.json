@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:43:11+00:00",
+ "decision_date": "2010-12-31",
+ "key": "103e2c1d5bed89fd7cdaf46b2be5a824f58e8151d9b3437837046fd663102be2",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmdiBn2Vtvx9XZoxU181",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The pattern points to a period when core CPI was low relative to its 3-year history (-2.0), unemployment was above its 3-year average but falling, and the 10-year yield had risen sharply over 3 months (+1.5). The policy rate was slightly below its 3-year average but rising, so the Fed was hiking from low levels.\n\nCandidates:\n- Late 2016 to early 2017: the 10-year yield jumped after the November 2016 election. The fed funds rate was rising from a low base. Core CPI would be low versus the prior 3 years only if it had been falling, and it was around 2.2%. Unemployment was at 4.7%, below its 3-year average, since it had been falling from 6%. That conflicts with the +1.0 reading.\n- Late 2023 or 2024: a 10-year yield rise of +1.5 over 3 months fits Sep-Oct 2023, but the policy rate would then be high, not -0.5.\n- Late 2024 (Dec 2024): the 10-year rose from 3.6% to 4.5% over 3 months. Unemployment was 4.1%, which is above its 3-year average (the 2022 lows were about 3.5%), so +1.0 fits. Its 12m change would be about +0.3, not -1.5, so that part doesn't fit. The fed funds rate was falling then, so that doesn't fit either. Core CPI would be around 3.3%, versus a 3-year window that includes 6%, giving roughly -1.5 to -2.0, which fits. However, the policy rate z would be high, not -0.5.\n- Early 2022 does not fit, because core CPI was high then.\n- Late 2016 (Dec 2016): the 36-month window is 2014-2016. Unemployment at 4.7% was below the window average, which doesn't fit.\n- 2013 (May-Jun to Dec 2013): the window is 2010-2013, unemployment fell from 9% to 7%, which is below average, so unemployment z of +1.0 doesn't fit.\n- 2018: the window is 2015-2018, unemployment at 3.9% is below average, which doesn't fit.\n- Early 2021 to 2022: the window includes COVID, so unemployment z would be different.\n- Mid-2025 or later: the 36-month window is 2022-2025, unemployment 4.1-4.4% is above average (+1.0), and the 12m change is slightly positive, which doesn't fit.\n- Early 2026: the 10-year was about 4.1-4.2%, so a +1.5 rise doesn't fit.\n\nBack to unemployment being +1.0 with a 12m change of -1.5. Unemployment would be falling from a peak into a window with high values. This fits 2022 (after the COVID window), or mid-2015 to 2017 with a window that includes 2013, or perhaps 2011-2012. In 2013, the window is mid-2010 to mid-2013, when unemployment was ~9.5% falling to 7.5%. For the window to give +1.0, the unemployment would need to be above average, which doesn't fit.\n\nAlternative: Mar 2022 or similar. Core CPI would be high, which doesn't fit. Mid-2023 to Jan 2024 doesn't fit either.\n\nFor early 2010, unemployment peaked and the window includes 2007-2009 lows, so a high reading would fit. But the 2-year yield and the policy rate would be falling, which doesn't fit.\n\nFor Dec 2016 to Mar 2017, core CPI had a 12m change of -1.5, which is unlikely. For late 2013, the 10-year rose in May-Sep 2013, and the 3-year core CPI was falling, giving a low z. The fed funds rate would be flat near zero. VIX would be low. The correlation of equity and Treasuries was negative. The 10-year rose +1.5 in the 3 months to Aug-Sep 2013, which fits a taper-tantrum shape, but the fed funds z of +0.5 rising is odd. Still, Treasury losses and a rising yield fit well.\n\nI'll guess September 2013 and accept the uncertainty.\n\n{\"year\": 2013, \"month\": 9, \"confidence\": 0.15, \"cues\": [\"10y yield up sharply over 3m while Treasuries lost, with equities positive\", \"Core CPI very low versus its history\", \"Low VIX and tight credit spreads with a steeper curve\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1446,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | -0.5 | +1.0\nNational activity index, 3m avg | +0.5 | +0.0 | +0.0\nUnemployment rate | +1.0 | -0.5 | -1.5\nPayrolls, avg monthly change over 3m | +1.0 | +0.5 | +0.5\nHeadline CPI | -0.5 | +0.0 | +0.0\nCore CPI | -2.0 | -0.5 | -1.5\nPolicy rate (fed funds) | -0.5 | +0.5 | +1.0\n2-year Treasury yield | -1.0 | +0.5 | +0.5\n10-year Treasury yield | +0.0 | +1.5 | +0.0\n10y minus 2y Treasury spread | +1.0 | +1.0 | -1.0\nEquity implied volatility (VIX) | -1.0 | -0.5 | -0.5\nBaa corporate minus 10y Treasury spread | -1.0 | -0.5 | +0.0\nBroad trade-weighted dollar | +0.0 | +0.0 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +1.0 | +1.5 | +0.5 | -1.0 | +1.0\nDeveloped ex-US equity | +0.5 | +0.5 | +1.0 | +0.5 | -1.0 | +1.0\nEmerging-market equity | +0.5 | +0.0 | +1.0 | +0.0 | -1.0 | +1.0\nUS Treasuries 7-10y | -1.0 | -1.5 | -1.0 | +0.0 | +0.0 | -1.0\nUS Treasuries 20y+ | -0.5 | -1.5 | -1.0 | +0.0 | +0.5 | -0.5\nUS investment-grade credit | -0.5 | -0.5 | +0.0 | +0.0 | -0.5 | +0.0\nGold | +0.0 | +0.5 | +0.5 | +0.5 | -1.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

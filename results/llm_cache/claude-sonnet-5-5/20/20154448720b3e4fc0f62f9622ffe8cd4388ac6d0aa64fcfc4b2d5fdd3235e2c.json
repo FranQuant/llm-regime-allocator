@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:44:56+00:00",
+ "decision_date": "2014-04-30",
+ "key": "20154448720b3e4fc0f62f9622ffe8cd4388ac6d0aa64fcfc4b2d5fdd3235e2c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmdqWNfLqYiXHe2j9zYk",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "{\"year\":2007,\"month\":3,\"confidence\":0.1,\"cues\":[\"Baa-minus-10y spread very tight (z -2.0) with VIX below its 3-year average, which fits a pre-crisis credit boom\",\"Unemployment low (z -1.5) but rising over 3 months, with a 2-year yield well above its 3-year average\",\"Low-confidence guess: the Treasury and policy-rate pattern does not match any single episode cleanly\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 2025,
+  "output_tokens_details": {
+   "thinking_tokens": 1873
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +1.0 | +1.0\nNational activity index, 3m avg | +0.5 | -0.5 | +0.5\nUnemployment rate | -1.5 | +1.0 | +0.0\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | -0.5\nHeadline CPI | -0.5 | +0.0 | +0.0\nCore CPI | -1.0 | -0.5 | -0.5\nPolicy rate (fed funds) | +0.0 | +0.5 | -0.5\n2-year Treasury yield | +1.5 | +1.0 | +1.5\n10-year Treasury yield | +1.0 | +0.0 | +1.5\n10y minus 2y Treasury spread | +1.0 | +0.0 | +1.0\nEquity implied volatility (VIX) | -1.0 | -0.5 | +0.5\nBaa corporate minus 10y Treasury spread | -2.0 | -1.0 | -1.5\nBroad trade-weighted dollar | +0.5 | -0.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | +0.5 | +0.0 | +0.5 | -0.5 | +1.0\nDeveloped ex-US equity | +0.0 | +0.5 | +0.0 | +0.5 | -1.0 | +1.0\nEmerging-market equity | +0.0 | +1.0 | +0.0 | +0.0 | -0.5 | +1.0\nUS Treasuries 7-10y | +0.0 | +0.0 | -0.5 | -1.0 | -1.0 | -1.0\nUS Treasuries 20y+ | +0.5 | +0.0 | +0.0 | -1.0 | -1.0 | +0.0\nUS investment-grade credit | +0.5 | +0.5 | +0.0 | -1.0 | -1.0 | +1.0\nGold | +0.0 | +0.5 | -0.5 | -0.5 | -1.0 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

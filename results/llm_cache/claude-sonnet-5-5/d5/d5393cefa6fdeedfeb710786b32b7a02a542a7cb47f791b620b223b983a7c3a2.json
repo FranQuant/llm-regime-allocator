@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:45:07+00:00",
+ "decision_date": "2014-08-29",
+ "key": "d5393cefa6fdeedfeb710786b32b7a02a542a7cb47f791b620b223b983a7c3a2",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmdrtvFraWWubzfLZd2s",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: industrial production strongly above its 3-year average and rising, unemployment very low relative to the last 3 years, and the 2-year yield high and rising (+1.5 over 3 months). The fed funds rate is slightly below its 3-year average, and the 10-year yield is only modestly above average. The dollar is weak, credit spreads are tight, and VIX is low.\n\nA fed funds rate below its 3-year average while the 2-year yield is far above its own average suggests the market is pricing hikes, or that rates had been low for much of the prior 3 years. Unemployment at -2.0 means it has been falling versus the window. Industrial production +2.0 with a 12m change of +2.0 points to a recovery from a low base.\n\nCandidate: late 2016 to early 2017. Industrial production was weak in 2015-16, so it would not be +2.0. Another candidate is late 2021 to early 2022, but then fed funds would be very low versus the window and core CPI would be high. A third is 2024-25, where fed funds would be above average.\n\nAnother candidate is 2018: industrial production was strong, unemployment low, and the 2-year yield high. The fed funds rate over 2015-2018 rose, so it could be below its average only if the window were mostly low-rate. In Sep 2018, the window Oct 2015 to Sep 2018 had fed funds from 0.12 to 2.2, averaging about 0.9, so the current 2.2 would be above average. That doesn't fit.\n\nAnother candidate is 2006-07, but the data start in 2007. Consider early 2010 to 2011: rates were at zero. Consider late 2010 instead.\n\nWhat about late 2025, with the 2-year yield high? Over 2022-25, the 2-year was high. That doesn't fit with +2.0 either.\n\nConsider late 2023 to early 2024. Fed funds would be above average. That doesn't fit.\n\nConsider 2017: the window Mar 2014 to Mar 2017 had fed funds near 0.1-0.9, so the current rate would be above average. Hmm.\n\nTry late 2009 to 2010 with a window of 2007-2010: fed funds would be far below average. That doesn't fit.\n\nTry Nov 2018 to Jan 2019 instead. The 2-year yield z of +2.0 with a 3m change of +1.5 means a recent rise. Industrial production's 3m change of +1.5 fits a rebound. Perhaps the snapshot is mid-2022: no, core CPI would be high.\n\nPerhaps late 2024 (Dec 2024)? The 2-year rose after the Sep 2024 cut, but the 2-year z would not be +2.0 against a 2022-24 window.\n\nTry early 2022 against a window of 2019-2022: fed funds was near 0 and the window average was about 0.8, so the rate would be below average. The 2-year at 1.5% against a window average of about 0.8 would be +2.0. But core CPI would be very high. Doesn't fit.\n\nTry 2005-06? Out of range. Try Oct 2018 with a different window: fed funds would be above average. I'll go with Q4 2016 to early 2017 as a loose compromise, but I'm uncertain. The 2-year rose sharply after the Nov 2016 election, and the 10-year fell over the 3 months to Jan 2017, but not by much. Fed funds at 0.66 versus the window average of about 0.2 would be above average. Still uncertain.\n\nI'll guess Feb 2018.\n\n{\"year\":2018,\"month\":2,\"confidence\":0.15,\"cues\":[\"2-year yield high and rising\",\"industrial production strong\",\"unemployment low, credit spreads tight, weak dollar\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1213,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +2.0 | +1.5 | +2.0\nNational activity index, 3m avg | +1.5 | -0.5 | +1.5\nUnemployment rate | -2.0 | +0.5 | -1.0\nPayrolls, avg monthly change over 3m | +1.5 | +0.0 | +1.0\nHeadline CPI | +0.0 | +0.5 | +0.0\nCore CPI | -0.5 | +0.0 | +0.0\nPolicy rate (fed funds) | -0.5 | +0.0 | +0.5\n2-year Treasury yield | +2.0 | +1.5 | +1.0\n10-year Treasury yield | +0.5 | -0.5 | -0.5\n10y minus 2y Treasury spread | +0.0 | -0.5 | -0.5\nEquity implied volatility (VIX) | -1.0 | +0.5 | -0.5\nBaa corporate minus 10y Treasury spread | -1.5 | +0.5 | -0.5\nBroad trade-weighted dollar | -1.0 | +0.0 | -1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +0.0 | +0.0 | +1.0 | -1.0 | +1.0\nDeveloped ex-US equity | +0.0 | -0.5 | +0.0 | +0.5 | -1.0 | +0.5\nEmerging-market equity | +0.5 | +0.5 | +1.5 | +2.0 | -1.0 | +1.0\nUS Treasuries 7-10y | +1.0 | +0.5 | +0.0 | +0.5 | -1.0 | +1.0\nUS Treasuries 20y+ | +1.0 | +0.5 | +0.5 | +0.5 | -1.0 | +1.5\nUS investment-grade credit | +1.0 | +0.0 | +0.0 | +1.0 | -1.0 | +1.0\nGold | +0.0 | +0.5 | +0.0 | -0.5 | -1.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

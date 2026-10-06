@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:45:25+00:00",
+ "decision_date": "2015-04-30",
+ "key": "acbb8a0cbf35216836ec1cc6cdf2e39801489be7167a295cfe5722a43926cd8e",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmdtKKUYj5Up665fXWgp",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot shows a strong dollar (+2.0), a 2-year yield well above its 3-year average, a policy rate only slightly above average, very low headline CPI (-2.5), core CPI moderately low, and low unemployment. That points to a period when rates are rising but headline inflation is falling relative to a high-inflation period.\n\nThe 36-month window matters. Headline CPI at -2.5 means it is very low versus the prior three years, which would include the 2022 inflation spike. So the date is probably mid-2023 to 2025. The dollar at +2.0 suggests 2025 or late 2024. The policy rate at +0.5 with a 3m change of +1.5 would be a rising rate, and a rising rate against a 3-year window fits 2022 to 2023 (pre-2022 lows, though), whereas by 2025 the rate would be around the average.\n\nAlternatively, consider 2018: the window of 2015 to 2018 has rising rates, the dollar strong, and a 2y yield at +1.5. Headline CPI at -2.5 doesn't fit 2018, though. Consider late 2016 instead: the dollar was strong, 2y yields rose, and the 10y rose (3m +1.0 after the election). The 10y 12m change was -1.0 (from the late 2015 level) and the 10y-2y spread 12m change was -1.0. But headline CPI of -2.5 doesn't fit 2016, and industrial production weakness (-1.0) with a 3m change of -2.5 does not either.\n\nConsider 2015 instead: the dollar was strong, but the policy rate was not rising then.\n\nConsider late 2023: the window of late 2020 to 2023 has a low policy rate early on, so the policy rate would be high (+1.5), not +0.5. Late 2024 to early 2025: headline CPI in the window 2022 to 2025 includes the 2022 spike, so low headline CPI is plausible. The dollar is strong in January 2025. The 10y 3m change is +1.0 (rising after the Fed cut in September 2024), the 2y up +1.0, and the 10y-2y spread up. The policy rate 3m change of +1.5 wouldn't fit, though, since the Fed cut. The z-scores may be distorted by the window, though. Equity 12m at -1.0 doesn't fit early 2025 either.\n\nConsider 2022 instead: the dollar was strong, but headline CPI would be high.\n\nConsider 2019 or 2020 instead: it doesn't fit.\n\nConsider late 2018 or early 2019 more carefully: the window of 2016 to 2018 has headline CPI that isn't extremely low.\n\nConsider 2010 or 2011: the dollar wasn't strong then.\n\nConsider 2007: the data begins in 2007, but the 36-month window would need earlier data.\n\nConsider mid-2025 to 2026: the 36-month window of mid-2022 to 2025 gives low headline CPI (-2.5), but the dollar was weak in 2025, which doesn't fit.\n\nConsider October 2023: the 10y rose, the 2y rose, and the dollar was strong, but the policy rate would be high.\n\nConsider April 2024 as a fit: the 3m change in the 10y is +1.0, the 2y +1.0, the dollar strong, and core CPI up. Headline CPI was still elevated in 2022 data (window of 2021 to 2024), so it can't be -2.5, though.\n\nConsider late 2024 again: the dollar rose in Q4 2024, the 10y rose sharply, and the VIX was low. I'll go with December 2024 or January 2025.\n\n{\"year\":2025,\"month\":1,\"confidence\":0.2,\"cues\":[\"Strong dollar (+2.0) with 2y and 10y yields rising over 3m\",\"Headline CPI very low versus a window containing the 2022 spike\",\"Low VIX and soft industrial production\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1285,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.0 | -2.5 | -1.0\nNational activity index, 3m avg | -1.0 | -2.0 | -1.5\nUnemployment rate | -1.5 | +0.5 | -0.5\nPayrolls, avg monthly change over 3m | +0.0 | -2.0 | +0.0\nHeadline CPI | -2.5 | -0.5 | -1.0\nCore CPI | -0.5 | +1.0 | +0.5\nPolicy rate (fed funds) | +0.5 | +1.5 | +0.5\n2-year Treasury yield | +1.5 | +1.0 | +0.5\n10-year Treasury yield | -0.5 | +1.0 | -1.0\n10y minus 2y Treasury spread | -1.0 | +1.0 | -1.0\nEquity implied volatility (VIX) | -0.5 | -2.0 | +0.5\nBaa corporate minus 10y Treasury spread | +0.0 | +0.0 | +1.5\nBroad trade-weighted dollar | +2.0 | +0.5 | +1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | +0.0 | -0.5 | -1.0 | +0.5 | +0.0\nDeveloped ex-US equity | +0.5 | +1.0 | +0.0 | -1.0 | +0.0 | +0.5\nEmerging-market equity | +1.5 | +1.0 | +0.5 | +0.5 | +0.0 | +0.5\nUS Treasuries 7-10y | -0.5 | -1.0 | +0.5 | +0.5 | +1.0 | +0.0\nUS Treasuries 20y+ | -1.0 | -1.5 | +0.5 | +0.5 | +1.0 | -0.5\nUS investment-grade credit | -1.0 | -1.0 | -0.5 | +0.0 | +1.0 | -0.5\nGold | +0.0 | -0.5 | +0.0 | +0.0 | +0.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

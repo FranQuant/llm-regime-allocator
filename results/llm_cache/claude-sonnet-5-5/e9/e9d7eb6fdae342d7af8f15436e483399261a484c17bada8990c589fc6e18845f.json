@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:48:53+00:00",
+ "decision_date": "2023-04-28",
+ "key": "e9d7eb6fdae342d7af8f15436e483399261a484c17bada8990c589fc6e18845f",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfme9pQ8MzZubWKSTqrP4",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The policy rate is high (+2 versus its 3-year average) and up +2 over 12 months, while the 3-month change is flat. That points to a plateau after hikes. The 10y-2y spread is inverted. Headline CPI is down sharply over 3 and 12 months. Core CPI is still elevated. The VIX is low.\n\nThis could be late 2023 or mid-2024. Another candidate is 2007, but the 36-month window rules that out as a hiking-plateau case with a 12-month rise of +2, since the rate rose in 2005-06 and was flat by mid-2006 through 2007.\n\nChecking 2023-2024:\n- The policy rate rose over the 12 months to mid-2023 and was flat afterward. By Dec 2023 the 12-month change was +1 (from 4.25 to 5.33). By Aug 2023 it was about +1.\n- Headline CPI fell 2 over 12 months, which fits a late-2023 reading. CPI was 3.1% in Nov 2023 versus 7.1% in Nov 2022.\n- The 2-year yield 3-month change of -1 and the 10-year change of -0.5 fit Nov-Dec 2023, when yields fell sharply.\n- Treasury 1-month returns of +1 and 6-month returns of +1.5 fit Dec 2023. The 6-month Treasury return would be weak in Oct 2023, but a rally from Nov 2023 would lift it.\n- Gold 6-month return of +1.5 is plausible.\n- Developed ex-US 6-month return of +1.5 fits.\n- US large-cap 12-month return of -0.5 does not fit Dec 2023, when the S&P was up 26%. Relative to a 36-month window that includes 2021, though, the z-score could still be modest.\n- The unemployment rate z of -1 fits.\n\nDec 2023 looks like the best fit, but the 12-month US equity z of -0.5 is odd. Nov 2023 is an alternative, with a 1-month equity return of about +9% that would be much higher than +0.5. Dec 2023 had a large-cap return of about +4.5%, which fits +0.5. The Baa spread 3-month change of +1 doesn't fit well, but I'll go with Dec 2023.\n\n{\"year\": 2023, \"month\": 12, \"confidence\": 0.5, \"cues\": [\"Fed funds high and flat over 3m after hikes, inverted 10y-2y spread\", \"Headline CPI down sharply over 12m while core stays elevated\", \"Treasuries rallied over 1m and 6m, with 2y yield down over 3m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 863,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.0 | +0.0 | -0.5\nNational activity index, 3m avg | +0.0 | +0.0 | +0.0\nUnemployment rate | -1.0 | +0.0 | +0.0\nPayrolls, avg monthly change over 3m | +0.0 | +0.0 | +0.0\nHeadline CPI | +0.0 | -1.5 | -2.0\nCore CPI | +1.0 | -0.5 | -1.0\nPolicy rate (fed funds) | +2.0 | +0.0 | +2.0\n2-year Treasury yield | +1.5 | -1.0 | +0.5\n10-year Treasury yield | +1.5 | -0.5 | +0.0\n10y minus 2y Treasury spread | -1.5 | +0.5 | -0.5\nEquity implied volatility (VIX) | -1.0 | +0.0 | -1.5\nBaa corporate minus 10y Treasury spread | -0.5 | +1.0 | +0.0\nBroad trade-weighted dollar | -0.5 | -0.5 | -1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +0.0 | +0.0 | -0.5 | -0.5 | +1.0\nDeveloped ex-US equity | +1.0 | +0.0 | +1.5 | +0.5 | -0.5 | +1.0\nEmerging-market equity | +0.0 | -1.0 | +1.0 | -0.5 | -0.5 | +0.5\nUS Treasuries 7-10y | +1.0 | +0.5 | +1.5 | +0.0 | +1.0 | +0.5\nUS Treasuries 20y+ | +1.0 | +0.5 | +1.5 | +0.0 | +0.5 | +0.5\nUS investment-grade credit | +0.5 | +0.0 | +1.5 | +0.0 | +0.0 | +1.0\nGold | +0.0 | +0.0 | +1.5 | +0.0 | +0.0 | +1.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: positive (z +0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}
