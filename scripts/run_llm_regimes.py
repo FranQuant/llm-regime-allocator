@@ -6,6 +6,7 @@ Examples
   python scripts/run_llm_regimes.py --model claude_sonnet --start 2008-01 --end 2008-12   # pilot
   python scripts/run_llm_regimes.py --model gpt --runs 3
   python scripts/run_llm_regimes.py --model gpt --replay-only          # no key, cache only
+  python scripts/run_llm_regimes.py --model claude_sonnet --variant date_probe   # date-recovery probe
 
 Inputs: results/baselines/features.csv (point-in-time context pack, Phase 2).
 Outputs: results/llm/<model>/<variant>_run<k>.csv, diagnostics JSON, results/llm_cache/manifest.csv.
@@ -21,6 +22,7 @@ import pandas as pd
 from lra.config import REPO_ROOT, load_config
 from lra.llm.cache import ResponseCache
 from lra.llm.clients import make_client
+from lra.llm.probe import PROBE_SYSTEM, VARIANT as PROBE, build_probe_prompt, date_probe
 from lra.llm.prompts import SYSTEM, VARIANTS, build_user_prompt
 from lra.llm.runner import classify
 
@@ -31,7 +33,7 @@ OUT = REPO_ROOT / "results" / "llm"
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True, help="key in configs/llm.toml [models]")
-    ap.add_argument("--variant", default="anonymized", choices=VARIANTS)
+    ap.add_argument("--variant", default="anonymized", choices=(*VARIANTS, PROBE))
     ap.add_argument("--runs", type=int, default=1, help="independent repeat runs (run ids 0..runs-1)")
     ap.add_argument("--start", help="first decision month, e.g. 2008-01")
     ap.add_argument("--end", help="last decision month, e.g. 2008-12")
@@ -57,9 +59,12 @@ def main() -> None:
 
     if args.show_prompt:
         d = feats.index[feats.index <= pd.Timestamp(args.show_prompt)][-1]
-        user = build_user_prompt(feats.loc[d], d, args.variant)
-        print("=== SYSTEM ===\n" + SYSTEM + "\n\n=== USER ===\n" + user)
-        print(f"\n~{(len(SYSTEM) + len(user)) // 4} input tokens (rough)")
+        if args.variant == PROBE:
+            system, user = PROBE_SYSTEM, build_probe_prompt(feats.loc[d])
+        else:
+            system, user = SYSTEM, build_user_prompt(feats.loc[d], d, args.variant)
+        print("=== SYSTEM ===\n" + system + "\n\n=== USER ===\n" + user)
+        print(f"\n~{(len(system) + len(user)) // 4} input tokens (rough)")
         return
 
     client = make_client(args.model, cfg)
@@ -67,9 +72,12 @@ def main() -> None:
     out_dir = OUT / args.model
     out_dir.mkdir(parents=True, exist_ok=True)
     for run in range(args.runs):
-        probs, diag = classify(feats, dates, client=client, cache=cache, variant=args.variant, run=run,
-                               max_retries=cfg["defaults"]["max_retries"], replay_only=args.replay_only,
-                               progress=not args.replay_only)
+        kw = dict(client=client, cache=cache, run=run, max_retries=cfg["defaults"]["max_retries"],
+                  replay_only=args.replay_only, progress=not args.replay_only)
+        if args.variant == PROBE:
+            probs, diag = date_probe(feats, dates, **kw)
+        else:
+            probs, diag = classify(feats, dates, variant=args.variant, **kw)
         stem = f"{args.variant}_run{run}"
         if args.start or args.end:
             stem += f"_{dates[0]:%Y%m}-{dates[-1]:%Y%m}"

@@ -1,8 +1,11 @@
-"""Run (or replay) the LLM regime classifier over decision dates.
+"""Run (or replay) cached LLM tasks over decision dates.
+
+`run_task` is the shared loop (cache, retries, audit metadata, diagnostics); `classify`
+(regime probabilities) and `lra.llm.probe.date_probe` (date recovery) are thin wrappers.
 
 replay_only=True never touches a client: every call must already be in the cache,
 otherwise it is recorded as a cache miss. Failures never crash a run; they are
-counted in the diagnostics and the date gets NaN probabilities.
+counted in the diagnostics and the date gets NaN outputs.
 """
 
 from __future__ import annotations
@@ -10,6 +13,7 @@ from __future__ import annotations
 import sys
 import time
 from dataclasses import dataclass, field
+from typing import Callable
 
 import numpy as np
 import pandas as pd
@@ -33,6 +37,87 @@ class Diagnostics:
         return {**self.__dict__, "dates_failed": [str(pd.Timestamp(d).date()) for d in self.dates_failed]}
 
 
+def run_task(
+    dates,
+    *,
+    client: LLMClient,
+    cache: ResponseCache,
+    system: str,
+    user_for: Callable[[pd.Timestamp], str],
+    parse: Callable[[str], dict],
+    nan_row: dict,
+    label: Callable[[dict], str],
+    meta: dict,
+    run: int = 0,
+    max_retries: int = 2,
+    replay_only: bool = False,
+    progress: bool = False,
+) -> tuple[pd.DataFrame, Diagnostics]:
+    """parse(text) -> row dict or raises ParseError. meta is stored with every cached record."""
+    diag = Diagnostics()
+    rows = {}
+    t0 = time.time()
+    dates = list(dates)
+    for i, d in enumerate(dates, 1):
+        d = pd.Timestamp(d)
+        user = user_for(d)
+        row = None
+        for attempt in range(max_retries + 1):
+            key = cache_key(client.provider, client.model, client.params, system, user, run, attempt)
+            rec = cache.get(client.model, key)
+            if rec is None:
+                if replay_only:
+                    diag.cache_misses += 1
+                    break
+                diag.calls += 1
+                try:
+                    resp = client.complete(system, user)
+                except Exception as exc:  # network, auth, rate limit...
+                    diag.client_failures += 1
+                    rec = {"error": f"{type(exc).__name__}: {exc}"}
+                else:
+                    rec = {"text": resp.text, "model_returned": resp.model_returned,
+                           "response_id": resp.response_id, "usage": resp.usage}
+                rec |= {"provider": client.provider, "model": client.model, "params": client.params,
+                        "system": system, "user": user, **meta, "run": run, "attempt": attempt,
+                        "decision_date": str(d.date()), "prompt_version": PROMPT_VERSION}
+                try:
+                    out = parse(rec["text"]) if "text" in rec else None
+                except ParseError as exc:
+                    out, rec["parse_error"] = None, str(exc)
+                rec["parse_ok"] = out is not None
+                if "error" not in rec:          # never cache transient client errors
+                    cache.put(client.model, key, rec)
+            else:
+                diag.cache_hits += 1
+                try:
+                    out = parse(rec["text"]) if "text" in rec else None
+                except ParseError:
+                    out = None
+            if out is not None:
+                row = {**out, "attempts": attempt + 1,
+                       "response_id": rec.get("response_id"), "model_returned": rec.get("model_returned")}
+                break
+            if "text" in rec:
+                diag.parse_failures += 1
+        if row is None:
+            diag.dates_failed.append(d)
+            row = {**nan_row, "attempts": np.nan, "response_id": None, "model_returned": None}
+        rows[d] = row
+        if progress:
+            top = label(row) if row["attempts"] == row["attempts"] else "FAILED"
+            print(f"[{i}/{len(dates)}] {d.date()} {top:<11} calls={diag.calls} hits={diag.cache_hits} "
+                  f"fail={len(diag.dates_failed)} {time.time() - t0:,.0f}s", file=sys.stderr, flush=True)
+    out = pd.DataFrame(rows).T
+    out.index.name = "date"
+    return out, diag
+
+
+def _parse_regimes(text: str) -> dict:
+    call = parse_regime_call(text)
+    return {**call.probabilities, "confidence": call.confidence}
+
+
 def classify(
     features: pd.DataFrame,
     dates,
@@ -46,62 +131,14 @@ def classify(
     progress: bool = False,
 ) -> tuple[pd.DataFrame, Diagnostics]:
     """Rows = decision dates; columns = REGIMES + confidence + attempts + response metadata."""
-    diag = Diagnostics()
-    rows = {}
-    t0 = time.time()
-    dates = list(dates)
-    for i, d in enumerate(dates, 1):
-        d = pd.Timestamp(d)
-        user = build_user_prompt(features.loc[d], d, variant)
-        row = None
-        for attempt in range(max_retries + 1):
-            key = cache_key(client.provider, client.model, client.params, SYSTEM, user, run, attempt)
-            rec = cache.get(client.model, key)
-            if rec is None:
-                if replay_only:
-                    diag.cache_misses += 1
-                    break
-                diag.calls += 1
-                try:
-                    resp = client.complete(SYSTEM, user)
-                except Exception as exc:  # network, auth, rate limit...
-                    diag.client_failures += 1
-                    rec = {"error": f"{type(exc).__name__}: {exc}"}
-                else:
-                    rec = {"text": resp.text, "model_returned": resp.model_returned,
-                           "response_id": resp.response_id, "usage": resp.usage}
-                rec |= {"provider": client.provider, "model": client.model, "params": client.params,
-                        "system": SYSTEM, "user": user, "variant": variant, "run": run, "attempt": attempt,
-                        "decision_date": str(d.date()), "prompt_version": PROMPT_VERSION}
-                try:
-                    call = parse_regime_call(rec["text"]) if "text" in rec else None
-                except ParseError as exc:
-                    call, rec["parse_error"] = None, str(exc)
-                rec["parse_ok"] = call is not None
-                if "error" not in rec:          # never cache transient client errors
-                    cache.put(client.model, key, rec)
-            else:
-                diag.cache_hits += 1
-                try:
-                    call = parse_regime_call(rec["text"]) if "text" in rec else None
-                except ParseError:
-                    call = None
-            if call is not None:
-                row = {**call.probabilities, "confidence": call.confidence, "attempts": attempt + 1,
-                       "response_id": rec.get("response_id"), "model_returned": rec.get("model_returned")}
-                break
-            if "text" in rec:
-                diag.parse_failures += 1
-        if row is None:
-            diag.dates_failed.append(d)
-            row = {**{k: np.nan for k in REGIMES}, "confidence": np.nan, "attempts": np.nan,
-                   "response_id": None, "model_returned": None}
-        rows[d] = row
-        if progress:
-            top = max(REGIMES, key=lambda k: row[k]) if row["attempts"] == row["attempts"] else "FAILED"
-            print(f"[{i}/{len(dates)}] {d.date()} {top:<11} calls={diag.calls} hits={diag.cache_hits} "
-                  f"fail={len(diag.dates_failed)} {time.time() - t0:,.0f}s", file=sys.stderr, flush=True)
-    out = pd.DataFrame(rows).T
-    out[list(REGIMES) + ["confidence", "attempts"]] = out[list(REGIMES) + ["confidence", "attempts"]].astype(float)
-    out.index.name = "date"
+    out, diag = run_task(
+        dates, client=client, cache=cache, system=SYSTEM,
+        user_for=lambda d: build_user_prompt(features.loc[d], d, variant),
+        parse=_parse_regimes,
+        nan_row={**{k: np.nan for k in REGIMES}, "confidence": np.nan},
+        label=lambda r: max(REGIMES, key=lambda k: r[k]),
+        meta={"variant": variant}, run=run, max_retries=max_retries,
+        replay_only=replay_only, progress=progress)
+    num = list(REGIMES) + ["confidence", "attempts"]
+    out[num] = out[num].astype(float)
     return out, diag

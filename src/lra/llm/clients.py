@@ -112,6 +112,10 @@ class MockClient:
         if self.fail_every and self.calls % self.fail_every == 0:
             return LLMResponse("not json", self.model, f"mock-{self.calls}")
         h = hashlib.sha256((system + "\n" + user).encode()).digest()
+        if '"year"' in system:  # date-recovery probe
+            body = {"year": 2007 + h[0] % 20, "month": 1 + h[1] % 12, "confidence": round(h[2] / 255, 3),
+                    "cues": ["mock cue"]}
+            return LLMResponse(json.dumps(body), self.model, "mock-" + h.hex()[:12], {"input_tokens": len(user) // 4})
         raw = [b + 1 for b in h[:4]]
         p = [round(x / sum(raw), 4) for x in raw]
         p[-1] = round(1 - sum(p[:-1]), 4)
