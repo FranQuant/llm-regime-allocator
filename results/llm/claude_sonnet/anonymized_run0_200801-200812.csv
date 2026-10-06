@@ -1,0 +1,13 @@
+date,Goldilocks,Reflation,Stagflation,Risk_Off,confidence,attempts,response_id,model_returned
+2008-01-31,0.0400,0.0600,0.4000,0.5000,0.5000,1.0000,msg_011CfmN275t93rzu6UtETequ,claude-sonnet-5-5
+2008-02-29,0.0400,0.1400,0.4400,0.3800,0.5000,1.0000,msg_011CfmN2PXLqZxk9VPyyRopG,claude-sonnet-5-5
+2008-03-31,0.0500,0.1000,0.2500,0.6000,0.6500,1.0000,msg_011CfmN2gkSAsfs5kuJRV1Xg,claude-sonnet-5-5
+2008-04-30,0.1200,0.1400,0.3400,0.4000,0.4000,1.0000,msg_011CfmN2xhdwjVpeqy1Vo283,claude-sonnet-5-5
+2008-05-30,0.1700,0.1300,0.3100,0.3900,0.3000,1.0000,msg_011CfmN3W2J7xmxjxx4Sut79,claude-sonnet-5-5
+2008-06-30,0.0700,0.0800,0.4200,0.4300,0.4000,1.0000,msg_011CfmN44j4FZuG8jDQPofJr,claude-sonnet-5-5
+2008-07-31,0.0300,0.0700,0.5500,0.3500,0.6000,1.0000,msg_011CfmN4nfBoi18xNGDkFwc1,claude-sonnet-5-5
+2008-08-29,0.0500,0.0700,0.4300,0.4500,0.4000,1.0000,msg_011CfmN57t5rHcRoov1TniA6,claude-sonnet-5-5
+2008-09-30,0.0300,0.0600,0.3100,0.6000,0.6500,1.0000,msg_011CfmMTfydKeDUBiHjJ2apq,claude-sonnet-5-5
+2008-10-31,0.0300,0.0400,0.2000,0.7300,0.7000,1.0000,msg_011CfmN5QkMZMZyjDJjcSyzA,claude-sonnet-5-5
+2008-11-28,0.0700,0.0500,0.1000,0.7800,0.8000,1.0000,msg_011CfmN5gUPufLZCgPBAMWWy,claude-sonnet-5-5
+2008-12-31,0.1200,0.0800,0.0500,0.7500,0.7000,1.0000,msg_011CfmN5x8jw4bg6oTmPwnS1,claude-sonnet-5-5

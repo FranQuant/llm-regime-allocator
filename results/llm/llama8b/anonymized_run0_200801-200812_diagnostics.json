@@ -1,0 +1,13 @@
+{
+ "calls": 11,
+ "cache_hits": 1,
+ "cache_misses": 0,
+ "client_failures": 0,
+ "parse_failures": 0,
+ "dates_failed": [],
+ "model": "llama8b",
+ "model_id": "llama3.1:8b",
+ "variant": "anonymized",
+ "run": 0,
+ "n_dates": 12
+}
