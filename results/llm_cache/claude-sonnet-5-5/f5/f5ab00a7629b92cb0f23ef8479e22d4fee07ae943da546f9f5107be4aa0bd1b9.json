@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:20:01+00:00",
+ "decision_date": "2018-02-28",
+ "key": "f5ab00a7629b92cb0f23ef8479e22d4fee07ae943da546f9f5107be4aa0bd1b9",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbxSv1iNXwFSUZsjftc",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like February 2018. The fed funds rate is about 1.42%, the 10-year yield is 2.90%, unemployment is 4.1%, and the VIX is 18.59 after a 1-month equity drop of 4.6% (the early-February 2018 selloff). The dollar is down 7% year over year, which also fits early 2018. Equities fell 4.6% in the month and the VIX rose 7.3 points over three months. February 2018 would fit better, since the S&P fell about 3.7% that month and the VIX closed near 19.8. January 2018 had equities up. A fed funds rate of 1.42% matches February 2018 (1.41%). So the month is February 2018.\n\n{\"year\":2018,\"month\":2,\"confidence\":0.9,\"cues\":[\"Fed funds 1.42%, 10y 2.90%, unemployment 4.1%\",\"US equities -4.6% in 1m with VIX up to 18.6, matching the Feb 2018 selloff\",\"Dollar down 7% YoY and core CPI 1.85%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 344,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.66 | +0.36 | +3.68 | +1.86\nNational activity index, 3m avg | index, 0 = trend growth | +0.17 | -0.21 | +0.12 | +1.10\nUnemployment rate | % | +4.10 | +0.00 | -0.70 | -1.62\nPayrolls, avg monthly change over 3m | thousands | +192.00 | +23.33 | -11.67 | -0.26\nHeadline CPI | YoY % | +2.14 | +0.10 | -0.40 | +1.02\nCore CPI | YoY % | +1.85 | +0.07 | -0.41 | -0.55\nPolicy rate (fed funds) | % | +1.42 | +0.35 | +0.85 | +2.06\n2-year Treasury yield | % | +2.27 | +0.49 | +1.05 | +2.66\n10-year Treasury yield | % | +2.90 | +0.48 | +0.54 | +2.30\n10y minus 2y Treasury spread | pp | +0.63 | -0.01 | -0.51 | -1.48\nEquity implied volatility (VIX) | index points | +18.59 | +7.31 | +5.67 | +0.98\nBaa corporate minus 10y Treasury spread | pp | +1.69 | -0.19 | -0.50 | -1.65\nBroad trade-weighted dollar | YoY % | -7.01 | -0.81 | -8.55 | -1.66\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -4.6% | +4.9% | +12.2% | +17.1% | +12.2% | -5.2%\nDeveloped ex-US equity | -5.8% | +1.6% | +6.4% | +19.6% | +11.6% | -6.6%\nEmerging-market equity | -6.4% | +3.7% | +8.9% | +28.9% | +17.5% | -7.8%\nUS Treasuries 7-10y | -1.1% | -3.5% | -4.4% | -1.5% | +4.0% | -5.3%\nUS Treasuries 20y+ | -3.0% | -5.6% | -5.5% | +0.0% | +10.0% | -7.2%\nUS investment-grade credit | -2.4% | -2.6% | -1.9% | +1.9% | +4.2% | -3.4%\nGold | -1.8% | +1.8% | +0.2% | +4.8% | +10.0% | -3.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.27\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

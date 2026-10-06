@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:21:32+00:00",
+ "decision_date": "2019-08-30",
+ "key": "e80d702d095f948e6147d2296db65df9da076e36f48a5e910a139ecb1bfd7a0a",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc5C5yWYvBmoR9bkuos",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like August 2019. The 10-year yield is 1.50%, the fed funds rate is 2.12% after the July cut, and the 2s10s spread is about -0.03. Long Treasuries returned +8.9% in the month, gold is up 5.4%, and unemployment is 3.7%. Core CPI at 2.21% and headline at 1.81% also fit 2019.\n\nThe equity returns fit August as well: large caps were down 0.8% in the month, and emerging markets were down 1.9%.\n\n{\"year\":2019,\"month\":8,\"confidence\":0.93,\"cues\":[\"10y yield 1.50% and 2s10s spread about -0.03 (inverted), fed funds 2.12% after the July cut\",\"20y+ Treasuries +8.9% in the month, gold +5.4%, a flight to safety\",\"Unemployment 3.7%, core CPI 2.2%, S&P -0.8% for the month\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 305,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.48 | -0.20 | -3.45 | -0.99\nNational activity index, 3m avg | index, 0 = trend growth | -0.14 | +0.36 | -0.24 | -0.93\nUnemployment rate | % | +3.70 | +0.10 | -0.20 | -1.11\nPayrolls, avg monthly change over 3m | thousands | +139.67 | -2.00 | -97.00 | -1.62\nHeadline CPI | YoY % | +1.81 | -0.19 | -1.13 | -0.63\nCore CPI | YoY % | +2.21 | +0.13 | -0.13 | +0.80\nPolicy rate (fed funds) | % | +2.12 | -0.28 | +0.21 | +0.84\n2-year Treasury yield | % | +1.53 | -0.42 | -1.09 | -0.58\n10-year Treasury yield | % | +1.50 | -0.64 | -1.36 | -2.47\n10y minus 2y Treasury spread | pp | -0.03 | -0.22 | -0.27 | -1.59\nEquity implied volatility (VIX) | index points | +17.88 | -0.83 | +5.02 | +0.96\nBaa corporate minus 10y Treasury spread | pp | +2.27 | -0.10 | +0.35 | +0.59\nBroad trade-weighted dollar | YoY % | +2.69 | -1.54 | -1.86 | +0.38\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.8% | +7.0% | +5.6% | +2.3% | +13.9% | -3.2%\nDeveloped ex-US equity | -1.6% | +1.3% | +0.3% | -4.8% | +11.9% | -5.2%\nEmerging-market equity | -1.9% | -1.4% | -4.8% | -6.8% | +16.7% | -9.2%\nUS Treasuries 7-10y | +2.8% | +4.8% | +10.8% | +14.0% | +5.0% | -0.2%\nUS Treasuries 20y+ | +8.9% | +11.6% | +24.4% | +24.9% | +11.1% | -0.4%\nUS investment-grade credit | +3.0% | +7.2% | +12.9% | +15.7% | +4.6% | -0.2%\nGold | +5.4% | +14.9% | +18.3% | +25.9% | +12.5% | -1.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.54\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

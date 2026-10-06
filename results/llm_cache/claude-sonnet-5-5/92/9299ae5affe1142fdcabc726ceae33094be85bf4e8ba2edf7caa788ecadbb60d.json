@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:15:40+00:00",
+ "decision_date": "2014-05-30",
+ "key": "9299ae5affe1142fdcabc726ceae33094be85bf4e8ba2edf7caa788ecadbb60d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbdBMbxyyGphTRM2xrH",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2014. Unemployment is 6.3%, which fits April-June 2014 (April 2014 was 6.3%). The fed funds rate is about 0.09%, and the 10-year yield is 2.45%, which fits May 2014, when the 10-year was around 2.45%. Headline CPI at 1.96% also fits April or May 2014 (CPI was 2.0% in April and 2.1% in May). Gold's 12-month change of -11.9% fits May 2014, since gold was about $1,250 against about $1,400 a year earlier. Equities were up 2.3% in the month, which matches May 2014 (S&P +2.4%). The 3-month average payroll gain of 237k fits April 2014, when the 3-month average was about 240k, so the data might be as of May with the April jobs report. The unemployment rate was 6.3% in both April and May, and the 3-month change of -0.3 puts the earlier value at 6.6% in February, which fits.\n\nMay 2014 is the best match.\n\n{\"year\":2014,\"month\":5,\"confidence\":0.85,\"cues\":[\"Unemployment 6.3% with fed funds near 0.09%\",\"10-year yield 2.45% after a rally, with gold down 12% over 12 months\",\"VIX 11.6 and equities at highs, fitting mid-2014\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 436,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.46 | +0.47 | +0.86 | +0.34\nNational activity index, 3m avg | index, 0 = trend growth | +0.20 | +0.30 | +0.24 | +1.32\nUnemployment rate | % | +6.30 | -0.30 | -1.20 | -2.02\nPayrolls, avg monthly change over 3m | thousands | +237.67 | +70.33 | +29.67 | +1.31\nHeadline CPI | YoY % | +1.96 | +0.40 | +0.86 | -0.20\nCore CPI | YoY % | +1.83 | +0.21 | +0.10 | -0.32\nPolicy rate (fed funds) | % | +0.09 | +0.03 | +0.00 | -0.22\n2-year Treasury yield | % | +0.37 | +0.04 | +0.07 | +1.08\n10-year Treasury yield | % | +2.45 | -0.21 | +0.29 | +0.54\n10y minus 2y Treasury spread | pp | +2.08 | -0.25 | +0.22 | +0.43\nEquity implied volatility (VIX) | index points | +11.57 | -2.43 | -4.73 | -1.07\nBaa corporate minus 10y Treasury spread | pp | +2.24 | -0.11 | -0.55 | -1.79\nBroad trade-weighted dollar | YoY % | +0.10 | -2.16 | +1.24 | -0.30\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.3% | +3.9% | +7.7% | +18.5% | +11.0% | +0.0%\nDeveloped ex-US equity | +1.6% | +2.8% | +6.2% | +16.6% | +12.5% | +0.0%\nEmerging-market equity | +3.0% | +7.8% | +3.1% | +3.7% | +17.8% | -1.7%\nUS Treasuries 7-10y | +1.8% | +2.0% | +3.0% | +0.3% | +5.0% | -0.2%\nUS Treasuries 20y+ | +2.9% | +5.9% | +10.9% | +2.5% | +9.8% | -0.6%\nUS investment-grade credit | +1.5% | +2.8% | +6.1% | +4.8% | +4.1% | -0.3%\nGold | -3.1% | -5.6% | +0.5% | -11.9% | +14.9% | -11.9%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.44\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

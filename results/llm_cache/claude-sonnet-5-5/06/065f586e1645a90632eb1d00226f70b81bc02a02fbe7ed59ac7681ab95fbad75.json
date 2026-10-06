@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:26:37+00:00",
+ "decision_date": "2024-05-31",
+ "key": "065f586e1645a90632eb1d00226f70b81bc02a02fbe7ed59ac7681ab95fbad75",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcTRXjB8qZnNUmYdmet",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The fed funds rate is 5.33%, so the Fed is still on hold at its peak, which puts this in 2023-2024. Unemployment is 3.9%, and the 10-year yield is 4.55%. Core CPI at 3.62% year over year fits roughly March-April 2024, and headline CPI at 3.36% fits May 2024 (CPI was 3.3% in May 2024 and 3.4% in April 2024).\n\nThe 3-month change in the 10-year yield is +0.30, and the 12-month change is +0.91. At the end of May 2023 the 10-year was about 3.6%, so a year later it would be about 4.5%. That fits end of May 2024, when the 10-year was about 4.5%. The 2-year at 4.9% is slightly high for end of May (about 4.89%), which also fits.\n\nThe 1-month equity return of +5.4% fits May 2024 (S&P up about 5%). Treasuries were up 1.4% in the month, which fits May. Unemployment at 3.9% matches May 2024 (it was 4.0% in May and 3.9% in April), but the data are published with a lag. The 3-month change in unemployment of +0.20 is consistent with that. Gold up 11.6% over 3 months fits too, since it rallied in March-April 2024.\n\nCore CPI of 3.62% matches the April 2024 reading (3.6%), and headline CPI of 3.36% matches April (3.4%). The data therefore describe the end of May 2024, when the latest published CPI was still April's.\n\n{\"year\":2024,\"month\":5,\"confidence\":0.85,\"cues\":[\"Fed funds 5.33% with core CPI 3.6% and headline 3.4%, matching the April 2024 CPI release\",\"10y at 4.55% and 2y at 4.92%, with equities +5.4% in the month\",\"Gold +11.6% over 3m and unemployment 3.9%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 627,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.38 | +0.35 | -0.72 | -0.91\nNational activity index, 3m avg | index, 0 = trend growth | +0.01 | +0.25 | +0.25 | -0.12\nUnemployment rate | % | +3.90 | +0.20 | +0.50 | -0.06\nPayrolls, avg monthly change over 3m | thousands | +242.00 | -0.67 | +5.00 | -0.86\nHeadline CPI | YoY % | +3.36 | +0.25 | -1.58 | -1.17\nCore CPI | YoY % | +3.62 | -0.26 | -1.90 | -1.47\nPolicy rate (fed funds) | % | +5.33 | +0.00 | +0.25 | +1.00\n2-year Treasury yield | % | +4.92 | +0.28 | +0.52 | +0.94\n10-year Treasury yield | % | +4.55 | +0.30 | +0.91 | +1.19\n10y minus 2y Treasury spread | pp | -0.37 | +0.02 | +0.39 | -0.43\nEquity implied volatility (VIX) | index points | +14.47 | +1.07 | -3.47 | -0.91\nBaa corporate minus 10y Treasury spread | pp | +1.46 | -0.09 | -0.70 | -1.81\nBroad trade-weighted dollar | YoY % | +0.72 | +0.61 | -1.89 | -0.29\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +5.4% | +3.2% | +16.8% | +28.0% | +11.0% | -0.8%\nDeveloped ex-US equity | +5.3% | +4.1% | +13.4% | +18.4% | +11.1% | -0.8%\nEmerging-market equity | +1.9% | +3.2% | +7.9% | +12.4% | +13.5% | -4.6%\nUS Treasuries 7-10y | +1.4% | -1.1% | +0.5% | -2.3% | +7.3% | -3.3%\nUS Treasuries 20y+ | +2.1% | -3.6% | -0.4% | -8.8% | +14.8% | -9.6%\nUS investment-grade credit | +1.8% | -0.2% | +2.3% | +3.7% | +7.8% | -2.6%\nGold | +0.7% | +11.6% | +13.6% | +18.1% | +14.1% | -4.1%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.23\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

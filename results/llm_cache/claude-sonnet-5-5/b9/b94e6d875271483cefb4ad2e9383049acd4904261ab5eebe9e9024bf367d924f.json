@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:25:12+00:00",
+ "decision_date": "2023-02-28",
+ "key": "b94e6d875271483cefb4ad2e9383049acd4904261ab5eebe9e9024bf367d924f",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcMPrc8jqJs8w8gL2ea",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like February 2023. The unemployment rate of 3.4% matches January 2023 data, published in early February. The fed funds rate at 4.57% fits February 2023, and the 2-year yield at 4.78% fits the end of February. CPI at 6.35% YoY matches the January 2023 print of 6.4%, and core at 5.55% is close to the 5.6% published. Equity down 2.3% in the month fits February 2023, when the S&P fell about 2.4%. Gold down 5.3% also fits February, and emerging-market equity down 9.6% fits as well. The 10-year yield at 3.92% matches the end of February 2023.\n\n{\"year\": 2023, \"month\": 2, \"confidence\": 0.93, \"cues\": [\"Unemployment 3.4% with fed funds 4.57% and 2y yield 4.78%\", \"CPI 6.35% / core 5.55% YoY, disinflating from 2022 peak\", \"Feb 2023 selloff: equities -2.3%, gold -5.3%, EM -9.6%, Treasuries down\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 355,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.79 | -2.40 | -2.11 | +0.00\nNational activity index, 3m avg | index, 0 = trend growth | -0.26 | -0.32 | -0.61 | -0.12\nUnemployment rate | % | +3.40 | -0.30 | -0.60 | -0.82\nPayrolls, avg monthly change over 3m | thousands | +355.67 | +13.67 | -160.00 | +0.14\nHeadline CPI | YoY % | +6.35 | -1.42 | -1.25 | +0.53\nCore CPI | YoY % | +5.55 | -0.75 | -0.52 | +0.81\nPolicy rate (fed funds) | % | +4.57 | +0.74 | +4.49 | +2.47\n2-year Treasury yield | % | +4.78 | +0.40 | +3.34 | +2.01\n10-year Treasury yield | % | +3.92 | +0.24 | +2.09 | +1.80\n10y minus 2y Treasury spread | pp | -0.86 | -0.16 | -1.25 | -2.02\nEquity implied volatility (VIX) | index points | +20.95 | +0.37 | -9.20 | -0.56\nBaa corporate minus 10y Treasury spread | pp | +1.87 | -0.28 | -0.47 | -0.83\nBroad trade-weighted dollar | YoY % | +5.50 | -0.74 | +3.32 | +0.71\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.3% | -1.1% | -1.4% | -8.0% | +22.4% | -13.0%\nDeveloped ex-US equity | -3.1% | +4.5% | +11.0% | -4.7% | +21.1% | -5.3%\nEmerging-market equity | -9.6% | +2.8% | -3.0% | -17.3% | +21.6% | -16.2%\nUS Treasuries 7-10y | -3.1% | -0.8% | -5.0% | -11.9% | +10.5% | -13.7%\nUS Treasuries 20y+ | -4.4% | -0.4% | -9.2% | -23.8% | +20.9% | -26.3%\nUS investment-grade credit | -3.8% | -0.8% | -2.9% | -11.4% | +12.8% | -12.6%\nGold | -5.3% | +4.0% | +5.0% | -3.8% | +15.7% | -11.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.41\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

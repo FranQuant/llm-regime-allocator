@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:23:09+00:00",
+ "decision_date": "2021-01-29",
+ "key": "3f2abd222b51adbfa5d5c1886e02887c46b54402dfae11276319e94766d9a16d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcCKHGYqQfpAbycP25c",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like January 2021. Unemployment is 6.7% (December 2020), the fed funds rate is 0.07%, the 10-year yield is 1.07% and the 2-year is 0.12%. The VIX is at 30, which fits late January 2021 (the GameStop episode). US large-cap equity returned -0.4% over the month, also consistent with January 2021. Long Treasuries fell 3.3% over the month, consistent with rising yields. The 3-month average payroll change of +283k is also consistent with the volatile post-COVID readings.\n\nCPI at 1.29% year over year matches December 2020 (1.4%) or thereabouts. Industrial production at -3.58% year over year matches December 2020. Gold is down 2.1% over the month, which also matches January 2021.\n\n{\"year\": 2021, \"month\": 1, \"confidence\": 0.9, \"cues\": [\"Unemployment 6.7% with fed funds at 0.07% and 10y yield near 1.07%\", \"VIX around 30 with equities flat for the month (GameStop-era volatility)\", \"Long Treasuries down 3.3% in a month as yields rose; industrial production -3.6% YoY\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1190,
+  "output_tokens": 390,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -3.58 | +2.70 | -2.77 | -0.53\nNational activity index, 3m avg | index, 0 = trend growth | +0.61 | -0.80 | +0.75 | +0.41\nUnemployment rate | % | +6.70 | -1.10 | +3.10 | +0.51\nPayrolls, avg monthly change over 3m | thousands | +283.33 | -1038.33 | +73.33 | +0.21\nHeadline CPI | YoY % | +1.29 | -0.12 | -1.00 | -0.83\nCore CPI | YoY % | +1.61 | -0.12 | -0.64 | -1.25\nPolicy rate (fed funds) | % | +0.07 | -0.02 | -1.52 | -1.42\n2-year Treasury yield | % | +0.12 | -0.02 | -1.21 | -1.37\n10-year Treasury yield | % | +1.07 | +0.19 | -0.44 | -0.90\n10y minus 2y Treasury spread | pp | +0.95 | +0.21 | +0.77 | +2.70\nEquity implied volatility (VIX) | index points | +30.21 | -7.81 | +11.37 | +0.97\nBaa corporate minus 10y Treasury spread | pp | +2.17 | -0.44 | +0.04 | -0.30\nBroad trade-weighted dollar | YoY % | -3.36 | -3.85 | -5.39 | -1.39\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.4% | +13.8% | +15.2% | +15.0% | +16.9% | -3.7%\nDeveloped ex-US equity | -1.4% | +19.0% | +15.3% | +8.0% | +16.8% | -4.4%\nEmerging-market equity | +4.5% | +20.3% | +23.6% | +26.0% | +18.0% | -5.3%\nUS Treasuries 7-10y | -1.0% | -1.7% | -3.0% | +5.7% | +3.8% | -3.3%\nUS Treasuries 20y+ | -3.3% | -5.1% | -10.6% | +6.7% | +11.9% | -10.9%\nUS investment-grade credit | -1.7% | +1.2% | -0.6% | +6.6% | +5.7% | -1.8%\nGold | -2.1% | -2.0% | -6.1% | +16.3% | +18.8% | -11.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.17\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

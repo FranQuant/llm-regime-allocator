@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:22:05+00:00",
+ "decision_date": "2020-01-31",
+ "key": "37c4c88b799466319f5ee77143de0063d7d123d71ee7f27de070177b754e13c5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc7AfCmfuMUuWSPNZLF",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2019, most likely August 2019.\n\n- The fed funds rate is 1.60%, which fits the period after the July 2019 cut (the 2.00\u20132.25 range was cut to 1.75\u20132.00 only in September, so the effective rate was near 2.1 in August). That doesn't quite match, so check October 2019: after the October cut the range was 1.50\u20131.75 and the effective rate was about 1.55\u20131.6. This points to Oct/Nov 2019.\n- The 10-year yield is 1.57%, and the 10-year was about 1.5\u20131.7% in October and November 2019. In August it was about 1.5%, so that doesn't separate the months.\n- The 1-month Treasury returns are large (20y+ at +7.7%), which suggests yields fell sharply in the month. That fits August 2019, when the 10-year fell from 2.0 to 1.5. But the fed funds rate of 1.60 doesn't fit August.\n- The unemployment rate is 3.5%, which fits September through November 2019. Industrial production at -1.01% YoY fits October 2019.\n- Equities are flat over the month with emerging markets at -6.2%, which fits August 2019. In August the S&P was about -1.6%.\n- The 12-month change in the fed funds rate is -0.80. A year earlier, in October 2018, the rate was about 2.2, so 1.6 \u2212 2.2 = -0.6 to -0.8. In August 2018 it was 1.91, and 2.13 \u2212 1.91 would be +0.2, so that doesn't fit.\n- 12m change in the 10-year of -1.06 implies about 2.63 a year earlier. That is more like August 2018 at 2.86 or later, but it doesn't fit October 2018 at 3.15 either. In February 2019 the 10-year was about 2.7. Perhaps a different period fits better.\n\nConsider 2020: unemployment of 3.5% and a fed funds rate of 1.60 would fit February 2020. Fed funds was 1.58, the 10-year yield fell to 1.15 at end of February, and the 10-year had been 1.5\u20131.9 in January 2020. So January 2020 fits less well.\n\nConsider the 12-month change instead. The 10-year was 2.63 in January 2019 and 1.57 in January 2020 gives -1.06. That's a match for January 2020 on the 10-year. The 2-year was 2.45 in January 2019, and 1.41 now gives -1.04, which also matches. Fed funds was 2.40 in January 2019, so 1.60 gives -0.80, a match. Headline CPI of 2.29 and core CPI of 2.25 fit December 2019 to January 2020. Large-cap equity returned 21.4% over 12 months, a fit with January 2020 (S&P was up about 21%). The month return of -0.0% fits January 2020, and the Treasury 20y+ at +7.7% fits January 2020 as the coronavirus fears hit. Emerging-market equity at -6.2% also fits January 2020.\n\nThat makes it January 2020.\n\n{\"year\":2020,\"month\":1,\"confidence\":0.85,\"cues\":[\"Fed funds 1.60% with 10y at 1.57% and 12m changes of -0.8 and -1.06 match Jan 2019 to Jan 2020\",\"EM equity -6.2% and 20y+ Treasuries +7.7% in the month fit coronavirus fears\",\"Unemployment 3.5%, CPI 2.3% and 12m US equity +21%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 1167,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -1.01 | -0.80 | -4.78 | -1.96\nNational activity index, 3m avg | index, 0 = trend growth | -0.23 | +0.02 | -0.30 | -1.08\nUnemployment rate | % | +3.50 | +0.00 | -0.40 | -1.44\nPayrolls, avg monthly change over 3m | thousands | +184.33 | -8.33 | -49.00 | -0.28\nHeadline CPI | YoY % | +2.29 | +0.56 | +0.34 | +0.42\nCore CPI | YoY % | +2.25 | -0.11 | +0.03 | +0.85\nPolicy rate (fed funds) | % | +1.60 | +0.02 | -0.80 | -0.14\n2-year Treasury yield | % | +1.41 | -0.11 | -1.04 | -1.04\n10-year Treasury yield | % | +1.57 | -0.12 | -1.06 | -1.89\n10y minus 2y Treasury spread | pp | +0.16 | -0.01 | -0.02 | -0.88\nEquity implied volatility (VIX) | index points | +15.49 | +2.27 | -1.08 | +0.27\nBaa corporate minus 10y Treasury spread | pp | +2.08 | -0.10 | -0.30 | +0.05\nBroad trade-weighted dollar | YoY % | +1.87 | +2.36 | -4.41 | +0.25\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.0% | +6.3% | +10.2% | +21.4% | +12.9% | -3.1%\nDeveloped ex-US equity | -2.8% | +1.0% | +6.2% | +11.2% | +11.4% | -4.1%\nEmerging-market equity | -6.2% | +0.2% | +5.0% | +0.6% | +15.9% | -9.0%\nUS Treasuries 7-10y | +3.5% | +2.4% | +3.6% | +11.0% | +6.0% | +0.0%\nUS Treasuries 20y+ | +7.7% | +5.2% | +8.8% | +22.4% | +14.4% | -0.4%\nUS investment-grade credit | +2.4% | +4.1% | +6.3% | +16.3% | +5.3% | +0.0%\nGold | +4.5% | +5.9% | +9.5% | +19.7% | +11.4% | +0.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.54\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

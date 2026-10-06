@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:19:57+00:00",
+ "decision_date": "2018-01-31",
+ "key": "5e5a7d068513baa2c0b00ca83d04193ecab248fd7cd9ed1315c80bfec7aca37c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbxA8U3EQNTXFMiPt9Y",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like January 2018. The fed funds rate is about 1.42%, which fits the range after the December 2017 hike. The 2-year yield at 2.13% and the 10-year at 2.73% also fit that period, since the 10-year rose in January 2018. Unemployment is 4.1%, core CPI is 1.77% and the dollar is down 7.9% year over year, all consistent with early 2018. US equities returned 26% over 12 months with the VIX at 14.79, which suggests the data end in January before the February selloff.\n\nThe 1-month equity return of +5.6% matches January 2018, when the S&P 500 gained about 5.7%. Emerging-market equities rose 8.3% that month, which also fits.\n\n{\"year\": 2018, \"month\": 1, \"confidence\": 0.93, \"cues\": [\"Fed funds 1.42% and unemployment 4.1% match the post-December 2017 hike\", \"S&P 500 +5.6% in the month, EM +8.3%, 10-year yield up to 2.73%\", \"Dollar down 7.9% YoY and core CPI 1.77%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 364,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.56 | +1.84 | +2.74 | +1.87\nNational activity index, 3m avg | index, 0 = trend growth | +0.42 | +0.45 | +0.32 | +2.49\nUnemployment rate | % | +4.10 | -0.10 | -0.60 | -1.69\nPayrolls, avg monthly change over 3m | thousands | +203.67 | +75.67 | +56.00 | +0.16\nHeadline CPI | YoY % | +2.12 | -0.11 | +0.03 | +1.05\nCore CPI | YoY % | +1.77 | +0.07 | -0.46 | -0.86\nPolicy rate (fed funds) | % | +1.42 | +0.35 | +0.86 | +2.23\n2-year Treasury yield | % | +2.13 | +0.53 | +0.94 | +2.72\n10-year Treasury yield | % | +2.73 | +0.35 | +0.28 | +2.01\n10y minus 2y Treasury spread | pp | +0.60 | -0.18 | -0.66 | -1.68\nEquity implied volatility (VIX) | index points | +14.79 | +4.61 | +2.80 | +0.08\nBaa corporate minus 10y Treasury spread | pp | +1.59 | -0.32 | -0.64 | -1.96\nBroad trade-weighted dollar | YoY % | -7.87 | -5.93 | -8.43 | -1.92\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +5.6% | +10.4% | +15.1% | +26.3% | +7.0% | -1.6%\nDeveloped ex-US equity | +5.0% | +7.6% | +10.9% | +27.2% | +7.2% | -1.9%\nEmerging-market equity | +8.3% | +13.0% | +17.9% | +39.4% | +12.6% | -2.0%\nUS Treasuries 7-10y | -2.2% | -2.3% | -2.7% | +0.1% | +3.6% | -4.4%\nUS Treasuries 20y+ | -3.3% | -0.7% | -0.5% | +4.8% | +9.5% | -4.3%\nUS investment-grade credit | -1.2% | -0.3% | +0.3% | +5.6% | +3.8% | -1.2%\nGold | +3.2% | +5.4% | +5.8% | +10.5% | +9.7% | -0.9%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.36\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

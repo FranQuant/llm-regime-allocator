@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:09:02+00:00",
+ "decision_date": "2009-02-27",
+ "key": "9d79813d14273fb7cb436bc4812da86228b4e9812fa680abcdc5ed8a32c22b9a",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmb7ijPpCwno7oFLVZTJ",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2009, most likely February or March. The 12-month equity drawdown of -47% and a 6-month return of -41.7% fit the trough in March 2009, and the other figures point the same way.\n\n- **Equities:** the S&P was down about 11% in February 2009 and about 8% in January. The 1-month return of -15.4% is steeper than either, though it could match a February reading with some rounding and index differences. Measured over the period through February 2009, the 12-month return was about -43%, which is close to the -44.7% shown.\n- **Labor market:** unemployment of 7.6% matches January/February 2009, when the rate was 7.6% in January and 7.8% in February. Payrolls averaging -590k over three months also fit January 2009.\n- **Inflation:** headline CPI of -0.15% year over year matches March 2009 (-0.4%) or February (+0.2%). January was 0.0%. The reading is roughly -0.15%, which suggests February or March.\n- **Fed funds and VIX:** a fed funds rate of 0.22% fits the 2009 period. A VIX of 44.66 fits February 2009 (about 44.8 at the end of the month).\n- **Yields:** the 10-year yield of 2.98% and the 2-year yield of 1.08% match end-February 2009.\n\nUnemployment of 7.6% would be the January 2009 value, which is published in early February. The data are \"latest published,\" so end-of-February would show 7.6% for January, since the February figure comes out in early March. CPI for January 2009 was 0.0% year over year, and the stated -0.15% is close to that. End-February 2009 fits best.\n\n{\"year\": 2009, \"month\": 2, \"confidence\": 0.85, \"cues\": [\"Unemployment 7.6% with payrolls averaging about -590k per month fits the January 2009 data published in February\", \"S&P down about 45% over 12 months with VIX near 44.7 and the 10-year yield near 3%\", \"Headline CPI about 0% year over year, fed funds near 0.2%, and Baa spread of 5.2pp\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 685,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -9.98 | -5.65 | -12.52 | -3.22\nNational activity index, 3m avg | index, 0 = trend growth | -2.69 | -1.03 | -2.44 | -3.06\nUnemployment rate | % | +7.60 | +1.00 | +2.70 | +2.96\nPayrolls, avg monthly change over 3m | thousands | -590.67 | -298.67 | -678.33 | -2.80\nHeadline CPI | YoY % | -0.15 | -3.86 | -4.53 | -2.45\nCore CPI | YoY % | +1.66 | -0.55 | -0.80 | -2.52\nPolicy rate (fed funds) | % | +0.22 | -0.30 | -2.79 | -1.88\n2-year Treasury yield | % | +1.08 | +0.08 | -0.57 | -1.62\n10-year Treasury yield | % | +2.98 | +0.05 | -0.55 | -1.76\n10y minus 2y Treasury spread | pp | +1.90 | -0.03 | +0.02 | +1.37\nEquity implied volatility (VIX) | index points | +44.66 | -11.18 | +18.12 | +1.75\nBaa corporate minus 10y Treasury spread | pp | +5.23 | -0.87 | +2.01 | +1.85\nBroad trade-weighted dollar | YoY % | +19.34 | +5.92 | +29.70 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -15.4% | -13.0% | -41.7% | -44.7% | +57.3% | -47.3%\nDeveloped ex-US equity | -15.3% | -15.0% | -44.2% | -51.3% | +66.7% | -54.4%\nEmerging-market equity | -11.7% | -1.0% | -46.5% | -55.1% | +100.4% | -57.9%\nUS Treasuries 7-10y | -2.1% | +1.1% | +6.7% | +8.7% | +11.7% | -5.6%\nUS Treasuries 20y+ | -4.1% | -1.4% | +10.3% | +14.5% | +23.7% | -16.2%\nUS investment-grade credit | -5.7% | +5.1% | -4.4% | -5.8% | +28.9% | -7.8%\nGold | +6.0% | +14.5% | +13.9% | -3.5% | +40.7% | -6.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.44\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

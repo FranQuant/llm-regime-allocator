@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:27:00+00:00",
+ "decision_date": "2024-08-30",
+ "key": "5e9f3e1b61f430ae2198039f6348b34687e80b93182dae687d4a7687a7410ddf",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcVAux7io5W66dXPi9C",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late summer to early autumn 2024. Fed funds is still at 5.33, which means no cut has happened yet. Unemployment is 4.3% and has risen 0.8 points over 12 months. The 2-year and 10-year yields are both about 3.87%, and the 2-year is down 1.02 points over 3 months. Core CPI is 3.21% year over year, and 3.2% fits August 2024 (core was 3.2% in July and 3.3% in August). Headline CPI is 2.92%, close to July 2024's 2.9%.\n\nJuly 2024 unemployment was 4.3%, and the 3-month average payroll gain was about 170k. That fits. The 10-year yield ended July 2024 at roughly 4.03%, while the 2-year was about 4.26%, which does not match. At the end of August 2024 the 10-year was 3.91% and the 2-year was 3.92%, which is close to the snapshot. August unemployment was 4.2%, though, and the August payroll average was about 116k after revisions. As first published, the August report showed unemployment at 4.2% and payrolls near 150k.\n\nThe data may be a mix of vintages, so I'll go with August 2024. The 1-month equity gain of 3.8% matches August, as does developed ex-US up 6.1%. Gold up 2.4% also fits August.\n\n```json\n{\"year\":2024,\"month\":8,\"confidence\":0.8,\"cues\":[\"Fed funds still 5.33 with 2y yield down about 1 point over 3m, so cuts are priced but not yet delivered\",\"Unemployment 4.3%, core CPI 3.2%, headline CPI 2.9%\",\"2y and 10y yields both about 3.87%, matching a flat curve at end of August 2024\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 580,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.18 | +0.53 | -0.20 | -0.92\nNational activity index, 3m avg | index, 0 = trend growth | -0.07 | -0.02 | +0.07 | -0.25\nUnemployment rate | % | +4.30 | +0.40 | +0.80 | +1.35\nPayrolls, avg monthly change over 3m | thousands | +169.67 | -48.33 | -72.67 | -1.12\nHeadline CPI | YoY % | +2.92 | -0.43 | -0.35 | -1.22\nCore CPI | YoY % | +3.21 | -0.40 | -1.49 | -1.66\nPolicy rate (fed funds) | % | +5.33 | +0.00 | +0.00 | +0.85\n2-year Treasury yield | % | +3.87 | -1.02 | -0.98 | +0.17\n10-year Treasury yield | % | +3.87 | -0.64 | -0.22 | +0.44\n10y minus 2y Treasury spread | pp | +0.00 | +0.38 | +0.76 | +0.34\nEquity implied volatility (VIX) | index points | +15.65 | +2.73 | +2.08 | -0.65\nBaa corporate minus 10y Treasury spread | pp | +1.69 | +0.23 | -0.14 | -0.77\nBroad trade-weighted dollar | YoY % | +0.97 | -0.13 | +3.36 | -0.42\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.8% | +7.2% | +10.6% | +26.7% | +12.8% | -0.2%\nDeveloped ex-US equity | +6.1% | +4.0% | +8.2% | +19.0% | +13.1% | +0.0%\nEmerging-market equity | +2.8% | +4.5% | +7.9% | +12.2% | +14.2% | -2.6%\nUS Treasuries 7-10y | +0.9% | +5.6% | +4.4% | +6.1% | +6.9% | -0.7%\nUS Treasuries 20y+ | +1.2% | +7.7% | +3.9% | +4.3% | +14.1% | -2.3%\nUS investment-grade credit | +1.5% | +5.2% | +5.0% | +9.7% | +6.9% | -0.9%\nGold | +2.4% | +7.4% | +19.9% | +28.3% | +16.1% | -0.9%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.10\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

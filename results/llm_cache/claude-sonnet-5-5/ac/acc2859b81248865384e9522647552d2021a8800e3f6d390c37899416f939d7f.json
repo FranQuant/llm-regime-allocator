@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:12:53+00:00",
+ "decision_date": "2012-01-31",
+ "key": "acc2859b81248865384e9522647552d2021a8800e3f6d390c37899416f939d7f",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbQnqgDWsmqGJwEW3eo",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2012. Unemployment of 8.5% with a fed funds rate near 0.09% fits late 2011 to early 2012, and the 10-year yield at 1.87% fits the same window.\n\nSeveral other readings point the same way:\n- The 20y+ Treasury 12-month return of +37.8% reflects the 2011 rally.\n- A VIX of 19.4, down 10.56 over three months, fits a calm-down after the October 2011 spike.\n- Developed ex-US equity at -9.5% over 12 months and emerging-market equity up 11.1% in one month fit January 2012, when emerging markets rallied strongly.\n- Gold up 12.6% in one month matches January 2012, when gold rose about 11%.\n- Unemployment fell 0.5 pp over three months, from 9.0% in October 2011 to 8.5% in January 2012, which matches.\n- Headline CPI at 2.98% year over year fits December 2011 at about 3.0%. January 2012 was about 2.9%, so the snapshot is either one of those months, probably January.\n\nThe US large-cap equity 1-month return of +4.1% matches January 2012 (S&P up about 4.5%).\n\nA 10-year yield of 1.87% fits January 2012, which averaged about 1.97%, and the month-end value of 1.83% is close to it.\n\n\n<br>\n\n{\"year\": 2012, \"month\": 1, \"confidence\": 0.9, \"cues\": [\"Unemployment 8.5% falling, fed funds ~0.09%, 10y yield 1.87%\", \"Gold +12.6% and EM equity +11.1% in one month, a January 2012 rally\", \"20y+ Treasuries +37.8% over 12m, VIX 19.4 after the autumn 2011 spike\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 587,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.95 | -0.74 | -3.79 | +0.43\nNational activity index, 3m avg | index, 0 = trend growth | -0.08 | +0.03 | -0.05 | +0.53\nUnemployment rate | % | +8.50 | -0.50 | -0.90 | -1.56\nPayrolls, avg monthly change over 3m | thousands | +137.33 | -9.67 | -1.33 | +0.73\nHeadline CPI | YoY % | +2.98 | -0.92 | +1.59 | +0.87\nCore CPI | YoY % | +2.23 | +0.26 | +1.58 | +1.73\nPolicy rate (fed funds) | % | +0.09 | +0.00 | -0.08 | -0.83\n2-year Treasury yield | % | +0.22 | -0.03 | -0.36 | -1.50\n10-year Treasury yield | % | +1.87 | -0.30 | -1.55 | -2.04\n10y minus 2y Treasury spread | pp | +1.65 | -0.27 | -1.19 | -2.02\nEquity implied volatility (VIX) | index points | +19.40 | -10.56 | -0.13 | -0.81\nBaa corporate minus 10y Treasury spread | pp | +3.25 | +0.23 | +0.57 | +0.14\nBroad trade-weighted dollar | YoY % | +1.66 | +2.64 | +6.00 | +0.32\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +4.1% | +2.8% | +3.2% | +4.2% | +29.6% | -2.2%\nDeveloped ex-US equity | +5.8% | -4.5% | -9.0% | -9.5% | +37.8% | -15.8%\nEmerging-market equity | +11.1% | +0.3% | -9.7% | -6.3% | +41.7% | -14.5%\nUS Treasuries 7-10y | +1.2% | +4.9% | +8.9% | +16.7% | +9.2% | +0.0%\nUS Treasuries 20y+ | -0.0% | +9.3% | +24.3% | +37.8% | +25.5% | -2.1%\nUS investment-grade credit | +2.6% | +2.6% | +5.4% | +12.1% | +7.5% | +0.0%\nGold | +12.6% | -0.2% | +7.3% | +30.4% | +26.0% | -8.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.75\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

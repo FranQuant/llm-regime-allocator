@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:27:16+00:00",
+ "decision_date": "2024-11-29",
+ "key": "8129f1fb54c5672abb0812e16f292c5d27c05b610e1d2b76f4f85bc5e4a470eb",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcWJqEhGqzD1YF8FCds",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like December 2024.\n\n- The fed funds rate is 4.58%, down 0.75 over 3 months, which fits cuts of 50, 25 and 25 bp from September through December 2024.\n- The 10-year yield is 4.25% and the 2-year is 4.19%, both up over 3 months. That matches the rise after the September cuts.\n- The unemployment rate is 4.1%, and payroll growth averages 104k over 3 months. December's 3-month average fell with the weak October figure.\n- Headline CPI is 2.58% year over year and core CPI is 3.3%, which fits November 2024 data published in December.\n- The broad dollar is up 5.9% year over year and gold is up 29.6% over 12 months, both consistent with late 2024.\n- US large-cap equities are up 34.3% over 12 months and sit at a 12-month high. Developed ex-US equities are down 4.8% over 3 months. Both fit December 2024.\n- The 1-month equity return of +3.9% is a little high for December 2024, which was roughly -2.4%. It fits November 2024 better, when the S&P 500 returned about +5.9%. Gold fell about 3.1% in November.\n- The fed funds rate was 4.64% in November and 4.33% in December. A reading of 4.58% matches November's effective rate better than December's.\n- A 3-month change of -0.75 in the policy rate also fits November, since the August rate was 5.33% and 5.33 \u2212 0.75 = 4.58. December would give a drop of about 1.0.\n- The 10-year at 4.25% matches the end of November (about 4.17%) or December (about 4.57%) only loosely. Month-average values could explain the gap, but the other figures point more to November.\n- Unemployment was 4.1% in the November 2024 report. The 3-month average payroll gain of 104k fits the October and November data, with October's hurricane- and strike-hit gain of 12k pulling the average down.\n- Treasuries 7-10y returned +1.0% in 1 month, consistent with November's rally.\n\nI'll go with November 2024.\n\n{\"year\": 2024, \"month\": 11, \"confidence\": 0.8, \"cues\": [\"Fed funds 4.58% after 75bp of cuts over 3 months, unemployment 4.1%\", \"S&P up 34% over 12 months at a 12-month high, +3.9% in 1 month, gold down 4.6% in 1 month\", \"Core CPI 3.3%, dollar up 5.9% year over year, payroll 3-month average 104k depressed by weak October\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 846,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.29 | +0.23 | +0.55 | -0.80\nNational activity index, 3m avg | index, 0 = trend growth | -0.24 | -0.15 | +0.04 | -0.83\nUnemployment rate | % | +4.10 | -0.20 | +0.30 | +1.46\nPayrolls, avg monthly change over 3m | thousands | +104.33 | -55.00 | -102.67 | -1.38\nHeadline CPI | YoY % | +2.58 | -0.35 | -0.67 | -1.17\nCore CPI | YoY % | +3.30 | +0.09 | -0.72 | -1.40\nPolicy rate (fed funds) | % | +4.58 | -0.75 | -0.75 | +0.37\n2-year Treasury yield | % | +4.19 | +0.28 | -0.54 | +0.24\n10-year Treasury yield | % | +4.25 | +0.34 | -0.12 | +0.73\n10y minus 2y Treasury spread | pp | +0.06 | +0.06 | +0.42 | +0.78\nEquity implied volatility (VIX) | index points | +13.90 | -1.10 | +0.98 | -0.89\nBaa corporate minus 10y Treasury spread | pp | +1.43 | -0.26 | -0.24 | -1.54\nBroad trade-weighted dollar | YoY % | +5.91 | +4.28 | +8.33 | +0.76\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.9% | +7.2% | +15.0% | +34.3% | +13.3% | +0.0%\nDeveloped ex-US equity | -0.9% | -4.8% | -1.0% | +12.2% | +14.2% | -6.5%\nEmerging-market equity | -3.3% | -0.3% | +4.2% | +12.4% | +17.3% | -8.7%\nUS Treasuries 7-10y | +1.0% | -1.1% | +4.4% | +5.0% | +6.7% | -3.4%\nUS Treasuries 20y+ | +2.2% | -1.7% | +6.0% | +5.5% | +14.9% | -6.6%\nUS investment-grade credit | +1.6% | +0.5% | +5.7% | +8.1% | +7.0% | -2.1%\nGold | -4.6% | +6.2% | +14.1% | +29.6% | +16.2% | -4.6%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.11\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

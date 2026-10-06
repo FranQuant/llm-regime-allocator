@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:12:06+00:00",
+ "decision_date": "2011-05-31",
+ "key": "d1a94e28c8cce8d18b360c78fe137686ac3e8c6b80890e8ced77fd5cd715074d",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbM3MSjeSGSRQdnsVV5",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2010. Unemployment is 9.0%, the fed funds rate is 0.10%, and core CPI is 1.34%, which is the disinflation of that period. The 10-year yield is 3.07%, down 0.35 over three months, and the 2-year is 0.48%.\n\nThe 12-month equity return of 27.9% points to a window ending in autumn 2010 or early 2011. A 12-month drawdown of only 1.1% for US large-cap equity means the market is near its high.\n\nUnemployment of 9.0% fits December 2010 or January 2011, but a 12-month change of -0.8 means it was 9.8% a year earlier, which fits December 2010 (December 2009 was 10.0%, and January 2010 was 9.8%). So January 2011 is a better match than December 2010.\n\nThe yield path does not fit January 2011, though. The 10-year was about 3.3% at the end of January 2011 and 3.29% at the end of December 2010. A 3.07% yield with a 3-month fall of 0.35 fits a month-end around November 2010 (2.8%) or February 2011 (3.4%) less well, so the yield evidence is mixed. The 20y+ Treasury 1-month return of +3.4% suggests yields fell sharply in the month, which fits August 2010 (10y about 2.5%) poorly and fits neither December nor January.\n\nHeadline CPI of 3.13% with a 3-month change of +1.47 fits a window ending in early 2011. The 1-month equity return of -1.1% and the 1-month fall in yields fit the end of January 2011 poorly because equities were roughly flat (about +2%). A 3-month equity return of +3.5% is too low for late 2010 to January 2011 (it would be about +10%).\n\nReconsider: this may be 2009 to 2010 for unemployment of 9.0% (April 2009 was 9.0%, but the 12-month change would be positive then). The 12-month equity return of 27.9% fits a window ending in 2010 or 2011, and the dollar was down 9% year on year, which fits mid-2017 or early 2018. That does not fit the 9% unemployment.\n\nReconsider the payroll gain of +233k, which fits spring 2011 (March 2011 was about 200k+). Unemployment was 9.0% in March 2011 and 9.1% in April, while headline CPI was 2.7% in March 2011. The 10-year yield was about 3.47% in March 2011, which does not match well. The yield may instead be a different figure: January 2011 unemployment was 9.0%, payrolls had been strong, and CPI was 1.6%, which does not match.\n\nI'm settling on a window around January 2011, though the fit is weak.\n\n{\"year\":2011,\"month\":1,\"confidence\":0.3,\"cues\":[\"Unemployment 9.0% with fed funds 0.10% and core CPI 1.34%\",\"12m equity return +27.9% near highs, dollar down YoY\",\"Payroll average +233k and headline CPI rising fast\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 995,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +4.95 | -0.67 | +0.32 | +0.94\nNational activity index, 3m avg | index, 0 = trend growth | -0.12 | -0.26 | -0.27 | +0.80\nUnemployment rate | % | +9.00 | +0.00 | -0.80 | +0.22\nPayrolls, avg monthly change over 3m | thousands | +233.33 | +129.00 | +88.67 | +1.37\nHeadline CPI | YoY % | +3.13 | +1.47 | +0.86 | +0.80\nCore CPI | YoY % | +1.34 | +0.39 | +0.35 | -0.32\nPolicy rate (fed funds) | % | +0.10 | -0.06 | -0.09 | -0.45\n2-year Treasury yield | % | +0.48 | -0.21 | -0.28 | -0.89\n10-year Treasury yield | % | +3.07 | -0.35 | -0.24 | -0.50\n10y minus 2y Treasury spread | pp | +2.59 | -0.14 | +0.04 | +0.64\nEquity implied volatility (VIX) | index points | +15.98 | -2.37 | -16.09 | -1.11\nBaa corporate minus 10y Treasury spread | pp | +2.65 | +0.08 | -0.24 | -0.72\nBroad trade-weighted dollar | YoY % | -8.98 | -3.94 | -10.07 | -1.08\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.1% | +3.5% | +14.3% | +27.9% | +11.4% | -1.1%\nDeveloped ex-US equity | -2.2% | +2.3% | +14.1% | +33.2% | +17.7% | -2.8%\nEmerging-market equity | -2.9% | +7.1% | +8.4% | +31.7% | +19.0% | -3.3%\nUS Treasuries 7-10y | +2.5% | +4.1% | +0.6% | +6.8% | +7.7% | -1.8%\nUS Treasuries 20y+ | +3.4% | +5.6% | +1.0% | +3.7% | +13.6% | -8.0%\nUS investment-grade credit | +1.3% | +3.2% | +3.5% | +10.9% | +5.4% | -0.0%\nGold | -1.8% | +6.9% | +12.1% | +24.8% | +14.2% | -1.8%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.47\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

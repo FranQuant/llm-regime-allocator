@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:19:09+00:00",
+ "decision_date": "2017-04-28",
+ "key": "88824fd8f8362f33b13c81dce39d8f3cb7f2f2f509c9ae78529efc54c822c762",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbtTT9SYfkNzE9ewryW",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The fed funds rate is 0.91%, which fits mid-2017 (the effective rate was about 0.91% in Mar-Apr 2017, then 1.16% after the June hike). Unemployment of 4.5% doesn't match May 2017 (4.3%) but would match March 2017 (4.5% as first reported, since later revised to 4.4%). The 10-year yield at 2.30% fits April 2017 or possibly late March. The 2-year at 1.25% fits April 2017. The VIX at 10.36 fits April 2017, which ended near 10.8.\n\nThe fed funds rate rose by 0.35 over 3 months, from about 0.55 in January to 0.91. That fits a March hike, which pushed the effective rate to 0.91 in March and April. The unemployment rate was 4.4% in April 2017, and was 4.5% in the data known at the time for March.\n\nThe 3-month change in the 10-year yield of -0.15 puts it at 2.30 against 2.45 three months earlier. At the end of April 2017 the yield was 2.28, and three months earlier, end of January, 2.45. That fits April. Equity 1-month return of +1.1% also fits April (S&P up about 1%). Headline CPI of 2.38% fits March 2017 (2.4%), which was the latest published value in April. Core CPI of 2.0% fits March at 2.0%. So the snapshot is end of April 2017.\n\n```json\n{\"year\":2017,\"month\":4,\"confidence\":0.85,\"cues\":[\"Fed funds 0.91% after March 2017 hike, 10y 2.30%, 2y 1.25%\",\"VIX 10.36 with low vol and equities near highs\",\"Unemployment 4.5%, core CPI 2.0%, headline CPI 2.4% matches March 2017 data\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 599,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.54 | +0.71 | +3.96 | +0.58\nNational activity index, 3m avg | index, 0 = trend growth | +0.03 | -0.07 | +0.21 | +0.42\nUnemployment rate | % | +4.50 | -0.20 | -0.50 | -1.46\nPayrolls, avg monthly change over 3m | thousands | +177.67 | +30.00 | -18.33 | -1.07\nHeadline CPI | YoY % | +2.38 | +0.29 | +1.50 | +1.51\nCore CPI | YoY % | +2.00 | -0.22 | -0.19 | +0.13\nPolicy rate (fed funds) | % | +0.91 | +0.35 | +0.61 | +3.14\n2-year Treasury yield | % | +1.25 | +0.06 | +0.48 | +1.98\n10-year Treasury yield | % | +2.30 | -0.15 | +0.47 | +0.61\n10y minus 2y Treasury spread | pp | +1.05 | -0.21 | -0.01 | -0.81\nEquity implied volatility (VIX) | index points | +10.36 | -1.63 | -5.34 | -1.32\nBaa corporate minus 10y Treasury spread | pp | +2.28 | +0.05 | -0.58 | -1.00\nBroad trade-weighted dollar | YoY % | +5.50 | +4.94 | +2.16 | -0.28\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.1% | +4.4% | +12.5% | +17.1% | +7.7% | -0.3%\nDeveloped ex-US equity | +1.9% | +6.4% | +11.4% | +12.1% | +9.1% | -0.3%\nEmerging-market equity | +0.5% | +6.9% | +8.3% | +18.2% | +15.6% | -0.3%\nUS Treasuries 7-10y | +1.0% | +2.2% | -2.5% | -1.4% | +5.6% | -5.1%\nUS Treasuries 20y+ | +1.0% | +2.9% | -6.2% | -2.9% | +12.6% | -13.2%\nUS investment-grade credit | +1.0% | +2.2% | -0.5% | +2.2% | +5.3% | -2.0%\nGold | +1.2% | +6.4% | -0.0% | -0.4% | +11.6% | -7.5%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.32\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

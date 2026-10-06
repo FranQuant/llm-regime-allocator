@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:28:04+00:00",
+ "decision_date": "2025-07-31",
+ "key": "854e54d847edd8c2afa5cf11978e315880f2cad1d77142576ffe1802ec9c633c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcZuMTcNnCU74agkUhS",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-to-late 2025. The fed funds rate is 4.33%, which fits the 4.25\u20134.50 range held through August 2025. The unemployment rate is 4.1%, which fits June 2025 (4.1%) better than July (4.2%).\n\nEquities were up 14.3% over 3 months, which matches the rally after the April 2025 low. Gold was up 37.5% over 12 months. Headline CPI of 2.67% fits June 2025 (2.7%), and core CPI of 2.91% is close to June's 2.9%. The 10-year yield of 4.38% is also consistent with end of June, when it was about 4.23%, or with a May reading near 4.4%.\n\nSeveral figures make June 2025 the better fit. The VIX 3-month change of -9.2 implies a high level three months earlier, which matches March-April 2025 (VIX near 30 at end of March, so 15.5 at end of June fits well). The 1-month US equity return of +2.3% is too low for June 2025 (about +5%) but fits May's +6%... neither is exact. Developed ex-US at -1.9% in the month looks more like a July figure, but the 3-month +14.3% for US large-cap fits June 2025 (April-June, about +11%). Payrolls averaging about 150k fits the figures reported in July 2025 before revisions.\n\nSince the 1-month figures don't line up perfectly, I'll go with June 2025.\n\n{\"year\":2025,\"month\":6,\"confidence\":0.6,\"cues\":[\"Fed funds 4.33% with unemployment 4.1% and CPI 2.7% fits mid-2025\",\"US equities +14% over 3m after the April low, VIX down about 9 points to 15.5\",\"Gold +37% over 12m and dollar -7.7% YoY\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 590,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.73 | -0.39 | -0.12 | +0.12\nNational activity index, 3m avg | index, 0 = trend growth | -0.22 | -0.27 | -0.11 | -0.80\nUnemployment rate | % | +4.10 | -0.10 | +0.00 | +0.98\nPayrolls, avg monthly change over 3m | thousands | +149.67 | +38.67 | +17.00 | -0.69\nHeadline CPI | YoY % | +2.67 | +0.27 | -0.30 | -0.74\nCore CPI | YoY % | +2.91 | +0.10 | -0.35 | -1.14\nPolicy rate (fed funds) | % | +4.33 | +0.00 | -1.00 | -0.49\n2-year Treasury yield | % | +3.94 | +0.34 | -0.35 | -0.89\n10-year Treasury yield | % | +4.38 | +0.21 | +0.29 | +0.75\n10y minus 2y Treasury spread | pp | +0.44 | -0.13 | +0.64 | +1.52\nEquity implied volatility (VIX) | index points | +15.48 | -9.22 | -0.88 | -0.49\nBaa corporate minus 10y Treasury spread | pp | +1.69 | -0.27 | +0.01 | -0.33\nBroad trade-weighted dollar | YoY % | -2.84 | -2.51 | -7.70 | -1.22\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.3% | +14.3% | +5.7% | +17.5% | +24.8% | -0.8%\nDeveloped ex-US equity | -1.9% | +5.1% | +12.5% | +14.2% | +20.6% | -4.4%\nEmerging-market equity | +0.5% | +12.0% | +15.4% | +18.1% | +20.7% | -2.7%\nUS Treasuries 7-10y | -0.4% | -0.3% | +4.0% | +3.5% | +6.5% | -1.2%\nUS Treasuries 20y+ | -1.4% | -1.8% | +0.9% | -3.1% | +14.0% | -11.1%\nUS investment-grade credit | -0.2% | +2.2% | +3.8% | +4.8% | +7.8% | -0.5%\nGold | -1.5% | -0.3% | +19.2% | +37.5% | +20.0% | -4.2%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.13\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

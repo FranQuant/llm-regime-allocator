@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:21:51+00:00",
+ "decision_date": "2019-11-29",
+ "key": "c3999e3321b9ad5d8e5694deef243433fd72b5fb51a4a6a81e2194a5a966b4c7",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc6PtRCPvqxfzQipcQ5",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like December 2019. Fed funds at 1.55% fits the post-cuts level, with a 3-month change of -0.58 reflecting cuts from 2.4% in Aug/Sep. The 10-year yield at 1.77% fits too, as does unemployment at 3.6% (it was 3.5% in Dec 2019, 3.6% in Nov 2019 as originally reported). Core CPI at 2.3% matches, and so does headline CPI at 1.77% (Nov 2019 was 2.1% and Dec 2.3%, so those don't fit well).\n\nChecking the alternatives, a headline CPI of 1.77% with core 2.32% could be October 2019: headline was 1.8% and core 2.3%. Fed funds in October 2019 averaged 1.83%, and in November it was 1.55%. So November 2019 fits the policy rate. Unemployment in November was 3.5%, though, and October was 3.6%.\n\nOther data points to November. US equities returned +3.3% in the month, the VIX was 11.75 (it was low in late November/December), and the 10-year yield was 1.77% at the end of November. The 3-month change in payrolls of +175k fits November, and the 3-month change in the 10-year of +0.27 does too (from 1.50 in August).\n\nThe headline CPI figure may come from the October release, which would be the latest published in late November. Unemployment at 3.6% would be the October release too, so the data are consistent with the end of November.\n\n```json\n{\"year\":2019,\"month\":11,\"confidence\":0.8,\"cues\":[\"Fed funds 1.55% after three 2019 cuts\",\"10y yield 1.77%, VIX 11.75, equities +3.3% in the month\",\"Unemployment 3.6%, core CPI 2.3%, headline CPI 1.8%\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 598,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -1.13 | -1.56 | -5.19 | -2.15\nNational activity index, 3m avg | index, 0 = trend growth | -0.31 | -0.16 | -0.50 | -1.56\nUnemployment rate | % | +3.60 | -0.10 | -0.20 | -1.25\nPayrolls, avg monthly change over 3m | thousands | +175.67 | +40.33 | -46.67 | -0.50\nHeadline CPI | YoY % | +1.77 | -0.04 | -0.75 | -0.89\nCore CPI | YoY % | +2.32 | +0.11 | +0.16 | +1.23\nPolicy rate (fed funds) | % | +1.55 | -0.58 | -0.65 | -0.11\n2-year Treasury yield | % | +1.63 | +0.13 | -1.17 | -0.57\n10-year Treasury yield | % | +1.77 | +0.27 | -1.24 | -1.65\n10y minus 2y Treasury spread | pp | +0.14 | +0.14 | -0.07 | -0.98\nEquity implied volatility (VIX) | index points | +11.75 | -7.23 | -6.32 | -0.72\nBaa corporate minus 10y Treasury spread | pp | +2.09 | -0.17 | -0.18 | +0.04\nBroad trade-weighted dollar | YoY % | +0.48 | -2.96 | -4.96 | -0.11\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.3% | +8.0% | +15.6% | +16.7% | +12.9% | -0.4%\nDeveloped ex-US equity | +0.9% | +7.9% | +9.2% | +11.1% | +11.0% | -0.7%\nEmerging-market equity | -0.9% | +5.8% | +4.3% | +4.9% | +14.4% | -3.9%\nUS Treasuries 7-10y | -0.1% | -1.7% | +3.0% | +12.6% | +5.8% | -2.1%\nUS Treasuries 20y+ | +0.9% | -4.2% | +7.0% | +25.7% | +13.7% | -4.5%\nUS investment-grade credit | +1.1% | +0.2% | +7.4% | +18.5% | +5.6% | -0.2%\nGold | -2.2% | -4.1% | +10.2% | +19.5% | +13.8% | -6.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.46\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

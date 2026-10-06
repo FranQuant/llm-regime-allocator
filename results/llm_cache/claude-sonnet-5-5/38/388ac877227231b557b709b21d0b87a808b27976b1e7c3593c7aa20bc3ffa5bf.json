@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:15:12+00:00",
+ "decision_date": "2013-12-31",
+ "key": "388ac877227231b557b709b21d0b87a808b27976b1e7c3593c7aa20bc3ffa5bf",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmbb6PtrFXjDbEEkwnpE",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like December 2013, based on these figures:\n\n- **Unemployment:** 7.0% matches the November 2013 rate, which was published in early December.\n- **10-year yield:** 2.99% is about where it ended 2013.\n- **Gold:** a 12-month drop of 28% fits 2013.\n- **US equities:** a 12-month return of 32% matches the S&P 500 in 2013.\n\nThe 1-month equity return of +2.6% fits December 2013, which returned about 2.5%. In November the 1-month return was about 3%, but the 10-year yield was then about 2.75%, and the unemployment rate shown (7.0%) was published only in December. The 3-month change in unemployment of -0.3 also fits, since it was 7.3% in September.\n\nI settle on December 2013.\n\n{\"year\":2013,\"month\":12,\"confidence\":0.85,\"cues\":[\"Unemployment 7.0% with 10y yield ~2.99%\",\"Gold -28% over 12m and S&P +32% 12m\",\"Fed funds ~0.08% with CPI 1.2% YoY\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 360,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.23 | +0.39 | -0.09 | -0.05\nNational activity index, 3m avg | index, 0 = trend growth | +0.26 | +0.41 | +0.13 | +1.66\nUnemployment rate | % | +7.00 | -0.30 | -0.80 | -1.83\nPayrolls, avg monthly change over 3m | thousands | +192.67 | +26.33 | +11.00 | +0.33\nHeadline CPI | YoY % | +1.22 | -0.30 | -0.55 | -1.16\nCore CPI | YoY % | +1.72 | -0.04 | -0.22 | -0.24\nPolicy rate (fed funds) | % | +0.08 | +0.02 | -0.01 | -0.69\n2-year Treasury yield | % | +0.39 | +0.06 | +0.14 | +0.41\n10-year Treasury yield | % | +2.99 | +0.35 | +1.21 | +1.15\n10y minus 2y Treasury spread | pp | +2.60 | +0.29 | +1.07 | +1.29\nEquity implied volatility (VIX) | index points | +13.56 | -3.04 | -4.46 | -0.85\nBaa corporate minus 10y Treasury spread | pp | +2.35 | -0.40 | -0.50 | -2.01\nBroad trade-weighted dollar | YoY % | +2.84 | +0.55 | +4.30 | +0.57\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.6% | +9.7% | +15.7% | +32.3% | +9.7% | +0.0%\nDeveloped ex-US equity | +2.2% | +5.5% | +17.6% | +21.4% | +11.8% | +0.0%\nEmerging-market equity | -0.4% | +1.5% | +11.2% | -3.7% | +19.6% | -5.5%\nUS Treasuries 7-10y | -2.1% | -2.0% | -2.2% | -6.1% | +6.6% | -7.9%\nUS Treasuries 20y+ | -1.9% | -2.9% | -6.1% | -13.4% | +12.8% | -16.1%\nUS investment-grade credit | +0.2% | +2.0% | +2.2% | -2.0% | +6.4% | -4.2%\nGold | -3.8% | -6.8% | -3.3% | -28.3% | +19.6% | -29.1%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.01\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

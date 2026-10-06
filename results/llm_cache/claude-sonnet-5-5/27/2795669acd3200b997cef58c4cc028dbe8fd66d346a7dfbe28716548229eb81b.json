@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:26:06+00:00",
+ "decision_date": "2023-12-29",
+ "key": "2795669acd3200b997cef58c4cc028dbe8fd66d346a7dfbe28716548229eb81b",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcRCCykjKW6Y7tSWwGa",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like December 2023.\n\n- **Rates:** The fed funds rate is 5.33% and the 10-year yield is 3.84%, down 0.75 over three months. That fits the late-2023 rally, with the 10-year near 3.88% at the end of December.\n- **Equities:** US large-cap is up 28.1% over 12 months and 11.6% over 3 months, matching the 2023 calendar-year gain of about 26%.\n- **Inflation and labor:** Headline CPI is 3.12% (3.4% was the actual December print, 3.1% was November) and core CPI is 3.99% (4.0% in November). Unemployment is 3.7% and the 3-month payroll average is about 204k.\n- **Month check:** The CPI figures match November's release, so the latest published values are November data, consistent with a December-end snapshot.\n\nThe fed funds rate 12 months earlier would have been 4.33% (Dec 2022), which matches the +1.00 twelve-month change.\n\n\n{\"year\":2023,\"month\":12,\"confidence\":0.93,\"cues\":[\"Fed funds 5.33% with 10y down 0.75pp over 3m to 3.84%\",\"US equity +28% 12m, +11.6% 3m after the Q4 2023 rally\",\"CPI 3.1% headline and 4.0% core, unemployment 3.7%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 448,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.39 | -0.38 | -2.25 | -0.70\nNational activity index, 3m avg | index, 0 = trend growth | -0.20 | -0.07 | -0.02 | -1.04\nUnemployment rate | % | +3.70 | -0.10 | +0.10 | -0.57\nPayrolls, avg monthly change over 3m | thousands | +203.67 | +35.00 | -117.67 | -1.15\nHeadline CPI | YoY % | +3.12 | -0.59 | -4.01 | -1.09\nCore CPI | YoY % | +3.99 | -0.40 | -1.98 | -0.52\nPolicy rate (fed funds) | % | +5.33 | +0.00 | +1.00 | +1.32\n2-year Treasury yield | % | +4.26 | -0.77 | -0.15 | +0.83\n10-year Treasury yield | % | +3.84 | -0.75 | -0.04 | +0.89\n10y minus 2y Treasury spread | pp | -0.42 | +0.02 | +0.11 | -0.69\nEquity implied volatility (VIX) | index points | +12.47 | -5.05 | -9.20 | -1.44\nBaa corporate minus 10y Treasury spread | pp | +1.62 | -0.16 | -0.37 | -1.93\nBroad trade-weighted dollar | YoY % | -1.66 | +2.17 | -6.99 | -0.49\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +5.0% | +11.6% | +8.0% | +28.1% | +11.6% | -0.3%\nDeveloped ex-US equity | +5.3% | +10.7% | +5.2% | +19.0% | +13.1% | -0.2%\nEmerging-market equity | +3.8% | +8.0% | +3.6% | +9.2% | +15.3% | -2.8%\nUS Treasuries 7-10y | +3.3% | +6.4% | +1.6% | +3.7% | +8.9% | -1.8%\nUS Treasuries 20y+ | +7.4% | +12.9% | -1.9% | +2.8% | +19.3% | -6.4%\nUS investment-grade credit | +4.3% | +10.1% | +4.9% | +9.5% | +10.1% | -0.6%\nGold | +0.9% | +11.5% | +7.2% | +13.9% | +12.0% | -0.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.36\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

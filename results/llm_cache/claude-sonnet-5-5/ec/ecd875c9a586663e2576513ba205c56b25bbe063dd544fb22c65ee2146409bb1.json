@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:27:27+00:00",
+ "decision_date": "2025-01-31",
+ "key": "ecd875c9a586663e2576513ba205c56b25bbe063dd544fb22c65ee2146409bb1",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcXC1jXqTWP4DwU8WjB",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The fed funds rate is 4.33% after 100bp of cuts over 12 months, which points to early 2025 (cuts in Sep, Nov and Dec 2024 brought the range to 4.25-4.50%). Unemployment of 4.1% fits that period, and the 10-year yield at 4.52% fits January or February 2025.\n\nOther figures match January 2025. Headline CPI of 2.9% YoY was the January 2025 reading, and core CPI of 3.25% is probably a rounded figure close to 3.2%. Gold up 37% over 12 months fits, and so does the strong dollar. US equity returned 24% over 12 months with a 1.3% drawdown, so equities were near their high, as in January 2025. Developed ex-US rose 4.8% in the month, which also fits January.\n\nSome details do not fit February. The VIX at 15.84 is lower than the roughly 16 seen at the end of January, and it fell 7.3 points over 3 months, from about 23 in October or November. The policy rate's 3-month change of -0.50 matches cuts in November and December, consistent with a January snapshot.\n\nGold up 7.5% in the month fits February better, since it was up about 6.5% in January and 2% in February. The 1-month US equity return of 2.3% fits January (about 2.8%), while February was about -1%. The 10-year yield ended January at 4.54%, and 4.52% fits that. Payrolls averaged 170k, which fits the January data. Overall, January 2025 is the best match.\n\n{\"year\":2025,\"month\":1,\"confidence\":0.85,\"cues\":[\"Fed funds 4.33% after 100bp of cuts in 12m\",\"Headline CPI 2.9% YoY with unemployment 4.1%\",\"10y yield 4.52%, US equities +2.3% in the month, gold +37% over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 609,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.55 | +1.24 | -0.24 | -0.29\nNational activity index, 3m avg | index, 0 = trend growth | -0.13 | +0.06 | +0.03 | -0.27\nUnemployment rate | % | +4.10 | +0.00 | +0.30 | +1.38\nPayrolls, avg monthly change over 3m | thousands | +170.33 | +11.33 | -42.00 | -0.92\nHeadline CPI | YoY % | +2.90 | +0.49 | -0.43 | -0.92\nCore CPI | YoY % | +3.25 | -0.01 | -0.66 | -1.29\nPolicy rate (fed funds) | % | +4.33 | -0.50 | -1.00 | +0.13\n2-year Treasury yield | % | +4.18 | +0.02 | -0.09 | +0.09\n10-year Treasury yield | % | +4.52 | +0.24 | +0.53 | +1.04\n10y minus 2y Treasury spread | pp | +0.34 | +0.22 | +0.62 | +1.65\nEquity implied volatility (VIX) | index points | +15.84 | -7.32 | +1.49 | -0.52\nBaa corporate minus 10y Treasury spread | pp | +1.45 | -0.01 | -0.16 | -1.31\nBroad trade-weighted dollar | YoY % | +5.72 | +4.99 | +4.22 | +0.64\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.3% | +3.8% | +10.0% | +24.2% | +14.1% | -1.3%\nDeveloped ex-US equity | +4.8% | +0.1% | -0.1% | +8.4% | +14.1% | -4.9%\nEmerging-market equity | +1.8% | -3.8% | +1.1% | +13.3% | +17.5% | -8.3%\nUS Treasuries 7-10y | +0.4% | -0.9% | -1.4% | +0.7% | +6.4% | -5.0%\nUS Treasuries 20y+ | -0.0% | -3.6% | -5.5% | -4.5% | +13.9% | -12.2%\nUS investment-grade credit | +0.3% | -0.7% | +0.2% | +2.2% | +6.9% | -4.2%\nGold | +7.5% | +1.0% | +14.1% | +37.1% | +14.9% | +0.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.07\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:10:41+00:00",
+ "decision_date": "2010-05-28",
+ "key": "cf484c63d701e16ac49c824fb9e46528b9e482d782312a26b9a39a1dd6dcff90",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbF6Gu69j5HNphKe8Vq",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like May 2010, the month of the flash crash and the European sovereign debt crisis.\n\n- Unemployment at 9.9% fits spring 2010 (April was 9.9%, May 9.7%).\n- The fed funds rate near 0.20% and a 10-year yield of 3.34% fit May 2010, when the 10-year fell from about 3.7% to 3.3%.\n- US large-cap equity fell 9.5% in the month, in line with S&P 500's roughly -8% in May 2010, and the VIX near 29.7 fits too.\n- Developed ex-US equity fell 12.3% in the month and gold rose 4%, consistent with the euro crisis.\n- Core CPI at 0.98% YoY fits 2010.\n- Industrial production at +5.18% YoY also fits 2010.\n- Headline CPI at 2.24% YoY fits April 2010 (2.2%), and May was 2.0%. The data may be lagged by one month, which is consistent with May.\n\nI settled on May 2010 rather than April because the equity drawdown and the 10-year yield level both point to the end of May.\n\n{\"year\": 2010, \"month\": 5, \"confidence\": 0.9, \"cues\": [\"Unemployment 9.9%, core CPI ~1% YoY, fed funds ~0.2%\", \"US equities -9.5% in the month, VIX ~30, 10y yield fell to 3.3%, consistent with the euro-crisis flash-crash period\", \"Developed ex-US equities -12% and gold up 4% in the month\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 509,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +5.18 | +3.93 | +17.58 | +1.48\nNational activity index, 3m avg | index, 0 = trend growth | +0.18 | +0.20 | +1.91 | +1.15\nUnemployment rate | % | +9.90 | +0.20 | +1.00 | +1.26\nPayrolls, avg monthly change over 3m | thousands | +186.33 | +196.67 | +855.33 | +1.38\nHeadline CPI | YoY % | +2.24 | -0.41 | +2.85 | +0.06\nCore CPI | YoY % | +0.98 | -0.50 | -0.93 | -2.42\nPolicy rate (fed funds) | % | +0.20 | +0.07 | +0.01 | -0.77\n2-year Treasury yield | % | +0.87 | +0.06 | -0.05 | -0.81\n10-year Treasury yield | % | +3.34 | -0.27 | -0.13 | -0.58\n10y minus 2y Treasury spread | pp | +2.47 | -0.33 | -0.08 | +0.83\nEquity implied volatility (VIX) | index points | +29.68 | +10.18 | +0.76 | +0.13\nBaa corporate minus 10y Treasury spread | pp | +2.89 | +0.27 | -1.40 | -0.38\nBroad trade-weighted dollar | YoY % | +1.07 | +11.81 | -9.00 | +0.18\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -9.5% | -1.8% | -0.9% | +20.6% | +18.0% | -10.2%\nDeveloped ex-US equity | -12.3% | -8.9% | -14.2% | +4.9% | +25.7% | -16.7%\nEmerging-market equity | -10.5% | -3.8% | -8.0% | +16.5% | +28.6% | -13.4%\nUS Treasuries 7-10y | +3.6% | +3.4% | +2.3% | +5.8% | +6.6% | -0.7%\nUS Treasuries 20y+ | +6.3% | +6.4% | +2.6% | +6.7% | +13.7% | -2.1%\nUS investment-grade credit | -0.9% | +1.1% | +1.4% | +13.6% | +5.6% | -1.5%\nGold | +4.0% | +8.6% | +1.9% | +23.6% | +19.4% | -2.1%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.62\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

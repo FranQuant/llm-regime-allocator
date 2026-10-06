@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:20:31+00:00",
+ "decision_date": "2018-08-31",
+ "key": "d0d416436ecc8a69886acfe30857ae507cd8383dffc8006e1aaec6c494e28d91",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbzScxc5Qz6vp8sDA8s",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The data points to mid-2018, most likely June 2018.\n\n- **Labor market:** unemployment is 3.9%, which matches April\u2013June 2018 (3.9% in April, 3.8% in May, 4.0% in June).\n- **Rates:** the fed funds rate is 1.92%, which matches April\u2013June 2018 (1.82% in April, 1.91% in May, 1.92% in June). The Fed hiked in June 2018.\n- **Yields:** the 2-year yield is 2.64% and the 10-year is 2.86%, with a spread of 0.22. In May 2018 the 10-year closed near 2.83% and the 2-year near 2.5%. In June 2018 the 10-year was about 2.85% and the 2-year about 2.52%.\n- **Inflation:** headline CPI of 2.89% fits May 2018 (2.8%) or June 2018 (2.9%). Core CPI of 2.33% looks like May\u2013June 2018 (2.2% in May, 2.3% in June).\n- **Dollar and EM:** the dollar is up sharply over 3 months (+5.02), emerging-market equity is down 7.2% over 3 months, and gold is down 7.2% over 3 months. All of this fits the spring 2018 dollar rally.\n- **Equities:** US large-cap equity is up 2.8% over the month, which fits June 2018 (S&P 500 up about 0.6%) less well and May 2018 (up about 2.4%) better.\n\nThe 10-year yield was about 2.86% at the end of May 2018 and the 2-year was about 2.4%, which would give a spread near 0.45. The supplied spread of 0.22 therefore fits June better, though the 2-year in June was around 2.52%. The 1-month Treasury returns are positive, which fits May, when yields fell from 3.0% to 2.86%, but that conflicts with the spread. I weigh the policy rate and spread toward June and the equity and Treasury returns toward May, so I pick June with May as the alternative.\n\n{\"year\":2018,\"month\":6,\"confidence\":0.6,\"cues\":[\"Fed funds 1.92% and unemployment 3.9% match mid-2018\",\"10y-2y spread of 0.22 with 10y at 2.86%\",\"dollar up and EM equity and gold down over 3 months, fitting the spring 2018 dollar rally\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 779,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +4.23 | +0.35 | +2.78 | +1.56\nNational activity index, 3m avg | index, 0 = trend growth | +0.05 | -0.48 | +0.13 | +0.26\nUnemployment rate | % | +3.90 | +0.00 | -0.40 | -1.57\nPayrolls, avg monthly change over 3m | thousands | +224.33 | +6.33 | +29.67 | +0.75\nHeadline CPI | YoY % | +2.89 | +0.46 | +1.15 | +1.52\nCore CPI | YoY % | +2.33 | +0.21 | +0.62 | +1.41\nPolicy rate (fed funds) | % | +1.92 | +0.22 | +0.85 | +1.88\n2-year Treasury yield | % | +2.64 | +0.24 | +1.31 | +1.94\n10-year Treasury yield | % | +2.86 | +0.03 | +0.74 | +1.41\n10y minus 2y Treasury spread | pp | +0.22 | -0.21 | -0.57 | -2.05\nEquity implied volatility (VIX) | index points | +13.53 | -1.90 | +2.94 | -0.24\nBaa corporate minus 10y Treasury spread | pp | +1.90 | +0.01 | -0.24 | -0.89\nBroad trade-weighted dollar | YoY % | +3.87 | +5.02 | +6.57 | +0.32\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +2.8% | +6.1% | +7.6% | +19.5% | +12.5% | -0.4%\nDeveloped ex-US equity | -1.1% | -2.2% | -1.6% | +3.7% | +11.0% | -8.7%\nEmerging-market equity | -1.6% | -7.2% | -9.9% | -1.6% | +18.7% | -16.6%\nUS Treasuries 7-10y | +1.1% | +1.4% | +1.6% | -3.3% | +3.9% | -3.8%\nUS Treasuries 20y+ | +2.0% | +1.8% | +3.7% | -3.0% | +8.8% | -4.2%\nUS investment-grade credit | +0.3% | +1.3% | +0.8% | -1.9% | +3.8% | -3.1%\nGold | -0.9% | -7.2% | -9.3% | -9.8% | +9.7% | -11.9%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.40\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

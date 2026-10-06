@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:19:44+00:00",
+ "decision_date": "2017-10-31",
+ "key": "217180d48ae7ead98858a8ccb3d64a233cc412f9f9251878b7bade8db16bfd4f",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmbw5V8BgrBzDz8RMscD",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2017. The unemployment rate is 4.2% and the fed funds rate is about 1.16%, which fits October or November 2017. The 2-year yield at 1.58% and the 10-year at 2.37% also fit that period, as does a VIX near 10.5.\n\nThe payroll average of 91k over three months is weak, which matches the hurricane-distorted figures from September 2017. Headline CPI at 2.23% suggests September or October 2017. The 12-month equity return of 23.4% is consistent with October 2017.\n\nThe fed funds rate was 1.15% in October 2017 and 1.16% in November. Unemployment was 4.2% in September, 4.1% in October and 4.2% in November, though after revisions the values may differ. The 3-month payroll average is lowest around October 2017, when September was -33k, so the average of August, September and October would be about 91k at first release. With a 3-month change in the unemployment rate of -0.2, September 2017 (4.2% against 4.4% in June) fits too.\n\nThe 10-year yield was about 2.33% in September and 2.38% in October. The 2-year yield was 1.47% in September and 1.60% in October. Equity returns of +1.9% over the month are consistent with October, when the S&P rose 2.3%. Headline CPI in October was 2.0%, and in September it was 2.2%. The CPI of 2.23% points to September, but the market data fit October, so I'll go with October. The 2-year yield rose by 0.24 over three months, which is also consistent with October.\n\n{\"year\":2017,\"month\":10,\"confidence\":0.8,\"cues\":[\"Unemployment 4.2%, fed funds ~1.16%, VIX ~10.5\",\"Payroll 3m average weak (~91k) from hurricane distortion\",\"2y yield 1.58%, 10y 2.37%, equities +23% over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 616,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +1.60 | -0.46 | +2.76 | +0.85\nNational activity index, 3m avg | index, 0 = trend growth | -0.16 | -0.30 | -0.02 | -0.46\nUnemployment rate | % | +4.20 | -0.20 | -0.70 | -1.77\nPayrolls, avg monthly change over 3m | thousands | +91.33 | -96.00 | -147.33 | -2.49\nHeadline CPI | YoY % | +2.23 | +0.58 | +0.74 | +1.31\nCore CPI | YoY % | +1.69 | -0.02 | -0.52 | -1.14\nPolicy rate (fed funds) | % | +1.16 | +0.09 | +0.85 | +2.15\n2-year Treasury yield | % | +1.58 | +0.24 | +0.72 | +2.14\n10-year Treasury yield | % | +2.37 | +0.07 | +0.53 | +1.04\n10y minus 2y Treasury spread | pp | +0.79 | -0.17 | -0.19 | -1.39\nEquity implied volatility (VIX) | index points | +10.50 | +0.24 | -6.56 | -1.06\nBaa corporate minus 10y Treasury spread | pp | +1.92 | -0.14 | -0.69 | -1.67\nBroad trade-weighted dollar | YoY % | -2.29 | -0.46 | -5.75 | -1.51\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.9% | +4.4% | +8.9% | +23.4% | +6.9% | -0.2%\nDeveloped ex-US equity | +1.8% | +3.4% | +10.1% | +23.6% | +7.5% | +0.0%\nEmerging-market equity | +3.3% | +5.3% | +15.3% | +26.6% | +12.2% | -0.8%\nUS Treasuries 7-10y | -0.1% | -0.3% | +0.7% | -1.8% | +3.9% | -2.3%\nUS Treasuries 20y+ | +0.1% | +0.2% | +3.3% | -2.7% | +8.8% | -3.5%\nUS investment-grade credit | +0.1% | +0.6% | +3.5% | +3.4% | +3.7% | -0.4%\nGold | -0.1% | +0.2% | +2.3% | -1.0% | +9.9% | -5.8%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.36\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

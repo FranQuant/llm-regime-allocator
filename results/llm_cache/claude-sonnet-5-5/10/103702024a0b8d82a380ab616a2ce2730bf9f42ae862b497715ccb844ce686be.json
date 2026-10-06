@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:07:44+00:00",
+ "decision_date": "2008-02-29",
+ "key": "103702024a0b8d82a380ab616a2ce2730bf9f42ae862b497715ccb844ce686be",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmb1uNCH7mX3sLd1QHTK",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like mid-2008: headline CPI at 4.4% and a fed funds rate near 3% after steep cuts, with a 2-year yield of 1.87%. Gold is up 46% over 12 months, the dollar is weak, and the Baa spread is wide.\n\nCandidate months:\n- **June 2008:** CPI was 5.0%, fed funds 2.0%, unemployment 5.5%. This doesn't fit.\n- **March 2008:** CPI was 4.0%, fed funds about 2.2% after the March cuts, unemployment 5.1%. Closer, but the rate is still too low.\n- **Feb 2008:** CPI was 4.0%, fed funds 3.0%, unemployment 4.8%, 2-year yield about 1.6%, 10-year about 3.5%. Close.\n- **Jan 2008:** CPI was 4.3%, fed funds 3.0% after the cut, unemployment 4.9%, 10-year about 3.6%, 2-year about 2.0%.\n\nJan 2008 fits well on unemployment 4.9%, CPI 4.4% (Jan 2008 CPI was 4.3%), and payroll growth near 42k. The policy rate average of 3.06 fits January, when the effective rate averaged 3.94 before the end-of-month cut, though February at 2.98 is also close. The VIX at 23.5 is plausible for end-January or February (end-Feb about 26). The 3-month equity return of -8.6% fits end-January (the S&P was down about 6% in January alone), but the 1m return of -0.8% fits February better, when the S&P fell about -3%. The Baa-10y spread of 3.17 is plausible for February too.\n\nPayrolls averaged around 40k in the Dec\u2013Feb window, and unemployment was 4.9% in both Dec and Jan. The 12m change in the 10y yield of -0.85 fits Feb 2008 (4.7% to 3.9%?). Gold's 1m gain of +4.5% fits February (+~8%?) or January (+~5%).\n\nI'll go with January 2008, leaning slightly toward February.\n\n{\"year\": 2008, \"month\": 1, \"confidence\": 0.6, \"cues\": [\"Headline CPI 4.4% with fed funds ~3% after sharp cuts\", \"Unemployment 4.9% and payroll growth fading to ~40k/month\", \"Gold +46% YoY, weak dollar, 2y yield down 2.8pp over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1188,
+  "output_tokens": 827,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.28 | +0.90 | -0.08 | -0.68\nNational activity index, 3m avg | index, 0 = trend growth | -0.25 | -0.11 | -0.32 | -1.55\nUnemployment rate | % | +4.90 | +0.10 | +0.30 | +0.55\nPayrolls, avg monthly change over 3m | thousands | +41.67 | -56.67 | -127.33 | -1.84\nHeadline CPI | YoY % | +4.40 | +0.86 | +2.32 | +1.43\nCore CPI | YoY % | +2.47 | +0.30 | -0.19 | +0.51\nPolicy rate (fed funds) | % | +3.06 | -1.60 | -2.35 | -1.63\n2-year Treasury yield | % | +1.87 | -1.17 | -2.78 | -3.10\n10-year Treasury yield | % | +3.71 | -0.26 | -0.85 | -2.11\n10y minus 2y Treasury spread | pp | +1.84 | +0.91 | +1.93 | +3.47\nEquity implied volatility (VIX) | index points | +23.53 | +0.66 | +8.11 | +1.93\nBaa corporate minus 10y Treasury spread | pp | +3.17 | +0.70 | +1.57 | +3.59\nBroad trade-weighted dollar | YoY % | -8.77 | -1.57 | -6.24 | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.8% | -8.6% | -7.8% | -3.0% | +19.2% | -14.0%\nDeveloped ex-US equity | +0.0% | -11.8% | -5.4% | +0.1% | +22.7% | -14.7%\nEmerging-market equity | +4.0% | -8.8% | +7.7% | +29.7% | +38.3% | -15.4%\nUS Treasuries 7-10y | +1.8% | +5.4% | +10.8% | +13.5% | +8.4% | +0.0%\nUS Treasuries 20y+ | +0.3% | +1.4% | +9.4% | +9.6% | +13.5% | -2.0%\nUS investment-grade credit | -0.4% | +1.9% | +4.6% | +3.5% | +8.3% | -1.2%\nGold | +4.5% | +20.9% | +45.6% | +46.1% | +20.5% | +0.0%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.61\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

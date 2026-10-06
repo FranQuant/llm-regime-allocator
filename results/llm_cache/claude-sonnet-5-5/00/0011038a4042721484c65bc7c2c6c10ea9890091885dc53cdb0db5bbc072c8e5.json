@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:21:03+00:00",
+ "decision_date": "2019-02-28",
+ "key": "0011038a4042721484c65bc7c2c6c10ea9890091885dc53cdb0db5bbc072c8e5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc2hoZwAixFHM6javXm",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like early 2019 or the end of March 2019, with a policy rate of 2.40%, unemployment at 4.0%, and a 10-year yield of 2.69%.\n\nThe fed funds rate of 2.40% matches the period from December 2018 to mid-2019. The 10-year yield of 2.69% fits March 2019, when it was about 2.41%, or alternatively January 2019, when it was about 2.63%. The 2-year yield of 2.50% fits January or February 2019.\n\nHeadline CPI at 1.52% YoY matches January 2019, when it was 1.6%. The unemployment rate of 4.0% matches January 2019. Payrolls averaged about 240k over three months, which fits January 2019 given the revised December figure of about 222k and a January figure of about 304k.\n\nUS equities returned +5.8% in the month, with a -2.8% 6-month return. That fits January 2019, when the S&P gained about 8%, though February 2019 gained about 3%. The 6-month return of -2.8% fits January 2019, since the period began in July 2018 and included the December selloff. The 12-month return of +3.5% also fits. Gold's 3-month return of +7.2% fits too.\n\nThe VIX at 14.7 fits February 2019 (about 14.8), though the January figure was about 16.6. A 1-month equity return of +5.8% with a 3-month return of +4.8% suggests the month after the December low. Counting back, November through January would give roughly +4.8%, with January at +8%, so February may fit better. A 3-month window of December through February would be about -9% + 8% + 3%, which is negative, so that does not match. A window of November through January would be +1.8% - 9% + 8%, which is also not +4.8%. A window of January through March would be 8% + 3% + 1.9%, roughly 13%, which is too high. February's 1-month return of 3% does not match +5.8% either.\n\nAlternatively, the snapshot could be February 2019 with some difference in how returns are computed, but the dollar and the 12-month figures fit that period as well. I'll go with February 2019.\n\n{\"year\": 2019, \"month\": 2, \"confidence\": 0.5, \"cues\": [\"Fed funds 2.40% with unemployment at 4.0% and headline CPI at 1.5% YoY\", \"2-year yield at 2.50% and 10-year at 2.69%, with VIX near 14.7 after the late-2018 selloff\", \"6-month equity return of -2.8% with a 1-month rebound of +5.8%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 829,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +3.80 | -0.56 | +0.98 | +0.91\nNational activity index, 3m avg | index, 0 = trend growth | -0.01 | -0.26 | -0.07 | -0.30\nUnemployment rate | % | +4.00 | +0.20 | -0.10 | -0.81\nPayrolls, avg monthly change over 3m | thousands | +240.67 | +18.33 | +52.33 | +1.28\nHeadline CPI | YoY % | +1.52 | -0.99 | -0.57 | -0.73\nCore CPI | YoY % | +2.15 | -0.01 | +0.32 | +0.40\nPolicy rate (fed funds) | % | +2.40 | +0.20 | +1.05 | +1.70\n2-year Treasury yield | % | +2.50 | -0.30 | +0.25 | +1.10\n10-year Treasury yield | % | +2.69 | -0.32 | -0.18 | +0.63\n10y minus 2y Treasury spread | pp | +0.19 | -0.02 | -0.43 | -1.49\nEquity implied volatility (VIX) | index points | +14.70 | -3.37 | -5.15 | +0.16\nBaa corporate minus 10y Treasury spread | pp | +2.25 | -0.02 | +0.57 | +0.08\nBroad trade-weighted dollar | YoY % | +5.39 | -0.05 | +11.92 | +1.04\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +5.8% | +4.8% | -2.8% | +3.5% | +19.0% | -4.1%\nDeveloped ex-US equity | +3.7% | +3.6% | -4.8% | -6.6% | +14.9% | -7.9%\nEmerging-market equity | +1.5% | +7.1% | -2.1% | -11.0% | +21.4% | -13.1%\nUS Treasuries 7-10y | +0.2% | +3.5% | +2.7% | +4.6% | +4.2% | -0.9%\nUS Treasuries 20y+ | -0.6% | +5.2% | +0.1% | +4.5% | +8.9% | -2.6%\nUS investment-grade credit | +1.0% | +4.9% | +1.9% | +3.0% | +3.8% | -0.4%\nGold | +0.0% | +7.2% | +8.2% | -0.9% | +9.3% | -3.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.46\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

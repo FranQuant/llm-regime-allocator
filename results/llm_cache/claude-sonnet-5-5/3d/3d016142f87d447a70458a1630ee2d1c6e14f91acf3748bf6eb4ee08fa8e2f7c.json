@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:23:43+00:00",
+ "decision_date": "2021-08-31",
+ "key": "3d016142f87d447a70458a1630ee2d1c6e14f91acf3748bf6eb4ee08fa8e2f7c",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcEnRiScFsskDAmYA1k",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The data point to mid-2021. Unemployment is 5.4%, core CPI is 4.23% year over year, the fed funds rate is 0.08%, and the 10-year yield is 1.29%. The 10-year yield fell by 0.29 over three months, consistent with a peak in March 2021 near 1.7% and a drop to about 1.3% by July.\n\nCore CPI at 4.23% matches June 2021 (4.5%) or July 2021 (4.3%). Headline CPI at 5.28% looks like July 2021 (5.4%), with June at 5.4% as well. Unemployment of 5.4% matches June or July 2021 (5.9% in June, 5.4% in July). That makes July 2021 the best fit, and the 10-year yield of about 1.24\u20131.3% at the end of July supports it. Payrolls averaged 831k over three months, which fits May\u2013July 2021.\n\nThe 12-month equity return of 31% fits July 2021.\n\n\n{\"year\":2021,\"month\":7,\"confidence\":0.9,\"cues\":[\"Unemployment 5.4%, core CPI 4.2% and headline CPI 5.3% with fed funds near 0.08%\",\"10y yield 1.29%, down 0.29 over 3 months from the March 2021 peak\",\"US equities +31% over 12m and payrolls averaging ~830k\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1190,
+  "output_tokens": 443,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +6.56 | -11.21 | +13.59 | +1.06\nNational activity index, 3m avg | index, 0 = trend growth | +0.22 | +0.03 | -4.20 | +0.20\nUnemployment rate | % | +5.40 | -0.70 | -4.80 | -0.08\nPayrolls, avg monthly change over 3m | thousands | +831.67 | +301.67 | -2303.33 | +0.46\nHeadline CPI | YoY % | +5.28 | +1.13 | +4.24 | +2.72\nCore CPI | YoY % | +4.23 | +1.27 | +2.68 | +2.86\nPolicy rate (fed funds) | % | +0.08 | +0.03 | -0.01 | -0.95\n2-year Treasury yield | % | +0.20 | +0.06 | +0.06 | -0.87\n10-year Treasury yield | % | +1.29 | -0.29 | +0.57 | -0.43\n10y minus 2y Treasury spread | pp | +1.09 | -0.35 | +0.51 | +1.24\nEquity implied volatility (VIX) | index points | +16.19 | -0.57 | -10.22 | -0.63\nBaa corporate minus 10y Treasury spread | pp | +1.92 | -0.07 | -0.75 | -0.96\nBroad trade-weighted dollar | YoY % | -2.04 | +6.35 | -0.21 | -0.67\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +3.2% | +7.8% | +19.2% | +31.2% | +11.1% | -0.1%\nDeveloped ex-US equity | +0.9% | +0.4% | +9.2% | +27.0% | +12.2% | -1.0%\nEmerging-market equity | +0.8% | -6.2% | -3.4% | +19.4% | +18.0% | -9.2%\nUS Treasuries 7-10y | -0.8% | +2.5% | +2.1% | -2.8% | +4.8% | -3.4%\nUS Treasuries 20y+ | -1.2% | +7.7% | +7.4% | -6.9% | +12.3% | -9.1%\nUS investment-grade credit | -0.6% | +3.1% | +4.3% | +2.2% | +5.8% | -0.8%\nGold | +0.0% | -5.1% | +5.6% | -8.2% | +13.0% | -8.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: +0.04\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

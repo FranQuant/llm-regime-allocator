@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:27:09+00:00",
+ "decision_date": "2024-10-31",
+ "key": "1e9a0e79d0b301583fc4e91a62c26e23ce6e287dd7b82f3e03a22e7ac86b93f9",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmcVwqB1yQsmZhtnfF3L",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The fed funds rate is 4.83% after a 50bp drop over 3 months, and the 12-month change is also -0.5. That points to late 2024: the Fed cut 100bp in total in Sep-Dec 2024, taking the rate from 5.33 to 4.33. At 4.83 it would be around Oct-Nov 2024, when the monthly average was 4.83 in October and 4.64 in November.\n\nOther cues match October 2024. The 10-year yield at 4.29% is consistent with end-October (4.28%), with a 3m change of +0.20 (from 3.91 at end-July... roughly). The 2-year at 4.15% also fits end-October. Core CPI at 3.26% is September's reading (3.3%), and headline CPI at 2.41% is also September's (2.4%). The unemployment rate of 4.1% was the September figure. Payrolls were weak in October, but the September data were published before the snapshot. Bonds fell 3.5% in the month, which fits October 2024, and the S&P was flat at -0.0% that month. The 12-month equity return of 37.8% also fits.\n\nThe month is October 2024.\n\n{\"year\":2024,\"month\":10,\"confidence\":0.93,\"cues\":[\"Fed funds 4.83 after 50bp of cuts; 10y 4.29 and 2y 4.15 with Treasuries down about 3.5% in the month\",\"Core CPI 3.26% and headline CPI 2.41%, matching September 2024 prints; unemployment 4.1%\",\"S&P flat for the month, +37.8% over 12m, and gold +37.7% over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 531,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -0.64 | -1.47 | -0.43 | -1.02\nNational activity index, 3m avg | index, 0 = trend growth | -0.18 | -0.06 | -0.15 | -0.66\nUnemployment rate | % | +4.10 | +0.00 | +0.30 | +1.28\nPayrolls, avg monthly change over 3m | thousands | +185.67 | +38.33 | -27.67 | -0.92\nHeadline CPI | YoY % | +2.41 | -0.57 | -1.29 | -1.32\nCore CPI | YoY % | +3.26 | -0.02 | -0.88 | -1.51\nPolicy rate (fed funds) | % | +4.83 | -0.50 | -0.50 | +0.54\n2-year Treasury yield | % | +4.15 | -0.14 | -0.92 | +0.26\n10-year Treasury yield | % | +4.29 | +0.20 | -0.59 | +0.80\n10y minus 2y Treasury spread | pp | +0.14 | +0.34 | +0.33 | +0.83\nEquity implied volatility (VIX) | index points | +20.35 | +3.99 | +2.21 | +0.15\nBaa corporate minus 10y Treasury spread | pp | +1.44 | -0.24 | -0.41 | -1.59\nBroad trade-weighted dollar | YoY % | +0.58 | -4.28 | +3.32 | -0.56\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.0% | +7.0% | +13.3% | +37.8% | +12.9% | -2.7%\nDeveloped ex-US equity | -4.4% | +2.9% | +3.2% | +22.0% | +13.9% | -6.2%\nEmerging-market equity | -5.6% | +6.9% | +6.3% | +24.3% | +16.5% | -6.1%\nUS Treasuries 7-10y | -3.5% | -2.7% | +4.3% | +9.2% | +6.4% | -4.4%\nUS Treasuries 20y+ | -5.3% | -5.3% | +5.7% | +15.1% | +13.7% | -8.5%\nUS investment-grade credit | -3.4% | -0.7% | +5.0% | +14.9% | +6.4% | -3.8%\nGold | +3.2% | +12.5% | +18.9% | +37.7% | +15.2% | -1.5%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.01\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

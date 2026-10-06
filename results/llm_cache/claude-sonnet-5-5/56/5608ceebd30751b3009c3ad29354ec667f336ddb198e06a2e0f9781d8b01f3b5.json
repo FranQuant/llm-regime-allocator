@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:21:39+00:00",
+ "decision_date": "2019-09-30",
+ "key": "5608ceebd30751b3009c3ad29354ec667f336ddb198e06a2e0f9781d8b01f3b5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmc5TTSbDLjL22xogZRQ",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like late 2019. The fed funds rate is 1.83%, after cuts in July, September and October 2019 that brought it to 1.50\u20131.75%, so the effective rate sits around 1.55% by November. A reading of 1.83% would fit September 2019, when the effective rate was about 1.90\u20132.00% after the September cut, or possibly October 2019. The 3-month change of -0.57 also points to a monthly average rate. Early-summer 2019 is about 2.40%, so a drop of 0.57 puts the current value at about 1.83%.\n\nThe other figures fit September or October 2019. The unemployment rate was 3.5% in September, so 3.7% suggests an earlier month, such as August (3.7%). Headline CPI at 1.76% fits August 2019 (1.75%), and core CPI at 2.39% also fits August 2019 (2.4%). The 10-year yield was 1.50% in August, though a monthly average could differ. The 10-year at 1.69 with a 1-month Treasury return of -1.2% suggests yields rose in the month, which fits September 2019, when the 10-year ended at 1.68%. Gold fell 3.6% in September 2019, which also fits. The unemployment rate in the data as then published was 3.7% in August (3.5% in September, released in October), so the snapshot is probably from end-September but with the unemployment rate not yet updated.\n\nOverall I choose September 2019.\n\n{\"year\":2019,\"month\":9,\"confidence\":0.8,\"cues\":[\"10y yield 1.69% after a sharp rise in September, with 20y+ Treasuries down 2.7% on the month\",\"Fed funds 1.83% after July and September cuts; core CPI 2.39%, headline CPI 1.76%\",\"Gold -3.6% on the month after a strong 12-month run; unemployment 3.7%\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 608,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +0.36 | -1.39 | -4.90 | -1.17\nNational activity index, 3m avg | index, 0 = trend growth | -0.06 | +0.28 | -0.43 | -0.56\nUnemployment rate | % | +3.70 | +0.10 | -0.10 | -1.07\nPayrolls, avg monthly change over 3m | thousands | +155.67 | +12.00 | -85.00 | -1.08\nHeadline CPI | YoY % | +1.76 | -0.04 | -0.93 | -0.88\nCore CPI | YoY % | +2.39 | +0.39 | +0.21 | +1.63\nPolicy rate (fed funds) | % | +1.83 | -0.57 | -0.35 | +0.40\n2-year Treasury yield | % | +1.63 | -0.12 | -1.18 | -0.48\n10-year Treasury yield | % | +1.69 | -0.31 | -1.36 | -2.02\n10y minus 2y Treasury spread | pp | +0.06 | -0.19 | -0.18 | -1.28\nEquity implied volatility (VIX) | index points | +17.22 | +2.14 | +5.10 | +0.72\nBaa corporate minus 10y Treasury spread | pp | +2.19 | -0.12 | +0.35 | +0.36\nBroad trade-weighted dollar | YoY % | +3.45 | +2.29 | -0.00 | +0.53\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.9% | +0.8% | +4.8% | +4.1% | +13.4% | -1.3%\nDeveloped ex-US equity | +3.6% | -1.3% | +1.4% | -1.8% | +11.5% | -2.2%\nEmerging-market equity | +2.5% | -5.9% | -5.6% | -3.3% | +15.6% | -7.6%\nUS Treasuries 7-10y | -1.2% | +2.9% | +7.4% | +13.9% | +5.4% | -1.6%\nUS Treasuries 20y+ | -2.7% | +8.6% | +16.2% | +24.9% | +12.5% | -3.0%\nUS investment-grade credit | -0.8% | +3.2% | +9.4% | +14.9% | +5.2% | -1.0%\nGold | -3.6% | +6.3% | +14.3% | +23.9% | +13.5% | -5.3%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.48\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

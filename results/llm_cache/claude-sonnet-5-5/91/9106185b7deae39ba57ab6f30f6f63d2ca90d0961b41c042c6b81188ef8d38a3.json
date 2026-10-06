@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:17:33+00:00",
+ "decision_date": "2016-01-29",
+ "key": "9106185b7deae39ba57ab6f30f6f63d2ca90d0961b41c042c6b81188ef8d38a3",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmbmSvCVs2wFpsgE9Ri3",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like January 2016. The fed funds rate is 0.38%, which fits the period right after the December 2015 hike. Unemployment is 5.0%, and Baa spreads are wide at 3.48 because of the oil and high-yield stress. Industrial production is down 1.75% YoY, the dollar is strong, and the VIX is 22.42. Equities fell 6.6% in the month, the 10-year yield is 2.00%, and emerging-market equities are down 22% over 12 months. That pattern fits January 2016 better than February 2016, when the 10-year was about 1.78%.\n\nHeadline CPI at 0.66% YoY and payrolls averaging about 284k over three months also match the late-2015 data.\n\nThe 10-year yield at 2.00% suggests end of January 2016, when it was about 1.94%, or possibly end of December 2015, when it was about 2.27%. The 1-month equity return of -6.6% matches January 2016, since the S&P 500 fell about 5%. The December 2015 drop was only about 1.6%, so January is the better fit.\n\n\n<invoke name=\"x\">\n</invoke>\n{\"year\": 2016, \"month\": 1, \"confidence\": 0.8, \"cues\": [\"Fed funds 0.38% right after the Dec 2015 hike, with unemployment at 5.0%\", \"US equities -6.6% in 1m, VIX 22, Baa spread 3.48 amid oil and credit stress\", \"Industrial production -1.75% YoY, strong dollar, EM equities -22% over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1189,
+  "output_tokens": 521,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | -1.75 | -2.57 | -6.33 | -2.65\nNational activity index, 3m avg | index, 0 = trend growth | -0.24 | -0.28 | -0.65 | -1.26\nUnemployment rate | % | +5.00 | -0.10 | -0.60 | -1.38\nPayrolls, avg monthly change over 3m | thousands | +283.67 | +110.00 | -40.67 | +1.35\nHeadline CPI | YoY % | +0.66 | +0.69 | -0.01 | -0.53\nCore CPI | YoY % | +2.09 | +0.19 | +0.48 | +2.45\nPolicy rate (fed funds) | % | +0.38 | +0.31 | +0.32 | +5.12\n2-year Treasury yield | % | +0.83 | +0.08 | +0.36 | +1.63\n10-year Treasury yield | % | +2.00 | -0.16 | +0.32 | -0.99\n10y minus 2y Treasury spread | pp | +1.17 | -0.24 | -0.04 | -1.54\nEquity implied volatility (VIX) | index points | +22.42 | +7.35 | +1.45 | +1.79\nBaa corporate minus 10y Treasury spread | pp | +3.48 | +0.29 | +0.87 | +2.31\nBroad trade-weighted dollar | YoY % | +9.84 | -2.48 | -1.09 | +0.64\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -6.6% | -6.7% | -7.1% | -2.1% | +19.9% | -7.9%\nDeveloped ex-US equity | -7.3% | -9.3% | -13.1% | -8.5% | +19.6% | -16.8%\nEmerging-market equity | -6.8% | -11.6% | -15.5% | -22.0% | +25.9% | -29.1%\nUS Treasuries 7-10y | +3.5% | +2.0% | +4.1% | +1.4% | +5.7% | +0.0%\nUS Treasuries 20y+ | +5.9% | +3.5% | +6.0% | -3.9% | +13.7% | -5.6%\nUS investment-grade credit | +0.3% | -1.6% | +0.3% | -3.9% | +5.2% | -4.8%\nGold | +4.6% | -3.5% | +2.6% | -11.4% | +14.2% | -13.4%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.43\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}

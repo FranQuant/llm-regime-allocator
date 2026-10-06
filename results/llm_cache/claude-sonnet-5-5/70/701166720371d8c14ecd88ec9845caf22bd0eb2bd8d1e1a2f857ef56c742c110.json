@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:07:31+00:00",
+ "decision_date": "2007-12-31",
+ "key": "701166720371d8c14ecd88ec9845caf22bd0eb2bd8d1e1a2f857ef56c742c110",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.1",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmazhubgCHXtGa1MMUMw",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "{\"year\":2007,\"month\":11,\"confidence\":0.6,\"cues\":[\"Headline CPI is about 4.3% YoY with core near 2.3%, and unemployment is 4.7%\",\"Gold is up about 31% over 12m, the dollar is down about 7% YoY, and the 2y yield is about 3.1% after sharp rate-cut pricing\",\"Equities are down about 4.7% over 3m with VIX near 21 and the Baa spread widening, which fits the late-2007 credit stress\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1186,
+  "output_tokens": 1235,
+  "output_tokens_details": {
+   "thinking_tokens": 1066
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "MACRO (latest published value; changes are differences in the same units; z = z-score vs the last 36 months)\nindicator | units | latest | 3m chg | 12m chg | z\nIndustrial production | YoY % | +2.13 | +0.72 | -0.91 | -0.92\nNational activity index, 3m avg | index, 0 = trend growth | -0.14 | +0.02 | -0.02 | -1.21\nUnemployment rate | % | +4.70 | +0.10 | +0.20 | -0.30\nPayrolls, avg monthly change over 3m | thousands | +102.67 | +17.67 | -65.00 | -1.36\nHeadline CPI | YoY % | +4.29 | +2.36 | +2.27 | +1.45\nCore CPI | YoY % | +2.33 | +0.22 | -0.29 | -0.01\nPolicy rate (fed funds) | % | +4.01 | -0.57 | -1.16 | -0.51\n2-year Treasury yield | % | +3.12 | -0.85 | -1.70 | -2.11\n10-year Treasury yield | % | +4.11 | -0.48 | -0.60 | -1.33\n10y minus 2y Treasury spread | pp | +0.99 | +0.37 | +1.10 | +2.37\nEquity implied volatility (VIX) | index points | +20.74 | +2.74 | +9.18 | +1.79\nBaa corporate minus 10y Treasury spread | pp | +2.51 | +0.51 | +0.87 | +3.43\nBroad trade-weighted dollar | YoY % | -7.06 | +0.24 | n/a | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.1% | -4.7% | -2.7% | +4.7% | +19.2% | -6.1%\nDeveloped ex-US equity | -2.5% | -3.8% | -1.8% | +9.8% | +21.3% | -6.5%\nEmerging-market equity | -0.6% | -1.2% | +13.3% | +33.1% | +39.2% | -8.9%\nUS Treasuries 7-10y | +0.2% | +5.1% | +10.0% | +10.3% | +7.3% | -0.5%\nUS Treasuries 20y+ | -1.1% | +6.0% | +11.8% | +10.2% | +11.4% | -1.9%\nUS investment-grade credit | -0.3% | +1.8% | +3.8% | +3.7% | +7.5% | -1.5%\nGold | +5.3% | +11.6% | +26.8% | +31.1% | +18.6% | -0.7%\nUS equity vs 7-10y Treasury daily-return correlation, 6m: -0.66\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe"
+}
