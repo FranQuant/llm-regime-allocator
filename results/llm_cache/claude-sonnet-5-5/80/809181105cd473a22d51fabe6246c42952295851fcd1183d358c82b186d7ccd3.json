@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:57:58+00:00",
+ "decision_date": "2008-01-31",
+ "key": "809181105cd473a22d51fabe6246c42952295851fcd1183d358c82b186d7ccd3",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmer4JuKrsDLFvLySiCJ",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The pattern looks like late 2008: VIX and credit spreads at extremes, equities in deep drawdown, and Treasury yields falling sharply. The policy rate z-score of -1.5 with a 3m change of -3 points to aggressive cuts. Headline CPI is high at +1.0 with a 3m change of +1.0, which fits mid-2008, but the snapshot also shows deflationary pressure setting in.\n\nThe unemployment rate z-score is +1.0 with a 12m change of +3, so unemployment is rising fast but is not yet at its peak.\n\nOctober 2008 fits well on several points. The VIX was extreme, and equities fell sharply in 1m, 3m and 12m terms. Credit spreads were very wide, and the fed funds rate was cut to 1.0% in October. Headline CPI was still elevated, though by October it was falling.\n\nAgainst that, the 2y yield z-score of -3 and 10y at -2 fit October to November 2008. Gold was up 2.0 over 1m, and in October 2008 gold was roughly flat to down, but in November it rose. Equity 1m returns of -2.5 fit October (-17%), whereas November was -7%, which is also a large drop. The 7-10y Treasury 1m return of +2.0 fits November, when Treasuries rallied. The investment-grade credit 1m return of +2.0 fits November rather than October, when credit fell. Core CPI at +0.5 and headline at +1.0 fit October to November as well. Headline CPI in November had dropped sharply, but the 12m z-score measure is relative to the prior 36 months. The dollar at -1.5 fits too.\n\nI'll go with November 2008.\n\n{\"year\":2008,\"month\":11,\"confidence\":0.6,\"cues\":[\"VIX, Baa spread and equity drawdown all at +3/-3 extremes\",\"2y and 10y yields collapsed with fed funds cut sharply over 3m\",\"Treasuries and IG credit up 1m while equities fell, fitting Nov 2008\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1093,
+  "output_tokens": 668,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +0.0 | -0.5\nNational activity index, 3m avg | -1.5 | +0.0 | -1.5\nUnemployment rate | +1.0 | +2.0 | +3.0\nPayrolls, avg monthly change over 3m | -1.0 | +0.5 | -0.5\nHeadline CPI | +1.0 | +1.0 | +1.0\nCore CPI | +0.5 | +1.0 | -0.5\nPolicy rate (fed funds) | -1.5 | -3.0 | -3.0\n2-year Treasury yield | -3.0 | -3.0 | -3.0\n10-year Treasury yield | -2.0 | -2.0 | -2.0\n10y minus 2y Treasury spread | +3.0 | +3.0 | +2.5\nEquity implied volatility (VIX) | +3.0 | +2.0 | +3.0\nBaa corporate minus 10y Treasury spread | +3.0 | +3.0 | +3.0\nBroad trade-weighted dollar | -1.5 | n/a | n/a\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.5 | -3.0 | -2.5 | -2.5 | +3.0 | -3.0\nDeveloped ex-US equity | -3.0 | -3.0 | -2.5 | -3.0 | +2.5 | -3.0\nEmerging-market equity | -2.0 | -2.5 | -1.0 | -1.0 | +2.5 | -2.5\nUS Treasuries 7-10y | +2.0 | +2.0 | +2.5 | +2.5 | +3.0 | +0.5\nUS Treasuries 20y+ | +0.5 | +1.0 | +1.5 | +1.0 | +2.5 | +0.5\nUS investment-grade credit | +2.0 | +0.5 | +2.0 | +1.0 | +3.0 | +1.0\nGold | +2.0 | +1.5 | +2.0 | +1.0 | +0.5 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -2.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

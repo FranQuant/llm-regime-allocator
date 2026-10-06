@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:17:50+00:00",
+ "decision_date": "2020-09-30",
+ "key": "1258d0ff2f4c3d202798a4b8f89f87962431ffbe284768c2f7ca6584011ae3b6",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgMsid2B5rB2x8wkQL1",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a post-recession recovery period with low policy rates versus the prior 3 years (z -2). Unemployment is high relative to its 3-year average but falling quickly (-2.0 over 3m). Payrolls are strong at +1.5, with a 3m change of +3.0. The national activity index is rising. Inflation is low but rising. The 10y-2y spread has steepened over 12m. Industrial production is low but recovering.\n\nTwo candidates fit this pattern: late 2020 to early 2021, or 2009-2010.\n\nFor 2009-2010, 36-month windows would include pre-crisis high rates, so the policy rate z would be very low. Payrolls were not strongly positive in 2009, though. Equities show a 6m z of +3.0, which suggests a strong rally, as in late 2020 or early 2021. Gold dropped 1.5 over 1m, which fits the gold fall in November 2020 (and also Feb-Mar 2021). The dollar's 3m change of -1.5 fits the dollar decline from Q2 to Q3 2020, and in Q4 2020 as well.\n\nHeadline CPI at -1.0 with a 3m change of +1.5 suggests CPI recovering from the pandemic trough, which fits fall 2020. Payrolls averaging +1.5 with a 3m change of +3.0 implies a strong rebound from the negative months. Unemployment 12m change of +1.5 is consistent with 2020 levels still above the prior year. The 3m unemployment change of -2.0 suggests a fall from the peak, so roughly Oct-Nov 2020.\n\nUS large-cap equity 1m -1.0 fits October 2020, when the S&P fell about 2.7%. Gold 1m -1.5 in October 2020 is about -0.5%, which is mild. In November 2020, gold fell about 5%, but equities rose strongly. So October 2020 fits better on equities. The VIX was elevated in October 2020, though only +0.5 here. The 6m equity z of +3.0 fits as well.\n\nI'll go with October 2020.\n\n{\"year\":2020,\"month\":10,\"confidence\":0.6,\"cues\":[\"Policy rate z -2 with unemployment falling fast (-2.0 over 3m) and payrolls rebounding\",\"US equity 1m -1.0 after a strong 6m (+3.0), consistent with an October 2020 pullback\",\"CPI low but rising, dollar down over 3m, and a steeper curve over 12m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 819,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +2.0 | -1.0\nNational activity index, 3m avg | +1.5 | +3.0 | +2.0\nUnemployment rate | +1.0 | -2.0 | +1.5\nPayrolls, avg monthly change over 3m | +1.5 | +3.0 | +1.5\nHeadline CPI | -1.0 | +1.5 | -0.5\nCore CPI | -1.0 | +1.5 | -1.5\nPolicy rate (fed funds) | -2.0 | +0.0 | -1.5\n2-year Treasury yield | -2.0 | +0.0 | -1.0\n10-year Treasury yield | -1.5 | +0.5 | -0.5\n10y minus 2y Treasury spread | +1.0 | +0.5 | +2.0\nEquity implied volatility (VIX) | +0.5 | -0.5 | +0.5\nBaa corporate minus 10y Treasury spread | +1.0 | -0.5 | +0.5\nBroad trade-weighted dollar | -0.5 | -1.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.0 | +0.5 | +3.0 | +0.5 | +0.5 | -0.5\nDeveloped ex-US equity | -0.5 | +0.5 | +3.0 | +0.0 | +0.5 | +0.0\nEmerging-market equity | +0.0 | +1.0 | +3.0 | +0.5 | +0.5 | +1.0\nUS Treasuries 7-10y | +0.0 | -0.5 | -0.5 | +0.5 | -0.5 | +0.5\nUS Treasuries 20y+ | +0.0 | -0.5 | -1.0 | +0.5 | +0.0 | -0.5\nUS investment-grade credit | -0.5 | -0.5 | +2.0 | +0.5 | +0.5 | -0.5\nGold | -1.5 | +0.5 | +1.5 | +1.0 | +1.5 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

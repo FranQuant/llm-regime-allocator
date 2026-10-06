@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:11:43+00:00",
+ "decision_date": "2016-06-30",
+ "key": "8996141be059a848813050765ede7739b9c534021e2384fc631fb5888234ff73",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmftdyd41957s1de33hK",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like a period when rates have peaked and are starting to fall, while the labor market is weak relative to the last 36 months.\n\nPolicy rate z is +2.5 and up over 3 months and 12 months. The 2-year yield is flat in level but down 1.5 over 3 months, and the 10-year is very low relative to its history (-2.5). That points to a window after the 2022-23 hiking cycle, where the 3-year window mixes low and high rates.\n\nThe 10-year at -2.5 looks odd. If the 36-month window included 2020-21 lows, the 10-year would be high rather than low. A low 10-year means the window was dominated by higher yields, so the snapshot is probably from a period after yields have fallen.\n\nOther candidates:\n- **2008:** the policy rate would be falling, not up 2.5 over 12 months, so it doesn't fit.\n- **2019-2020:** the policy rate was up over 12 months, but the 2-year was down, and the 10-year was low relative to 2017-2019. The dollar, though, would be up, not down 2.0 over 12 months. Gold up 3.0 over 6 months fits late 2019, but payrolls and core CPI don't fit.\n- **Late 2024:** the policy rate z-score is high at +2.5 with a +1.0 change over 3 months, which doesn't fit a cutting cycle. Core CPI at +2.0 is high relative to the 2021-24 window. The dollar is down 2.0 over 12 months, and gold is up strongly. Payrolls are weak.\n- **Mid-to-late 2025:** the policy rate window runs from 2022 to 2025, so a z of +2.5 doesn't fit.\n- **Mid-2020:** the window of 2017-2020 has the policy rate falling, which doesn't fit.\n- **Late 2007:** the policy rate is up over 12 months and the 10-year is low, but the dollar and gold fit less well, and core CPI isn't a +2.0 at that point.\n- **Early 2024, with a 2021-2023 window:** the policy rate would be very high in z terms, but the 2-year yield z of 0 doesn't fit.\n\nThe best fit is September 2024: the policy rate has just started falling, but the 3-month change would then be negative. If the 3m change is +1.0, rates were still rising, which fits early 2023 or mid-2023 better. But the 2-year yield down 1.5 over 3 months and the 10-year down 1.0 imply yields fell, matching a post-banking-crisis period such as March-April 2023. In that period gold was up strongly over 6 months, and the dollar was down 2.0 over 12 months from the Sept 2022 peak. Payrolls would not be -2.0 then, though, and the unemployment rate would not be -1.5 against a low base. Overall, March 2023 is a reasonable fit: the 10-year is low relative to 2020-23, equity 12-month returns are negative, and yields have fallen after SVB.\n\n{\"year\": 2023, \"month\": 3, \"confidence\": 0.3, \"cues\": [\"Policy rate z +2.5 and rising while 2y yield is down 1.5 over 3 months, which fits the SVB-era rate drop\", \"Gold up strongly over 6 months, dollar down 2.0 over 12 months from the late-2022 peak, equities negative over 12 months\", \"Core CPI high versus the 3-year window, Treasuries and credit rallying\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1140,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +0.5 | -0.5\nNational activity index, 3m avg | -1.5 | -1.0 | -0.5\nUnemployment rate | -1.5 | +0.0 | +0.5\nPayrolls, avg monthly change over 3m | -2.0 | -1.5 | -1.5\nHeadline CPI | +0.0 | +0.0 | +1.5\nCore CPI | +2.0 | -1.0 | +1.5\nPolicy rate (fed funds) | +2.5 | +1.0 | +2.0\n2-year Treasury yield | +0.0 | -1.5 | -2.0\n10-year Treasury yield | -2.5 | -1.0 | -1.5\n10y minus 2y Treasury spread | -1.5 | -0.5 | -1.0\nEquity implied volatility (VIX) | +0.5 | +0.5 | -0.5\nBaa corporate minus 10y Treasury spread | +0.5 | -1.0 | +0.0\nBroad trade-weighted dollar | -0.5 | +0.5 | -2.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | +0.0 | -0.5 | -1.0 | +1.0 | +0.5\nDeveloped ex-US equity | -0.5 | +0.0 | -0.5 | -1.0 | +2.5 | -1.0\nEmerging-market equity | +1.0 | +0.5 | +1.0 | -0.5 | +1.5 | +0.0\nUS Treasuries 7-10y | +1.5 | +1.0 | +2.0 | +1.5 | -0.5 | +1.0\nUS Treasuries 20y+ | +1.5 | +1.0 | +1.5 | +1.5 | +0.0 | +1.5\nUS investment-grade credit | +1.5 | +1.0 | +2.0 | +1.5 | -1.0 | +1.0\nGold | +2.0 | +1.0 | +3.0 | +2.0 | +0.5 | +2.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

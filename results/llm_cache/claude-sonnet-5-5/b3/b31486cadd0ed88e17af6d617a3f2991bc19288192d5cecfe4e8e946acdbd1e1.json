@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:16:42+00:00",
+ "decision_date": "2019-09-30",
+ "key": "b31486cadd0ed88e17af6d617a3f2991bc19288192d5cecfe4e8e946acdbd1e1",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgEeuFTjQBE2XS6cTDW",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The pattern suggests a period after a big rate-cutting cycle began: the policy rate fell sharply over 3 and 12 months, yet it is still above its 3-year average (+0.5). Treasury yields are far below their 3-year averages. Core CPI is high relative to its recent history, while headline CPI is low. Industrial production is weak and unemployment is rising.\n\nCandidates:\n\n- **2008 (Q1\u2013Q2):** The 3-year window would be 2005\u20132008, when the policy rate was high. Fed funds dropped from 5.25% to 2%, and the 12m change of -3.0 fits. However, headline CPI was high in mid-2008, and gold was strong. The 10-year yield z of -2.0 doesn't fit 2008.\n- **Late 2019/early 2020:** The policy rate would be at its 3-year average or above after cuts, but the 12m change of -3.0 is too large for that.\n- **Late 2025/early 2026:** The Fed cut from 5.5% to about 3.6\u20133.75%. The 3-year window of 2023\u20132026 has a high average rate, so the current level would be below average. That doesn't match +0.5.\n- **2020 (March\u2013April):** The rate was near zero, so it would not be above average.\n- **2001\u20132002:** This is outside the sample range.\n\nThe rate level of +0.5 with a 12m change of -3.0 needs a rate that was very high relative to the window a year ago and has fallen to roughly the average. In mid-2020 the rate would be far below the 2017\u20132020 average, so that fails. Early 2008 fits better: the 2005\u20132007 average was around 4\u20135%, and in early 2008 the rate was about 3% (March 2008). That gives a z of about -0.5, not +0.5. Late 2008 fails because the rate was about 0\u20131%.\n\nEarly 2008 also doesn't fit the 10-year yield z of -2.0 or the 12m return in Treasuries of +2.5. Consider instead 2024. In Dec 2024 the rate was 4.25\u20134.5%, the 3-year window of 2022\u20132024 had a lower average, and the 12m change was only -0.25. Mid-2020 doesn't fit either.\n\nTaking a different approach: the 12m change in headline CPI of -1.5, core CPI at +1.5, and gold falling 1m by -1.5 with a strong 12m return could point to late 2025 or early 2026. The Fed rate then was about 3.6\u20133.9% against a 3-year average of around 4.7%, which would be a negative z. That does not match the +0.5.\n\nAlternatively, consider late 2007 to early 2008. The window for 2005\u20132007 had the rate rising, so a z of +0.5 is plausible at around 4.5% in Dec 2007. A 3m change of -3.0 would fit the cuts of Sep\u2013Dec 2007, but the 12m change of -3.0 would not, since the rate was 5.25% in Dec 2006. Treasuries' 12m return of +2.5 also feels strong. Still, this is the best fit among the options. A 10-year yield of -2.0 is possible given the flight to quality, and the rising unemployment fits too. I'll pick early 2008, around January\u2013February.\n\n```json\n{\"year\":2008,\"month\":2,\"confidence\":0.3,\"cues\":[\"Policy rate fell sharply over 3m and 12m while still above its 3-year average\",\"Rising unemployment with weak industrial production and payrolls\",\"Treasuries and gold strong over 6-12m, with negative equity-bond correlation\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1170,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.0 | -1.5 | -3.0\nNational activity index, 3m avg | -0.5 | +1.0 | -1.5\nUnemployment rate | -1.0 | +1.0 | +1.5\nPayrolls, avg monthly change over 3m | -1.0 | +0.5 | -1.5\nHeadline CPI | -1.0 | +0.0 | -1.5\nCore CPI | +1.5 | +2.0 | +0.5\nPolicy rate (fed funds) | +0.5 | -3.0 | -3.0\n2-year Treasury yield | -0.5 | -0.5 | -2.5\n10-year Treasury yield | -2.0 | -1.0 | -2.5\n10y minus 2y Treasury spread | -1.5 | -1.0 | +0.5\nEquity implied volatility (VIX) | +0.5 | +0.5 | +0.5\nBaa corporate minus 10y Treasury spread | +0.5 | -0.5 | +1.0\nBroad trade-weighted dollar | +0.5 | +0.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | -0.5 | -0.5 | -1.0 | +0.5 | +0.5\nDeveloped ex-US equity | +1.0 | -0.5 | -0.5 | -0.5 | +0.0 | +0.5\nEmerging-market equity | +0.5 | -1.0 | -1.0 | -1.0 | -0.5 | +0.0\nUS Treasuries 7-10y | -1.0 | +1.0 | +1.5 | +2.5 | +1.5 | +1.0\nUS Treasuries 20y+ | -1.0 | +1.5 | +1.5 | +3.0 | +1.5 | +0.5\nUS investment-grade credit | -1.0 | +0.5 | +1.5 | +2.0 | +1.5 | +0.5\nGold | -1.5 | +1.0 | +1.5 | +2.5 | +1.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

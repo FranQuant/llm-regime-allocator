@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:16:51+00:00",
+ "decision_date": "2019-10-31",
+ "key": "ad5d713460b6310d47d354fd4eb5f7d4336f7b2e1fa9cfe8dabde5724ffff03e",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgHR5sj1RHHrAV5naQm",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The unemployment rate is low relative to the last 36 months (-1.5), but industrial production is weak and falling. The policy rate has dropped sharply over 3 months and 12 months (-3.0 each), so this looks like a period of rapid cuts. The 10-year yield is very low relative to its own history, and Treasuries returned strongly over the past year. Gold is strong.\n\nOne candidate is 2020, but unemployment would be very high then, so it doesn't fit. Another is late 2008, which also has high unemployment and a high VIX, so it doesn't fit either.\n\nA better fit is 2019-2020, but the 36-month window matters. Fed cuts in late 2019 would show a policy rate change of about -0.75 over 3 months, which would not produce a z-score of -3. Cuts of that size relative to the window fit March 2020 better, but the VIX would be high then. The VIX here is -0.5, so that is out.\n\nAnother possibility is late 2024. The Fed cut by 100bp from September to December 2024. The 12m change in the policy rate would be about -1%, which is not far from -3 in z-terms. Unemployment would be roughly 4.1%, which is above the 36-month average, so that doesn't fit unemployment at -1.5.\n\nConsider the end of 2025 or early 2026 instead. Unemployment would be higher than that, though.\n\nNow consider mid-2020 through 2021. Unemployment has a z-score of -1.5 with a 12m change of +1.0, and the 3m change is -0.5, so it has been falling lately. The 36-month window would have to include very low unemployment, such as 2017-2019, with the rate currently below the window average. Consider 2019 versus 2016-2018, where unemployment was about 3.6%, which is low versus the window. The 12m change of +1.0 is unclear.\n\nCore CPI is at +1.5 while headline is at -1.0, which suggests energy prices fell. That fits late 2019 less well, but it fits 2008 or the 2015-16 period. The mix of falling energy prices, strong core CPI, strong bonds, and falling rates points to something like 2007-08 or 2019.\n\nThe 12m return of US large-cap equity at +0.5 and the VIX at -0.5 suggest a calm market, with the 10y yield at -2.0 after a large 12m fall. This fits best with late 2019 (October 2019). Industrial production was weak then, the Fed had cut three times, and gold was strong. The stock-bond correlation was negative. I'll go with that.\n\n{\"year\": 2019, \"month\": 10, \"confidence\": 0.4, \"cues\": [\"Fed funds fell sharply over 3m and 12m while the 10y yield is far below its own average\", \"Industrial production weak and falling with unemployment still low\", \"Treasuries, credit and gold all strong over 12m, equities calm with a negative stock-bond correlation\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 950,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | -1.0 | -2.5\nNational activity index, 3m avg | -1.5 | +0.0 | -1.5\nUnemployment rate | -1.5 | -0.5 | +1.0\nPayrolls, avg monthly change over 3m | -1.0 | +0.0 | -0.5\nHeadline CPI | -1.0 | +0.0 | -1.0\nCore CPI | +1.5 | +1.0 | +0.5\nPolicy rate (fed funds) | +0.5 | -3.0 | -3.0\n2-year Treasury yield | -0.5 | -1.0 | -2.5\n10-year Treasury yield | -2.0 | -0.5 | -2.5\n10y minus 2y Treasury spread | -1.0 | +0.5 | +0.5\nEquity implied volatility (VIX) | -0.5 | -1.0 | -1.5\nBaa corporate minus 10y Treasury spread | +0.5 | +0.5 | +0.5\nBroad trade-weighted dollar | -0.5 | -1.0 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +0.0 | -0.5 | +0.5 | +0.5 | +0.5\nDeveloped ex-US equity | +1.5 | +1.0 | +0.0 | +0.5 | +0.5 | +1.0\nEmerging-market equity | +1.0 | +0.5 | -0.5 | +0.0 | -0.5 | +0.5\nUS Treasuries 7-10y | -0.5 | +0.5 | +1.5 | +2.5 | +2.0 | +1.0\nUS Treasuries 20y+ | -0.5 | +0.5 | +1.5 | +2.5 | +2.0 | +0.5\nUS investment-grade credit | +0.0 | +0.5 | +1.5 | +2.5 | +2.0 | +1.0\nGold | +0.0 | +0.5 | +2.0 | +2.0 | +2.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

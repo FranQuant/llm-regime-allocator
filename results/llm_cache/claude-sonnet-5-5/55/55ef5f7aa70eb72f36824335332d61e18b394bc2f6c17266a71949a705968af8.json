@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:24:00+00:00",
+ "decision_date": "2025-05-30",
+ "key": "55ef5f7aa70eb72f36824335332d61e18b394bc2f6c17266a71949a705968af8",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgqBzULG2zvjjSX6Mji",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: the fed funds rate is at its 3-year average but has fallen over 12 months (-1.5). Unemployment is rising (+1.5, with +1.0 over 3m). Payrolls are weak. Inflation is low relative to its 3-year window. The dollar is falling sharply. Gold is strong with very high volatility. Credit spreads are widening. The 10y-2y spread is steep.\n\nThis looks like a 2025 pattern: the Fed cut in late 2024 and again in late 2025, the dollar weakened in 2025, and gold surged. The VIX is at average, and US equities have returned about 0 over 12 months, which suggests a drawdown period. US large-cap 12m return of 0 z-score and a 3m return of -0.5 fit a period such as March-April 2025. But the dollar's 3m change of -1.5 and the unemployment rise fit mid-to-late 2025.\n\nGold's 1m return is -0.5, which fits November 2025 after the October peak. Gold 3m is +1.5, and the 1m equity return is +1.0. US equities 3m is -0.5, which doesn't fit November 2025, when equities were near highs. Perhaps the period is later, such as early 2026 with equity vol high (+1.5) and a drawdown of only +0.5. A candidate is February or March 2026, but I can't verify that.\n\nAlternatively, consider 2019 or 2007. In 2007, the fed funds rate was high, so that doesn't fit. Gold vol of +2.5 suggests 2025-26 events (the Jan 2026 gold spike and crash). In that case gold would be 1m negative, which fits an early 2026 month after the late-January crash. Gold 12m is +1.5, which fits. Unemployment is rising, and core CPI is low at -1.5, which fits early 2026. I'll pick February 2026.\n\n{\"year\":2026,\"month\":2,\"confidence\":0.4,\"cues\":[\"Gold with very high vol and strong 12m gains but a negative 1m return, suggesting a post-spike pullback\",\"Unemployment rising, payrolls weak, fed funds down over 12m, and the dollar falling\",\"Core CPI well below its 3-year average, with a steep 10y-2y spread\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 742,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.0 | +1.5\nNational activity index, 3m avg | +1.0 | +0.0 | +1.0\nUnemployment rate | +1.5 | +1.0 | +0.5\nPayrolls, avg monthly change over 3m | -1.0 | -0.5 | +0.5\nHeadline CPI | -1.0 | -0.5 | +0.0\nCore CPI | -1.5 | -0.5 | +0.0\nPolicy rate (fed funds) | +0.0 | -0.5 | -1.5\n2-year Treasury yield | -0.5 | -0.5 | -1.0\n10-year Treasury yield | +1.0 | +0.0 | -1.0\n10y minus 2y Treasury spread | +2.0 | +1.0 | +1.0\nEquity implied volatility (VIX) | +0.0 | +0.0 | +1.0\nBaa corporate minus 10y Treasury spread | +0.0 | +1.0 | +1.5\nBroad trade-weighted dollar | -1.0 | -1.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | -0.5 | -0.5 | +0.0 | +1.5 | +0.5\nDeveloped ex-US equity | +0.5 | +1.0 | +1.0 | +0.5 | +1.0 | +1.0\nEmerging-market equity | +0.5 | +0.5 | +0.5 | +0.5 | +1.0 | +1.0\nUS Treasuries 7-10y | -0.5 | +0.0 | +0.5 | +1.0 | -1.0 | +1.0\nUS Treasuries 20y+ | -0.5 | -0.5 | +0.0 | +1.0 | -1.0 | +0.5\nUS investment-grade credit | +0.0 | +0.0 | +0.0 | +0.5 | -0.5 | +0.5\nGold | -0.5 | +1.5 | +1.5 | +1.5 | +2.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

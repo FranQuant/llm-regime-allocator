@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:59:47+00:00",
+ "decision_date": "2009-07-31",
+ "key": "09b746449a1fa66a5cf340da83dcd6d5da6f598883bcd53295aa38f608b7cd15",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmez2HpeUAi6FCNUCA3v",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a recovery from the COVID shock, probably late 2020 or early 2021. The unemployment rate is high relative to its 3-year average (+2.5) and has risen over 12 months, while payrolls are recovering. Industrial production is low, and headline and core CPI are low. The policy rate is low versus its average, which points to the near-zero period. The Baa spread has narrowed sharply over 3 months (-2.5), consistent with the post-March 2020 recovery.\n\nSeveral details point to a window between mid and late 2020:\n- The 3-month change in the national activity index is +2.5, a rebound.\n- The VIX is at its average, down over 3 months.\n- Equities are +1.5 over 3 months and 6 months, but 12-month returns are -0.5.\n- The 12-month equity return is negative, which fits a window that still includes the March 2020 crash. That suggests no later than about February 2021, and probably earlier.\n\nEquities are only slightly positive, so the month may be around June to September 2020. However, VIX at 0 and a Baa spread z of 0 point to later in 2020. Treasury 7-10y returns are negative over 3 and 6 months, with yields rising by 1.0 over 3 months. That fits roughly Q3 2020 to Q1 2021, and the unemployment rate is still elevated.\n\nOther cues:\n- The policy rate z of -1.5 with a 3-month change of +0.5 is a z-score artifact, since the rate was cut in March 2020.\n- The 12-month change in the 10-year yield is +0.5 and the 2-year change is 0.0, so the 10y-2y spread is steep.\n- The 12-month equity return is negative, so the window must include a time a year earlier when equities were high. With a 12-month high drawdown of only -0.5, this is probably October 2020 to January 2021 (excluding February-March).\n\nOf those, I lean toward October 2020.\n\n```json\n{\"year\":2020,\"month\":10,\"confidence\":0.4,\"cues\":[\"Unemployment z +2.5 and rising over 12m, with payrolls rebounding\",\"Baa spread down 2.5 over 3m, VIX back near average\",\"12m equity returns still slightly negative, Treasuries weak over 3-6m\"]}\n```\n\nFinal answer:\n\n{\"year\":2020,\"month\":10,\"confidence\":0.4,\"cues\":[\"Unemployment z +2.5 and rising over 12m, with payrolls rebounding\",\"Baa spread down 2.5 over 3m, VIX back near average\",\"12m equity returns still slightly negative, Treasuries weak over 3-6m\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 853,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | +0.0 | -2.0\nNational activity index, 3m avg | -0.5 | +2.5 | +0.0\nUnemployment rate | +2.5 | +1.5 | +2.0\nPayrolls, avg monthly change over 3m | -1.5 | +2.5 | -0.5\nHeadline CPI | -2.0 | +0.0 | -2.0\nCore CPI | -1.5 | +0.0 | -1.0\nPolicy rate (fed funds) | -1.5 | +0.5 | -0.5\n2-year Treasury yield | -1.0 | +1.0 | +0.0\n10-year Treasury yield | -0.5 | +1.0 | +0.5\n10y minus 2y Treasury spread | +1.5 | +0.0 | +0.5\nEquity implied volatility (VIX) | +0.0 | -1.0 | -0.5\nBaa corporate minus 10y Treasury spread | +0.0 | -2.5 | -1.0\nBroad trade-weighted dollar | +1.0 | -1.0 | +0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +1.5 | +1.5 | -0.5 | +0.5 | -0.5\nDeveloped ex-US equity | +1.0 | +1.5 | +2.0 | -0.5 | +0.5 | -0.5\nEmerging-market equity | +1.0 | +1.0 | +2.0 | -0.5 | +0.0 | +0.5\nUS Treasuries 7-10y | +0.0 | -1.0 | -1.5 | -0.5 | +1.5 | -2.0\nUS Treasuries 20y+ | +0.0 | -0.5 | -1.5 | +0.0 | +1.5 | -2.5\nUS investment-grade credit | +1.5 | +1.5 | +1.0 | +1.5 | +0.0 | +0.5\nGold | +0.0 | +0.5 | -0.5 | -1.0 | -0.5 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

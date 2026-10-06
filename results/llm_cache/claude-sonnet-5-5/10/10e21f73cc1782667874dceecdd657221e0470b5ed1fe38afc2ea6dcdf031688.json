@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:17:17+00:00",
+ "decision_date": "2020-02-28",
+ "key": "10e21f73cc1782667874dceecdd657221e0470b5ed1fe38afc2ea6dcdf031688",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgKVoCTHngm6znpa3yc",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like March 2020. VIX is at +3 on both the 3-month and 12-month changes, so a volatility spike is underway. Treasury yields have fallen sharply (10-year at -2.5), and the policy rate is down 2.5 on the 12-month change, consistent with the cuts of 2019 and early 2020. Baa spreads have started widening.\n\nThe equity numbers argue against the end of March. US large-cap is only -2.5 on 1 month with a drawdown of -2.5, which is mild for that point. By March 31, 2020 the S&P was down about 20% from its high, and the 1-month return of -12% would have been capped at the -3 limit, so the end of March doesn't fit. Late February 2020 fits better: the S&P fell about 8% that month, and the 10-year yield dropped to about 1.15%. In late February the policy rate was still 1.58, which would be roughly -0.5 on the 36-month scale. Industrial production at -2.0 and CPI rising are plausible for that time as well.\n\nPayrolls at +1.0 and unemployment at -1.0 match the strong labor market in February 2020. Headline CPI up 1.5 over 3 months fits the energy rebound.\n\nOther months, such as August 2019, are less likely given the VIX at +3 and the weak-but-not-crashed equity numbers. February 2020 is the best fit.\n\n{\"year\":2020,\"month\":2,\"confidence\":0.6,\"cues\":[\"VIX z +3 on level and on 3m and 12m changes, with equities only modestly down (1m -2.5)\",\"10y yield at -2.5 and long Treasuries +2 in 1 month, consistent with a flight to safety\",\"Payrolls strong and unemployment low, with the policy rate down 2.5 on the 12m change after the 2019 cuts\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 597,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.0 | +0.0 | -1.5\nNational activity index, 3m avg | -0.5 | +1.0 | -0.5\nUnemployment rate | -1.0 | +0.5 | +0.0\nPayrolls, avg monthly change over 3m | +1.0 | +0.5 | +0.5\nHeadline CPI | +1.0 | +1.5 | +1.0\nCore CPI | +1.0 | -0.5 | +0.5\nPolicy rate (fed funds) | -0.5 | -0.5 | -2.5\n2-year Treasury yield | -1.5 | -1.5 | -2.0\n10-year Treasury yield | -2.5 | -1.5 | -2.0\n10y minus 2y Treasury spread | -1.0 | +1.0 | +1.0\nEquity implied volatility (VIX) | +3.0 | +3.0 | +3.0\nBaa corporate minus 10y Treasury spread | +1.0 | +1.0 | +0.5\nBroad trade-weighted dollar | +0.5 | +0.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -2.5 | -1.5 | -0.5 | -0.5 | +0.5 | -2.5\nDeveloped ex-US equity | -2.5 | -2.0 | -0.5 | -0.5 | +0.5 | -1.5\nEmerging-market equity | -1.5 | -1.0 | +0.0 | -0.5 | +0.0 | -0.5\nUS Treasuries 7-10y | +2.0 | +1.5 | +0.5 | +2.0 | +2.0 | +1.5\nUS Treasuries 20y+ | +2.0 | +2.0 | +0.5 | +2.5 | +2.0 | +1.0\nUS investment-grade credit | +0.5 | +1.0 | +0.0 | +2.0 | +1.5 | +1.0\nGold | -0.5 | +1.0 | +0.0 | +1.5 | +1.5 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

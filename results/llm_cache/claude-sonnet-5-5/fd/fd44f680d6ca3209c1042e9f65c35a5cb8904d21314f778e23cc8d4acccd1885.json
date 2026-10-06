@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:05:22+00:00",
+ "decision_date": "2012-09-28",
+ "key": "fd44f680d6ca3209c1042e9f65c35a5cb8904d21314f778e23cc8d4acccd1885",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfQLqx5p97WAtJfFvsB",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: the policy rate has risen over 12 months (+1.0) and over 3 months (+1.0), so a hiking cycle is underway. The unemployment rate is low relative to its own history (-1.5) and has fallen over 12 months. Headline CPI is low and down over 12 months, while core is about average. The 10y-2y spread is quite inverted (-1.5). VIX is low. The activity index is weak (-2.0). Equities are near highs.\n\nCandidates: 2018 (hikes, flat curve, low VIX, though VIX was spiking in Feb 2018). Late 2018 had a high VIX. Mid-2018: the dollar rose then, but here the dollar fell 1.5 over 3 months. The curve at -1.5 z-score relative to the prior 36 months means flattening. In 2018, headline CPI was rising, so that doesn't fit.\n\nAlternative: 2006-07 is out of range. Another candidate is 2023, when headline CPI fell sharply over 12 months (-1.5) and core CPI declined. The policy rate was still rising, but the 3m change of +1.0 means recent hikes. The 36-month window in 2023 included 2020-21 with zero rates, so the policy rate z would be high. At the end of 2023 the policy rate was flat, so 3m +1.0 fits mid-2023 (July 2023 was the last hike). A dollar fall of -1.5 over 3 months fits July 2023 (after the dollar slid in the spring-summer). The unemployment z of -1.5 fits too. Equities were up over 3m and 12m but slightly down over 6m? In July 2023, the 6m return was positive. Hmm, the 6m figure is -0.5 as a z-score, which is relative, so it is plausible. Gold +1.0 over 1m and 3m: gold rose in July 2023 modestly. The 10y yield was -1.5, though, which seems odd for 2023, since yields were high then. The z-score is relative to a window including 2020-2023, so yields would be high, not low. That points elsewhere.\n\nConsider late 2016 to early 2017: the policy rate rose, the 10y rose, and the unemployment rate was low. But the 10y z of -1.5 is still odd.\n\nConsider mid-2019 or 2006? Consider 2022: the policy rate z would be very high. Consider early 2005? That is out of range. Consider 2018 more carefully: the 10y z over the 36 months before 2018 would be around average. The 10y spread of -1.5 is consistent with a flat curve. The 10y at -1.5 and the 2y at -1.0 suggest yields are low relative to the window, which would fit 2007 (the window starts in 2004, so it is unavailable). Consider 2026: the window of 2023-2026 has high yields, the policy rate has been cut, and the curve is now positive. That doesn't fit either.\n\nConsider July 2023 against the 2y z of -1.0: no. Consider 2018-19 with the window 2016-2018: the policy rate was high and the 10y was high. Consider Dec 2016 or 2017: the 36-month window includes 2014-15 with a low policy rate, so the policy rate z would be high in 2017. Consider mid-2017: the dollar fell, VIX was very low, headline CPI was declining over 12 months after a spike in early 2017, and core CPI was falling (-1.0 over 3m), which matches 2017. The curve was flattening and the activity index was weak. So mid-2017, perhaps June or July 2017. The 10y was low at 2.3% against a window with 2015 at 2.2% and 2016 at 1.5-2%. Gold rose in July 2017 and the dollar fell sharply. I'll say July 2017.\n\n{\"year\":2017,\"month\":7,\"confidence\":0.4,\"cues\":[\"Fed hiking (policy rate +1.0 on 3m and 12m) with falling dollar and very low VIX\",\"Core CPI down -1.0 over 3m and headline CPI soft, a 2017-style disinflation\",\"Flat curve (spread z -1.5) and low unemployment, with equities and gold both up\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1372,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.0 | -1.0 | -0.5\nNational activity index, 3m avg | -2.0 | -0.5 | -1.0\nUnemployment rate | -1.5 | +0.0 | -1.0\nPayrolls, avg monthly change over 3m | +0.0 | +0.0 | -0.5\nHeadline CPI | -0.5 | +0.0 | -1.5\nCore CPI | +0.5 | -1.0 | +0.0\nPolicy rate (fed funds) | +0.0 | +1.0 | +1.0\n2-year Treasury yield | -1.0 | +0.0 | +1.0\n10-year Treasury yield | -1.5 | +0.5 | +0.0\n10y minus 2y Treasury spread | -1.5 | +0.5 | +0.0\nEquity implied volatility (VIX) | -1.0 | +0.0 | -1.5\nBaa corporate minus 10y Treasury spread | +0.5 | -1.0 | +0.0\nBroad trade-weighted dollar | +0.0 | -1.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +0.5 | -0.5 | +1.0 | -1.0 | +0.5\nDeveloped ex-US equity | +0.5 | +0.5 | -0.5 | +0.0 | -1.0 | +1.0\nEmerging-market equity | +0.5 | +0.5 | -0.5 | +0.0 | -1.0 | +0.5\nUS Treasuries 7-10y | +0.0 | -0.5 | +0.0 | -0.5 | -1.5 | +0.5\nUS Treasuries 20y+ | -0.5 | -0.5 | +0.5 | +0.0 | -0.5 | +0.5\nUS investment-grade credit | +0.5 | +1.0 | +0.5 | +0.5 | -1.5 | +1.0\nGold | +1.0 | +1.0 | -0.5 | -1.0 | -1.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

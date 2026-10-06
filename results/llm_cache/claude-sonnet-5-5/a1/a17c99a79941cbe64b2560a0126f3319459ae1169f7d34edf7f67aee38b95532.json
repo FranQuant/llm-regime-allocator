@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T20:59:15+00:00",
+ "decision_date": "2009-02-27",
+ "key": "a17c99a79941cbe64b2560a0126f3319459ae1169f7d34edf7f67aee38b95532",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmewiAby19KmrnTuCgTd",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like April 2020. Industrial production, payrolls and the activity index are all at extreme lows, and unemployment is at an extreme high, which fits the COVID shock. Headline and core CPI are very low, and the dollar is strong.\n\nThe question is whether it is March or April 2020. VIX has a 3-month change of -1.5 while its level is still +1.5. In March 2020 the VIX peaked at about 80, so its z-score would have been higher. By April it had come down to about 34, which fits a +1.5 level and a falling 3-month change. Unemployment at +3.0 points to April, when it reached 14.7%. Payrolls averaged -3.0 over 3 months, which also fits April. The policy rate z of -2.0 with a 3-month change of 0 suggests the cut to zero was already in the 3-month window or just before it, which fits April, since the cuts came in March.\n\nEquity 1-month return is -3.0, which would fit March, as April 2020 had a big rally. Equity 3-month return of -1.0 and 6-month of -2.5 also fit March better. The Baa spread 3-month change of -1.5 looks odd for March, though, when spreads spiked.\n\nIndustrial production at -3.0 with a 3-month change of -3.0 suggests April 2020 (data through March or April). If the data were as of end-March, unemployment would have been only 4.4%, which is a z of about +2 to +3. Mixed signals, but March 2020 fits the markets better.\n\nTreasury 7-10y 1-month return is -1.5, and 20y+ is -1.0, which fits March 2020, when yields rose late in the month and long Treasuries fell. Investment-grade credit 1-month return is -2.0, which also fits March (about -7%). A 3-month IG return of +1.0 is odd, though.\n\nTaken together, I'd go with March 2020 or possibly April.\n\n{\"year\":2020,\"month\":3,\"confidence\":0.6,\"cues\":[\"Equities -3 z on 1m with extreme vol and drawdown, IG credit -2 on 1m\",\"Unemployment +3, payrolls, IP and activity index at -3 floor\",\"Dollar +2.5, CPI very low, policy rate -2 z, Baa spread +2\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 743,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -3.0 | -3.0 | -3.0\nNational activity index, 3m avg | -3.0 | -2.5 | -3.0\nUnemployment rate | +3.0 | +2.5 | +2.5\nPayrolls, avg monthly change over 3m | -3.0 | -2.5 | -3.0\nHeadline CPI | -2.5 | -2.0 | -2.0\nCore CPI | -2.5 | -1.5 | -1.5\nPolicy rate (fed funds) | -2.0 | +0.0 | -1.0\n2-year Treasury yield | -1.5 | +0.5 | +0.0\n10-year Treasury yield | -1.5 | +0.5 | -0.5\n10y minus 2y Treasury spread | +1.5 | -0.5 | -0.5\nEquity implied volatility (VIX) | +1.5 | -1.5 | +1.0\nBaa corporate minus 10y Treasury spread | +2.0 | -1.5 | +1.0\nBroad trade-weighted dollar | +2.5 | +0.5 | +1.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -3.0 | -1.0 | -2.5 | -2.5 | +2.5 | -2.5\nDeveloped ex-US equity | -2.0 | -1.0 | -2.5 | -2.0 | +2.5 | -2.5\nEmerging-market equity | -1.5 | +0.0 | -2.0 | -2.0 | +2.5 | -2.5\nUS Treasuries 7-10y | -1.5 | -0.5 | +0.5 | +0.5 | +2.0 | -2.0\nUS Treasuries 20y+ | -1.0 | -0.5 | +0.5 | +1.0 | +3.0 | -3.0\nUS investment-grade credit | -2.0 | +1.0 | -1.0 | -1.5 | +2.5 | -1.5\nGold | +0.5 | +1.0 | +0.5 | -1.5 | +2.0 | +0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -0.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

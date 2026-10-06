@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:19:06+00:00",
+ "decision_date": "2021-07-30",
+ "key": "25ae7eaad13b651bb6334b5aff7d63215cb2b75971e81b8b46ad1939351957e5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgTV1J4WHVEYupLJk3D",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The data point to a period of high inflation: headline and core CPI are about +3 standard deviations above their 3-year averages. The policy rate is low relative to its own recent history (-1.0) but rising. The 12-month change in unemployment is -1.5, so unemployment has been falling. Industrial production is strong. The 10y-2y spread is high versus its history, but the 3-month change is -2.0, which means the curve is flattening. The equity-bond correlation is positive, which fits 2022.\n\nThe policy rate is only -1.0 with a +0.5 change, so rates are still low relative to the past 36 months, which also fits early 2022. The 2-year yield rising on a 3-month basis fits too. The 10-year yield at -0.5 with a 12-month change of +1.5 is consistent with March 2022 or earlier. The 10y-2y spread at +1.5 is high versus the prior 3 years (2019-2021) and its 3-month change is -2.0, consistent with a flattening curve in early 2022. The VIX at -0.5 seems low, though, and equities show a 1-month return of 0 and a 3-month return of 0.\n\nGold's 12-month change is -1.5, with a 12-month high drawdown of -1.0. In early 2022, gold was up. Treasury 12-month returns are -1.5 and credit is -1.0, which fits. The dollar rose over 3 months (+1.5).\n\nThe 1-month Treasury return is +1.0, so yields fell in the latest month. That points to February 2022 (the Ukraine invasion rally in bonds) or to the end of March 2022. Emerging-market equities at -1.0 for 1 month also fits February 2022. The 1-month equity return was about -2%, near 0 z. Core CPI at +3 and headline at +3 fit January/February 2022. The Baa spread is -1.0, which is tight. Taking all of this together, February 2022 is the best fit.\n\n{\"year\":2022,\"month\":2,\"confidence\":0.6,\"cues\":[\"CPI headline and core at +3 z with the policy rate still low and just starting to rise\",\"Curve flattening (10y-2y 3m change -2.0) and a positive equity-bond correlation\",\"Treasuries rallied over the last month while EM equities fell, consistent with the Ukraine shock\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 757,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.5 | +1.0 | +2.0\nNational activity index, 3m avg | +0.0 | +0.0 | +1.0\nUnemployment rate | +0.0 | +0.0 | -1.5\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | +1.5\nHeadline CPI | +3.0 | +2.5 | +3.0\nCore CPI | +3.0 | +3.0 | +3.0\nPolicy rate (fed funds) | -1.0 | +0.5 | +0.5\n2-year Treasury yield | -1.0 | +0.5 | +0.5\n10-year Treasury yield | -0.5 | -0.5 | +1.5\n10y minus 2y Treasury spread | +1.5 | -2.0 | +1.0\nEquity implied volatility (VIX) | -0.5 | +0.0 | -0.5\nBaa corporate minus 10y Treasury spread | -1.0 | +0.0 | -1.0\nBroad trade-weighted dollar | -1.0 | +1.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | +0.0 | +1.0 | +1.5 | -0.5 | +0.5\nDeveloped ex-US equity | +0.0 | +0.0 | +0.5 | +1.5 | -0.5 | +1.0\nEmerging-market equity | -1.0 | -0.5 | -0.5 | +0.5 | -0.5 | +0.0\nUS Treasuries 7-10y | +1.0 | +0.5 | -0.5 | -1.5 | +0.0 | -0.5\nUS Treasuries 20y+ | +0.5 | +1.0 | -0.5 | -1.5 | +0.0 | -1.0\nUS investment-grade credit | +0.5 | +0.5 | -0.5 | -1.0 | +0.0 | +0.5\nGold | +0.5 | +0.0 | -0.5 | -1.5 | +0.0 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: positive (z +2.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

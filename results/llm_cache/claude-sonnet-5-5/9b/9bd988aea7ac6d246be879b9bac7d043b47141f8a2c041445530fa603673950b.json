@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:19:15+00:00",
+ "decision_date": "2021-09-30",
+ "key": "9bd988aea7ac6d246be879b9bac7d043b47141f8a2c041445530fa603673950b",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgU1apHhuC4epADQ3Bk",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: CPI is high versus its 3-year average (headline +2.5, core +2.0), and both are up 2.0 over 12 months. This looks like the early inflation surge, with the policy rate still low relative to the last 36 months (-1.0) but rising (+0.5 over 3m, +0.5 over 12m). The 2-year yield is at -0.5, the 10-year is at 0, and the 10y-2y spread is +1.5, so the curve is steep.\n\nThe 36-month window would include 2020 lows, which would make the policy rate z-score negative if it is still low. Candidates are early 2022 (Jan-Mar), but a policy rate z of -1.0 with a 3m change of +0.5 fits around Feb-Mar 2022. Industrial production is +1.0 with a 3m change of -1.5, which is odd for that period. Unemployment at 0 with a 12m change of -1.0 fits 2022, since it fell from 6% to 4%. But unemployment would be below the 3-year average in 2022 because of the 2020 spike, so a z of 0 is questionable.\n\nAn alternative is 2005-2006, but the data starts in 2007. Another alternative is 2018. Inflation z of +2.5 and +2.0 with a 12m change of +2.0 suggests a big jump from low inflation. That fits 2021 or 2022 most closely.\n\nOther cues: the negative stock-bond correlation with z +1.0 is odd for 2022, when the correlation turned positive. In early 2022 it would still be negative over 6 months, though the z-score relative to the prior 3 years could be negative too. Gold's 12m return is -1.5, which fits 2021 (gold fell in 2021). Treasuries' 12m return is -1.5, which also fits 2021. The 1m changes are all negative, with the 10-year yield up. Credit spreads are tight at -1.0.\n\nMarch 2021 is a candidate: the 10-year was rising fast, treasuries sold off and gold fell. But the policy rate z in 2021 would be around -1.0 and fall rather than rise. The policy rate's 12m change of +0.5 rules out 2021 and suggests early 2022 or later.\n\nIndustrial production fell 1.5 over 3m, and the VIX is +0.0 with a 3m change of +0.5. Perhaps this is a later period, such as 2022-2023? In that case the policy rate would be high. A possibility is Feb 2022, with gold 12m -1.5 inconsistent, as gold was up. So another fit may be late 2024 or 2025? Core CPI z +2.0 does not fit then.\n\nAn alternative is 2008 or 2007. Mid-2008 had high headline inflation, but the policy rate had been falling. Equity returns would not be positive.\n\nI'll go with roughly Mar 2022 hedged toward late 2021.\n\n```json\n{\"year\":2022,\"month\":2,\"confidence\":0.3,\"cues\":[\"Headline and core CPI far above 3-year average, up about 2 sd over 12m\",\"Policy rate still low versus its 36m average but starting to rise\",\"Treasuries and gold weak over 12m, with a steep curve\"]}\n```",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1047,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | -1.5 | +1.0\nNational activity index, 3m avg | +0.5 | +0.0 | -1.0\nUnemployment rate | +0.0 | +0.0 | -1.0\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | -0.5\nHeadline CPI | +2.5 | +0.0 | +2.0\nCore CPI | +2.0 | +0.0 | +2.0\nPolicy rate (fed funds) | -1.0 | +0.5 | +0.5\n2-year Treasury yield | -0.5 | +0.5 | +1.0\n10-year Treasury yield | +0.0 | +0.5 | +1.5\n10y minus 2y Treasury spread | +1.5 | +0.0 | +1.0\nEquity implied volatility (VIX) | +0.0 | +0.5 | -0.5\nBaa corporate minus 10y Treasury spread | -1.0 | +0.0 | -1.5\nBroad trade-weighted dollar | -1.0 | +1.0 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.0 | -0.5 | +0.0 | +1.0 | -1.0 | +0.0\nDeveloped ex-US equity | -0.5 | -0.5 | +0.0 | +1.0 | -0.5 | +0.5\nEmerging-market equity | -0.5 | -1.0 | -1.0 | +0.5 | -0.5 | -0.5\nUS Treasuries 7-10y | -1.0 | -0.5 | +0.0 | -1.5 | -0.5 | -1.0\nUS Treasuries 20y+ | -1.0 | -0.5 | +0.0 | -1.5 | -0.5 | -0.5\nUS investment-grade credit | -1.0 | -0.5 | -0.5 | -1.0 | -0.5 | +0.0\nGold | -1.0 | -0.5 | -0.5 | -1.5 | -0.5 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

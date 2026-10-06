@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:20:54+00:00",
+ "decision_date": "2022-11-30",
+ "key": "2f7107148927a2290a26e09a5af671041d68bd30062fe662ef8d44e0e328a5cb",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgbacMihtNF4KSKSAWM",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The pattern points to late 2022 to early 2023. The policy rate is high relative to its 3-year average, and the 2y-10y spread is deeply inverted. Headline CPI is falling over 3 months while core stays elevated. Equity has a negative 12m return, and the stock-bond correlation is positive. A positive 1m return across all assets suggests a relief rally.\n\nCandidate months are November 2022, December 2022 and October 2023.\n\n- **November 2022:** Equities rose in November, with developed ex-US and EM strong. The dollar fell sharply (3m change -1.0), and Treasuries rallied (+1.5 for 1m). Policy rate z +3 with a 3m change of +2 fits, because the rate went from 3.0 to 3.75-4.0 over that stretch. The 12m change of +2.5 also fits. The 10y yield z of +2.0 with a 3m change of +1.0 fits. Headline CPI 3m change -1.0 fits too, since CPI peaked in June 2022. Unemployment z -0.5 fits, though the 36-month window includes the high-unemployment period from late 2019 to 2020, so it would be higher, but it may be roughly as shown.\n- **December 2022:** Equities were down 6% that month, so the positive 1m return rules it out.\n- **October 2023:** Yields rose, so Treasuries fell. Rules it out.\n\nThe 12m equity return of -1.5 fits November 2022 (S&P was about -14% over 12m).\n\nNovember 2022 fits best.\n\n{\"year\":2022,\"month\":11,\"confidence\":0.8,\"cues\":[\"Fed funds z +3 with sharp 12m rise, deeply inverted 2s10s\",\"Broad rally in 1m returns, dollar falling, headline CPI easing while core stays high\",\"12m equity and bond returns negative with positive stock-bond correlation\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 619,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.0 | +0.0\nNational activity index, 3m avg | +0.0 | +0.0 | +0.0\nUnemployment rate | -0.5 | +0.0 | +0.0\nPayrolls, avg monthly change over 3m | +0.0 | +0.0 | +0.0\nHeadline CPI | +1.0 | -1.0 | +0.0\nCore CPI | +1.5 | +0.0 | +0.0\nPolicy rate (fed funds) | +3.0 | +2.0 | +2.5\n2-year Treasury yield | +2.5 | +1.0 | +2.0\n10-year Treasury yield | +2.0 | +1.0 | +1.5\n10y minus 2y Treasury spread | -2.0 | -1.0 | -2.0\nEquity implied volatility (VIX) | -0.5 | -0.5 | -0.5\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | +0.5\nBroad trade-weighted dollar | +1.0 | -1.0 | +0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +0.0 | -0.5 | -1.5 | +0.5 | -1.0\nDeveloped ex-US equity | +2.0 | +1.0 | +0.0 | -1.0 | +0.5 | -0.5\nEmerging-market equity | +2.5 | +0.0 | -0.5 | -1.0 | +0.0 | -1.0\nUS Treasuries 7-10y | +1.5 | -0.5 | -0.5 | -1.5 | +1.5 | -2.0\nUS Treasuries 20y+ | +1.5 | -0.5 | -0.5 | -1.5 | +0.5 | -2.0\nUS investment-grade credit | +2.0 | +0.0 | -0.5 | -1.5 | +0.5 | -1.5\nGold | +2.0 | +0.5 | -0.5 | -0.5 | +0.0 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: positive (z +2.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

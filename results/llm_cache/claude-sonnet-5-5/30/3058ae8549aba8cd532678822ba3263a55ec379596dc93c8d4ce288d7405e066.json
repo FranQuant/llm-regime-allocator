@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:10:25+00:00",
+ "decision_date": "2015-07-31",
+ "key": "3058ae8549aba8cd532678822ba3263a55ec379596dc93c8d4ce288d7405e066",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfoBoswyeAHSo6MMVoz",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "The snapshot looks like late 2015 to early 2016, or possibly 2018 or 2023.\n\nThe policy rate is +1.0 versus its 3-year average and has risen over the past 12 months. The 2-year yield is +2.0 and rising. The dollar is +2.5 and has strengthened strongly over 12 months. The Baa spread is widening sharply (+2.5 over 12 months), industrial production is weak, and headline CPI is low (-1.5). Emerging-market equity is weak. The unemployment rate is low (-1.5).\n\nThat combination fits late 2015 well. The Fed hiked in December 2015, and the dollar had risen strongly since 2014. Credit spreads were widening because of oil and high yield stress. Industrial production was weak and headline CPI was low. Gold was falling.\n\nA check on the 3-year window: for 2015, the 36 months back to 2012\u20132015 had a fed funds rate near zero, so a hike to 0.25\u20130.5% would give a positive z-score. The 2-year yield at +2.0 fits the rise to about 1% in late 2015. The 10-year yield at 0.0 fits too. Unemployment at -1.5 fits 5.0% against a falling average. Payrolls at +0.5 are fine.\n\nThe month is probably November or December 2015. The 1m Treasury return is +1.0 and long bonds +1.5, which suggests yields fell that month. In December 2015 the 10-year ended at about 2.27%, little changed from November. The 3m dollar change is +1.0, and EM equity at -1.5 over 1m is consistent with December 2015 (EM fell about 2%). US large-cap equity at 0.0 over 1m is consistent with December (-1.6%) or November (+0.3%). I'll pick December 2015, though the Treasury strength could instead indicate January 2016.\n\n{\"year\":2015,\"month\":12,\"confidence\":0.55,\"cues\":[\"Fed funds and 2y yield high and rising vs 3y history, with dollar at +2.5\",\"Baa spread widening sharply (+2.5 over 12m), weak industrial production, EM equity weak\",\"Low headline CPI and low unemployment, consistent with the first hike era\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 730,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | -1.0 | -1.5\nNational activity index, 3m avg | +0.0 | +0.5 | -0.5\nUnemployment rate | -1.5 | +0.0 | +0.5\nPayrolls, avg monthly change over 3m | +0.5 | +0.5 | -1.5\nHeadline CPI | -1.5 | +0.5 | -1.0\nCore CPI | +0.0 | +0.5 | +0.0\nPolicy rate (fed funds) | +1.0 | +1.0 | +1.0\n2-year Treasury yield | +2.0 | +1.5 | +0.5\n10-year Treasury yield | +0.0 | +0.5 | -0.5\n10y minus 2y Treasury spread | -0.5 | +0.5 | -0.5\nEquity implied volatility (VIX) | -1.0 | -0.5 | -0.5\nBaa corporate minus 10y Treasury spread | +1.0 | +1.5 | +2.5\nBroad trade-weighted dollar | +2.5 | +1.0 | +2.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.0 | -1.0 | -0.5 | -1.5 | -0.5 | +0.5\nDeveloped ex-US equity | +0.0 | -1.0 | +0.5 | -1.0 | +0.5 | +0.0\nEmerging-market equity | -1.5 | -2.0 | -0.5 | -2.0 | +0.0 | -2.0\nUS Treasuries 7-10y | +1.0 | +0.0 | -1.0 | +0.5 | +1.5 | +0.0\nUS Treasuries 20y+ | +1.5 | +0.0 | -1.5 | +0.5 | +2.0 | -0.5\nUS investment-grade credit | +0.5 | -1.0 | -2.0 | -0.5 | +1.0 | -1.0\nGold | -1.0 | -0.5 | -1.0 | -0.5 | -1.0 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:14:40+00:00",
+ "decision_date": "2018-07-31",
+ "key": "0c15879990b121afb6650a6b71284864bed7b66ad3e59e734909de189b4182bf",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011Cfmg7XamPfP3NNiPpU6dW",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: the policy rate is high (+2.0 z) and has risen over the past 12 months (+1.0), with 2-year yields up strongly over 12 months (+2.0). The curve is inverted. Unemployment is low, CPI is elevated and rising, and the dollar is up sharply over 3 months (+2.5). Gold is weak, and the equity vol is average.\n\nThis looks like 2023 to 2024. A 3m dollar surge of +2.5 with a 12m change of +1.5 fits either late 2024 or early 2025, or possibly mid-2022 or spring 2018.\n\nTest against 2018: the policy rate z would be high relative to the prior 36 months, which were low, but the 2-year +2.0 12m change fits. The curve spread in 2018 was flat, not -2.0. Inversion at -2 z fits 2023 to 2024.\n\nTest against late 2024: policy rate 12m change +1.0 would not fit, since rates were cut in 2024. Fed funds 12m change was about -0.75 at that point, so the z would not be positive.\n\nTest against April 2024: the dollar rose about 3% over 3 months, the policy rate was unchanged over 3m, and the 12m change was +0.25 (5.08 to 5.33). The 2-year yield 12m change was moderate. Headline CPI 3m change was positive (rising early 2024) and core CPI was too. Gold, however, was strong in spring 2024, so that does not fit.\n\nTest against late 2023 and 2022: gold was weak over 12m in 2022 and in Sep/Oct 2023, but 12m gold in 2023 was positive. In 2022 the policy rate 12m change would be much larger.\n\nTest against mid-2023: unemployment 12m change +1.0 doesn't fit, since it was flat in 2023 (about 3.6 to 3.5). Unemployment low at -1.5 with a 12m rise of +1.0 fits early 2023 or 2019. Then 2-year +2.0 over 12m, policy rate +2.0 level, gold weak over 12m, IG credit weak over 12m, and a dollar surge over 3m all fit... \n\nConsider January 2025: the dollar rose sharply over 3m, and gold was strong over 12m, which does not fit. Consider Dec 2018: the dollar 3m move was small and equities were falling, which does not fit.\n\nConsider the 2006 to 2007 period: the sample starts in 2007. In early 2007 there was a long hiking cycle and an inverted curve, but z-scores over 36 months would show a policy rate higher, and the dollar surge does not fit.\n\nConsider early 2023 (Jan-Feb): the dollar rose in Feb, but the 3m change was negative. Consider Sep/Oct 2022: the dollar was higher, but the policy rate 12m change would be large.\n\nConsider the dollar surge in Mar-Apr 2022, or Oct 2023? Not a good fit either. Consider Jan 2024 to Apr 2024, or Jan 2023. Consider Feb 2025 or Oct 2024: the dollar rose in Q4 2024 and the 10-year yield rose, but the policy rate fell.\n\nBest guess: April 2024 despite gold. Gold's 1m, 3m and 6m z-scores are all negative, so it fits poorly. Alternative: Oct 2023, with the dollar up from July (3m +), 12m rates up, unemployment up slightly, and gold flat. Equity 6m -1.0 in Oct 2023 fits (equity fell Aug-Oct), but 1m +1.0 does not fit, because Oct 2023 was down. Compromise: Nov 2023 had 1m rallies and the dollar fell. Settle on mid-2024 or spring 2024.\n\n{\"year\":2024,\"month\":5,\"confidence\":0.2,\"cues\":[\"Fed funds high with inverted curve\",\"Dollar up sharply over 3m\",\"Low unemployment, CPI rising\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1324,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.5 | +0.0 | +0.5\nNational activity index, 3m avg | +0.5 | -0.5 | +0.0\nUnemployment rate | -1.5 | +0.0 | +1.0\nPayrolls, avg monthly change over 3m | +0.5 | +0.0 | +1.0\nHeadline CPI | +1.5 | +0.5 | +0.5\nCore CPI | +1.0 | +0.5 | +1.0\nPolicy rate (fed funds) | +2.0 | +0.0 | +1.0\n2-year Treasury yield | +2.0 | +0.0 | +2.0\n10-year Treasury yield | +2.0 | +0.0 | +1.0\n10y minus 2y Treasury spread | -2.0 | +0.0 | -1.0\nEquity implied volatility (VIX) | +0.0 | -0.5 | +0.5\nBaa corporate minus 10y Treasury spread | -1.0 | +0.5 | +0.0\nBroad trade-weighted dollar | +0.0 | +2.5 | +1.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +1.0 | -1.0 | +0.5 | +1.0 | +0.5\nDeveloped ex-US equity | +1.0 | -0.5 | -1.0 | +0.0 | +0.0 | +0.0\nEmerging-market equity | +0.5 | -0.5 | -1.0 | +0.0 | +0.5 | -0.5\nUS Treasuries 7-10y | -0.5 | +0.0 | +0.0 | -1.0 | -1.0 | -0.5\nUS Treasuries 20y+ | -0.5 | +0.0 | +0.0 | -0.5 | -1.0 | +0.5\nUS investment-grade credit | +0.5 | +0.5 | -1.0 | -1.0 | -1.0 | -0.5\nGold | -0.5 | -1.0 | -1.0 | -1.0 | -1.0 | -0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +0.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

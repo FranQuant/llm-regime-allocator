@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:17:22+00:00",
+ "decision_date": "2020-03-31",
+ "key": "59b1803ea9bfa1b46111310f37788795a49d96fe52aa8e3478dc15b5e887dbb5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgKzd3AGRyxjJ3hGCbv",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "This looks like a crisis snapshot with the policy rate at a very low z-score, VIX and credit spreads at maximum, and equities crashing. Two episodes fit: late 2008 and March 2020.\n\nMarch 2020 fits several details. The fed funds rate fell 3 z-scores in 3 months, from 1.5% to near 0, which fits a 36-month window where rates had been high. The 10-year yield z-score of -3 also fits. Unemployment at -1.5 z fits because it was still low (March 2020 was 4.4%), and payrolls average +1.5 fits too. Core CPI at +1.5 fits as well. Industrial production at -1.5 fits, since it was weak in 2019. The dollar at +1.5 with a +2.0 3-month change fits the March 2020 dollar spike. Investment-grade credit at -3 for 1 month fits March 2020, when it fell sharply. Gold at -0.5 for 1 month also fits March 2020, when it dipped.\n\nLate 2008 fits less well. Unemployment was rising then, payrolls were deeply negative, and the Treasury rally came with credit collapse. The payroll figure of +1.5 rules out 2008.\n\nSo the snapshot is March 2020.\n\n{\"year\": 2020, \"month\": 3, \"confidence\": 0.93, \"cues\": [\"VIX, Baa spread and equity drawdown all at +/-3 extremes while the policy rate and Treasury yields fell 3 z-scores in 3 months\", \"Payrolls 3m average still strong (+1.5) and unemployment low (-1.5), so the labor market had not yet cracked\", \"Dollar spike and investment-grade credit -3 over 1 month fit the March 2020 liquidity crunch\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 579,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +0.5 | -1.0\nNational activity index, 3m avg | -1.0 | +0.0 | +0.0\nUnemployment rate | -1.5 | +0.5 | +0.5\nPayrolls, avg monthly change over 3m | +1.5 | +0.5 | +2.0\nHeadline CPI | +0.5 | +0.5 | +1.0\nCore CPI | +1.5 | +0.0 | +0.5\nPolicy rate (fed funds) | -3.0 | -3.0 | -3.0\n2-year Treasury yield | -3.0 | -3.0 | -2.5\n10-year Treasury yield | -3.0 | -3.0 | -2.0\n10y minus 2y Treasury spread | +0.0 | +1.5 | +2.0\nEquity implied volatility (VIX) | +3.0 | +3.0 | +3.0\nBaa corporate minus 10y Treasury spread | +3.0 | +3.0 | +3.0\nBroad trade-weighted dollar | +1.5 | +2.0 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -3.0 | -3.0 | -3.0 | -2.5 | +3.0 | -3.0\nDeveloped ex-US equity | -3.0 | -3.0 | -2.5 | -2.0 | +3.0 | -3.0\nEmerging-market equity | -3.0 | -3.0 | -1.5 | -1.5 | +3.0 | -2.5\nUS Treasuries 7-10y | +2.0 | +3.0 | +1.5 | +2.0 | +3.0 | +1.5\nUS Treasuries 20y+ | +1.5 | +3.0 | +1.5 | +2.5 | +3.0 | +0.0\nUS investment-grade credit | -3.0 | -1.5 | -1.0 | +0.5 | +3.0 | -3.0\nGold | -0.5 | +0.5 | +0.5 | +1.5 | +3.0 | -0.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

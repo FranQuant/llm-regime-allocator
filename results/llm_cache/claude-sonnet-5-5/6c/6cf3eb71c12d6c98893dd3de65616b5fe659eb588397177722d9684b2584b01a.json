@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:25:18+00:00",
+ "decision_date": "2026-05-29",
+ "key": "6cf3eb71c12d6c98893dd3de65616b5fe659eb588397177722d9684b2584b01a",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmgvipVvS5EaGWruZERr",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key cues: headline CPI is high relative to its 3-year average and rising fast, while core CPI is low but rising. Policy rate is low relative to its 3-year average, with a small rise over 3 months. The 2-year yield is rising quickly. Unemployment is high versus its 3-year average but falling. Payrolls are weak versus the past 3 years. The stock-bond correlation is positive, which points to an inflation regime (2022 onward).\n\nCandidate: early 2021 to mid 2021? The policy rate would be low (near zero), and the 3-year window would include 2018-2019 at 2%, giving a z of about -1.5. Unemployment would be high versus the window, and falling. Headline CPI is rising fast. Payrolls average is weak against the window, which includes the 2020 collapse... Yet the stock-bond correlation was positive in 2021, though not strongly so. Gold fell 2% in 3 months (z -2) with a drawdown of -3, which fits Q1 2021 (gold fell from 1900 to 1700). The 10-year yield z of +1 with a 3m change of +1 fits March 2021. EM equity 12m z +2.5 fits as well. The dollar rose 3m (+1.5) fits Q1 2021. The VIX at 0 fits too.\n\nPayrolls at -1.0 against a window that includes the April 2020 collapse would be odd, but the 3m average of about 500k in March 2021 against the 36-month window with huge swings might still be about -1 if the z is computed oddly. Unemployment at +1 with a 12m change of -1... in March 2021 unemployment was 6.0% versus 4.4% in March 2020, so the 12m change would be positive. Hmm.\n\nAlternative: late 2021 or 2022? Policy rate z -1.5 would not fit 2022 later. Unemployment being high with a 12m decline fits mid 2021 or early 2021. For mid-2021, the window would be mid-2018 to mid-2021, and 12m unemployment would be down from 11% to 5.9%, which would be a -2 or so. The z of -1 fits that. Gold fell sharply in June 2021 (-7%) and the dollar rose 3m in June 2021. Gold drawdown was -3 in March 2021 as well. Headline CPI 3m change +2.5 fits spring 2021. Core CPI 3m change +1.5 fits too. The 10y 3m change of +1 and the 2y of +1.5 are less typical of June 2021 (the 10y fell then). March 2021 fits better for yields. The 12m unemployment change -1 may be a z-score artifact.\n\nI'll go with March 2021.\n\n{\"year\":2021,\"month\":3,\"confidence\":0.4,\"cues\":[\"Headline CPI z +2.0 with 3m change +2.5 while the policy rate is far below its 3-year average\",\"Gold 3m z -2.0 and drawdown z -3.0, with the dollar and yields rising\",\"Positive stock-bond correlation, EM equity strong, unemployment elevated but falling\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1014,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | -0.5 | +0.5\nNational activity index, 3m avg | +1.5 | +0.5 | -0.5\nUnemployment rate | +1.0 | -0.5 | -1.0\nPayrolls, avg monthly change over 3m | -1.0 | +0.0 | +0.5\nHeadline CPI | +2.0 | +2.5 | +1.5\nCore CPI | -1.0 | +1.5 | +1.5\nPolicy rate (fed funds) | -1.5 | +0.5 | -0.5\n2-year Treasury yield | -0.5 | +1.5 | +0.5\n10-year Treasury yield | +1.0 | +1.0 | -0.5\n10y minus 2y Treasury spread | +1.0 | -1.0 | -1.0\nEquity implied volatility (VIX) | +0.0 | -1.0 | +0.0\nBaa corporate minus 10y Treasury spread | -0.5 | -1.0 | -0.5\nBroad trade-weighted dollar | -0.5 | +1.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +1.0 | +0.5 | +1.0 | -0.5 | +0.5\nDeveloped ex-US equity | +1.0 | -1.0 | +1.0 | +1.0 | +1.0 | +0.5\nEmerging-market equity | +1.5 | +1.0 | +2.0 | +2.5 | +2.5 | +1.0\nUS Treasuries 7-10y | +0.0 | -1.0 | -1.0 | +0.5 | -1.5 | +0.0\nUS Treasuries 20y+ | +0.0 | -0.5 | -0.5 | +1.0 | -1.5 | +1.0\nUS investment-grade credit | +0.0 | -0.5 | -0.5 | +0.5 | -1.0 | +0.5\nGold | -0.5 | -2.0 | -0.5 | +0.5 | +2.5 | -3.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: positive (z +2.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

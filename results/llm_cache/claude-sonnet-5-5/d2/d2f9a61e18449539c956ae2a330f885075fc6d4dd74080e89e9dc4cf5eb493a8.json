@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:02:09+00:00",
+ "decision_date": "2010-10-29",
+ "key": "d2f9a61e18449539c956ae2a330f885075fc6d4dd74080e89e9dc4cf5eb493a8",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfAHarwAASMT6U2DwNV",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: core CPI is very low relative to the last 3 years (-2.0), the 2-year and 10-year yields are low (-1.5), the policy rate is slightly below average, and the unemployment rate is above its average yet falling (-1.5 over 12m). The 12-month rise in the policy rate is +1.0 and the 2-year yield is up 12m.\n\nA candidate is 2017: the 3-year window of 2014-2016 included low rates. In 2017 the policy rate rose and the 10-year was above its average, so that doesn't fit well.\n\nAnother candidate is 2021 or early 2022. Core CPI was low versus the prior 3 years (2018-2020 averaged about 2%). In 2021 it would be high, so this doesn't fit.\n\nA third candidate is 2025-2026, but the window of 2022-2025 had high core CPI, which would make current core CPI z-score -2.0, and the policy rate was down, not up, in 2025. The 10-year yield z would be around 0 in 2025, not -1.5. The unemployment rate was above its 3-year average, and the 12m change was -1.5, meaning unemployment was falling a lot, which fits a recovery period.\n\nConsider 2010-2011: the window of 2008-2010 had high-then-low rates. The policy rate near zero would be around -0.5 to -1. Unemployment fell 12m in 2011-2012. But the policy rate rose +1.0 over 12m and the 2-year rose, which is not 2011.\n\nConsider 2016: the window of 2013-2015. The policy rate rose a bit over 12m in late 2016 (+0.25 to 0.5, which is about +1 z). Core CPI is low relative to the window? Not really.\n\nConsider 2019-2020. The window of 2016-2019 saw rising rates. In early 2020 the policy rate was 1.5 vs a mean of ~1.2, and core CPI would be around average.\n\nConsider 2023-2024, when the window included the 2020-2021 zero rates: the policy rate would be high there, not -0.5.\n\nConsider late 2025 to early 2026: the window of 2023-2026 has the policy rate averaging about 4.8, and now it's 3.75 (z about -1.5). The 12m change in the policy rate is negative, which doesn't fit.\n\nConsider 2018 or 2017 using a 2015-2017 window. In mid-2018 the policy rate is 2%, the 2-year is 2.5%. These sit above average. Not a fit.\n\nConsider 2013-2014, with the 2011-2013 window: the policy rate near zero, the 12m change about 0. Not a fit.\n\nBack to 2017 with a 2014-2016 window: the policy rate would be +1, not -0.5.\n\nConsider 2010 with a 2007-2009 window: the policy rate was low (z about -1), core CPI low, unemployment high-ish and falling, the 10-year low. The 12m policy rate change was 0 and the 2-year was not up, so this doesn't fit.\n\nConsider 2004-2006, which falls outside the range. For the 2007-2026 range, perhaps 2016-12: the 12m policy rate change was +1, the 2-year was up, and the 10-year was up. The 12m 10-year change is -0.5 while the 3m change is 0, which suggests roughly 2017 mid-year. Core CPI lows in mid-2017 fit (core slowed to 1.7%). The 2-year yield at 1.4% against the 2014-2017 window average would be about +0.5, though. I'll go with mid-2017 anyway, as the best fit.\n\n{\"year\":2017,\"month\":7,\"confidence\":0.2,\"cues\":[\"Core CPI very low versus its 3-year range\",\"Policy rate up over 12m while unemployment falls sharply\",\"Low VIX and positive equity returns with negative stock-bond correlation\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1276,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.0 | -1.0 | +1.0\nNational activity index, 3m avg | +1.0 | -0.5 | +0.0\nUnemployment rate | +1.0 | -0.5 | -1.5\nPayrolls, avg monthly change over 3m | +0.5 | -1.5 | +0.5\nHeadline CPI | -0.5 | +0.0 | +0.5\nCore CPI | -2.0 | +0.0 | -1.0\nPolicy rate (fed funds) | -0.5 | +0.5 | +1.0\n2-year Treasury yield | -1.5 | +0.0 | +1.0\n10-year Treasury yield | -1.5 | +0.0 | -0.5\n10y minus 2y Treasury spread | +0.5 | -0.5 | -1.5\nEquity implied volatility (VIX) | -0.5 | +0.0 | -0.5\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | +0.0\nBroad trade-weighted dollar | -0.5 | +0.0 | +0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +0.5 | +0.5 | +0.0 | +0.5 | -0.5 | +1.0\nDeveloped ex-US equity | +0.5 | +0.5 | +0.5 | +0.5 | -0.5 | +1.0\nEmerging-market equity | +0.5 | +0.5 | +0.0 | +0.0 | -0.5 | +1.0\nUS Treasuries 7-10y | -0.5 | +0.5 | +1.0 | +0.5 | -0.5 | +0.5\nUS Treasuries 20y+ | -1.0 | +0.0 | +0.5 | +0.5 | +0.5 | +0.0\nUS investment-grade credit | -0.5 | +0.0 | +0.5 | +0.5 | -0.5 | +0.5\nGold | +0.5 | +1.0 | +0.5 | +0.5 | -1.0 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

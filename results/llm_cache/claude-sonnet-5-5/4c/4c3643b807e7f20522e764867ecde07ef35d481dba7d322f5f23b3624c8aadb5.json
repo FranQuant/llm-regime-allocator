@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-06T21:03:34+00:00",
+ "decision_date": "2011-09-30",
+ "key": "4c3643b807e7f20522e764867ecde07ef35d481dba7d322f5f23b3624c8aadb5",
+ "model": "claude-sonnet-5-5",
+ "model_returned": "claude-sonnet-5-5",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "anthropic",
+ "response_id": "msg_011CfmfGVTf6YKpazNk8uyEe",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "Key features: the 10-year yield is very low relative to the prior 3 years (-2.5) and has fallen sharply over 3 months, while the fed funds rate is low relative to its 3-year average (-1.0) but rising. Core CPI is rising quickly, headline CPI is high, and unemployment is flat to falling. VIX is up, equities are weak, long Treasuries are rallying strongly, and the dollar is up.\n\nCandidates:\n- Late 2023 is unlikely, since the 10-year was high then.\n- 2019 is a possibility, but the policy rate was high relative to the prior 3 years.\n- Mid-2011 and 2010 are possible, but the fed funds rate in 2010 was near zero and not rising.\n- 2022 has a rising policy rate, but the 10-year yield was rising too.\n- Early 2025 and 2026 don't fit a -2.5 z-score for the 10-year.\n\nFed funds at -1.0 and rising, with the 10-year very low, points to the 36-month window including a period of high rates relative to now. Consider 2008: the 3-year window 2005-2008 had rates around 5%, so rates would be falling, not rising. The 3m change in fed funds is +0.5, so rates are rising.\n\nConsider 2016 (around Oct\u2013Nov): the 10-year fell to 1.4% in July 2016, but the 3m change in the 10-year would be positive by November. For mid-2016 the 10-year was low, but the VIX was not up then (it was up in June on Brexit). Core CPI 12m change +2.5 does not fit 2016.\n\nConsider 2020, when core CPI was not rising. Consider 2021 or early 2022: the 10-year was not low.\n\nConsider 2018 or 2019: the policy rate was rising through 2018 and the 10-year fell sharply in Q4 2018 (Dec 2018: 2.7%). The VIX was up, equities were down, and the dollar was up. Long Treasuries rallying with a 3m change of +3 fits Nov\u2013Dec 2018 or Aug 2019. But the 10-year z of -2.5 in 2018 doesn't fit, because the window 2015-2018 had yields around 2%. Core CPI z +1.5 over 3 months doesn't fit either.\n\nConsider 2023-24: the 10-year z of -2.5 doesn't fit. Consider 2010 (Aug): core CPI was falling then.\n\nConsider the start of 2008: the policy rate was falling then. Consider 2011 in Sep: the policy rate was near zero, flat, and the 10-year fell sharply, but the policy-rate 3m change would be 0.\n\nConsider Sept\u2013Oct 2008... no.\n\nConsider 2026: the window 2023-2026 has the 10-year at 4-5%, and a -2.5 z-score would need ~3.5%. That is unlikely. Consider the window for 2019: 10-year about 1.5% in Aug 2019, versus 2016-2019 at ~2.5%, giving -2.5 with fed funds at 2.1%. The window average for fed funds would be ~1.3%, which is above, not below. Doesn't fit.\n\nConsider 2012: the window 2009-2012 had low rates throughout. The 10-year at 1.5% in mid-2012 wouldn't be -2.5 against a ~3% average, so it could fit. But the policy rate wasn't rising then.\n\nConsider 2007: the data start in 2007, but the window would be limited. Consider early 2008, when the 10-year dropped and the VIX was up.\n\nConsider the late-2024 window: the policy rate z would be high. Fed funds at -1.0 while rising, with core CPI up strongly... Consider Oct 2022? No. Consider Mar 2020: the policy rate was falling.\n\nMy best guess is mid-2019 on the strength of the yield, VIX and dollar moves, despite the mismatches.\n\n{\"year\": 2019, \"month\": 8, \"confidence\": 0.15, \"cues\": [\"10y yield z -2.5 with 3m -2.0 and long Treasuries +3.0 over 3m\", \"VIX rising, equities weak, dollar up\", \"Curve spread sharply flatter/inverting\"]}",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "inference_geo": "global",
+  "input_tokens": 1096,
+  "output_tokens": 1396,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "standard"
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.0 | -0.5\nNational activity index, 3m avg | +0.5 | +0.0 | +0.0\nUnemployment rate | +0.0 | -0.5 | -1.0\nPayrolls, avg monthly change over 3m | +0.5 | -0.5 | +0.0\nHeadline CPI | +1.5 | +0.0 | +1.0\nCore CPI | +1.0 | +1.5 | +2.5\nPolicy rate (fed funds) | -1.0 | +0.5 | +0.5\n2-year Treasury yield | -1.5 | +0.0 | +0.5\n10-year Treasury yield | -2.5 | -2.0 | -0.5\n10y minus 2y Treasury spread | -2.0 | -2.5 | -1.5\nEquity implied volatility (VIX) | +1.0 | +1.5 | +1.0\nBaa corporate minus 10y Treasury spread | +0.0 | +0.5 | +0.0\nBroad trade-weighted dollar | +0.0 | +1.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.0 | -1.5 | -1.0 | +0.0 | +0.0 | +0.0\nDeveloped ex-US equity | -1.5 | -1.5 | -1.0 | -0.5 | +0.0 | -0.5\nEmerging-market equity | -2.0 | -1.5 | -1.0 | -1.0 | -0.5 | -0.5\nUS Treasuries 7-10y | +0.5 | +2.0 | +2.0 | +0.5 | +0.0 | +1.0\nUS Treasuries 20y+ | +2.0 | +3.0 | +2.5 | +1.5 | +1.0 | +1.5\nUS investment-grade credit | -0.5 | +0.0 | +0.0 | -0.5 | -0.5 | +0.5\nGold | -2.0 | +0.5 | +0.5 | +0.0 | +0.0 | -1.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}
