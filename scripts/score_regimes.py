@@ -27,7 +27,7 @@ def main() -> None:
     }
     for f in sorted((REPO_ROOT / "results" / "llm").glob("*/*_run0.csv")):
         model, variant = f.parent.name, f.stem.removesuffix("_run0")
-        if model == "mock":
+        if model == "mock" or variant.startswith("date_probe"):
             continue
         fc[f"{model}:{variant}"] = pd.read_csv(f, parse_dates=["date"], index_col="date")[R]
 
