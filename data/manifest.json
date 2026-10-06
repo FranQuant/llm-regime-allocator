@@ -165,9 +165,9 @@
     }
   },
   "macro_pit": {
-    "built_utc": "2026-10-06T16:14:44+00:00",
+    "built_utc": "2026-10-06T23:04:18+00:00",
     "file": "macro_pit.csv",
-    "rows": 93620,
+    "rows": 93627,
     "series": {
       "BAA10Y": {
         "freq": "D",
@@ -175,9 +175,9 @@
         "mode": "lagged",
         "obs_range": [
           "2000-01-03",
-          "2026-10-02"
+          "2026-10-05"
         ],
-        "rows": 6686
+        "rows": 6687
       },
       "CFNAI": {
         "first_vintage": "2011-05-23",
@@ -217,9 +217,9 @@
         "mode": "lagged",
         "obs_range": [
           "2000-01-01",
-          "2026-10-02"
+          "2026-10-05"
         ],
-        "rows": 9772
+        "rows": 9775
       },
       "DGS10": {
         "freq": "D",
@@ -227,9 +227,9 @@
         "mode": "lagged",
         "obs_range": [
           "2000-01-03",
-          "2026-10-02"
+          "2026-10-05"
         ],
-        "rows": 6692
+        "rows": 6693
       },
       "DGS2": {
         "freq": "D",
@@ -237,9 +237,9 @@
         "mode": "lagged",
         "obs_range": [
           "2000-01-03",
-          "2026-10-02"
+          "2026-10-05"
         ],
-        "rows": 6692
+        "rows": 6693
       },
       "DTWEXBGS": {
         "first_vintage": "2019-02-04",
@@ -279,9 +279,9 @@
         "mode": "lagged",
         "obs_range": [
           "2000-01-03",
-          "2026-10-05"
+          "2026-10-06"
         ],
-        "rows": 6693
+        "rows": 6694
       },
       "UNRATE": {
         "first_vintage": "2000-02-04",
@@ -304,7 +304,7 @@
         "rows": 6763
       }
     },
-    "sha256": "8ceedcee69b0bf4fc581c291fdd2b2ea917fbc83a96bcef69c37f82a9d53a08b",
+    "sha256": "09e8f5c01d3551377488cd23d7d02c950c591aff06b73e8775e0afa17edec9bb",
     "source": "FRED/ALFRED API (api.stlouisfed.org), series/observations"
   }
 }
