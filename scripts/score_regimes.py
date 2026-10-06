@@ -25,6 +25,11 @@ def main() -> None:
         "ml_logit": reg[[f"logit_{k}" for k in R]].set_axis(R, axis=1),
         "ml_gbt": reg[[f"gbt_{k}" for k in R]].set_axis(R, axis=1),
     }
+    fair = REPO_ROOT / "results" / "baselines" / "regimes_fair.csv"
+    if fair.exists():
+        fr = pd.read_csv(fair, parse_dates=["date"], index_col="date")
+        for k in ("logit_blinded", "gbt_blinded", "climatology"):
+            fc[k if k == "climatology" else f"ml_{k}"] = fr[[f"{k}_{r}" for r in R]].set_axis(R, axis=1)
     for f in sorted((REPO_ROOT / "results" / "llm").glob("*/*_run0.csv")):
         model, variant = f.parent.name, f.stem.removesuffix("_run0")
         if model == "mock" or variant.startswith("date_probe"):

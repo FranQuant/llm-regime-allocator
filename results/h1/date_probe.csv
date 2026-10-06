@@ -1,4 +1,6 @@
 model,probe,forecaster,n,mae_months,median_abs_months,within_3m,within_6m,within_12m
+claude_sonnet,date_probe_blinded,llm,222,45.5495,13.5000,0.3243,0.3784,0.4955
+claude_sonnet,date_probe_blinded,constant mid-sample guess,222,55.5000,55.5000,0.0315,0.0586,0.1126
 claude_sonnet,date_probe_blinded_every4,llm,56,47.6250,12.0000,0.3571,0.3929,0.5000
 claude_sonnet,date_probe_blinded_every4,constant mid-sample guess,56,56.0000,56.0000,0.0179,0.0536,0.1250
 claude_sonnet,date_probe,llm,222,0.2162,0.0000,0.9910,1.0000,1.0000
