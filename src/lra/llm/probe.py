@@ -13,11 +13,12 @@ from pydantic import BaseModel, Field
 
 from lra.llm.cache import ResponseCache
 from lra.llm.clients import LLMClient
-from lra.llm.prompts import render_data
+from lra.llm.prompts import render_blinded, render_data
 from lra.llm.runner import Diagnostics, run_task
 from lra.llm.schema import ParseError, extract_json
 
 VARIANT = "date_probe"
+VARIANT_BLINDED = "date_probe_blinded"   # same probe on the blinded pack
 YEAR_MIN, YEAR_MAX = 2007, 2026
 
 PROBE_SYSTEM = f"""You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between {YEAR_MIN} and {YEAR_MAX}.
@@ -46,8 +47,9 @@ def parse_date_guess(raw: str) -> dict:
     return {"guess_year": g.year, "guess_month": g.month, "confidence": g.confidence}
 
 
-def build_probe_prompt(features: pd.Series) -> str:
-    return render_data(features) + "\n\nWhich month does this snapshot describe?"
+def build_probe_prompt(features: pd.Series, blinded: bool = False) -> str:
+    body = render_blinded(features) if blinded else render_data(features)
+    return body + "\n\nWhich month does this snapshot describe?"
 
 
 def month_error(dates: pd.Index, year: pd.Series, month: pd.Series) -> pd.Series:
@@ -66,15 +68,17 @@ def date_probe(
     max_retries: int = 2,
     replay_only: bool = False,
     progress: bool = False,
+    blinded: bool = False,
 ) -> tuple[pd.DataFrame, Diagnostics]:
-    """Rows = decision dates; columns guess_year, guess_month, confidence, error_months, attempts, metadata."""
+    """blinded=True expects lra.llm.blind.blind_features output.
+    Rows = decision dates; columns guess_year, guess_month, confidence, error_months, attempts, metadata."""
     out, diag = run_task(
         dates, client=client, cache=cache, system=PROBE_SYSTEM,
-        user_for=lambda d: build_probe_prompt(features.loc[d]),
+        user_for=lambda d: build_probe_prompt(features.loc[d], blinded),
         parse=parse_date_guess,
         nan_row={"guess_year": np.nan, "guess_month": np.nan, "confidence": np.nan},
         label=lambda r: f"{int(r['guess_year'])}-{int(r['guess_month']):02d}",
-        meta={"variant": VARIANT}, run=run, max_retries=max_retries,
+        meta={"variant": VARIANT_BLINDED if blinded else VARIANT}, run=run, max_retries=max_retries,
         replay_only=replay_only, progress=progress)
     num = ["guess_year", "guess_month", "confidence", "attempts"]
     out[num] = out[num].astype(float)

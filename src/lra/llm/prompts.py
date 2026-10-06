@@ -4,6 +4,8 @@ Variants (named, explicit — CLAUDE.md):
   anonymized  default; data only, no date, no tickers
   dated       same data plus the as-of date             (contamination ablation)
   date_only   the as-of month only, no data             (memory probe)
+  blinded     data only, every figure as a coarse z-score vs its own last 36 months
+              (no levels); expects the matrix from lra.llm.blind.blind_features
 
 Bump PROMPT_VERSION whenever any text below changes; it is recorded with every call.
 """
@@ -14,8 +16,8 @@ import math
 
 import pandas as pd
 
-PROMPT_VERSION = "2026-10-06.1"
-VARIANTS = ("anonymized", "dated", "date_only")
+PROMPT_VERSION = "2026-10-06.2"
+VARIANTS = ("anonymized", "dated", "date_only", "blinded")
 
 SYSTEM = """You classify the macroeconomic regime for a multi-asset research desk.
 
@@ -87,6 +89,36 @@ def render_data(features: pd.Series) -> str:
     return "\n".join(lines)
 
 
+def _z(x) -> str:
+    if x is None or (isinstance(x, float) and math.isnan(x)):
+        return "n/a"
+    return f"{x:+.1f}"
+
+
+def render_blinded(b: pd.Series) -> str:
+    """Blinded pack: z-scores vs each figure's own last 36 months, no levels, no dates, no tickers."""
+    lines = ["All figures are z-scores versus the same figure's own last 36 months "
+             "(0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. "
+             "No levels are shown.",
+             "",
+             "MACRO (latest published value)",
+             "indicator | level | 3m change | 12m change"]
+    for key, (label, _units) in MACRO_LABELS.items():
+        g = lambda s: b.get(f"macro_{key}_{s}_bz", float("nan"))  # noqa: E731
+        lines.append(f"{label} | {_z(g('level'))} | {_z(g('chg_3m'))} | {_z(g('chg_12m'))}")
+    lines += ["", "MARKETS (total returns; vol annualised; drawdown from 12m high)",
+              "asset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m"]
+    for role, label in ROLE_LABELS.items():
+        g = lambda s: b.get(f"mkt_{role}_{s}_bz", float("nan"))  # noqa: E731
+        lines.append(f"{label} | {_z(g('ret_1m'))} | {_z(g('ret_3m'))} | {_z(g('ret_6m'))} | "
+                     f"{_z(g('ret_12m'))} | {_z(g('vol_6m'))} | {_z(g('dd_12m'))}")
+    sign = b.get("mkt_stock_bond_corr_6m_sign", float("nan"))
+    word = {1.0: "positive", -1.0: "negative", 0.0: "zero"}.get(sign, "n/a")
+    lines.append(f"US equity vs 7-10y Treasury daily-return correlation, 6m: {word} "
+                 f"(z {_z(b.get('mkt_stock_bond_corr_6m_bz', float('nan')))})")
+    return "\n".join(lines)
+
+
 def build_user_prompt(features: pd.Series, decision_date: pd.Timestamp, variant: str) -> str:
     if variant not in VARIANTS:
         raise ValueError(f"unknown variant {variant!r}")
@@ -95,5 +127,7 @@ def build_user_prompt(features: pd.Series, decision_date: pd.Timestamp, variant:
         return (f"The current month is {d:%B %Y}. No data is provided. From your own knowledge, "
                 "estimate the regime for the next three months. If unsure, keep the distribution "
                 "close to uniform.")
+    if variant == "blinded":
+        return render_blinded(features) + "\n\nClassify the regime for the next three months."
     head = f"As-of date: {d:%Y-%m-%d}.\n\n" if variant == "dated" else ""
     return head + render_data(features) + "\n\nClassify the regime for the next three months."

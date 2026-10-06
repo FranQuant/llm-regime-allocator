@@ -1,6 +1,6 @@
 """Score the date-recovery probe and link it to regime skill.
 
-Reads results/llm/<model>/date_probe_run0.csv for every model that has one.
+Reads results/llm/<model>/date_probe*_run0*.csv (raw and blinded pack, full runs or pilots).
 Writes results/h1/date_probe.csv (how well the month is recovered, vs a constant
 mid-sample guess) and results/h1/date_probe_link.csv (anonymized regime skill split by
 whether the month was recoverable).
@@ -28,17 +28,18 @@ def main() -> None:
     reg = pd.read_csv(REPO_ROOT / "results" / "baselines" / "regimes.csv", parse_dates=["date"], index_col="date")
     y = reg["realised_forward"].dropna()
     rows, link = [], []
-    for f in sorted(LLM.glob("*/date_probe_run0.csv")):
-        model = f.parent.name
+    for f in sorted(LLM.glob("*/date_probe*_run0*.csv")):
+        model, probe = f.parent.name, f.stem.replace("_run0", "")
+        pack = "blinded" if "blinded" in probe else "raw"
         p = pd.read_csv(f, parse_dates=["date"], index_col="date")
         err = p["error_months"].dropna()
-        rows.append({"model": model, "forecaster": "llm", **recovery(err)})
+        rows.append({"model": model, "probe": probe, "forecaster": "llm", **recovery(err)})
         # naive: always guess the middle month of the sample
         mid = err.index[len(err) // 2]
         naive = pd.Series((err.index.year - mid.year) * 12 + (err.index.month - mid.month), index=err.index)
-        rows.append({"model": model, "forecaster": "constant mid-sample guess", **recovery(naive)})
+        rows.append({"model": model, "probe": probe, "forecaster": "constant mid-sample guess", **recovery(naive)})
 
-        for variant in ("anonymized", "dated"):
+        for variant in (("anonymized", "dated") if pack == "raw" else ("blinded",)):
             g = LLM / model / f"{variant}_run0.csv"
             if not g.exists():
                 continue
@@ -46,7 +47,7 @@ def main() -> None:
             idx = y.index.intersection(err.index)
             gain = brier_per_obs(q, y.loc[idx]) - brier_per_obs(uniform(idx), y.loc[idx])
             for name, mask in (("|err| <= 12m", err.loc[idx].abs() <= 12), ("|err| > 12m", err.loc[idx].abs() > 12)):
-                link.append({"model": model, "regime_variant": variant, "probe_bucket": name, "n": int(mask.sum()),
+                link.append({"model": model, "probe": probe, "regime_variant": variant, "probe_bucket": name, "n": int(mask.sum()),
                              "brier_minus_uniform": gain[mask].mean() if mask.any() else np.nan})
     OUT.mkdir(parents=True, exist_ok=True)
     a, b = pd.DataFrame(rows), pd.DataFrame(link)
