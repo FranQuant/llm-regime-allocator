@@ -1,0 +1,10 @@
+forecaster,window,n,hit_rate,brier,log_loss,brier_vs_uniform_lo,brier_vs_uniform_hi
+uniform,full,217,0.1889,0.7500,1.3863,0.0000,0.0000
+rule,full,217,0.3318,1.0991,2.0557,0.1869,0.4892
+ml_logit,full,217,0.3733,0.8614,1.7614,-0.0027,0.1874
+ml_gbt,full,217,0.3226,0.8796,1.7301,0.0398,0.2048
+claude_haiku:anonymized,full,217,0.2442,0.8637,1.5722,0.0490,0.1755
+claude_haiku:anonymized,after cutoff 2025-02-28,10,0.1000,0.9260,1.7038,,
+claude_sonnet:anonymized,full,217,0.3687,0.7016,1.3241,-0.1115,0.0126
+llama8b:anonymized,full,217,0.2442,0.8735,1.6806,0.0472,0.1876
+llama8b:anonymized,after cutoff 2023-12-31,24,0.2917,0.8367,1.6029,,
