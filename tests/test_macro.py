@@ -86,22 +86,25 @@ def test_lagged_monthly_series_counts_from_period_end():
     assert as_of(t, "M", "2020-02-15").iloc[0] == 1.0
 
 
-def test_late_vintage_series_falls_back_and_is_flagged():
+def test_late_vintage_series_becomes_flagged_hybrid():
     cfg = {"macro": {"observation_start": "2000-01-01", "series": {
         "CPI": {"mode": "vintage", "freq": "M"},
         "USD": {"mode": "vintage", "freq": "D", "fallback_lag_days": 7},
         "VIX": {"mode": "lagged", "freq": "D", "lag_days": 1},
     }}}
     late = [{"date": "2008-06-02", "realtime_start": "2022-01-03", "realtime_end": "9999-12-31", "value": "90"}]
-    latest_usd = [{"date": "2008-06-02", "realtime_start": "2026-10-06", "realtime_end": "2026-10-06", "value": "90"}]
+    latest_usd = [{"date": "2008-06-02", "realtime_start": "2026-10-06", "realtime_end": "2026-10-06", "value": "91"}]
     latest_vix = [{"date": "2008-06-02", "realtime_start": "2026-10-06", "realtime_end": "2026-10-06", "value": "20"}]
     f = fake_fetch({("CPI", "vintage"): VINTAGES, ("USD", "vintage"): late,
                     ("USD", "latest"): latest_usd, ("VIX", "latest"): latest_vix})
     table, rep = build_macro_table(cfg, fetch=f, api_key="x", backtest_start="2020-03-01")
     assert rep["CPI"]["mode"] == "vintage"
-    assert rep["USD"]["mode"] == "lagged_fallback" and rep["USD"]["first_vintage"] == "2022-01-03"
-    assert as_of(table, "USD", "2008-06-08").empty
-    assert as_of(table, "USD", "2008-06-09").iloc[0] == 90.0
+    assert rep["USD"]["mode"] == "hybrid" and rep["USD"]["first_vintage"] == "2022-01-03"
+    assert "revised" in rep["USD"]["flag"]
+    assert as_of(table, "USD", "2008-06-08").empty                 # before lagged availability
+    assert as_of(table, "USD", "2008-06-09").iloc[0] == 91.0       # revised value, fallback segment
+    assert as_of(table, "USD", "2022-01-02").iloc[0] == 91.0
+    assert as_of(table, "USD", "2022-01-03").iloc[0] == 90.0       # true vintage takes over
     assert set(table["series_id"]) == {"CPI", "USD", "VIX"}
 
 

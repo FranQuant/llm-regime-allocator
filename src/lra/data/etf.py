@@ -32,7 +32,10 @@ def find_ticker_files(archive_dir: Path, ticker: str) -> list[Path]:
     pattern = f"data/*/eodhd_csv/*/eod/{ticker}_US_eod_daily.csv"
     files = sorted(Path(archive_dir).glob(pattern))
     if not files:
-        raise FileNotFoundError(f"{ticker}: no file matching {pattern} under {archive_dir}")
+        near = sorted(str(p.relative_to(archive_dir)) for p in Path(archive_dir).glob(f"**/{ticker}[._]*"))[:10]
+        raise FileNotFoundError(
+            f"{ticker}: no file matching {pattern} under {archive_dir}. Similar names: {near or 'none'}"
+        )
     latest_run = max(f.parents[1].name for f in files)
     return [f for f in files if f.parents[1].name == latest_run]
 

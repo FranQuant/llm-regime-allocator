@@ -31,16 +31,18 @@ benchmark_60_40 = { SPY = 0.6, IEF = 0.4 }
 #   "lagged"  — latest values; available `lag_days` calendar days after the observation
 #               period ends (for daily, never-revised market series, or series whose
 #               ALFRED history starts too late — flagged in the manifest).
+# fallback_lag_days: approximate days after period end that the first print is
+#   published; used only before a series' first ALFRED vintage ("hybrid", flagged).
 [macro]
 observation_start = "2000-01-01"
 
 [macro.series]
-CFNAI    = { mode = "vintage", freq = "M" }
-INDPRO   = { mode = "vintage", freq = "M" }
-UNRATE   = { mode = "vintage", freq = "M" }
-PAYEMS   = { mode = "vintage", freq = "M" }
-CPIAUCSL = { mode = "vintage", freq = "M" }
-CPILFESL = { mode = "vintage", freq = "M" }
+CFNAI    = { mode = "vintage", freq = "M", fallback_lag_days = 25 }
+INDPRO   = { mode = "vintage", freq = "M", fallback_lag_days = 17 }
+UNRATE   = { mode = "vintage", freq = "M", fallback_lag_days = 7 }
+PAYEMS   = { mode = "vintage", freq = "M", fallback_lag_days = 7 }
+CPIAUCSL = { mode = "vintage", freq = "M", fallback_lag_days = 15 }
+CPILFESL = { mode = "vintage", freq = "M", fallback_lag_days = 15 }
 DFF      = { mode = "lagged", freq = "D", lag_days = 1 }
 DGS2     = { mode = "lagged", freq = "D", lag_days = 1 }
 DGS10    = { mode = "lagged", freq = "D", lag_days = 1 }

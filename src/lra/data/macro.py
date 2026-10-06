@@ -118,8 +118,9 @@ def build_macro_table(
 ) -> tuple[pd.DataFrame, dict]:
     """Fetch every configured series into one long point-in-time table.
 
-    A 'vintage' series whose ALFRED history starts after ``backtest_start`` falls back
-    to latest values + ``fallback_lag_days`` and is flagged in the report.
+    A 'vintage' series whose ALFRED history starts after ``backtest_start`` becomes a
+    hybrid: latest values + ``fallback_lag_days`` before the first vintage, true
+    vintages after it. Flagged in the report.
     """
     m = cfg["macro"]
     frames, report = [], {}
@@ -132,13 +133,19 @@ def build_macro_table(
             fv = first_vintage(df)
             entry["first_vintage"] = fv.date().isoformat()
             if fv > pd.Timestamp(backtest_start):
+                # Hybrid: before ALFRED's first vintage, use latest (revised) values made
+                # visible `fallback_lag_days` after period end; true vintages from then on.
+                # as_of picks the latest realtime_start, so vintage rows win once they exist.
                 lag = spec.get("fallback_lag_days")
                 if lag is None:
                     raise ValueError(f"{sid}: vintages start {fv.date()} after backtest start and no fallback_lag_days")
                 latest = fetch_observations(sid, observation_start=m["observation_start"], vintages=False,
                                             fetch=fetch, api_key=api_key)
-                df = apply_publication_lag(latest, freq, lag)
-                entry |= {"mode": "lagged_fallback", "lag_days": lag}
+                pre = apply_publication_lag(latest, freq, lag)
+                pre = pre[pre["realtime_start"] < fv]
+                df = pd.concat([pre, df], ignore_index=True)
+                entry |= {"mode": "hybrid", "lag_days": lag,
+                          "flag": f"revised values (not first prints) used before {fv.date()}"}
         elif mode == "lagged":
             latest = fetch_observations(sid, observation_start=m["observation_start"], vintages=False,
                                         fetch=fetch, api_key=api_key)
