@@ -1,0 +1,7 @@
+a,b,mean_tv_distance,same_top_regime
+claude_sonnet,gpt_sol,0.1209,0.7432
+claude_sonnet,gemini_flash,0.1716,0.8063
+claude_sonnet,glm,0.1191,0.7568
+gpt_sol,gemini_flash,0.1192,0.8649
+gpt_sol,glm,0.1290,0.7162
+gemini_flash,glm,0.1615,0.7613

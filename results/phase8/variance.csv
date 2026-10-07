@@ -1,0 +1,4 @@
+model,n_months,n_scored,brier_run0,brier_run1,mean_abs_dp,same_top_regime
+gpt_sol,56,54,0.6808,0.6634,0.0205,0.9464
+gemini_flash,56,54,0.7315,0.7207,0.0245,0.9643
+glm,56,54,0.7184,0.7291,0.0493,0.8571
