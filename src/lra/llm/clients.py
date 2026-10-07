@@ -112,11 +112,14 @@ class GoogleClient:
     max_tokens: int = 4000
     params: dict = field(default_factory=dict)
     provider: str = "google"
+    _client: object = field(default=None, repr=False, compare=False)
 
     def complete(self, system: str, user: str) -> LLMResponse:
         from google import genai
 
-        client = genai.Client(api_key=_key(self.api_key_env))
+        if self._client is None:   # one long-lived client (genai closes clients that go out of scope)
+            self._client = genai.Client(api_key=_key(self.api_key_env))
+        client = self._client
         config = {"system_instruction": system, "max_output_tokens": self.max_tokens, **self.params}
         r = client.models.generate_content(model=self.model, contents=user, config=config)
         um = r.usage_metadata

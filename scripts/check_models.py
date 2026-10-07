@@ -24,7 +24,8 @@ def check(name: str, m: dict) -> str:
     if m["provider"] == "google":
         from google import genai
 
-        info = genai.Client(api_key=key).models.get(model=m["model"])
+        client = genai.Client(api_key=key)   # keep a reference: a temporary client is closed before the request
+        info = client.models.get(model=m["model"])
         return f"ok: {info.name} (output limit {info.output_token_limit})"
     if m["provider"] == "openai_compatible":
         import openai
