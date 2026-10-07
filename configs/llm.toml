@@ -38,12 +38,46 @@ base_url = "http://localhost:11434/v1"
 api_key_env = "OLLAMA_API_KEY"   # Ollama ignores it; unset is fine
 params = { temperature = 0.0, seed = 7 }
 
-# Optional, not in the current budget. Knowledge cutoff 2025-12-01 (OpenAI docs).
+# Superseded by gpt_sol (Phase 8); never run. Knowledge cutoff 2025-12-01 (OpenAI docs).
 [models.gpt]
 provider = "openai"
 model = "gpt-5.5-2026-04-23"
 api_key_env = "OPENAI_API_KEY"
 params = { reasoning = { effort = "none" } }
+
+# ---------------- Phase 8: cross-family replication (pre-registered in configs/phase8.toml) ----------------
+# Docs checked 2026-10-07. All three reason before answering and none can be made deterministic, so params = {}
+# (provider defaults) and run-to-run variance is measured with a second run (see phase8.toml).
+# max_tokens is the output cap INCLUDING reasoning tokens; truncations are logged (status / finish_reason).
+
+# OpenAI — developers.openai.com model page: knowledge cutoff 2026-04-30; reasoning effort default "medium"
+# ("none"/"minimal" not supported). Responses API.
+[models.gpt_sol]
+provider = "openai"
+model = "gpt-6.1-sol"
+api_key_env = "OPENAI_API_KEY"
+max_tokens = 8000
+params = {}
+
+# Google — ai.google.dev models page: stable, knowledge cutoff March 2026; thinking_level default "medium".
+# Google recommends the default temperature (1.0) for Gemini 3.x.
+[models.gemini_flash]
+provider = "google"
+model = "gemini-3.8-flash"
+api_key_env = "GEMINI_API_KEY"
+max_tokens = 8000
+params = {}
+
+# Zhipu GLM-5.3 (open weights) via Ollama Cloud, OpenAI-compatible endpoint (docs.ollama.com/api/openai-compatibility).
+# Reasoning is always on. Knowledge cutoff not published -> no clean window; the date probe is its contamination check.
+# Exact model name on ollama.com to be confirmed with scripts/check_models.py before the pilot.
+[models.glm]
+provider = "openai_compatible"
+model = "glm-5.3"
+base_url = "https://ollama.com/v1"
+api_key_env = "OLLAMA_API_KEY"
+max_tokens = 8000
+params = {}
 
 [cutoffs]
 # Documented knowledge cutoffs used to split clean / contaminated windows (Phase 6).
@@ -51,3 +85,6 @@ claude_sonnet = "2026-06-30"
 claude_haiku = "2025-02-28"
 llama8b = "2023-12-31"
 gpt = "2025-12-01"
+gpt_sol = "2026-04-30"
+gemini_flash = "2026-03-31"   # docs give the month only
+# glm: not published

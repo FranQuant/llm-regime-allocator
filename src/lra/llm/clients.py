@@ -72,6 +72,7 @@ class OpenAIClient:
         r = client.responses.create(model=self.model, instructions=system, input=user,
                                     max_output_tokens=self.max_tokens, **self.params)
         usage = r.usage.model_dump() if getattr(r, "usage", None) is not None else {}
+        usage["status"] = getattr(r, "status", None)   # "incomplete" = cap hit (reasoning counts toward it)
         return LLMResponse(r.output_text, r.model, r.id, usage)
 
 
@@ -94,7 +95,31 @@ class OpenAICompatibleClient:
                                            messages=[{"role": "system", "content": system},
                                                      {"role": "user", "content": user}], **self.params)
         usage = r.usage.model_dump() if getattr(r, "usage", None) is not None else {}
+        usage["finish_reason"] = r.choices[0].finish_reason
         return LLMResponse(r.choices[0].message.content or "", r.model, r.id, usage)
+
+
+@dataclass
+class GoogleClient:
+    """Gemini API via the google-genai SDK. `params` are extra GenerateContentConfig fields."""
+
+    model: str
+    api_key_env: str = "GEMINI_API_KEY"
+    max_tokens: int = 4000
+    params: dict = field(default_factory=dict)
+    provider: str = "google"
+
+    def complete(self, system: str, user: str) -> LLMResponse:
+        from google import genai
+
+        client = genai.Client(api_key=_key(self.api_key_env))
+        config = {"system_instruction": system, "max_output_tokens": self.max_tokens, **self.params}
+        r = client.models.generate_content(model=self.model, contents=user, config=config)
+        um = r.usage_metadata
+        usage = um.model_dump(exclude_none=True) if um is not None else {}
+        cands = r.candidates or []
+        usage["finish_reason"] = str(cands[0].finish_reason) if cands and cands[0].finish_reason else None
+        return LLMResponse(r.text or "", r.model_version, r.response_id, usage)
 
 
 @dataclass
@@ -126,7 +151,7 @@ class MockClient:
 
 def make_client(name: str, cfg: dict) -> LLMClient:
     m = cfg["models"][name]
-    mt = cfg["defaults"]["max_tokens"]
+    mt = m.get("max_tokens", cfg["defaults"]["max_tokens"])   # per-model cap (reasoning models need more)
     if m["provider"] == "mock":
         return MockClient(model=m["model"], params=m.get("params", {}))
     if m["provider"] == "anthropic":
@@ -135,4 +160,6 @@ def make_client(name: str, cfg: dict) -> LLMClient:
         return OpenAIClient(m["model"], m["api_key_env"], mt, m.get("params", {}))
     if m["provider"] == "openai_compatible":
         return OpenAICompatibleClient(m["model"], m["base_url"], m["api_key_env"], mt, m.get("params", {}))
+    if m["provider"] == "google":
+        return GoogleClient(m["model"], m["api_key_env"], mt, m.get("params", {}))
     raise ValueError(f"unknown provider {m['provider']!r}")
