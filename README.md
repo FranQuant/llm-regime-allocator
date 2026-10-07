@@ -33,8 +33,13 @@ default temperature; "cannot date" is confounded with the 2008–2019 period; CF
 (first-release scoring changes 33/217 labels and slightly improves every forecaster); parameters were fixed before
 running but not independently timestamped.
 
-Details, caveats and all baselines: [nb01](notebooks/nb01_data_and_baselines.ipynb) data & baselines ·
-[nb02](notebooks/nb02_llm_regimes_and_memory.ipynb) contamination audit · [nb03](notebooks/nb03_regimes_to_portfolios.ipynb) portfolios.
+| Notebook | | |
+|---|---|---|
+| [nb01](notebooks/nb01_data_and_baselines.ipynb) | Data and baselines | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb01_data_and_baselines.ipynb) |
+| [nb02](notebooks/nb02_llm_regimes_and_memory.ipynb) | Contamination audit — reads or remembers? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regimes_and_memory.ipynb) |
+| [nb03](notebooks/nb03_regimes_to_portfolios.ipynb) | Regimes to portfolios | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb03_regimes_to_portfolios.ipynb) |
+
+On Colab the first cell clones the repo; everything replays from committed files — no API keys, no paid calls.
 
 ## Reproduce
 Every LLM answer is cached in `results/llm_cache/`, so all results replay **without an API key**.
