@@ -10,6 +10,8 @@ Examples
   python scripts/run_llm_regimes.py --model claude_sonnet --variant date_probe_blinded --every 4   # pilot
   python scripts/run_llm_regimes.py --model claude_sonnet --variant blinded       # regimes, blinded pack
   python scripts/run_llm_regimes.py --model claude_sonnet --variant blinded_nocfnai --start 2007-12 --end 2011-04
+  python scripts/run_llm_regimes.py --model gpt_sol --variant blinded_cf_infl        # Phase 9 counterfactual
+  python scripts/run_llm_regimes.py --model gpt_sol --variant blinded --runs 2 --p9-months   # Phase 9 noise baseline
 
 Inputs: results/baselines/features.csv (point-in-time context pack, Phase 2).
 Outputs: results/llm/<model>/<variant>_run<k>.csv, diagnostics JSON, results/llm_cache/manifest.csv.
@@ -42,6 +44,8 @@ def main() -> None:
     ap.add_argument("--start", help="first decision month, e.g. 2008-01")
     ap.add_argument("--end", help="last decision month, e.g. 2008-12")
     ap.add_argument("--every", type=int, default=1, help="keep every n-th decision date (cheap pilots)")
+    ap.add_argument("--p9-months", action="store_true",
+                    help="restrict to the Phase 9 months (both edits); outputs get a _p9 suffix")
     ap.add_argument("--max-tokens", type=int, help="override the model's output cap (declared deviations only)")
     ap.add_argument("--replay-only", action="store_true", help="never call the API; cache must be complete")
     ap.add_argument("--show-prompt", metavar="DATE", help="print the prompt for one decision date and exit")
@@ -58,7 +62,7 @@ def main() -> None:
     scfg = load_config(REPO_ROOT / "configs" / "strategy.toml")
     feats = pd.read_csv(REPO_ROOT / "results" / "baselines" / "features.csv", parse_dates=["date"], index_col="date")
     dates = feats.index[feats.index >= pd.Timestamp(scfg["calendar"]["first_decision"])]
-    blinded = args.variant in ("blinded", "blinded_nocfnai", PROBE_B)
+    blinded = args.variant in ("blinded", "blinded_nocfnai", "blinded_cf_infl", "blinded_cf_growth", PROBE_B)
     if blinded:
         feats = blind_features(feats)   # computed on the full history; trailing windows only
     if args.start:
@@ -66,6 +70,15 @@ def main() -> None:
     if args.end:
         dates = dates[dates <= pd.Period(args.end).end_time]
 
+    if args.variant.startswith("blinded_cf_") or args.p9_months:   # Phase 9: the pre-registered months only
+        from lra.llm.counterfactual import select_months
+
+        if not blinded:
+            raise SystemExit("--p9-months needs a blinded variant")
+        p9 = load_config(REPO_ROOT / "configs" / "phase9.toml")["selection"]
+        sel = lambda e: select_months(feats, dates, e, p9["n_per_side"], p9["threshold"])  # noqa: E731
+        dates = (sel(args.variant.removeprefix("blinded_cf_")) if args.variant.startswith("blinded_cf_")
+                 else sel("infl").union(sel("growth")))
     dates = dates[::args.every]
 
     if args.show_prompt:
@@ -96,6 +109,8 @@ def main() -> None:
             stem += f"_{dates[0]:%Y%m}-{dates[-1]:%Y%m}"
         if args.every > 1:
             stem += f"_every{args.every}"
+        if args.p9_months:
+            stem += "_p9"
         d = diag.as_dict() | {"model": args.model, "model_id": client.model, "variant": args.variant,
                               "run": run, "n_dates": len(dates),
                               "max_tokens": getattr(client, "max_tokens", None)}

@@ -8,6 +8,8 @@ Variants (named, explicit — CLAUDE.md):
               (no levels); expects the matrix from lra.llm.blind.blind_features
   blinded_nocfnai  blinded without the CFNAI line (robustness: CFNAI uses revised values
               before its first ALFRED vintage, 2011-05)
+  blinded_cf_infl / blinded_cf_growth  blinded pack with the sign of every inflation (growth) z-score
+              flipped - Phase 9 counterfactual test (lra.llm.counterfactual)
 
 Bump PROMPT_VERSION whenever any text below changes; it is recorded with every call.
 """
@@ -18,8 +20,8 @@ import math
 
 import pandas as pd
 
-PROMPT_VERSION = "2026-10-06.2"
-VARIANTS = ("anonymized", "dated", "date_only", "blinded", "blinded_nocfnai")
+PROMPT_VERSION = "2026-10-07.1"   # adds the counterfactual variants; existing text unchanged
+VARIANTS = ("anonymized", "dated", "date_only", "blinded", "blinded_nocfnai", "blinded_cf_infl", "blinded_cf_growth")
 
 SYSTEM = """You classify the macroeconomic regime for a multi-asset research desk.
 
@@ -131,6 +133,11 @@ def build_user_prompt(features: pd.Series, decision_date: pd.Timestamp, variant:
         return (f"The current month is {d:%B %Y}. No data is provided. From your own knowledge, "
                 "estimate the regime for the next three months. If unsure, keep the distribution "
                 "close to uniform.")
+    if variant in ("blinded_cf_infl", "blinded_cf_growth"):
+        from lra.llm.counterfactual import apply_edit
+
+        edited = apply_edit(features, variant.removeprefix("blinded_cf_"))
+        return render_blinded(edited) + "\n\nClassify the regime for the next three months."
     if variant in ("blinded", "blinded_nocfnai"):
         drop = ("growth_cfnai_ma3",) if variant == "blinded_nocfnai" else ()
         return render_blinded(features, drop) + "\n\nClassify the regime for the next three months."
