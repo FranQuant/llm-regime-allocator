@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-07T18:41:42+00:00",
+ "decision_date": "2022-11-30",
+ "key": "deb6d3343f984241f734deca696d5bff405235fb4f7368d704a50e7f72b6009f",
+ "latency_s": 13.93,
+ "max_tokens": 8000,
+ "model": "gemini-3.8-flash",
+ "model_returned": "gemini-3.8-flash",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "google",
+ "response_id": "WJLGaq2hI_SeqtsP1-OUyQw",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "```json\n{\"year\": 2022, \"month\": 11, \"confidence\": 0.85, \"cues\": [\"Rapid Fed rate hiking cycle (fed funds z-score +3.0 with large 3m and 12m increases)\", \"Sharp cross-asset rally in Nov 2022 led by non-US equities, Treasuries, and gold following soft CPI\", \"Yield curve deeply inverted with dollar retreating from peak\"]}\n```",
+ "transport_retries": 0,
+ "usage": {
+  "candidates_token_count": 101,
+  "finish_reason": "FinishReason.STOP",
+  "prompt_token_count": 858,
+  "prompt_tokens_details": [
+   {
+    "modality": "TEXT",
+    "token_count": 858
+   }
+  ],
+  "thoughts_token_count": 1416,
+  "total_token_count": 2375
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.0 | +0.0\nNational activity index, 3m avg | +0.0 | +0.0 | +0.0\nUnemployment rate | -0.5 | +0.0 | +0.0\nPayrolls, avg monthly change over 3m | +0.0 | +0.0 | +0.0\nHeadline CPI | +1.0 | -1.0 | +0.0\nCore CPI | +1.5 | +0.0 | +0.0\nPolicy rate (fed funds) | +3.0 | +2.0 | +2.5\n2-year Treasury yield | +2.5 | +1.0 | +2.0\n10-year Treasury yield | +2.0 | +1.0 | +1.5\n10y minus 2y Treasury spread | -2.0 | -1.0 | -2.0\nEquity implied volatility (VIX) | -0.5 | -0.5 | -0.5\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | +0.5\nBroad trade-weighted dollar | +1.0 | -1.0 | +0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +0.0 | -0.5 | -1.5 | +0.5 | -1.0\nDeveloped ex-US equity | +2.0 | +1.0 | +0.0 | -1.0 | +0.5 | -0.5\nEmerging-market equity | +2.5 | +0.0 | -0.5 | -1.0 | +0.0 | -1.0\nUS Treasuries 7-10y | +1.5 | -0.5 | -0.5 | -1.5 | +1.5 | -2.0\nUS Treasuries 20y+ | +1.5 | -0.5 | -0.5 | -1.5 | +0.5 | -2.0\nUS investment-grade credit | +2.0 | +0.0 | -0.5 | -1.5 | +0.5 | -1.5\nGold | +2.0 | +0.5 | -0.5 | -0.5 | +0.0 | -1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: positive (z +2.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

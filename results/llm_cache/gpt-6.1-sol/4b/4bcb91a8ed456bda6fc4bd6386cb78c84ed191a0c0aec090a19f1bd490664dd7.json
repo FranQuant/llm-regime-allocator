@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-07T18:40:24+00:00",
+ "decision_date": "2020-10-30",
+ "key": "4bcb91a8ed456bda6fc4bd6386cb78c84ed191a0c0aec090a19f1bd490664dd7",
+ "latency_s": 24.91,
+ "max_tokens": 8000,
+ "model": "gpt-6.1-sol",
+ "model_returned": "gpt-6.1-sol",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "openai",
+ "response_id": "resp_0e1aae0654ddcc99006ac691ff881487d2ac0e1ab3857dbb0b",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "{\"year\":2020,\"month\":10,\"confidence\":0.98,\"cues\":[\"Depressed industrial production and elevated unemployment alongside strongly rebounding payrolls fit the post-lockdown recovery.\",\"Low policy and Treasury yields, sharply steepening yield spread, and elevated VIX fit October 2020.\",\"Weak monthly equity returns but strong six-month emerging-market returns, alongside falling long-duration Treasuries and gold, match October 2020.\"]}",
+ "transport_retries": 0,
+ "usage": {
+  "input_tokens": 834,
+  "input_tokens_details": {
+   "cache_write_tokens": 0,
+   "cached_tokens": 0
+  },
+  "output_tokens": 783,
+  "output_tokens_details": {
+   "reasoning_tokens": 686
+  },
+  "status": "completed",
+  "total_tokens": 1617
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -1.5 | +1.0 | -1.0\nNational activity index, 3m avg | +1.0 | +1.0 | +1.0\nUnemployment rate | +1.0 | -1.0 | +1.0\nPayrolls, avg monthly change over 3m | +1.0 | +2.0 | +1.0\nHeadline CPI | -1.0 | +1.0 | +0.0\nCore CPI | -1.0 | +1.5 | -1.5\nPolicy rate (fed funds) | -1.5 | +0.0 | -1.0\n2-year Treasury yield | -1.5 | +0.5 | -1.0\n10-year Treasury yield | -1.5 | +1.0 | -0.5\n10y minus 2y Treasury spread | +2.0 | +2.0 | +2.0\nEquity implied volatility (VIX) | +2.0 | +1.0 | +2.0\nBaa corporate minus 10y Treasury spread | +0.5 | +0.0 | +0.5\nBroad trade-weighted dollar | -0.5 | -0.5 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.5 | -0.5 | +1.0 | +0.0 | +0.0 | -0.5\nDeveloped ex-US equity | -1.0 | -0.5 | +1.5 | -1.0 | +0.5 | -0.5\nEmerging-market equity | +0.0 | +0.0 | +2.0 | +0.5 | +0.0 | +1.0\nUS Treasuries 7-10y | -1.0 | -1.0 | -1.0 | +0.5 | -1.0 | +0.0\nUS Treasuries 20y+ | -1.0 | -1.5 | -1.5 | +0.0 | +0.0 | -1.5\nUS investment-grade credit | -0.5 | -1.5 | +0.5 | +0.0 | +0.0 | -0.5\nGold | -0.5 | -1.5 | +0.5 | +1.0 | +1.0 | -1.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z +1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

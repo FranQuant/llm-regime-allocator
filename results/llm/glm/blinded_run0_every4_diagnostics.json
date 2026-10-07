@@ -1,0 +1,14 @@
+{
+ "calls": 0,
+ "cache_hits": 57,
+ "cache_misses": 0,
+ "client_failures": 0,
+ "transport_retries": 0,
+ "parse_failures": 1,
+ "dates_failed": [],
+ "model": "glm",
+ "model_id": "glm-5.3",
+ "variant": "blinded",
+ "run": 0,
+ "n_dates": 56
+}

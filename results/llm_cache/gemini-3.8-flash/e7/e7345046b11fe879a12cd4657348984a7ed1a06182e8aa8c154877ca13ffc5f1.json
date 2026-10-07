@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-07T16:47:47+00:00",
+ "decision_date": "2020-07-31",
+ "key": "e7345046b11fe879a12cd4657348984a7ed1a06182e8aa8c154877ca13ffc5f1",
+ "latency_s": 6.89,
+ "max_tokens": 8000,
+ "model": "gemini-3.8-flash",
+ "model_returned": "gemini-3.8-flash",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "google",
+ "response_id": "rHfGaqO2HNy5qtsPpcK8kQs",
+ "run": 0,
+ "system": "You classify the macroeconomic regime for a multi-asset research desk.\n\nYour only output is a probability distribution over four regimes for the next three months. You do not recommend assets, trades, weights or returns. Base your judgment strictly on the figures supplied; do not assume facts that are not in them. If the evidence is mixed, spread probability accordingly.\n\nRegimes (growth direction x inflation direction over the next three months):\n- Goldilocks: growth improving while inflation eases.\n- Reflation: growth improving while inflation rises.\n- Stagflation: growth deteriorating while inflation rises.\n- Risk_Off: growth deteriorating while inflation eases, typically with financial stress.\n\nReply with one JSON object and nothing else:\n{\"probabilities\": {\"Goldilocks\": p, \"Reflation\": p, \"Stagflation\": p, \"Risk_Off\": p},\n \"confidence\": c,\n \"drivers\": [\"...\", \"...\"],\n \"rationale\": \"...\"}\nRules: each p in [0, 1] and the four sum to 1; c in [0, 1] is your confidence in the distribution; 1 to 5 short drivers citing the inputs; rationale under 60 words.",
+ "text": "```json\n{\n  \"probabilities\": {\n    \"Goldilocks\": 0.15,\n    \"Reflation\": 0.05,\n    \"Stagflation\": 0.05,\n    \"Risk_Off\": 0.75\n  },\n  \"confidence\": 0.85,\n  \"drivers\": [\n    \"Industrial production and payrolls dropping sharply (both -2.5 level, -1.5 to -2.0 3m change)\",\n    \"Unemployment rate surging (+2.5 level and 3m change)\",\n    \"Headline and core CPI deeply depressed and falling (-2.0 to -2.5 level)\",\n    \"Yields pinned at historical lows (-2.0 z-score)\"\n  ],\n  \"rationale\": \"Macro data points decisively to deteriorating growth alongside falling inflation. Severe contractions in payrolls, activity, and production alongside surging unemployment confirm a weakening economy. Meanwhile, headline and core CPI continue downward. Despite recent market momentum and tighter credit spreads, the macroeconomic fundamentals heavily favor a Risk_Off disinflationary slowdown.\"\n}\n```",
+ "transport_retries": 0,
+ "usage": {
+  "candidates_token_count": 245,
+  "finish_reason": "FinishReason.STOP",
+  "prompt_token_count": 959,
+  "prompt_tokens_details": [
+   {
+    "modality": "TEXT",
+    "token_count": 959
+   }
+  ],
+  "thoughts_token_count": 459,
+  "total_token_count": 1663
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | -2.5 | -1.5 | -2.0\nNational activity index, 3m avg | -1.5 | -1.0 | -1.5\nUnemployment rate | +2.5 | +2.5 | +2.5\nPayrolls, avg monthly change over 3m | -2.5 | -2.0 | -2.5\nHeadline CPI | -2.0 | -1.0 | -1.0\nCore CPI | -2.5 | -2.5 | -2.0\nPolicy rate (fed funds) | -2.0 | +0.0 | -2.0\n2-year Treasury yield | -2.0 | +0.0 | -1.5\n10-year Treasury yield | -2.0 | +0.0 | -1.5\n10y minus 2y Treasury spread | +0.5 | +0.5 | +2.0\nEquity implied volatility (VIX) | +0.5 | -1.0 | +0.5\nBaa corporate minus 10y Treasury spread | +1.0 | -1.5 | +0.5\nBroad trade-weighted dollar | +0.5 | -1.0 | +0.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | +1.0 | +1.5 | -0.5 | +0.0 | +2.5 | +0.5\nDeveloped ex-US equity | +0.5 | +1.5 | -1.0 | -0.5 | +2.5 | -0.5\nEmerging-market equity | +1.0 | +2.5 | +0.5 | +0.0 | +2.5 | +0.5\nUS Treasuries 7-10y | +0.5 | +0.0 | +1.0 | +1.0 | +2.0 | +1.0\nUS Treasuries 20y+ | +1.0 | +0.0 | +1.5 | +1.5 | +2.5 | +1.5\nUS investment-grade credit | +1.0 | +2.0 | +1.0 | +1.0 | +2.5 | +1.0\nGold | +3.0 | +2.0 | +2.5 | +2.0 | +2.5 | +1.5\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.5)\n\nClassify the regime for the next three months.",
+ "variant": "blinded"
+}

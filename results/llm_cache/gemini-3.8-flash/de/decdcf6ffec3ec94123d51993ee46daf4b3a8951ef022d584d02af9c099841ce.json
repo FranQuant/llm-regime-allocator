@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-07T17:20:41+00:00",
+ "decision_date": "2010-05-28",
+ "key": "decdcf6ffec3ec94123d51993ee46daf4b3a8951ef022d584d02af9c099841ce",
+ "latency_s": 29.55,
+ "max_tokens": 8000,
+ "model": "gemini-3.8-flash",
+ "model_returned": "gemini-3.8-flash",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "google",
+ "response_id": "TH_GaoqSGMWk6dkPnpSRyQo",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "```json\n{\"year\": 2010, \"month\": 5, \"confidence\": 0.85, \"cues\": [\"Core CPI at multi-year lows (z -2.5) during post-GFC disinflation\", \"May 2010 European debt crisis / Flash crash: equities drop (1m -1.5), Treasuries and dollar rally, VIX rises\", \"Surging payrolls and industrial production z-scores reflecting 2010 census hiring and initial post-recession rebound\"]}\n```",
+ "transport_retries": 0,
+ "usage": {
+  "candidates_token_count": 116,
+  "finish_reason": "FinishReason.STOP",
+  "prompt_token_count": 858,
+  "prompt_tokens_details": [
+   {
+    "modality": "TEXT",
+    "token_count": 858
+   }
+  ],
+  "thoughts_token_count": 3277,
+  "total_token_count": 4251
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +1.5 | +1.0 | +2.5\nNational activity index, 3m avg | +1.0 | +0.5 | +1.5\nUnemployment rate | +1.5 | -0.5 | -0.5\nPayrolls, avg monthly change over 3m | +1.5 | +1.0 | +2.5\nHeadline CPI | +0.0 | +0.0 | +1.0\nCore CPI | -2.5 | -1.5 | -1.5\nPolicy rate (fed funds) | -1.0 | +1.0 | +1.0\n2-year Treasury yield | -1.0 | +0.5 | +1.5\n10-year Treasury yield | -0.5 | -0.5 | +0.5\n10y minus 2y Treasury spread | +1.0 | -1.5 | -2.0\nEquity implied volatility (VIX) | +0.0 | +1.0 | +0.0\nBaa corporate minus 10y Treasury spread | -0.5 | +0.0 | -1.0\nBroad trade-weighted dollar | +0.0 | +1.5 | -0.5\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -1.5 | +0.0 | +0.0 | +1.0 | -0.5 | +0.5\nDeveloped ex-US equity | -1.5 | -0.5 | -0.5 | +0.0 | -0.5 | +0.0\nEmerging-market equity | -1.0 | -0.5 | -0.5 | +0.0 | -0.5 | +0.5\nUS Treasuries 7-10y | +1.0 | +0.5 | -0.5 | -0.5 | -1.0 | +1.0\nUS Treasuries 20y+ | +1.0 | +0.5 | +0.0 | +0.0 | -0.5 | +1.0\nUS investment-grade credit | -0.5 | +0.0 | +0.0 | +1.0 | -0.5 | +0.5\nGold | +0.5 | +0.5 | -0.5 | +0.5 | -0.5 | +1.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}

@@ -1,0 +1,34 @@
+{
+ "attempt": 0,
+ "cached_utc": "2026-10-07T19:07:10+00:00",
+ "decision_date": "2025-11-28",
+ "key": "5dbca5a7a9507f28e218ebcf3768902e9a4abd12e911f2749bc52b3b66ef028c",
+ "latency_s": 27.05,
+ "max_tokens": 8000,
+ "model": "gpt-6.1-sol",
+ "model_returned": "gpt-6.1-sol",
+ "params": {},
+ "parse_ok": true,
+ "prompt_version": "2026-10-06.2",
+ "provider": "openai",
+ "response_id": "resp_037a079650804ca7006ac69843f4f487d29f5116b51f41a514",
+ "run": 0,
+ "system": "You are shown a snapshot of US macroeconomic and market data as it was known at the end of one month between 2007 and 2026.\n\nEstimate which month the snapshot describes. Use only the figures supplied plus your general knowledge of economic history.\n\nReply with one JSON object and nothing else:\n{\"year\": yyyy, \"month\": m, \"confidence\": c, \"cues\": [\"...\", \"...\"]}\nRules: year is an integer from 2007 to 2026; month is an integer from 1 to 12; c in [0, 1] is your confidence that the guess is within 6 months of the truth; 1 to 3 short cues citing the inputs.",
+ "text": "{\"year\":2025,\"month\":11,\"confidence\":0.96,\"cues\":[\"Fed funds at -2.0 with rising unemployment and weak payrolls fits late-2025 easing.\",\"Gold's +2.5 annual-return score and strong emerging-market returns fit 2025.\",\"Negative monthly equity returns, a weak dollar and unusually low bond volatility point to November.\"]}",
+ "transport_retries": 0,
+ "usage": {
+  "input_tokens": 834,
+  "input_tokens_details": {
+   "cache_write_tokens": 0,
+   "cached_tokens": 0
+  },
+  "output_tokens": 838,
+  "output_tokens_details": {
+   "reasoning_tokens": 754
+  },
+  "status": "completed",
+  "total_tokens": 1672
+ },
+ "user": "All figures are z-scores versus the same figure's own last 36 months (0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. No levels are shown.\n\nMACRO (latest published value)\nindicator | level | 3m change | 12m change\nIndustrial production | +0.5 | +0.5 | +1.0\nNational activity index, 3m avg | -0.5 | +0.0 | +0.5\nUnemployment rate | +1.5 | +1.5 | +0.5\nPayrolls, avg monthly change over 3m | -1.5 | +0.5 | +0.5\nHeadline CPI | -0.5 | +1.0 | +1.5\nCore CPI | -1.0 | +1.0 | +1.0\nPolicy rate (fed funds) | -2.0 | -1.0 | -1.0\n2-year Treasury yield | -1.5 | +0.0 | -1.0\n10-year Treasury yield | -0.5 | -0.5 | -1.0\n10y minus 2y Treasury spread | +1.5 | -0.5 | +0.5\nEquity implied volatility (VIX) | +0.0 | +0.5 | +1.0\nBaa corporate minus 10y Treasury spread | +0.5 | +0.0 | +1.5\nBroad trade-weighted dollar | -1.5 | +0.0 | -1.0\n\nMARKETS (total returns; vol annualised; drawdown from 12m high)\nasset | 1m | 3m | 6m | 12m | vol 6m | drawdown 12m\nUS large-cap equity | -0.5 | +0.0 | +1.0 | +0.0 | -1.0 | +0.5\nDeveloped ex-US equity | -0.5 | +0.0 | +0.0 | +1.5 | -1.0 | +0.5\nEmerging-market equity | -1.0 | +0.5 | +1.5 | +2.0 | -1.0 | +0.5\nUS Treasuries 7-10y | +0.0 | +0.5 | +1.0 | +1.0 | -2.0 | +1.0\nUS Treasuries 20y+ | -0.5 | +0.5 | +1.0 | +0.5 | -2.0 | +1.5\nUS investment-grade credit | -0.5 | +0.5 | +1.0 | +0.5 | -1.5 | +0.5\nGold | +1.0 | +2.0 | +1.5 | +2.5 | +1.5 | +0.0\nUS equity vs 7-10y Treasury daily-return correlation, 6m: negative (z -1.0)\n\nWhich month does this snapshot describe?",
+ "variant": "date_probe_blinded"
+}
