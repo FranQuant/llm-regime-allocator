@@ -6,6 +6,8 @@ Variants (named, explicit — CLAUDE.md):
   date_only   the as-of month only, no data             (memory probe)
   blinded     data only, every figure as a coarse z-score vs its own last 36 months
               (no levels); expects the matrix from lra.llm.blind.blind_features
+  blinded_nocfnai  blinded without the CFNAI line (robustness: CFNAI uses revised values
+              before its first ALFRED vintage, 2011-05)
 
 Bump PROMPT_VERSION whenever any text below changes; it is recorded with every call.
 """
@@ -17,7 +19,7 @@ import math
 import pandas as pd
 
 PROMPT_VERSION = "2026-10-06.2"
-VARIANTS = ("anonymized", "dated", "date_only", "blinded")
+VARIANTS = ("anonymized", "dated", "date_only", "blinded", "blinded_nocfnai")
 
 SYSTEM = """You classify the macroeconomic regime for a multi-asset research desk.
 
@@ -95,7 +97,7 @@ def _z(x) -> str:
     return f"{x:+.1f}"
 
 
-def render_blinded(b: pd.Series) -> str:
+def render_blinded(b: pd.Series, drop: tuple[str, ...] = ()) -> str:
     """Blinded pack: z-scores vs each figure's own last 36 months, no levels, no dates, no tickers."""
     lines = ["All figures are z-scores versus the same figure's own last 36 months "
              "(0 = its 3-year average, +1 = one standard deviation above), rounded to 0.5 and capped at +/-3. "
@@ -104,6 +106,8 @@ def render_blinded(b: pd.Series) -> str:
              "MACRO (latest published value)",
              "indicator | level | 3m change | 12m change"]
     for key, (label, _units) in MACRO_LABELS.items():
+        if key in drop:
+            continue
         g = lambda s: b.get(f"macro_{key}_{s}_bz", float("nan"))  # noqa: E731
         lines.append(f"{label} | {_z(g('level'))} | {_z(g('chg_3m'))} | {_z(g('chg_12m'))}")
     lines += ["", "MARKETS (total returns; vol annualised; drawdown from 12m high)",
@@ -127,7 +131,8 @@ def build_user_prompt(features: pd.Series, decision_date: pd.Timestamp, variant:
         return (f"The current month is {d:%B %Y}. No data is provided. From your own knowledge, "
                 "estimate the regime for the next three months. If unsure, keep the distribution "
                 "close to uniform.")
-    if variant == "blinded":
-        return render_blinded(features) + "\n\nClassify the regime for the next three months."
+    if variant in ("blinded", "blinded_nocfnai"):
+        drop = ("growth_cfnai_ma3",) if variant == "blinded_nocfnai" else ()
+        return render_blinded(features, drop) + "\n\nClassify the regime for the next three months."
     head = f"As-of date: {d:%Y-%m-%d}.\n\n" if variant == "dated" else ""
     return head + render_data(features) + "\n\nClassify the regime for the next three months."
