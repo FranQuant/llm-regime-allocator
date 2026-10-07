@@ -7,3 +7,7 @@ claude_sonnet,date_probe,anonymized,|err| <= 12m,217,-0.0484
 claude_sonnet,date_probe,anonymized,|err| > 12m,0,
 claude_sonnet,date_probe,dated,|err| <= 12m,217,-0.0994
 claude_sonnet,date_probe,dated,|err| > 12m,0,
+gemini_flash,date_probe_blinded,blinded,|err| <= 12m,134,-0.0447
+gemini_flash,date_probe_blinded,blinded,|err| > 12m,83,0.0045
+gpt_sol,date_probe_blinded,blinded,|err| <= 12m,216,-0.0595
+gpt_sol,date_probe_blinded,blinded,|err| > 12m,1,-0.3156

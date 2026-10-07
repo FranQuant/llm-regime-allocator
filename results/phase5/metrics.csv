@@ -135,3 +135,51 @@ bl_playbook__oracle,0.0000,"realised label (LOOK-AHEAD ceiling, not a strategy) 
 bl_playbook__oracle,2.5000,"realised label (LOOK-AHEAD ceiling, not a strategy) | POST-HOC design (5b)",0.0817,0.0796,0.8632,-0.1629,0.5013,1.1733
 bl_playbook__oracle,5.0000,"realised label (LOOK-AHEAD ceiling, not a strategy) | POST-HOC design (5b)",0.0810,0.0796,0.8558,-0.1630,0.4971,1.1733
 bl_playbook__oracle,10.0000,"realised label (LOOK-AHEAD ceiling, not a strategy) | POST-HOC design (5b)",0.0798,0.0796,0.8410,-0.1632,0.4888,1.1733
+playbook__llm_gpt_sol_blinded,0.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0658,0.0748,0.7168,-0.1885,0.3493,0.9793
+playbook__llm_gpt_sol_blinded,2.5000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0653,0.0748,0.7104,-0.1887,0.3461,0.9793
+playbook__llm_gpt_sol_blinded,5.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0648,0.0748,0.7039,-0.1890,0.3429,0.9793
+playbook__llm_gpt_sol_blinded,10.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0638,0.0748,0.6909,-0.1895,0.3365,0.9793
+bl_regime__llm_gpt_sol_blinded,0.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0704,0.1195,0.5201,-0.3163,0.2226,1.7769
+bl_regime__llm_gpt_sol_blinded,2.5000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0695,0.1195,0.5128,-0.3164,0.2196,1.7769
+bl_regime__llm_gpt_sol_blinded,5.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0685,0.1195,0.5054,-0.3164,0.2165,1.7769
+bl_regime__llm_gpt_sol_blinded,10.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated,0.0666,0.1195,0.4906,-0.3166,0.2104,1.7769
+bl_playbook__llm_gpt_sol_blinded,0.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | POST-HOC design (5b),0.0680,0.0871,0.6484,-0.2386,0.2849,0.3791
+bl_playbook__llm_gpt_sol_blinded,2.5000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | POST-HOC design (5b),0.0678,0.0871,0.6462,-0.2387,0.2840,0.3791
+bl_playbook__llm_gpt_sol_blinded,5.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | POST-HOC design (5b),0.0676,0.0871,0.6441,-0.2388,0.2830,0.3791
+bl_playbook__llm_gpt_sol_blinded,10.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | POST-HOC design (5b),0.0672,0.0871,0.6398,-0.2390,0.2811,0.3791
+playbook__llm_gemini_flash_blinded,0.0000,Phase 8,0.0666,0.0750,0.7259,-0.1882,0.3542,1.2516
+playbook__llm_gemini_flash_blinded,2.5000,Phase 8,0.0660,0.0749,0.7177,-0.1884,0.3502,1.2516
+playbook__llm_gemini_flash_blinded,5.0000,Phase 8,0.0653,0.0749,0.7095,-0.1886,0.3462,1.2516
+playbook__llm_gemini_flash_blinded,10.0000,Phase 8,0.0640,0.0749,0.6929,-0.1891,0.3383,1.2516
+bl_regime__llm_gemini_flash_blinded,0.0000,Phase 8,0.0640,0.1295,0.4434,-0.3163,0.2022,1.8269
+bl_regime__llm_gemini_flash_blinded,2.5000,Phase 8,0.0630,0.1295,0.4364,-0.3164,0.1991,1.8269
+bl_regime__llm_gemini_flash_blinded,5.0000,Phase 8,0.0620,0.1295,0.4294,-0.3164,0.1960,1.8269
+bl_regime__llm_gemini_flash_blinded,10.0000,Phase 8,0.0601,0.1295,0.4154,-0.3166,0.1898,1.8269
+bl_playbook__llm_gemini_flash_blinded,0.0000,Phase 8 | POST-HOC design (5b),0.0673,0.0842,0.6597,-0.2319,0.2900,0.5608
+bl_playbook__llm_gemini_flash_blinded,2.5000,Phase 8 | POST-HOC design (5b),0.0670,0.0842,0.6565,-0.2320,0.2886,0.5608
+bl_playbook__llm_gemini_flash_blinded,5.0000,Phase 8 | POST-HOC design (5b),0.0667,0.0842,0.6532,-0.2322,0.2871,0.5608
+bl_playbook__llm_gemini_flash_blinded,10.0000,Phase 8 | POST-HOC design (5b),0.0661,0.0842,0.6466,-0.2324,0.2842,0.5608
+playbook__llm_glm_blinded,0.0000,Phase 8; contamination unmeasured (probe not completed),0.0685,0.0763,0.7373,-0.1917,0.3576,1.0043
+playbook__llm_glm_blinded,2.5000,Phase 8; contamination unmeasured (probe not completed),0.0680,0.0763,0.7308,-0.1919,0.3544,1.0043
+playbook__llm_glm_blinded,5.0000,Phase 8; contamination unmeasured (probe not completed),0.0675,0.0763,0.7243,-0.1921,0.3513,1.0043
+playbook__llm_glm_blinded,10.0000,Phase 8; contamination unmeasured (probe not completed),0.0664,0.0763,0.7113,-0.1925,0.3449,1.0043
+bl_regime__llm_glm_blinded,0.0000,Phase 8; contamination unmeasured (probe not completed),0.0685,0.1187,0.5078,-0.3163,0.2166,1.7292
+bl_regime__llm_glm_blinded,2.5000,Phase 8; contamination unmeasured (probe not completed),0.0676,0.1187,0.5005,-0.3164,0.2136,1.7292
+bl_regime__llm_glm_blinded,5.0000,Phase 8; contamination unmeasured (probe not completed),0.0666,0.1187,0.4933,-0.3164,0.2106,1.7292
+bl_regime__llm_glm_blinded,10.0000,Phase 8; contamination unmeasured (probe not completed),0.0648,0.1187,0.4788,-0.3166,0.2047,1.7292
+bl_playbook__llm_glm_blinded,0.0000,Phase 8; contamination unmeasured (probe not completed) | POST-HOC design (5b),0.0690,0.0916,0.6316,-0.2557,0.2700,0.3777
+bl_playbook__llm_glm_blinded,2.5000,Phase 8; contamination unmeasured (probe not completed) | POST-HOC design (5b),0.0688,0.0916,0.6296,-0.2558,0.2691,0.3777
+bl_playbook__llm_glm_blinded,5.0000,Phase 8; contamination unmeasured (probe not completed) | POST-HOC design (5b),0.0686,0.0916,0.6275,-0.2560,0.2681,0.3777
+bl_playbook__llm_glm_blinded,10.0000,Phase 8; contamination unmeasured (probe not completed) | POST-HOC design (5b),0.0682,0.0916,0.6234,-0.2563,0.2662,0.3777
+playbook__llm_ensemble_4,0.0000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0674,0.0745,0.7388,-0.1807,0.3727,0.9290
+playbook__llm_ensemble_4,2.5000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0669,0.0745,0.7326,-0.1809,0.3695,0.9290
+playbook__llm_ensemble_4,5.0000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0664,0.0745,0.7264,-0.1812,0.3663,0.9290
+playbook__llm_ensemble_4,10.0000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0654,0.0745,0.7141,-0.1816,0.3600,0.9290
+bl_regime__llm_ensemble_4,0.0000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0685,0.1193,0.5056,-0.3163,0.2165,1.6071
+bl_regime__llm_ensemble_4,2.5000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0676,0.1193,0.4989,-0.3164,0.2137,1.6071
+bl_regime__llm_ensemble_4,5.0000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0667,0.1193,0.4922,-0.3164,0.2109,1.6071
+bl_regime__llm_ensemble_4,10.0000,Phase 8; equal-weight mean of the four LLMs (descriptive),0.0650,0.1193,0.4788,-0.3166,0.2054,1.6071
+bl_playbook__llm_ensemble_4,0.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0684,0.0882,0.6463,-0.2434,0.2811,0.3541
+bl_playbook__llm_ensemble_4,2.5000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0682,0.0882,0.6443,-0.2435,0.2802,0.3541
+bl_playbook__llm_ensemble_4,5.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0680,0.0882,0.6423,-0.2436,0.2793,0.3541
+bl_playbook__llm_ensemble_4,10.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0677,0.0882,0.6384,-0.2438,0.2775,0.3541

@@ -37,6 +37,10 @@ FLAGS = {
     "climatology": "point-in-time label frequencies",
     "uniform": "25% each (control: same machinery, no information)",
     "oracle": "realised label (LOOK-AHEAD ceiling, not a strategy)",
+    "llm_gpt_sol_blinded": "Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated",
+    "llm_gemini_flash_blinded": "Phase 8",
+    "llm_glm_blinded": "Phase 8; contamination unmeasured (probe not completed)",
+    "llm_ensemble_4": "Phase 8; equal-weight mean of the four LLMs (descriptive)",
 }
 
 
@@ -71,6 +75,13 @@ def main() -> None:
         "oracle": pd.DataFrame({k: (reg["realised_forward"] == k).astype(float) for k in R})
                     .where(reg["realised_forward"].notna()),
     }
+    # Phase 8 cross-family models (blinded run0) and the equal-weight ensemble of the four LLMs
+    p8 = [m for m in ("gpt_sol", "gemini_flash", "glm") if (L / m / "blinded_run0.csv").exists()]
+    for m in p8:
+        probs[f"llm_{m}_blinded"] = rd(L / f"{m}/blinded_run0.csv")[R].fillna(0.25)   # failed call -> uniform
+    if len(p8) == 3:
+        probs["llm_ensemble_4"] = pd.concat([probs["llm_sonnet_blinded"]] + [probs[f"llm_{m}_blinded"] for m in p8]
+                                            ).groupby(level=0).mean()
     probs = {k: v.reindex(trade) for k, v in probs.items()}
 
     fwd = forward_window_returns(monthly_returns(rets, feat_dates), h)
