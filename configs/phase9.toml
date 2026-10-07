@@ -1,0 +1,53 @@
+# Phase 9 — counterfactual test. PRE-REGISTRATION.
+# Committed before any paid Phase 9 call; the git commit timestamp is the registration time.
+# Question: when an LLM calls a regime from the blinded snapshot, does it read the figures or recall the month?
+# Method: flip the sign of every z-score in one block (inflation, or growth) and re-ask. Compare with the model's
+# existing answer on the true snapshot (Phase 4/8 blinded run0, already cached). Reading -> the call moves the
+# way the edited data imply. Remembering -> no reason to move.
+# Nothing below may change after the first paid call; deviations are declared as in phase8.toml.
+
+[models]
+llms = ["claude_sonnet", "gpt_sol", "gemini_flash", "glm"]   # configs/llm.toml; provider defaults; existing caps
+reference = ["ml_logit_blinded", "ml_gbt_blinded"]           # walk-forward ML on blinded inputs, same edits (no memory by construction)
+
+[edits]
+infl = "flip the sign of headline and core CPI z-scores (level, 3m change, 12m change): 6 numbers"
+growth = "flip industrial production, activity index, payrolls and unemployment z-scores: 12 numbers"
+unchanged = "rates, curve, VIX, credit, dollar, every market line: the snapshot stays otherwise intact"
+variants = ["blinded_cf_infl", "blinded_cf_growth"]          # lra.llm.prompts, PROMPT_VERSION 2026-10-07.1
+
+[selection]
+# lra.llm.counterfactual.select_months: block signal = mean z of the block (growth: minus unemployment);
+# months with signal >= threshold and <= -threshold, n_per_side of each spread evenly over 2007-12..2026-05.
+threshold = 0.75
+n_per_side = 15                                              # 30 months per edit (56 distinct months in total)
+calls = "60 edited + 46-56 re-asked true snapshots per model; about $2.5 cash + $1.5 Ollama credits for all four"
+pilot = "--every 15 (2 months per edit per model), cached and reused by the full run"
+max_retries = 2
+failed_call = "month excluded from that model's statistics and counted (a uniform stand-in would fake a move)"
+
+[noise]
+# Re-asking the SAME true snapshot gives a slightly different answer (provider defaults are not deterministic).
+# Baseline: a second independent call (run 1) on the true snapshot of every Phase 9 month (56 distinct months;
+# 10 per model already cached from Phase 8's every-4th-month repeat).
+command = "run_llm_regimes.py --variant blinded --runs 2 --p9-months"
+
+[primary]
+# Per model and edit, per month: moved = TV(edited answer, true answer); noise = TV(re-asked answer, true answer);
+# TV = total-variation distance between the two 4-regime distributions (0 = identical, 1 = disjoint).
+metric = "mean of (moved - noise) over the 30 months, 95% CI by bootstrap over months"
+reads_data_if = "CI lower bound > 0 for BOTH edits (the edit moves the answer more than re-asking does)"
+why_not_direction = """Direction is NOT the primary test. Before any LLM call, the walk-forward ML yardstick (deterministic, no
+memory) moved the expected way under the inflation edit (+0.11, CI [0.05, 0.17]) but not under the growth edit
+(-0.03, CI [-0.10, 0.05]): over a 3-month horizon a strong current growth reading can legitimately imply
+slowing growth (mean reversion), so 'the right direction' is not defined for growth. Sensitivity is."""
+# Reported for every model whatever the outcome.
+
+[secondary]
+# Descriptive, no pass/fail.
+direction = "signed shift of the 'up' regimes (inflation: Reflation+Stagflation; growth: Goldilocks+Reflation), positive = moved the way the edited data imply; mean with bootstrap CI"
+follow_rate = "share of months with signed shift > 0.05; ignored_rate = share with |shift| <= 0.05"
+yardstick = "the same statistics for walk-forward logit/GBT on the blinded inputs (a pure data reader; it may move less than fully because the rest of the snapshot is unchanged)"
+gpt_vs_sonnet = "paired difference in mean (moved - noise), same months, bootstrap CI"
+datable = "(moved - noise) split by whether the model's own blinded probe dated the TRUE month within 12 months (GLM: not available)"
+interpretation = "a model that dates the month (GPT) yet follows the edits reads the data despite knowing the month; one that ignores them answers from memory"
