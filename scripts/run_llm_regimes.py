@@ -42,6 +42,7 @@ def main() -> None:
     ap.add_argument("--start", help="first decision month, e.g. 2008-01")
     ap.add_argument("--end", help="last decision month, e.g. 2008-12")
     ap.add_argument("--every", type=int, default=1, help="keep every n-th decision date (cheap pilots)")
+    ap.add_argument("--max-tokens", type=int, help="override the model's output cap (declared deviations only)")
     ap.add_argument("--replay-only", action="store_true", help="never call the API; cache must be complete")
     ap.add_argument("--show-prompt", metavar="DATE", help="print the prompt for one decision date and exit")
     args = ap.parse_args()
@@ -78,6 +79,8 @@ def main() -> None:
         return
 
     client = make_client(args.model, cfg)
+    if args.max_tokens:
+        client.max_tokens = args.max_tokens
     cache = ResponseCache(CACHE)
     out_dir = OUT / args.model
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -94,7 +97,8 @@ def main() -> None:
         if args.every > 1:
             stem += f"_every{args.every}"
         d = diag.as_dict() | {"model": args.model, "model_id": client.model, "variant": args.variant,
-                              "run": run, "n_dates": len(dates)}
+                              "run": run, "n_dates": len(dates),
+                              "max_tokens": getattr(client, "max_tokens", None)}
         target = out_dir / f"{stem}.csv"
         if args.replay_only and target.exists():   # verify, never overwrite the committed run
             fresh = probs.to_csv(float_format="%.4f", date_format="%Y-%m-%d")
