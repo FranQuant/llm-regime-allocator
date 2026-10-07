@@ -71,3 +71,13 @@ def test_blinded_probe_cached_under_its_own_variant(tmp_path):
     recs = [json.loads(p.read_text()) for p in tmp_path.rglob("*.json")]
     assert {r["variant"] for r in recs} == {"date_probe_blinded"}
     assert all("z-scores" in r["user"] for r in recs)
+
+
+@has_feats
+def test_blinded_nocfnai_drops_only_cfnai(feats):
+    b = blind_features(feats)
+    d = pd.Timestamp("2009-03-31")
+    full = build_user_prompt(b.loc[d], d, "blinded")
+    no = build_user_prompt(b.loc[d], d, "blinded_nocfnai")
+    assert "National activity index" in full and "National activity index" not in no
+    assert set(no.splitlines()) <= set(full.splitlines()) and len(full.splitlines()) - len(no.splitlines()) == 1

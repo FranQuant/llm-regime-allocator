@@ -9,6 +9,7 @@ Examples
   python scripts/run_llm_regimes.py --model claude_sonnet --variant date_probe   # date-recovery probe
   python scripts/run_llm_regimes.py --model claude_sonnet --variant date_probe_blinded --every 4   # pilot
   python scripts/run_llm_regimes.py --model claude_sonnet --variant blinded       # regimes, blinded pack
+  python scripts/run_llm_regimes.py --model claude_sonnet --variant blinded_nocfnai --start 2007-12 --end 2011-04
 
 Inputs: results/baselines/features.csv (point-in-time context pack, Phase 2).
 Outputs: results/llm/<model>/<variant>_run<k>.csv, diagnostics JSON, results/llm_cache/manifest.csv.
@@ -56,7 +57,7 @@ def main() -> None:
     scfg = load_config(REPO_ROOT / "configs" / "strategy.toml")
     feats = pd.read_csv(REPO_ROOT / "results" / "baselines" / "features.csv", parse_dates=["date"], index_col="date")
     dates = feats.index[feats.index >= pd.Timestamp(scfg["calendar"]["first_decision"])]
-    blinded = args.variant in ("blinded", PROBE_B)
+    blinded = args.variant in ("blinded", "blinded_nocfnai", PROBE_B)
     if blinded:
         feats = blind_features(feats)   # computed on the full history; trailing windows only
     if args.start:
