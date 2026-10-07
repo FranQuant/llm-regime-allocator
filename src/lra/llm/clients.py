@@ -31,10 +31,14 @@ class LLMClient(Protocol):
     def complete(self, system: str, user: str) -> LLMResponse: ...
 
 
+class MissingKeyError(RuntimeError):
+    """API key absent from the environment / .env: a configuration error, never retried."""
+
+
 def _key(env: str) -> str:
     k = os.environ.get(env)
     if not k:
-        raise EnvironmentError(f"{env} not set")
+        raise MissingKeyError(f"{env} not set")
     return k
 
 

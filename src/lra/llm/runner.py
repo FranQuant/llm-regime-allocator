@@ -6,10 +6,16 @@
 replay_only=True never touches a client: every call must already be in the cache,
 otherwise it is recorded as a cache miss. Failures never crash a run; they are
 counted in the diagnostics and the date gets NaN outputs.
+
+Provider errors (rate limits, 5xx "high demand", timeouts) are retried on the SAME attempt
+with exponential backoff + jitter, so they never consume a parse retry and never change the
+cache key. If they persist the date is left uncached and failed; re-running the command
+resumes from the cache. The model is never substituted.
 """
 
 from __future__ import annotations
 
+import random
 import sys
 import time
 from dataclasses import dataclass, field
@@ -19,7 +25,7 @@ import numpy as np
 import pandas as pd
 
 from lra.llm.cache import ResponseCache, cache_key
-from lra.llm.clients import LLMClient
+from lra.llm.clients import LLMClient, MissingKeyError
 from lra.llm.prompts import PROMPT_VERSION, SYSTEM, build_user_prompt
 from lra.llm.schema import REGIMES, ParseError, parse_regime_call
 
@@ -30,6 +36,7 @@ class Diagnostics:
     cache_hits: int = 0
     cache_misses: int = 0
     client_failures: int = 0
+    transport_retries: int = 0
     parse_failures: int = 0
     dates_failed: list = field(default_factory=list)
 
@@ -52,6 +59,9 @@ def run_task(
     max_retries: int = 2,
     replay_only: bool = False,
     progress: bool = False,
+    transport_retries: int = 4,
+    backoff_s: float = 5.0,
+    sleep: Callable[[float], None] = time.sleep,
 ) -> tuple[pd.DataFrame, Diagnostics]:
     """parse(text) -> row dict or raises ParseError. meta is stored with every cached record."""
     diag = Diagnostics()
@@ -73,26 +83,42 @@ def run_task(
                 if replay_only:
                     diag.cache_misses += 1
                     break
-                diag.calls += 1
-                try:
-                    resp = client.complete(system, user)
-                except Exception as exc:  # network, auth, rate limit...
-                    diag.client_failures += 1
-                    rec = {"error": f"{type(exc).__name__}: {exc}"}
-                else:
-                    rec = {"text": resp.text, "model_returned": resp.model_returned,
-                           "response_id": resp.response_id, "usage": resp.usage}
+                resp, err, tries = None, None, 0
+                while True:
+                    diag.calls += 1
+                    t_call = time.time()
+                    try:
+                        resp = client.complete(system, user)
+                        break
+                    except MissingKeyError:      # missing key: no point retrying
+                        raise
+                    except Exception as exc:  # network, rate limit, provider overload...
+                        diag.client_failures += 1
+                        err = f"{type(exc).__name__}: {str(exc)[:300]}"
+                        if tries >= transport_retries:
+                            break
+                        tries += 1
+                        diag.transport_retries += 1
+                        wait = backoff_s * 2 ** (tries - 1) * (1 + random.random() / 2)
+                        if progress:
+                            print(f"  {d.date()} provider error ({err[:80]}); retry {tries}/{transport_retries} "
+                                  f"in {wait:.0f}s", file=sys.stderr, flush=True)
+                        sleep(wait)
+                if resp is None:
+                    break                       # leave uncached; a re-run resumes here
+                rec = {"text": resp.text, "model_returned": resp.model_returned,
+                       "response_id": resp.response_id, "usage": resp.usage,
+                       "latency_s": round(time.time() - t_call, 2), "transport_retries": tries}
                 rec |= {"provider": client.provider, "model": client.model, "params": client.params,
                         "max_tokens": mt,
                         "system": system, "user": user, **meta, "run": run, "attempt": attempt,
                         "decision_date": str(d.date()), "prompt_version": PROMPT_VERSION}
                 try:
-                    out = parse(rec["text"]) if "text" in rec else None
+                    out = parse(rec["text"])
                 except ParseError as exc:
                     out, rec["parse_error"] = None, str(exc)
                 rec["parse_ok"] = out is not None
-                if "error" not in rec:          # never cache transient client errors
-                    cache.put(client.model, key, rec)
+                cache.put(client.model, key, rec)
             else:
                 diag.cache_hits += 1
                 try:
@@ -134,6 +160,7 @@ def classify(
     max_retries: int = 2,
     replay_only: bool = False,
     progress: bool = False,
+    **transport,
 ) -> tuple[pd.DataFrame, Diagnostics]:
     """Rows = decision dates; columns = REGIMES + confidence + attempts + response metadata."""
     out, diag = run_task(
@@ -143,7 +170,7 @@ def classify(
         nan_row={**{k: np.nan for k in REGIMES}, "confidence": np.nan},
         label=lambda r: max(REGIMES, key=lambda k: r[k]),
         meta={"variant": variant}, run=run, max_retries=max_retries,
-        replay_only=replay_only, progress=progress)
+        replay_only=replay_only, progress=progress, **transport)
     num = list(REGIMES) + ["confidence", "attempts"]
     out[num] = out[num].astype(float)
     return out, diag

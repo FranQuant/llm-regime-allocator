@@ -151,8 +151,12 @@ def test_client_errors_are_counted_not_cached(tmp_path):
             raise ConnectionError("offline")
 
     cache = ResponseCache(tmp_path)
-    out, diag = classify(f, f.index[:2], client=Down(), cache=cache, max_retries=1)
-    assert diag.client_failures == 4 and len(diag.dates_failed) == 2
+    waits = []
+    out, diag = classify(f, f.index[:2], client=Down(), cache=cache, max_retries=1,
+                         transport_retries=3, sleep=waits.append)
+    # provider errors retry the same attempt (1 + 3 tries per date), never advance to a parse retry
+    assert diag.client_failures == 8 and diag.transport_retries == 6 and len(diag.dates_failed) == 2
+    assert len(waits) == 6 and waits[1] > waits[0] and waits[2] > waits[1]
     assert out[list(REGIMES)].isna().all().all()
     assert not list(tmp_path.rglob("*.json"))
 
@@ -181,3 +185,25 @@ def test_config_models_build():
 def test_response_dataclass_defaults():
     r = LLMResponse("x")
     assert r.usage == {} and r.response_id is None
+
+
+def test_transient_error_then_success_keeps_attempt_zero(tmp_path):
+    """A 503 followed by success must be cached under attempt 0, so replay finds it."""
+    f = _feats_small()
+
+    class Flaky(MockClient):
+        n = 0
+
+        def complete(self, system, user):
+            self.n += 1
+            if self.n == 1:
+                raise RuntimeError("503 high demand")
+            return super().complete(system, user)
+
+    cache = ResponseCache(tmp_path)
+    out, diag = classify(f, f.index[:1], client=Flaky(), cache=cache, sleep=lambda s: None)
+    assert out["attempts"].iloc[0] == 1 and diag.transport_retries == 1
+    rec = json.loads(next(tmp_path.rglob("*.json")).read_text())
+    assert rec["attempt"] == 0 and rec["transport_retries"] == 1
+    again, d2 = classify(f, f.index[:1], client=MockClient(), cache=cache, replay_only=True)
+    assert d2.cache_hits == 1 and again[list(REGIMES)].notna().all().all()
