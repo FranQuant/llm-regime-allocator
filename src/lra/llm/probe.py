@@ -69,6 +69,7 @@ def date_probe(
     replay_only: bool = False,
     progress: bool = False,
     blinded: bool = False,
+    **transport,
 ) -> tuple[pd.DataFrame, Diagnostics]:
     """blinded=True expects lra.llm.blind.blind_features output.
     Rows = decision dates; columns guess_year, guess_month, confidence, error_months, attempts, metadata."""
@@ -79,7 +80,7 @@ def date_probe(
         nan_row={"guess_year": np.nan, "guess_month": np.nan, "confidence": np.nan},
         label=lambda r: f"{int(r['guess_year'])}-{int(r['guess_month']):02d}",
         meta={"variant": VARIANT_BLINDED if blinded else VARIANT}, run=run, max_retries=max_retries,
-        replay_only=replay_only, progress=progress)
+        replay_only=replay_only, progress=progress, **transport)
     num = ["guess_year", "guess_month", "confidence", "attempts"]
     out[num] = out[num].astype(float)
     out.insert(3, "error_months", month_error(out.index, out["guess_year"], out["guess_month"]))

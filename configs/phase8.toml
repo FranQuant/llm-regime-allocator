@@ -36,3 +36,10 @@ variance = "run0 vs run1 on the every-4th-month subsample: Brier difference and 
 agreement = "pairwise mean total-variation distance between models' probabilities; ensemble = equal-weight average"
 portfolios = "playbook weights and BL 5b, net 2.5 bps; Sharpe difference vs uniform control with block-bootstrap CI"
 cutoffs = "gpt_sol 2026-04-30, gemini_flash 2026-03 — no clean backtest window for any model; live log only"
+
+[addendum_2026_10_07]
+# Operational clarification, committed before the first paid Phase 8 call (see git log).
+# Prompted by gemini-3.8-flash returning HTTP 503 "high demand" during key setup.
+provider_errors = "429/5xx/timeouts are retried on the same attempt with exponential backoff + jitter (4 retries); they are never cached, never scored and never use up a parse retry"
+incomplete_months = "a month that still has a provider error is re-run later until all 222 are complete; failed_call = uniform applies only to unparseable/invalid answers"
+no_substitution = "no fallback model: if gemini-3.8-flash cannot complete, it is reported as not run — never replaced by gemini-3.7-flash or any other model"
