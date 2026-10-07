@@ -22,16 +22,16 @@ memorisation is controlled?
 - **Contamination audit:** the same snapshot with the date added, a date-only prompt, and a **date-recovery
   probe** ("which month is this?").
 
-**Models** (budget ≈ $12 of API calls in total):
+**Models** (API spend ≈ $12 for Phases 3–7 and ≈ $6 plus Ollama Pro credits for Phase 8):
 
 | Model | Knowledge cutoff | Why it is here |
 |---|---|---|
-| Claude Sonnet 5.5 | Jun 2026 | Frontier model; its cutoff lets every month from July 2026 serve as a clean live test |
-| Claude Haiku 4.5 | Feb 2025 | Smaller and cheaper, with an earlier cutoff, so its 2025–26 calls are memory-free |
-| Llama 3.1 8B (local, Ollama) | Dec 2023 | Open weights at zero cost; intended as the pre-cutoff control |
-
-Haiku and Llama collapsed onto a single regime (Llama: Reflation in 214/222 months), so they carry no signal and
-the study focuses on Sonnet.
+| Claude Sonnet 5.5 | Jun 2026 | Frontier model; main subject of the study |
+| Claude Haiku 4.5 | Feb 2025 | Smaller, earlier cutoff (collapsed onto one regime, dropped) |
+| Llama 3.1 8B (local, Ollama) | Dec 2023 | Open weights at zero cost (Reflation in 214/222 months, dropped) |
+| GPT-6.1-sol | Apr 2026 | Cross-family replication (Phase 8) |
+| Gemini 3.8 Flash | Mar 2026 | Cross-family replication (Phase 8) |
+| GLM-5.3 (open weights, Ollama Cloud) | not published | Cross-family replication (Phase 8) |
 
 ## Findings
 1. **Removing the date and tickers is not anonymisation.** From a raw snapshot Sonnet names the exact month 84% of
@@ -51,15 +51,21 @@ the study focuses on Sonnet.
 
    Sonnet vs control: +0.14 Sharpe, 95% CI [−0.03, +0.31]. Return-based Black-Litterman views fail even with the oracle.
 
-4. **The confirmatory test is live.** From the October 2026 month-end, one blinded call per month is committed
+4. **Across model families it only partly replicates** (pre-registered, `configs/phase8.toml`). All four LLMs beat
+   ML on identical blinded inputs (Brier 0.67–0.72 vs 0.87), but only Sonnet and GPT beat uniform with a CI
+   excluding zero, and **GPT names the exact month from the blinded snapshot 94% of the time** (until its training
+   data thins out in 2026), so its pass is not clean evidence. Blinding is not model-proof; Gemini and GLM do not
+   clear uniform. See nb04.
+5. **The confirmatory test is live.** From the October 2026 month-end, one blinded call per month is committed
    within two weeks, before the outcome is known, to an append-only log ([`results/live/log.csv`](results/live/log.csv)).
    June–September 2026 are post-cutoff but were run retrospectively and are marked so.
 
-**Limitations** (from an external adversarial review, see nb02 §6): one LLM run per variant at the provider's
-default temperature; "cannot date" is confounded with 2008–2019; CFNAI uses revised values before 2011-05
+**Limitations** (from an external adversarial review, see nb02 §6, and nb04 §6): one main LLM run per variant at the
+provider's default settings (run-to-run variance measured in Phase 8 is small); GLM's date probe never finished
+(reasoning exceeded a 32k-token cap); "cannot date" is confounded with 2008–2019; CFNAI uses revised values before 2011-05
 (without it, Sonnet's full-sample Brier moves 0.668 → 0.672); outcomes are scored with the data-end vintage
-(first-release scoring changes 33/217 labels and slightly improves every forecaster); parameters were fixed before
-running but not independently timestamped.
+(first-release scoring changes 33/217 labels and slightly improves every forecaster); Phase 4–5 parameters were fixed before
+running but not independently timestamped (Phase 8 was pre-registered by commit).
 
 ## Notebooks
 | | Question | |
@@ -67,6 +73,7 @@ running but not independently timestamped.
 | [nb01](notebooks/nb01_data_and_baselines.ipynb) | What do the data, baselines and benchmark portfolios look like? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb01_data_and_baselines.ipynb) |
 | [nb02](notebooks/nb02_llm_regimes_and_memory.ipynb) | Does the LLM read regimes, or remember them? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regimes_and_memory.ipynb) |
 | [nb03](notebooks/nb03_regimes_to_portfolios.ipynb) | Does regime skill turn into better portfolios? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb03_regimes_to_portfolios.ipynb) |
+| [nb04](notebooks/nb04_cross_family.ipynb) | Does it replicate across model families? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb04_cross_family.ipynb) |
 
 ## Reproduce
 Every LLM answer is cached and committed (`results/llm_cache/`), so all results replay **without an API key**;
@@ -74,7 +81,7 @@ on Colab the first cell clones the repo.
 ```bash
 pip install -e ".[dev,research,llm,data]" && pytest
 python scripts/run_llm_regimes.py --model claude_sonnet --variant blinded --replay-only   # prints IDENTICAL
-python scripts/score_regimes.py && python scripts/run_regime_bl.py
+python scripts/score_regimes.py && python scripts/run_regime_bl.py && python scripts/score_phase8.py
 ```
 Monthly live run (keys in `.env`): `build_macro.py` → `check_live_prices.py` → `run_live.py`.
 
