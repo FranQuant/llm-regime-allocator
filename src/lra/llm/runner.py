@@ -62,12 +62,14 @@ def run_task(
     transport_retries: int = 4,
     backoff_s: float = 5.0,
     sleep: Callable[[float], None] = time.sleep,
+    max_consecutive_failures: int = 5,
 ) -> tuple[pd.DataFrame, Diagnostics]:
     """parse(text) -> row dict or raises ParseError. meta is stored with every cached record."""
     diag = Diagnostics()
     rows = {}
     t0 = time.time()
     dates = list(dates)
+    streak = 0
     for i, d in enumerate(dates, 1):
         d = pd.Timestamp(d)
         user = user_for(d)
@@ -133,7 +135,13 @@ def run_task(
                 diag.parse_failures += 1
         if row is None:
             diag.dates_failed.append(d)
+            streak = streak + 1 if not replay_only else 0
+            if max_consecutive_failures and streak >= max_consecutive_failures:
+                raise RuntimeError(f"{streak} consecutive failed dates (last {d.date()}): stopping to avoid "
+                                   f"wasting calls. Answers so far are cached; inspect them, fix, re-run.")
             row = {**nan_row, "attempts": np.nan, "response_id": None, "model_returned": None}
+        else:
+            streak = 0
         rows[d] = row
         if progress:
             top = label(row) if row["attempts"] == row["attempts"] else "FAILED"

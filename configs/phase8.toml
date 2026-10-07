@@ -43,3 +43,13 @@ cutoffs = "gpt_sol 2026-04-30, gemini_flash 2026-03 — no clean backtest window
 provider_errors = "429/5xx/timeouts are retried on the same attempt with exponential backoff + jitter (4 retries); they are never cached, never scored and never use up a parse retry"
 incomplete_months = "a month that still has a provider error is re-run later until all 222 are complete; failed_call = uniform applies only to unparseable/invalid answers"
 no_substitution = "no fallback model: if gemini-3.8-flash cannot complete, it is reported as not run — never replaced by gemini-3.7-flash or any other model"
+
+[deviation_2026_10_07_glm_probe]
+# DECLARED DEVIATION, committed before the re-run. The pilot covered the blinded variant only, not the probe.
+# glm date_probe_blinded: all 215 calls (72 months x 3 attempts) hit the 8000-token cap while still reasoning
+# (finish_reason "length", empty answer). Those records are kept, committed, in results/llm_cache_truncated/.
+# Regime calls (blinded, both runs) are unaffected: 0 truncations.
+glm_probe_max_tokens = 32000          # re-run of glm date_probe_blinded only; reasoning left at provider default
+glm_probe_pilot = "5 months (--every 45) first; full run only if every pilot answer finishes under the cap"
+if_still_truncated = "glm probe reported as not completed; glm has no published cutoff, so its contamination is then unmeasured"
+guard = "runner now stops after 5 consecutive failed dates (all models), so a systematic failure cannot burn a full run"

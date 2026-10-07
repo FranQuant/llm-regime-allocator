@@ -207,3 +207,11 @@ def test_transient_error_then_success_keeps_attempt_zero(tmp_path):
     assert rec["attempt"] == 0 and rec["transport_retries"] == 1
     again, d2 = classify(f, f.index[:1], client=MockClient(), cache=cache, replay_only=True)
     assert d2.cache_hits == 1 and again[list(REGIMES)].notna().all().all()
+
+
+def test_run_stops_after_consecutive_failures(tmp_path):
+    f = _feats_small()
+    with pytest.raises(RuntimeError, match="consecutive failed"):
+        classify(f, f.index[:4], client=MockClient(fail_every=1), cache=ResponseCache(tmp_path),
+                 max_retries=0, max_consecutive_failures=2)
+    assert len(list(tmp_path.rglob("*.json"))) == 2   # stopped after two dates
