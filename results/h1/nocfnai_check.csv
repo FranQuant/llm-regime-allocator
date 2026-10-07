@@ -1,0 +1,7 @@
+forecaster,n,hit_rate,brier,log_loss,ci_lo,ci_hi
+"blinded, 2007-12..2011-04",41,0.4878,0.5991,1.0941,,
+"blinded without CFNAI, 2007-12..2011-04",41,0.4634,0.6217,1.1448,,
+"uniform, 2007-12..2011-04",41,0.1707,0.7500,1.3863,,
+"blinded, full sample",217,0.4562,0.6681,1.2444,,
+"blinded with CFNAI-free months spliced in, full sample",217,0.4516,0.6724,1.2540,,
+difference: without minus with CFNAI (Brier),41,,0.0226,,0.0027,0.0462

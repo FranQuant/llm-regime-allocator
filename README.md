@@ -28,7 +28,8 @@ An LLM reads a point-in-time macro + market snapshot and outputs next-quarter re
 
 **Limitations** (from an external adversarial review — see nb02 §6): one LLM run per variant at the provider's
 default temperature; "cannot date" is confounded with the 2008–2019 period; CFNAI uses revised values before
-2011-05 (dropping it leaves the ML baselines unchanged); outcomes are scored with the data-end vintage
+2011-05 (without it, ML is unchanged and Sonnet's Brier over those 41 months worsens by 0.023 — full sample
+0.668 → 0.672); outcomes are scored with the data-end vintage
 (first-release scoring changes 33/217 labels and slightly improves every forecaster); parameters were fixed before
 running but not independently timestamped.
 
