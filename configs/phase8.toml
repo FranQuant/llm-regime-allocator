@@ -1,0 +1,38 @@
+# Phase 8 — cross-family replication. PRE-REGISTRATION.
+# Committed before any paid Phase 8 call; the git commit timestamp is the registration time.
+# Question: is the Claude Sonnet 5.5 blinded result (Brier 0.668 vs uniform 0.750, beats walk-forward ML on the
+# same blinded inputs) specific to one model family, or does it replicate across providers?
+# Nothing below may change after the first paid call. Deviations are reported as deviations.
+
+[models]
+new = ["gpt_sol", "gemini_flash", "glm"]         # configs/llm.toml; provider-default reasoning and sampling
+reference = "claude_sonnet"                      # existing cached runs; not re-run
+
+[calls]
+variants = ["blinded", "date_probe_blinded"]     # same prompts as Sonnet (prompts.PROMPT_VERSION 2026-10-06.2)
+months = "2007-12 .. 2026-05"                    # all 222 decision months; regime scoring on the 217 with labels
+run0 = "all months"
+run1_variant = "blinded"
+repeat_every = 4                                 # run1 = second independent call on every 4th month (variance)
+max_tokens = 8000                                # output cap incl. reasoning
+max_retries = 2                                  # re-ask on unparseable/invalid output
+failed_call = "uniform"                          # a month still invalid after retries is scored as 25/25/25/25
+pilot = "--every 11 on blinded, run0 only; the pilot calls are cached and reused by the full run"
+
+[primary]
+# H8: per model, on run0, full sample (217 months), realised-forward labels (data-end vintage), as in Phase 4.
+metric = "brier"
+uniform_brier = 0.750
+ci = "moving-block bootstrap, block 6 months, 95%, of Brier(model) - Brier(uniform)"
+ml_blinded_best = 0.8708                         # min(ml_logit_blinded 0.8840, ml_gbt_blinded 0.8708), results/h1/scores.csv
+replicates_if = "brier < 0.750 AND CI upper bound < 0 AND brier < 0.8708"
+# Reported for every model whatever the outcome; no model is dropped for performing badly.
+
+[secondary]
+# Descriptive, no pass/fail.
+contamination = "date_probe_blinded: share of months recovered within 12 months; regime Brier split by datable vs not"
+first_release = "Brier on first-release labels"
+variance = "run0 vs run1 on the every-4th-month subsample: Brier difference and mean |dp| per regime"
+agreement = "pairwise mean total-variation distance between models' probabilities; ensemble = equal-weight average"
+portfolios = "playbook weights and BL 5b, net 2.5 bps; Sharpe difference vs uniform control with block-bootstrap CI"
+cutoffs = "gpt_sol 2026-04-30, gemini_flash 2026-03 — no clean backtest window for any model; live log only"
