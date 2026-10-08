@@ -44,3 +44,11 @@ def test_changed_answer_refuses_to_overwrite(setup, tmp_path):
 def test_sonnet_keeps_its_phase7_log_and_cap():
     assert run_live.log_path("claude_sonnet").name == "log.csv" and run_live.MODELS["claude_sonnet"] == 1500
     assert run_live.log_path("gpt_sol").name == "log_gpt_sol.csv"
+
+
+def test_prospective_series_starts_october_2026():
+    from datetime import datetime, timezone
+    now = datetime(2026, 10, 8, tzinfo=timezone.utc)
+    assert not run_live.is_prospective(pd.Timestamp("2026-09-30"), now)       # 8 days, but before the start
+    assert run_live.is_prospective(pd.Timestamp("2026-10-30"), datetime(2026, 11, 3, tzinfo=timezone.utc))
+    assert not run_live.is_prospective(pd.Timestamp("2026-10-30"), datetime(2026, 11, 20, tzinfo=timezone.utc))

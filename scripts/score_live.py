@@ -16,6 +16,8 @@ from lra.evaluation import R, block_bootstrap_ci, brier_per_obs, score, uniform
 from lra.regimes.rules import forward_labels
 
 OUT = REPO_ROOT / "results" / "live"
+PROSPECTIVE_FROM = pd.Timestamp("2026-10-01")   # configs/phase10.toml: earlier rows are retrospective whatever
+                                                # their flag (Sep-2026 rows of the Phase 10 models were mis-flagged)
 
 
 def logs() -> dict[str, pd.DataFrame]:
@@ -35,7 +37,8 @@ def main() -> None:
     for model, log in logs().items():
         log["realised"] = forward_labels(store, log.index, today, cfg)
         cut = log["after_model_cutoff"]
-        for sample, mask in (("prospective", log["prospective"].astype(bool)),
+        prosp = log["prospective"].astype(bool) & (log.index >= PROSPECTIVE_FROM)
+        for sample, mask in (("prospective", prosp),
                              ("after cutoff (incl. retrospective)", cut.astype("boolean").fillna(False).astype(bool)),
                              ("all logged", pd.Series(True, index=log.index))):
             s = log[mask & log["realised"].notna()]

@@ -49,6 +49,10 @@ CACHE = REPO_ROOT / "results" / "llm_cache"
 MODELS = {"claude_sonnet": 1500, "gpt_sol": None, "gemini_flash": None, "glm": None}
 
 
+def is_prospective(d: pd.Timestamp, now: datetime) -> bool:
+    return bool(d >= PROSPECTIVE_FROM and (now - d.tz_localize("UTC")).days <= PROSPECTIVE_DAYS)
+
+
 def log_path(model: str):
     return OUT / ("log.csv" if model == "claude_sonnet" else f"log_{model}.csv")
 
@@ -56,6 +60,8 @@ def log_path(model: str):
 def meta_path(model: str):
     return OUT / ("log_meta.json" if model == "claude_sonnet" else f"log_{model}_meta.json")
 PROSPECTIVE_DAYS = 15                        # run within ~2 weeks of month-end, before outcomes exist
+PROSPECTIVE_FROM = pd.Timestamp("2026-10-01")  # the prospective series starts with the Oct-2026 month-end
+                                               # (configs/phase10.toml); earlier months are retrospective
 
 
 def spliced_prices(dcfg: dict) -> pd.DataFrame:
@@ -159,7 +165,7 @@ def log_model(model: str, llm_cfg: dict, blind: pd.DataFrame, live, cache: Respo
                      "after_model_cutoff": bool(d > cutoff) if cutoff is not None else None,
                      "max_tokens": getattr(client, "max_tokens", None),
                      "logged_utc": now.isoformat(timespec="seconds"),
-                     "prospective": bool((now - d.tz_localize("UTC")).days <= PROSPECTIVE_DAYS)})
+                     "prospective": is_prospective(d, now)})
     log = pd.concat([old, pd.DataFrame(rows)], ignore_index=True) if rows else old
     log.to_csv(path, index=False, float_format="%.4f")
     print(f"{len(rows)} new row(s) appended; {len(logged)} existing row(s) verified unchanged")
