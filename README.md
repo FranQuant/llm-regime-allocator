@@ -56,10 +56,11 @@ memorisation is controlled?
    excluding zero, and **GPT names the exact month from the blinded snapshot 94% of the time** (until its training
    data thins out in 2026), so its pass is not clean evidence. Blinding is not model-proof; Gemini and GLM do not
    clear uniform. See nb04.
-5. **The LLMs read the data rather than recall the month** (pre-registered counterfactual, `configs/phase9.toml`).
+5. **The LLMs' calls respond to the data, not only to the month** (pre-registered counterfactual, `configs/phase9.toml`).
    Flip the sign of the inflation (or growth) figures and every model changes its call the way the edited
    figures imply, moving 3–15× more than when the same snapshot is simply re-asked — GPT included, although it
-   knows the month. This rules out pure recall; it does not prove the historical edge is skill. See nb05.
+   knows the month. So the answers are not a pure lookup of the month. The test does not show that the models stop
+   recognising or using the original month, so it does not prove the historical edge is skill. See nb05.
 6. **The confirmatory test is live.** From the October 2026 month-end, one blinded call per model per month (Sonnet, GPT, Gemini, GLM) is committed
    within two weeks, before the outcome is known, to an append-only log ([`results/live/log.csv`](results/live/log.csv)).
    June–September 2026 are post-cutoff but were run retrospectively and are marked so.

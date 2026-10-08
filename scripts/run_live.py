@@ -16,8 +16,9 @@ Steps (on the Mac; needs the API keys in .env, and fresh data from
 Months before a model's documented cutoff (configs/llm.toml [cutoffs]) are logged but flagged;
 a model without a published cutoff (GLM) gets after_model_cutoff empty (unknown).
 
-The log is APPEND-ONLY: existing rows are never rewritten; if a re-run would produce a different
-answer for a logged month, the script stops. A row is `prospective` only if it was logged within
+The log is APPEND-ONLY: existing rows are never rewritten or re-asked. If a logged month's prompt would now
+be different (revised input, changed code), it is recorded in results/live/discrepancies.csv, the other
+months and models still run, and the script exits non-zero at the end. A row is `prospective` only if it was logged within
 PROSPECTIVE_DAYS of its decision date (Jun-Sep 2026 were logged on 2026-10-06: retrospective).
 """
 
@@ -60,6 +61,7 @@ def log_path(model: str):
 def meta_path(model: str):
     return OUT / ("log_meta.json" if model == "claude_sonnet" else f"log_{model}_meta.json")
 PROSPECTIVE_DAYS = 15                        # run within ~2 weeks of month-end, before outcomes exist
+MAX_RUNS = 5                                 # run ids per month: 0 (normal) + up to 4 fresh retries
 PROSPECTIVE_FROM = pd.Timestamp("2026-10-01")  # the prospective series starts with the Oct-2026 month-end
                                                # (configs/phase10.toml); earlier months are retrospective
 
@@ -127,52 +129,107 @@ def main() -> None:
 
     # 4. call (cached) and log, model by model
     cache = ResponseCache(CACHE)
-    for model in args.models:
-        log_model(model, llm_cfg, blind, live, cache)
+    n_disc = sum(log_model(model, llm_cfg, blind, live, cache) for model in args.models)
     cache.manifest().to_csv(CACHE / "manifest.csv", index=False)
+    if n_disc:
+        raise SystemExit(f"{n_disc} logged month(s) would now get a different prompt — see "
+                         "results/live/discrepancies.csv (all other months were processed)")
 
 
-def log_model(model: str, llm_cfg: dict, blind: pd.DataFrame, live, cache: ResponseCache) -> None:
+def prompt_hash(blind: pd.DataFrame, d: pd.Timestamp) -> str:
+    user = build_user_prompt(blind.loc[d], d, "blinded")
+    return hashlib.sha256((SYSTEM + "\n" + user).encode()).hexdigest()[:16]
+
+
+def record_discrepancy(model: str, d: pd.Timestamp, logged_hash: str, now_hash: str) -> None:
+    """A logged month whose prompt would now be different (revised input, changed code). Never re-asked, never
+    rewritten: appended to results/live/discrepancies.csv and reported; the run carries on with other months."""
+    path = OUT / "discrepancies.csv"
+    row = pd.DataFrame([{"model": model, "date": str(d.date()), "logged_prompt_sha256": logged_hash,
+                         "current_prompt_sha256": now_hash,
+                         "detected_utc": datetime.now(timezone.utc).isoformat(timespec="seconds")}])
+    old = pd.read_csv(path, dtype=str) if path.exists() else pd.DataFrame()
+    seen = len(old) and ((old["model"] == model) & (old["date"] == str(d.date()))
+                         & (old["current_prompt_sha256"] == now_hash)).any()
+    if not seen:
+        pd.concat([old, row], ignore_index=True).to_csv(path, index=False)
+    print(f"WARNING {model} {d.date()}: prompt differs from the logged one ({logged_hash} -> {now_hash}); "
+          "logged forecast kept, month not re-asked (results/live/discrepancies.csv)")
+
+
+def log_model(model: str, llm_cfg: dict, blind: pd.DataFrame, live, cache: ResponseCache) -> int:
+    """Append this model's forecasts for months not yet logged. Returns the number of discrepancies found."""
     c = llm_cfg["cutoffs"].get(model)
     cutoff = pd.Timestamp(c) if c else None
     print(f"\n== {model} (cutoff {c or 'not published'}) ==")
+    path = log_path(model)
+    old = pd.read_csv(path, dtype={"date": str, "prompt_sha256": str}) if path.exists() else pd.DataFrame()
+    logged = dict(zip(old["date"], old["prompt_sha256"])) if len(old) else {}
+
+    # 1. logged months: compare prompts only (free, no call); a mismatch is recorded, never rewritten
+    n_disc = 0
+    for d in live:
+        if str(d.date()) in logged and logged[str(d.date())] != prompt_hash(blind, d):
+            record_discrepancy(model, d, logged[str(d.date())], prompt_hash(blind, d))
+            n_disc += 1
+    todo = pd.DatetimeIndex([d for d in live if str(d.date()) not in logged])
+    if not len(todo):
+        print(f"nothing new; {len(logged)} logged row(s), {n_disc} discrepancy(ies)")
+        return n_disc
+
+    # 2. new months: run 0; a month still invalid after the parse retries moves on to run 1, 2, ... (each run id
+    #    has its own cache keys, so cached failures are skipped for free and the first unused run id makes one
+    #    fresh call). One fresh run per invocation, up to MAX_RUNS in total.
     client = make_client(model, llm_cfg)
     if MODELS[model]:
         client.max_tokens = MODELS[model]
-    probs, diag = classify(blind, live, client=client, cache=cache, variant="blinded", run=0,
-                           max_retries=llm_cfg["defaults"]["max_retries"], progress=True)
+    kw = dict(client=client, cache=cache, variant="blinded", max_retries=llm_cfg["defaults"]["max_retries"],
+              progress=True)
+    probs, diag = classify(blind, todo, run=0, **kw)
+    probs["run"] = 0
+    for r in range(1, MAX_RUNS):
+        failed = probs.index[probs[list(REGIMES)].isna().any(axis=1)]
+        if not len(failed):
+            break
+        p1, d1 = classify(blind, failed, run=r, **kw)
+        ok = p1.index[p1[list(REGIMES)].notna().all(axis=1)]
+        probs = probs.astype(object)
+        for d in ok:
+            probs.loc[d, list(p1.columns)] = p1.loc[d].to_numpy()
+            probs.loc[d, "run"] = r
+        if d1.calls:                  # this run id was fresh: one new attempt per invocation is enough
+            print(f"{model}: run {r} retried {len(failed)} invalid month(s), {len(ok)} now valid")
+            break
+
     now = datetime.now(timezone.utc)
-    path = log_path(model)
-    old = pd.read_csv(path, dtype={"date": str}) if path.exists() else pd.DataFrame()
-    logged = set(old["date"]) if len(old) else set()
     rows = []
-    for d in live:
+    for d in todo:
         p = probs.loc[d, list(REGIMES)].astype(float)
-        if str(d.date()) in logged:   # append-only: verify, never rewrite
-            prev = old.loc[old["date"] == str(d.date()), list(REGIMES)].iloc[0].to_numpy(float)
-            if not np.allclose(prev, p.to_numpy(), atol=1e-4):
-                raise SystemExit(f"{model} {d.date()}: re-run differs from the logged forecast — refusing to overwrite")
+        if p.isna().any():            # not logged; a later re-run (within the window) tries again with run 2+
+            print(f"{model} {d.date()}: no valid answer, not logged — re-run later (fresh attempt each time, "
+                  f"up to {MAX_RUNS} run ids)")
             continue
-        if p.isna().any():            # failed call: not logged; a re-run retries it
-            print(f"{model} {d.date()}: no valid answer, not logged — re-run later")
-            continue
-        user = build_user_prompt(blind.loc[d], d, "blinded")
         rows.append({"date": str(d.date()), **p.to_dict(),
                      "top_call": p.idxmax(),
                      "confidence": probs.loc[d, "confidence"], "model_returned": probs.loc[d, "model_returned"],
                      "response_id": probs.loc[d, "response_id"],
-                     "prompt_sha256": hashlib.sha256((SYSTEM + "\n" + user).encode()).hexdigest()[:16],
+                     "prompt_sha256": prompt_hash(blind, d),
                      "after_model_cutoff": bool(d > cutoff) if cutoff is not None else None,
                      "max_tokens": getattr(client, "max_tokens", None),
                      "logged_utc": now.isoformat(timespec="seconds"),
-                     "prospective": is_prospective(d, now)})
+                     "prospective": is_prospective(d, now), "run": int(probs.loc[d, "run"])})
     log = pd.concat([old, pd.DataFrame(rows)], ignore_index=True) if rows else old
+    if log.empty:
+        print(f"{model}: nothing logged yet")
+        return n_disc
     log.to_csv(path, index=False, float_format="%.4f")
-    print(f"{len(rows)} new row(s) appended; {len(logged)} existing row(s) verified unchanged")
+    print(f"{len(rows)} new row(s) appended; {len(logged)} existing row(s) kept; {n_disc} discrepancy(ies)")
     meta_path(model).write_text(json.dumps(
         {"updated_utc": now.isoformat(timespec="seconds"), "model": model,
          "model_id": client.model, **{k: v for k, v in diag.as_dict().items()}}, indent=1) + "\n")
     print(log[["date", "top_call", *REGIMES, "after_model_cutoff", "prospective"]].round(2).to_string(index=False))
+    return n_disc
+
 
 if __name__ == "__main__":
     main()
