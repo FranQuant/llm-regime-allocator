@@ -27,7 +27,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import numpy as np
 import pandas as pd
@@ -51,7 +51,8 @@ MODELS = {"claude_sonnet": 1500, "gpt_sol": None, "gemini_flash": None, "glm": N
 
 
 def is_prospective(d: pd.Timestamp, now: datetime) -> bool:
-    return bool(d >= PROSPECTIVE_FROM and (now - d.tz_localize("UTC")).days <= PROSPECTIVE_DAYS)
+    lag = now - d.tz_localize("UTC").to_pydatetime()
+    return bool(d >= PROSPECTIVE_FROM and timedelta(0) <= lag <= timedelta(days=PROSPECTIVE_DAYS))
 
 
 def log_path(model: str):

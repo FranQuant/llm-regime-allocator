@@ -40,8 +40,9 @@ def main() -> None:
         log["realised"] = forward_labels(store, log.index, today, cfg)
         cut = log["after_model_cutoff"]
         # prospective is recomputed from logged_utc (the flag alone is not trusted)
-        lag = (pd.to_datetime(log["logged_utc"], utc=True) - log.index.tz_localize("UTC")).dt.days
-        prosp = pd.Series((log.index >= PROSPECTIVE_FROM) & (lag <= PROSPECTIVE_DAYS).to_numpy(), index=log.index)
+        lag = pd.to_datetime(log["logged_utc"], utc=True) - log.index.tz_localize("UTC")
+        ok = (lag >= pd.Timedelta(0)) & (lag <= pd.Timedelta(days=PROSPECTIVE_DAYS))
+        prosp = pd.Series((log.index >= PROSPECTIVE_FROM) & ok.to_numpy(), index=log.index)
         flag = log["prospective"].astype(bool)
         if (flag != prosp).any():
             print(f"NOTE {model}: prospective flag disagrees with logged_utc for "

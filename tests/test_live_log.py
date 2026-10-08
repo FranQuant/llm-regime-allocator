@@ -78,3 +78,5 @@ def test_prospective_series_starts_october_2026():
     assert not run_live.is_prospective(pd.Timestamp("2026-09-30"), now)       # 8 days, but before the start
     assert run_live.is_prospective(pd.Timestamp("2026-10-30"), datetime(2026, 11, 3, tzinfo=timezone.utc))
     assert not run_live.is_prospective(pd.Timestamp("2026-10-30"), datetime(2026, 11, 20, tzinfo=timezone.utc))
+    assert not run_live.is_prospective(pd.Timestamp("2026-10-31"), now)       # logged before its decision date
+    assert not run_live.is_prospective(pd.Timestamp("2026-10-30"), datetime(2026, 11, 14, 12, tzinfo=timezone.utc))
