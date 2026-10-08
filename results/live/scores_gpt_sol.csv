@@ -1,0 +1,5 @@
+date,Goldilocks,Reflation,Stagflation,Risk_Off,top_call,confidence,model_returned,response_id,prompt_sha256,after_model_cutoff,max_tokens,logged_utc,prospective,realised,brier
+2026-06-30,0.1000,0.6500,0.2000,0.0500,Reflation,0.6400,gpt-6.1-sol,resp_07236a30f92ff2ba006ac6f1aa233c87d28aaffae4c7eeae2e,3f93c1830410c6b7,True,8000,2026-10-08T01:28:54+00:00,False,Goldilocks,1.2750
+2026-07-31,0.1800,0.4700,0.2500,0.1000,Reflation,0.4800,gpt-6.1-sol,resp_0f5a02490d6bc73f006ac6f1b9cf8c87d2883218c75f2e8093,88347f0b9a340a6e,True,8000,2026-10-08T01:28:54+00:00,False,,
+2026-08-31,0.3400,0.1100,0.1400,0.4100,Risk_Off,0.4500,gpt-6.1-sol,resp_0957bb7a4ff4e676006ac6f1c34b1c87d2a3dd1c756e0a4deb,3ef803efe4ecd914,True,8000,2026-10-08T01:28:54+00:00,False,,
+2026-09-30,0.3400,0.1200,0.1600,0.3800,Risk_Off,0.4600,gpt-6.1-sol,resp_02350dc87e5b3fb0006ac6f1cce8b087d2bbffcb180289bddf,8c3a17e38d502391,True,8000,2026-10-08T01:28:54+00:00,True,,

@@ -1,0 +1,5 @@
+date,Goldilocks,Reflation,Stagflation,Risk_Off,top_call,confidence,model_returned,response_id,prompt_sha256,after_model_cutoff,max_tokens,logged_utc,prospective,realised,brier
+2026-06-30,0.1300,0.5800,0.2100,0.0800,Reflation,0.6000,claude-sonnet-5-5,msg_011CfmpVYD1ufTro83fsHQyx,3f93c1830410c6b7,False,1500,2026-10-06T23:09:59+00:00,False,Goldilocks,1.1438
+2026-07-31,0.1700,0.4600,0.2700,0.1000,Reflation,0.4000,claude-sonnet-5-5,msg_011CfmpVz8jbBtkjP1RdWg5G,88347f0b9a340a6e,True,1500,2026-10-06T23:09:59+00:00,False,,
+2026-08-31,0.3300,0.2700,0.1700,0.2300,Goldilocks,0.2500,claude-sonnet-5-5,msg_011CfmpWTw54xu6iZrzbvgj2,3ef803efe4ecd914,True,1500,2026-10-06T23:09:59+00:00,False,,
+2026-09-30,0.2000,0.3000,0.3000,0.2000,Reflation,0.3000,claude-sonnet-5-5,msg_011CfmpWyKA4X2rikb9nMhm9,8c3a17e38d502391,True,1500,2026-10-06T23:09:59+00:00,False,,
