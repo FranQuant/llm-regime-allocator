@@ -35,6 +35,17 @@ def from_regime_probs(probs: pd.DataFrame, cfg: dict, assets: list[str], fallbac
     return out
 
 
+def top_regime(p: pd.DataFrame) -> pd.Series:
+    """Most likely regime per row; NaN where any probability is missing. Ties go to the first column.
+
+    idxmax runs on complete rows only: pandas >= 3 raises on an all-NaN row instead of returning NaN.
+    """
+    full = p.notna().all(axis=1)
+    out = pd.Series(np.nan, index=p.index, dtype=object)
+    out[full] = p.loc[full].idxmax(axis=1)
+    return out
+
+
 def from_labels(labels: pd.Series, cfg: dict, assets: list[str], fallback: dict) -> pd.DataFrame:
     probs = pd.DataFrame({k: (labels == k).astype(float) for k in cfg["regimes"]}, index=labels.index)
     probs.loc[labels.isna()] = np.nan

@@ -44,11 +44,6 @@ FLAGS = {
 }
 
 
-def top_regime(p: pd.DataFrame) -> pd.Series:
-    """Most likely regime per row (NaN where the forecast is missing)."""
-    return p.idxmax(axis=1).where(p.notna().all(axis=1))
-
-
 def rd(p):
     return pd.read_csv(p, parse_dates=["date"], index_col="date")
 
@@ -130,7 +125,7 @@ def main() -> None:
     for name, p in probs.items():
         if name in ("uniform", "oracle"):
             continue
-        weights[f"playbook_top__{name}"] = S.from_labels(top_regime(p), cfg, assets, ref)
+        weights[f"playbook_top__{name}"] = S.from_labels(S.top_regime(p), cfg, assets, ref)
 
     rows, daily = [], {}
     for name, w in weights.items():

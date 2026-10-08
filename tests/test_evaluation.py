@@ -32,6 +32,8 @@ def test_sharpe_diff_ci_identical_series_is_zero():
     x = pd.Series(np.random.default_rng(2).normal(0.005, 0.03, 200))
     d, lo, hi = sharpe_diff_ci(x, x, n_boot=200)
     assert d == 0 and lo == 0 and hi == 0
+    rev = x.iloc[::-1]                                  # pairing is by date, not by position
+    assert sharpe_diff_ci(rev, x, n_boot=200) == (0.0, 0.0, 0.0)
     better = x + 0.01
     d, lo, hi = sharpe_diff_ci(better, x, n_boot=500)
     assert d > 0 and lo > 0

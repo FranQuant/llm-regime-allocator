@@ -67,8 +67,14 @@ def sharpe(x) -> float:
 
 def sharpe_diff_ci(a: pd.Series, b: pd.Series, block: int = 6, n_boot: int = 4000,
                    seed: int = 0) -> tuple[float, float, float]:
-    """Annualised Sharpe(a) - Sharpe(b) on paired monthly returns, moving-block bootstrap 95% CI."""
-    A, B = a.to_numpy(), b.to_numpy()
+    """Annualised Sharpe(a) - Sharpe(b) on paired monthly returns, moving-block bootstrap 95% CI.
+
+    The two series are paired by index (inner join, months where either is missing dropped), not by position.
+    """
+    j = pd.concat([a.rename("a"), b.rename("b")], axis=1, join="inner").dropna()
+    if len(j) <= block:
+        raise ValueError(f"sharpe_diff_ci: only {len(j)} paired observations")
+    A, B = j["a"].to_numpy(), j["b"].to_numpy()
     n = len(A)
     rng = np.random.default_rng(seed)
     starts = rng.integers(0, n - block + 1, size=(n_boot, int(np.ceil(n / block))))

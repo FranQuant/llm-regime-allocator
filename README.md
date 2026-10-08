@@ -60,8 +60,9 @@ memorisation is controlled?
 5. **The LLMs' calls respond to the data, not only to the month** (pre-registered counterfactual, `configs/phase9.toml`).
    Flip the sign of the inflation (or growth) figures and every model changes its call the way the edited
    figures imply, moving 3–15× more than when the same snapshot is simply re-asked — GPT included, although it
-   knows the month. So the answers are not a pure lookup of the month. The test does not show that the models stop
-   recognising or using the original month, so it does not prove the historical edge is skill. See nb05.
+   knows the month. So the answers are not a lookup that ignores the figures. The test does not show that the models
+   stop recognising or using the original month (or the episode the edited figures resemble), so it does not prove
+   the historical edge is skill. See nb05.
 6. **The confirmatory test has started, with no result yet.** From the October 2026 month-end, one blinded call per model
    per month (Sonnet, GPT, Gemini, GLM) is committed within two weeks, before the outcome is known, to an append-only
    log ([`results/live/log.csv`](results/live/log.csv)). June–September 2026 were logged retrospectively
@@ -74,9 +75,13 @@ From an external adversarial review (nb03 §6, nb04 §2) and the pre-registratio
 - GLM's date probe never finished (reasoning exceeded a 32k-token cap), so its contamination is unmeasured.
 - "Cannot date" is confounded with the period 2008–2019 (nb03 §6a).
 - CFNAI uses revised values before 2011-05; without it Sonnet's full-sample Brier moves 0.668 → 0.672.
-- Outcomes are scored with the data-end vintage; first-release scoring changes 33 of 217 labels and slightly improves every forecaster.
+- The broad dollar index (FRED DTWEXBGS) was introduced in February 2019; the 134 earlier decisions use its backcast,
+  so those snapshots are not strictly point-in-time. Not yet re-run without it.
+- Outcomes are scored with the data-end vintage; first-release scoring changes 33 of 217 labels, improves every forecaster except uniform, keeps Sonnet ahead, and swaps
+  some close pairs (Gemini/GLM, the two blinded ML models).
 - Phase 4–5 parameters were fixed before running but are not independently timestamped; Phases 8, 9 and 10 were pre-registered by commit (`configs/phase8.toml`, `phase9.toml`, `phase10.toml`).
 - Phase 9 shows the calls respond to the data; it does not show that the models stop recognising the month, or that the historical edge is skill.
+- The top-regime mapping (nb02–nb04) was added after the results were known and is descriptive; the blend mapping was fixed in advance.
 
 ## Notebooks
 | | Question | |
