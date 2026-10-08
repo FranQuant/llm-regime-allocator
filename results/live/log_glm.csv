@@ -1,0 +1,5 @@
+date,Goldilocks,Reflation,Stagflation,Risk_Off,top_call,confidence,model_returned,response_id,prompt_sha256,after_model_cutoff,max_tokens,logged_utc,prospective
+2026-06-30,0.1500,0.7000,0.1000,0.0500,Reflation,0.7000,glm-5.3,chatcmpl-629,3f93c1830410c6b7,,8000,2026-10-08T01:31:17+00:00,False
+2026-07-31,0.1000,0.6000,0.2000,0.1000,Reflation,0.6000,glm-5.3,chatcmpl-846,88347f0b9a340a6e,,8000,2026-10-08T01:31:17+00:00,False
+2026-08-31,0.3000,0.2000,0.1500,0.3500,Risk_Off,0.4500,glm-5.3,chatcmpl-34,3ef803efe4ecd914,,8000,2026-10-08T01:31:17+00:00,False
+2026-09-30,0.5000,0.2000,0.1000,0.2000,Goldilocks,0.6000,glm-5.3,chatcmpl-946,8c3a17e38d502391,,8000,2026-10-08T01:31:17+00:00,True
