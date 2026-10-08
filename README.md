@@ -76,7 +76,9 @@ From an external adversarial review (nb03 §6, nb04 §2) and the pre-registratio
 - "Cannot date" is confounded with the period 2008–2019 (nb03 §6a).
 - CFNAI uses revised values before 2011-05; without it Sonnet's full-sample Brier moves 0.668 → 0.672.
 - The broad dollar index (FRED DTWEXBGS) was introduced in February 2019; the 134 earlier decisions use its backcast,
-  so those snapshots are not strictly point-in-time. Not yet re-run without it.
+  so those snapshots are not strictly point-in-time. Where it can be checked (48 decisions, 2014–2019, against the
+  predecessor's vintages) the blinded dollar values move by at most two 0.5 steps (47 of 144 values change);
+  before 2014 there is no point-in-time series to compare (`scripts/check_usd_backcast.py`).
 - Outcomes are scored with the data-end vintage; first-release scoring changes 33 of 217 labels, improves every forecaster except uniform, keeps Sonnet ahead, and swaps
   some close pairs (Gemini/GLM, the two blinded ML models).
 - Phase 4–5 parameters were fixed before running but are not independently timestamped; Phases 8, 9 and 10 were pre-registered by commit (`configs/phase8.toml`, `phase9.toml`, `phase10.toml`).
