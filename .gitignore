@@ -16,3 +16,7 @@ data/cache/
 # mock LLM runs are local checks only
 results/llm_cache/mock-*/
 results/llm/mock/
+
+# local only: agent instructions and review notes
+CLAUDE.md
+review/

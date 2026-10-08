@@ -1,6 +1,6 @@
 """Prompt construction from the point-in-time context pack.
 
-Variants (named, explicit — CLAUDE.md):
+Variants (named, explicit):
   anonymized  default; data only, no date, no tickers
   dated       same data plus the as-of date             (contamination ablation)
   date_only   the as-of month only, no data             (memory probe)
