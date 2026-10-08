@@ -1,0 +1,15 @@
+{
+ "calls": 2,
+ "cache_hits": 0,
+ "cache_misses": 0,
+ "client_failures": 0,
+ "transport_retries": 0,
+ "parse_failures": 0,
+ "dates_failed": [],
+ "model": "gpt_sol",
+ "model_id": "gpt-6.1-sol",
+ "variant": "blinded_cf_growth",
+ "run": 0,
+ "n_dates": 2,
+ "max_tokens": 8000
+}

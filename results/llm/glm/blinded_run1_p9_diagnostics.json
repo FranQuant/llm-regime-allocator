@@ -1,0 +1,15 @@
+{
+ "calls": 46,
+ "cache_hits": 10,
+ "cache_misses": 0,
+ "client_failures": 0,
+ "transport_retries": 0,
+ "parse_failures": 0,
+ "dates_failed": [],
+ "model": "glm",
+ "model_id": "glm-5.3",
+ "variant": "blinded",
+ "run": 1,
+ "n_dates": 56,
+ "max_tokens": 8000
+}

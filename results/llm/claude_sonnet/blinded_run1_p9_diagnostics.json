@@ -1,0 +1,15 @@
+{
+ "calls": 57,
+ "cache_hits": 0,
+ "cache_misses": 0,
+ "client_failures": 0,
+ "transport_retries": 0,
+ "parse_failures": 1,
+ "dates_failed": [],
+ "model": "claude_sonnet",
+ "model_id": "claude-sonnet-5-5",
+ "variant": "blinded",
+ "run": 1,
+ "n_dates": 56,
+ "max_tokens": 4000
+}
