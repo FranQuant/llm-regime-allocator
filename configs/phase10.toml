@@ -1,0 +1,21 @@
+# Phase 10 — multi-model prospective log. PRE-REGISTRATION (committed before the first Phase 10 call).
+# The only test model memory cannot touch: forecasts are committed before their outcomes exist.
+
+[models]
+llms = ["claude_sonnet", "gpt_sol", "gemini_flash", "glm"]  # same blinded prompt (PROMPT_VERSION as logged)
+caps = "Sonnet 1500 tokens (unchanged since Phase 7); others their configs/llm.toml cap (8000)"
+
+[protocol]
+schedule = "after each month-end: build_macro.py -> check_live_prices.py -> run_live.py -> commit -> tag live-YYYY-MM -> push"
+prospective = "a row counts as prospective only if logged within 15 days of its decision date (logged_utc)"
+append_only = "rows are never rewritten; a re-run that would change a logged row stops the script"
+retrospective = "months already past when a model joined (Jun-Sep 2026 for the Phase 10 models) are logged with prospective = false and reported separately"
+failed_call = "not logged; re-run within the 15-day window, otherwise that month is missing for that model (reported)"
+model_drift = "model_returned and response_id are logged per row; a change in model_returned is reported as a break"
+
+[analysis]
+primary = "per model, prospective rows only: Brier minus uniform, moving-block bootstrap (block 3) 95% CI"
+checkpoints = ["first 12 scored prospective months", "first 24 scored prospective months"]
+no_peeking = "before a checkpoint, scores are descriptive only; no change to prompts, models or rules is made because of them"
+secondary = ["all post-cutoff rows incl. retrospective (descriptive)", "equal-weight average of the four models", "playbook portfolio on the logged probabilities, net of 2.5 bps"]
+power_note = "at the backtest edges, a decisive result needs roughly 4-5 years for Sonnet and longer for the others; checkpoints are progress reports, not verdicts"
