@@ -60,7 +60,7 @@ memorisation is controlled?
    Flip the sign of the inflation (or growth) figures and every model changes its call the way the edited
    figures imply, moving 3–15× more than when the same snapshot is simply re-asked — GPT included, although it
    knows the month. This rules out pure recall; it does not prove the historical edge is skill. See nb05.
-6. **The confirmatory test is live.** From the October 2026 month-end, one blinded call per month is committed
+6. **The confirmatory test is live.** From the October 2026 month-end, one blinded call per model per month (Sonnet, GPT, Gemini, GLM) is committed
    within two weeks, before the outcome is known, to an append-only log ([`results/live/log.csv`](results/live/log.csv)).
    June–September 2026 are post-cutoff but were run retrospectively and are marked so.
 
@@ -88,7 +88,7 @@ pip install -e ".[dev,research,llm,data]" && pytest
 python scripts/run_llm_regimes.py --model claude_sonnet --variant blinded --replay-only   # prints IDENTICAL
 python scripts/score_regimes.py && python scripts/run_regime_bl.py && python scripts/score_phase8.py && python scripts/score_phase9.py
 ```
-Monthly live run (keys in `.env`): `build_macro.py` → `check_live_prices.py` → `run_live.py`.
+Monthly live run, all four models (keys in `.env`): `build_macro.py` → `check_live_prices.py` → `run_live.py` → commit → `git tag live-YYYY-MM` → push. Rules: `configs/phase10.toml`.
 
 ## Data & licence
 Prices: [EODHD](https://eodhd.com). Macro: [FRED®/ALFRED®](https://fred.stlouisfed.org), Federal Reserve Bank of
