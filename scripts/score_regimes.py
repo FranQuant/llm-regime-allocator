@@ -50,7 +50,8 @@ def main() -> None:
             fc[k if k == "climatology" else f"ml_{k}"] = fr[[f"{k}_{r}" for r in R]].set_axis(R, axis=1)
     for f in sorted((REPO_ROOT / "results" / "llm").glob("*/*_run0.csv")):
         model, variant = f.parent.name, f.stem.removesuffix("_run0")
-        if model == "mock" or variant.startswith("date_probe"):
+        # full-sample files only: skip probes, Phase 9 counterfactual edits (30 months) and partial runs
+        if model == "mock" or variant.startswith(("date_probe", "blinded_cf_")) or "_p9" in variant or "_every" in variant:
             continue
         fc[f"{model}:{variant}"] = pd.read_csv(f, parse_dates=["date"], index_col="date")[R]
 

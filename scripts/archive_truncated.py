@@ -1,7 +1,8 @@
 """Move cached answers that were cut off by the output cap out of the live cache.
 
 They stay committed under results/llm_cache_truncated/ as evidence (and cost record), but no
-longer block a re-run with a larger cap (cache keys do not include max_tokens).
+longer block a re-run with a larger cap (cache keys do not include max_tokens). A record that
+would land on an existing archived file is saved with a numbered suffix, never overwritten.
   python scripts/archive_truncated.py --model-id glm-5.3 --variant date_probe_blinded
 """
 
@@ -23,6 +24,16 @@ def truncated(r: dict) -> bool:
     return u.get("finish_reason") in ("length", "MAX_TOKENS", "FinishReason.MAX_TOKENS") or u.get("status") == "incomplete"
 
 
+def free_path(dest):
+    """Never overwrite an archived record: a re-run that reuses a cache key gets `<key>.1.json`, `.2.json`, ..."""
+    if not dest.exists():
+        return dest
+    n = 1
+    while dest.with_name(f"{dest.stem}.{n}{dest.suffix}").exists():
+        n += 1
+    return dest.with_name(f"{dest.stem}.{n}{dest.suffix}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model-id", required=True)
@@ -34,7 +45,7 @@ def main() -> None:
         if r.get("variant") != args.variant:
             continue
         if truncated(r) and not r.get("parse_ok"):
-            dest = ARCHIVE / p.relative_to(CACHE)
+            dest = free_path(ARCHIVE / p.relative_to(CACHE))
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(p, dest)
             moved += 1
