@@ -1,5 +1,10 @@
 # llm-regime-allocator
 
+[![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regime_playbook.ipynb)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org)
+
 **Testing whether an LLM adds real forecasting value to asset allocation, once its memory of history is taken out.**
 
 ## Why
@@ -28,21 +33,29 @@ memorisation is controlled?
 |---|---|---|
 | Claude Sonnet 5.5 | Jun 2026 | Frontier model; main subject of the study |
 | Claude Haiku 4.5 | Feb 2025 | Smaller, earlier cutoff (collapsed onto one regime, dropped) |
-| Llama 3.1 8B (local, Ollama) | Dec 2023 | Open weights at zero cost (Reflation in 214/222 months, dropped) |
+| Llama 3.1 8B (local, Ollama) | Dec 2023 | Open weights at zero cost (Reflation in 209 of 217 scored months, dropped) |
 | GPT-6.1-sol | Apr 2026 | Cross-family replication (Phase 8) |
 | Gemini 3.8 Flash | Mar 2026 | Cross-family replication (Phase 8) |
 | GLM-5.3 (open weights, Ollama Cloud) | not published | Cross-family replication (Phase 8) |
 
 ## Findings
-1. **Removing the date and tickers is not anonymisation.** From a raw snapshot Sonnet names the exact month 84% of
-   the time, and adding the date significantly improves its forecasts, which is consistent with memory.
-2. **A blinded snapshot fixes most of it.** Showing every figure as a z-score vs its own last 36 months drops month
-   recovery to 14% and *improves* forecasts; it beats ML on identical inputs, including in months it cannot date.
-   Exploratory: the blinding was designed after finding 1, on the same history.
-3. **It helps portfolios, but not significantly.** 2008–2026, monthly, net of costs:
+2008–2026, monthly, net of 2.5 bps; Sharpe in excess of cash; intervals are 95% moving-block bootstrap.
 
-| | Forecast Brier ↓ (uniform 0.750) | Playbook Sharpe | Max DD |
+1. **The headline looks good.** On the raw snapshot, Sonnet's most likely regime driving a fixed playbook earns
+   about what 60/40 earns with less than half its drawdown: Sharpe 0.83 vs 0.66, max drawdown −14% vs −32%. It is
+   not significant (Sharpe difference +0.18, CI −0.20 to +0.52), this top-regime mapping was added after the fact,
+   and (finding 2) it is not out-of-sample. See nb02.
+2. **Removing the date and tickers is not anonymisation.** From the raw snapshot Sonnet names the exact month 84% of
+   the time, and adding the date improves its forecasts (Brier −0.051, CI −0.070 to −0.036), consistent with memory.
+   See nb03.
+3. **A blinded snapshot removes most of the date signal.** Showing every figure as a z-score vs its own last 36
+   months drops month recovery to 14%, and the forecast stays better than uniform and than ML on identical inputs.
+   Exploratory: the blinding was designed after finding 2, on the same history. Portfolios keep most of the
+   picture, still not significantly:
+
+| | Forecast Brier ↓ (uniform 0.750) | Playbook Sharpe (blend) | Max DD |
 |---|---|---|---|
+| Sonnet, raw snapshot | 0.702 | 0.77 | −16% |
 | Sonnet, blinded | **0.668** | **0.76** | **−16%** |
 | ML (gradient boosting), raw inputs | 0.880 | 0.75 | −18% |
 | ML (gradient boosting), blinded inputs | 0.871 | 0.59 | −27% |
@@ -50,8 +63,8 @@ memorisation is controlled?
 | 60/40 | — | 0.66 | −32% |
 | Oracle (look-ahead ceiling) | 0 | 0.96 | −14% |
 
-   Sonnet vs control: +0.14 Sharpe, 95% CI [−0.03, +0.31]. Return-based Black-Litterman views fail even with the oracle.
-
+   Blinded Sonnet vs control: +0.14 Sharpe, CI −0.03 to +0.31. Return-based Black-Litterman views fail even with
+   the oracle. See nb03.
 4. **Across model families it only partly replicates** (pre-registered, `configs/phase8.toml`). All four LLMs beat
    ML on identical blinded inputs (Brier 0.668–0.724 vs 0.871), but only Sonnet and GPT beat uniform with a CI
    excluding zero, and **GPT names the exact month from the blinded snapshot 94% of the time** (until its training
@@ -67,7 +80,7 @@ memorisation is controlled?
    per month (Sonnet, GPT, Gemini, GLM) is committed within two weeks, before the outcome is known, to an append-only
    log ([`results/live/log.csv`](results/live/log.csv)). June–September 2026 were logged retrospectively
    (`prospective = false`) and are reported separately. No prospective month is scored yet; the first checkpoint is
-   after 12 scored months, and a decisive result for Sonnet needs roughly 4–5 years (`configs/phase10.toml`).
+   after 12 scored months, and a decisive result for Sonnet needs roughly 4–5 years (`configs/phase10.toml`). See nb06.
 
 ## Limitations
 From an external adversarial review (nb03 §6, nb04 §2) and the pre-registrations:
@@ -79,17 +92,18 @@ From an external adversarial review (nb03 §6, nb04 §2) and the pre-registratio
   so those snapshots are not strictly point-in-time. Where it can be checked (48 decisions, 2014–2019, against the
   predecessor's vintages) the blinded dollar values move by at most two 0.5 steps (47 of 144 values change);
   before 2014 there is no point-in-time series to compare (`scripts/check_usd_backcast.py`).
-- Outcomes are scored with the data-end vintage; first-release scoring changes 33 of 217 labels, improves every forecaster except uniform, keeps Sonnet ahead, and swaps
-  some close pairs (Gemini/GLM, the two blinded ML models).
-- Phase 4–5 parameters were fixed before running but are not independently timestamped; Phases 8, 9 and 10 were pre-registered by commit (`configs/phase8.toml`, `phase9.toml`, `phase10.toml`).
-- Phase 9 shows the calls respond to the data; it does not show that the models stop recognising the month, or that the historical edge is skill.
-- The top-regime mapping (nb02–nb04) was added after the results were known and is descriptive; the blend mapping was fixed in advance.
+- Outcomes are scored with the data-end vintage; first-release scoring changes 33 of 217 labels, improves every
+  forecaster except uniform, keeps Sonnet ahead, and swaps some close pairs (Gemini/GLM, the two blinded ML models).
+- Phase 4–5 parameters were fixed before running but are not independently timestamped; Phases 8, 9 and 10 were
+  pre-registered by commit (`configs/phase8.toml`, `phase9.toml`, `phase10.toml`).
+- The top-regime mapping (nb02–nb04) was added after the results were known and is descriptive; the blend mapping
+  was fixed in advance.
 
 ## Notebooks
 | | Question | |
 |---|---|---|
 | [nb01](notebooks/nb01_data_and_baselines.ipynb) | What does an LLM forecaster have to beat? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb01_data_and_baselines.ipynb) |
-| [nb02](notebooks/nb02_llm_regime_playbook.ipynb) | The headline: does an LLM regime call beat 60/40? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regime_playbook.ipynb) |
+| [nb02](notebooks/nb02_llm_regime_playbook.ipynb) | The headline: an LLM regime call against 60/40 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regime_playbook.ipynb) |
 | [nb03](notebooks/nb03_memory_and_blinding.ipynb) | Can we trust it? Memory, blinding and robustness | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb03_memory_and_blinding.ipynb) |
 | [nb04](notebooks/nb04_cross_family.ipynb) | Is it Claude, or LLMs? Three more model families | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb04_cross_family.ipynb) |
 | [nb05](notebooks/nb05_counterfactual.ipynb) | Reading or remembering? Edit the data and re-ask | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb05_counterfactual.ipynb) |
