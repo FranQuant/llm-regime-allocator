@@ -6,17 +6,17 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 > **LLMs as point-in-time macro regime classifiers, audited for memory.**
-> *The LLM beat 60/40. Then we asked it what month it was.*
+> *Good calls, or good memory? We blinded the data, raced four model families and rewrote the numbers to find out.*
+
+---
+
+## 📌 Project Overview
 
 ![Claude Sonnet 5.5](https://img.shields.io/badge/Claude-Sonnet_5.5-D97757?logo=anthropic&logoColor=white)
 ![GPT-6.1-sol](https://img.shields.io/badge/OpenAI-GPT--6.1--sol-412991)
 ![Gemini 3.8 Flash](https://img.shields.io/badge/Google-Gemini_3.8_Flash-4285F4?logo=googlegemini&logoColor=white)
 ![GLM-5.3](https://img.shields.io/badge/Zhipu-GLM--5.3-1F6FEB)
 ![Ollama](https://img.shields.io/badge/via-Ollama-000000?logo=ollama&logoColor=white)
-
----
-
-## 📌 Project Overview
 
 Six LLMs from five labs read 222 month-end snapshots of the economy (2007–2026) and call the next quarter's
 regime. The question is whether they **read** the economy or **remember** it. The design keeps the LLM on a short
@@ -143,9 +143,10 @@ return one JSON object; invalid answers are re-asked. A real answer (Sonnet 5.5,
 5. **Edit the data, the answer follows.** Flip the inflation figures and every model swings its call the way the
    new numbers point, 3–15× more than when simply re-asked. GPT included. → [nb05](notebooks/nb05_counterfactual.ipynb)
 
-**The honest part.** No Sharpe gap here is statistically significant on 18 years of data (Sonnet − 60/40: +0.18,
-95% CI −0.20 to +0.52), and the top-regime mapping and the blinding were designed after seeing results. This is a
-strong historical signal with a memory problem, not proven skill.
+**The honest part.** None of these Sharpe gaps is statistically significant over 18 years
+(Sonnet − 60/40: +0.18, 95% CI −0.20 to +0.52), and the top-regime mapping and the blinding were
+designed after seeing the results. A promising historical signal with a memory problem, not proven
+skill. Only the [live log](#-live-log) can settle it.
 
 ---
 
@@ -207,11 +208,13 @@ jupyter lab notebooks/
 | Claude Haiku 4.5 | Feb 2025 | Dropped: calls the same regime nearly every month |
 | Llama 3.1 8B (local) | Dec 2023 | Dropped: Reflation in 209 of 217 months |
 
-**Limitations** (details in nb03 §6 and nb04): one main run per variant (run-to-run variance measured, small);
-GLM's date probe never finished, so its memory is unmeasured; "cannot date" months cluster in 2008–2019; CFNAI
-before 2011 and the broad dollar index before 2019 are not strictly point-in-time (both checked, small effect);
-outcomes use today's data vintage (first-release labels change 33 of 217 months, no conclusion); Phases 8–10 are
-pre-registered by commit, earlier parameters are not independently timestamped.
+**Robustness: what we checked** (details in nb03 §6 and nb04)
+- ✅ **Run-to-run noise:** a second run on every 4th month moves probabilities 2–5 points; single runs hold.
+- ✅ **Data vintage:** scoring with first-release data changes 33 of 217 labels; every conclusion holds.
+- ✅ **Point-in-time gaps:** CFNAI before 2011 and the dollar index before 2019 use revised values; both checked, small effect.
+- ✅ **Pre-registration:** the cross-family, counterfactual and live tests were committed before any paid call.
+- ⚠️ **Still open:** GLM's date probe never finished (memory unmeasured); undatable months cluster in 2008–2019,
+  so memory and period can't be fully separated; parameters before Phase 8 weren't independently timestamped.
 
 **Data.** Prices: [EODHD](https://eodhd.com). Macro: [FRED®/ALFRED®](https://fred.stlouisfed.org), Federal Reserve
 Bank of St. Louis; third-party series remain under their owners' terms. Rebuild: [`data/README.md`](data/README.md).
