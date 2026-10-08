@@ -19,3 +19,11 @@ checkpoints = ["first 12 scored prospective months", "first 24 scored prospectiv
 no_peeking = "before a checkpoint, scores are descriptive only; no change to prompts, models or rules is made because of them"
 secondary = ["all post-cutoff rows incl. retrospective (descriptive)", "equal-weight average of the four models", "playbook portfolio on the logged probabilities, net of 2.5 bps"]
 power_note = "at the backtest edges, a decisive result needs roughly 4-5 years for Sonnet and longer for the others; checkpoints are progress reports, not verdicts"
+
+[correction_2026_10_08]
+# Declared correction, before any outcome for the affected month exists.
+# The first Phase 10 run (commit 9ceced0) flagged the Sep-2026 rows of gpt_sol, gemini_flash and glm as
+# prospective = true (logged 7 days after month-end), contradicting [protocol].retrospective above and Sonnet's
+# Sep-2026 row (false). The logs are append-only, so those rows are not edited; instead the prospective series is
+# defined as rows with decision date >= 2026-10-01 AND prospective = true (scripts/score_live.py, run_live.py).
+prospective_from = "2026-10-01"
