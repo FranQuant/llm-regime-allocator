@@ -69,10 +69,10 @@ memorisation is controlled?
    after 12 scored months, and a decisive result for Sonnet needs roughly 4–5 years (`configs/phase10.toml`).
 
 ## Limitations
-From an external adversarial review (nb02 §6, nb04 §6) and the pre-registrations:
+From an external adversarial review (nb03 §6, nb04 §2) and the pre-registrations:
 - One main run per variant at the provider's default settings; run-to-run variance, measured in Phase 8, is small.
 - GLM's date probe never finished (reasoning exceeded a 32k-token cap), so its contamination is unmeasured.
-- "Cannot date" is confounded with the period 2008–2019 (nb02 §6a).
+- "Cannot date" is confounded with the period 2008–2019 (nb03 §6a).
 - CFNAI uses revised values before 2011-05; without it Sonnet's full-sample Brier moves 0.668 → 0.672.
 - Outcomes are scored with the data-end vintage; first-release scoring changes 33 of 217 labels and slightly improves every forecaster.
 - Phase 4–5 parameters were fixed before running but are not independently timestamped; Phases 8, 9 and 10 were pre-registered by commit (`configs/phase8.toml`, `phase9.toml`, `phase10.toml`).
@@ -81,11 +81,12 @@ From an external adversarial review (nb02 §6, nb04 §6) and the pre-registratio
 ## Notebooks
 | | Question | |
 |---|---|---|
-| [nb01](notebooks/nb01_data_and_baselines.ipynb) | What do the data, baselines and benchmark portfolios look like? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb01_data_and_baselines.ipynb) |
-| [nb02](notebooks/nb02_llm_regimes_and_memory.ipynb) | Does the LLM read regimes, or remember them? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regimes_and_memory.ipynb) |
-| [nb03](notebooks/nb03_regimes_to_portfolios.ipynb) | Does regime skill turn into better portfolios? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb03_regimes_to_portfolios.ipynb) |
-| [nb04](notebooks/nb04_cross_family.ipynb) | Does it replicate across model families? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb04_cross_family.ipynb) |
-| [nb05](notebooks/nb05_counterfactual.ipynb) | Do the models read the data or remember the month? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb05_counterfactual.ipynb) |
+| [nb01](notebooks/nb01_data_and_baselines.ipynb) | What does an LLM forecaster have to beat? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb01_data_and_baselines.ipynb) |
+| [nb02](notebooks/nb02_llm_regime_playbook.ipynb) | The headline: does an LLM regime call beat 60/40? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regime_playbook.ipynb) |
+| [nb03](notebooks/nb03_memory_and_blinding.ipynb) | Can we trust it? Memory, blinding and robustness | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb03_memory_and_blinding.ipynb) |
+| [nb04](notebooks/nb04_cross_family.ipynb) | Is it Claude, or LLMs? Three more model families | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb04_cross_family.ipynb) |
+| [nb05](notebooks/nb05_counterfactual.ipynb) | Reading or remembering? Edit the data and re-ask | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb05_counterfactual.ipynb) |
+| [nb06](notebooks/nb06_live_log.ipynb) | The live log: forecasts made before the outcome exists | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb06_live_log.ipynb) |
 
 ## Reproduce
 Every LLM answer is cached and committed (`results/llm_cache/`), so all results replay **without an API key**;

@@ -183,3 +183,51 @@ bl_playbook__llm_ensemble_4,0.0000,Phase 8; equal-weight mean of the four LLMs (
 bl_playbook__llm_ensemble_4,2.5000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0682,0.0882,0.6443,-0.2435,0.2802,0.3541
 bl_playbook__llm_ensemble_4,5.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0680,0.0882,0.6423,-0.2436,0.2793,0.3541
 bl_playbook__llm_ensemble_4,10.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | POST-HOC design (5b),0.0677,0.0882,0.6384,-0.2438,0.2775,0.3541
+playbook_top__llm_sonnet_blinded,0.0000,main LLM variant | DESCRIPTIVE: top-regime mapping (reference design),0.0758,0.0839,0.7599,-0.1501,0.5048,2.2002
+playbook_top__llm_sonnet_blinded,2.5000,main LLM variant | DESCRIPTIVE: top-regime mapping (reference design),0.0746,0.0839,0.7469,-0.1506,0.4953,2.2002
+playbook_top__llm_sonnet_blinded,5.0000,main LLM variant | DESCRIPTIVE: top-regime mapping (reference design),0.0734,0.0839,0.7339,-0.1511,0.4858,2.2002
+playbook_top__llm_sonnet_blinded,10.0000,main LLM variant | DESCRIPTIVE: top-regime mapping (reference design),0.0710,0.0839,0.7078,-0.1521,0.4671,2.2002
+playbook_top__llm_sonnet_raw,0.0000,raw pack; model can date it (contaminated) | DESCRIPTIVE: top-regime mapping (reference design),0.0823,0.0832,0.8383,-0.1407,0.5848,2.2304
+playbook_top__llm_sonnet_raw,2.5000,raw pack; model can date it (contaminated) | DESCRIPTIVE: top-regime mapping (reference design),0.0811,0.0832,0.8251,-0.1409,0.5755,2.2304
+playbook_top__llm_sonnet_raw,5.0000,raw pack; model can date it (contaminated) | DESCRIPTIVE: top-regime mapping (reference design),0.0799,0.0832,0.8118,-0.1410,0.5662,2.2304
+playbook_top__llm_sonnet_raw,10.0000,raw pack; model can date it (contaminated) | DESCRIPTIVE: top-regime mapping (reference design),0.0775,0.0832,0.7852,-0.1414,0.5477,2.2304
+playbook_top__llm_sonnet_dated,0.0000,"raw pack + date (contaminated, memory on purpose) | DESCRIPTIVE: top-regime mapping (reference design)",0.0805,0.0810,0.8381,-0.1689,0.4764,1.8856
+playbook_top__llm_sonnet_dated,2.5000,"raw pack + date (contaminated, memory on purpose) | DESCRIPTIVE: top-regime mapping (reference design)",0.0795,0.0810,0.8267,-0.1700,0.4674,1.8856
+playbook_top__llm_sonnet_dated,5.0000,"raw pack + date (contaminated, memory on purpose) | DESCRIPTIVE: top-regime mapping (reference design)",0.0785,0.0810,0.8152,-0.1711,0.4585,1.8856
+playbook_top__llm_sonnet_dated,10.0000,"raw pack + date (contaminated, memory on purpose) | DESCRIPTIVE: top-regime mapping (reference design)",0.0764,0.0810,0.7921,-0.1733,0.4411,1.8856
+playbook_top__ml_logit,0.0000,"walk-forward logit, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0667,0.0928,0.6004,-0.3048,0.2189,2.0853
+playbook_top__ml_logit,2.5000,"walk-forward logit, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0656,0.0928,0.5892,-0.3052,0.2149,2.0853
+playbook_top__ml_logit,5.0000,"walk-forward logit, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0645,0.0928,0.5781,-0.3056,0.2110,2.0853
+playbook_top__ml_logit,10.0000,"walk-forward logit, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0623,0.0927,0.5558,-0.3065,0.2032,2.0853
+playbook_top__ml_gbt,0.0000,"walk-forward GBT, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0767,0.0816,0.7891,-0.1563,0.4904,2.4734
+playbook_top__ml_gbt,2.5000,"walk-forward GBT, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0753,0.0816,0.7740,-0.1573,0.4789,2.4734
+playbook_top__ml_gbt,5.0000,"walk-forward GBT, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0740,0.0816,0.7589,-0.1583,0.4676,2.4734
+playbook_top__ml_gbt,10.0000,"walk-forward GBT, raw pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0714,0.0816,0.7286,-0.1602,0.4454,2.4734
+playbook_top__ml_logit_blinded,0.0000,"walk-forward logit, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0524,0.0938,0.4521,-0.3248,0.1613,1.9602
+playbook_top__ml_logit_blinded,2.5000,"walk-forward logit, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0513,0.0938,0.4418,-0.3251,0.1580,1.9602
+playbook_top__ml_logit_blinded,5.0000,"walk-forward logit, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0503,0.0938,0.4314,-0.3253,0.1547,1.9602
+playbook_top__ml_logit_blinded,10.0000,"walk-forward logit, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0483,0.0938,0.4106,-0.3259,0.1481,1.9602
+playbook_top__ml_gbt_blinded,0.0000,"walk-forward GBT, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0538,0.0978,0.4508,-0.3794,0.1419,2.7152
+playbook_top__ml_gbt_blinded,2.5000,"walk-forward GBT, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0524,0.0978,0.4371,-0.3800,0.1379,2.7152
+playbook_top__ml_gbt_blinded,5.0000,"walk-forward GBT, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0510,0.0978,0.4233,-0.3807,0.1339,2.7152
+playbook_top__ml_gbt_blinded,10.0000,"walk-forward GBT, blinded pack | DESCRIPTIVE: top-regime mapping (reference design)",0.0481,0.0978,0.3958,-0.3820,0.1260,2.7152
+playbook_top__climatology,0.0000,point-in-time label frequencies | DESCRIPTIVE: top-regime mapping (reference design),0.0552,0.1023,0.4489,-0.3866,0.1429,0.7204
+playbook_top__climatology,2.5000,point-in-time label frequencies | DESCRIPTIVE: top-regime mapping (reference design),0.0548,0.1023,0.4454,-0.3867,0.1418,0.7204
+playbook_top__climatology,5.0000,point-in-time label frequencies | DESCRIPTIVE: top-regime mapping (reference design),0.0545,0.1023,0.4419,-0.3867,0.1408,0.7204
+playbook_top__climatology,10.0000,point-in-time label frequencies | DESCRIPTIVE: top-regime mapping (reference design),0.0537,0.1023,0.4349,-0.3869,0.1388,0.7204
+playbook_top__llm_gpt_sol_blinded,0.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | DESCRIPTIVE: top-regime mapping (reference design),0.0676,0.0833,0.6724,-0.2093,0.3229,2.3054
+playbook_top__llm_gpt_sol_blinded,2.5000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | DESCRIPTIVE: top-regime mapping (reference design),0.0664,0.0833,0.6587,-0.2096,0.3166,2.3054
+playbook_top__llm_gpt_sol_blinded,5.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | DESCRIPTIVE: top-regime mapping (reference design),0.0651,0.0833,0.6450,-0.2099,0.3103,2.3054
+playbook_top__llm_gpt_sol_blinded,10.0000,Phase 8; GPT dates the blinded pack (94% exact month) -> contaminated | DESCRIPTIVE: top-regime mapping (reference design),0.0627,0.0833,0.6175,-0.2106,0.2978,2.3054
+playbook_top__llm_gemini_flash_blinded,0.0000,Phase 8 | DESCRIPTIVE: top-regime mapping (reference design),0.0643,0.0828,0.6387,-0.2093,0.3072,2.3700
+playbook_top__llm_gemini_flash_blinded,2.5000,Phase 8 | DESCRIPTIVE: top-regime mapping (reference design),0.0630,0.0828,0.6245,-0.2096,0.3008,2.3700
+playbook_top__llm_gemini_flash_blinded,5.0000,Phase 8 | DESCRIPTIVE: top-regime mapping (reference design),0.0618,0.0828,0.6104,-0.2099,0.2943,2.3700
+playbook_top__llm_gemini_flash_blinded,10.0000,Phase 8 | DESCRIPTIVE: top-regime mapping (reference design),0.0593,0.0828,0.5819,-0.2106,0.2815,2.3700
+playbook_top__llm_glm_blinded,0.0000,Phase 8; contamination unmeasured (probe not completed) | DESCRIPTIVE: top-regime mapping (reference design),0.0744,0.0849,0.7362,-0.1997,0.3723,2.4706
+playbook_top__llm_glm_blinded,2.5000,Phase 8; contamination unmeasured (probe not completed) | DESCRIPTIVE: top-regime mapping (reference design),0.0730,0.0848,0.7219,-0.1999,0.3654,2.4706
+playbook_top__llm_glm_blinded,5.0000,Phase 8; contamination unmeasured (probe not completed) | DESCRIPTIVE: top-regime mapping (reference design),0.0717,0.0848,0.7075,-0.2001,0.3584,2.4706
+playbook_top__llm_glm_blinded,10.0000,Phase 8; contamination unmeasured (probe not completed) | DESCRIPTIVE: top-regime mapping (reference design),0.0691,0.0848,0.6787,-0.2004,0.3446,2.4706
+playbook_top__llm_ensemble_4,0.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | DESCRIPTIVE: top-regime mapping (reference design),0.0692,0.0833,0.6902,-0.2093,0.3306,2.2548
+playbook_top__llm_ensemble_4,2.5000,Phase 8; equal-weight mean of the four LLMs (descriptive) | DESCRIPTIVE: top-regime mapping (reference design),0.0680,0.0833,0.6768,-0.2096,0.3244,2.2548
+playbook_top__llm_ensemble_4,5.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | DESCRIPTIVE: top-regime mapping (reference design),0.0668,0.0833,0.6635,-0.2099,0.3182,2.2548
+playbook_top__llm_ensemble_4,10.0000,Phase 8; equal-weight mean of the four LLMs (descriptive) | DESCRIPTIVE: top-regime mapping (reference design),0.0644,0.0833,0.6366,-0.2106,0.3058,2.2548

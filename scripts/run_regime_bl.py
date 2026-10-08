@@ -44,6 +44,11 @@ FLAGS = {
 }
 
 
+def top_regime(p: pd.DataFrame) -> pd.Series:
+    """Most likely regime per row (NaN where the forecast is missing)."""
+    return p.idxmax(axis=1).where(p.notna().all(axis=1))
+
+
 def rd(p):
     return pd.read_csv(p, parse_dates=["date"], index_col="date")
 
@@ -119,13 +124,21 @@ def main() -> None:
         weights[f"playbook__{name}"] = S.from_regime_probs(p, cfg, assets, ref)
         weights[f"bl_regime__{name}"] = pd.DataFrame(bl_rows[name], index=assets).T
         weights[f"bl_playbook__{name}"] = pd.DataFrame(pb_rows[name], index=assets).T  # post-hoc
+    # Descriptive, not pre-registered: the "top regime" mapping of the reference design - hold 100% of the
+    # playbook of the most likely regime (ties: first in configs order). Uniform has no top regime; the
+    # oracle is already one-hot, so both are skipped.
+    for name, p in probs.items():
+        if name in ("uniform", "oracle"):
+            continue
+        weights[f"playbook_top__{name}"] = S.from_labels(top_regime(p), cfg, assets, ref)
 
     rows, daily = [], {}
     for name, w in weights.items():
         for bps in cfg["backtest"]["cost_sensitivity_bps"]:
             net, to = run_backtest(w, rets, bps)
             fc = name.split("__")[-1] if "__" in name else ""
-            note = FLAGS.get(fc, "") + (" | POST-HOC design (5b)" if name.startswith("bl_playbook__") else "")
+            note = FLAGS.get(fc, "") + (" | POST-HOC design (5b)" if name.startswith("bl_playbook__") else "") \
+                + (" | DESCRIPTIVE: top-regime mapping (reference design)" if name.startswith("playbook_top__") else "")
             rows.append({"strategy": name, "cost_bps": bps, "note": note, **metrics(net, rets[cash], to)})
             if bps == cfg["backtest"]["cost_bps"]:
                 daily[name] = net
