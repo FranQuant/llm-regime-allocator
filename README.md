@@ -21,6 +21,11 @@
 **A tool, not an oracle.** The LLM's only job is to estimate the current macro regime, inside a disciplined
 workflow: point-in-time data, a fixed playbook, pre-registered tests and full human oversight.
 
+**Why it's hard.** An LLM back-test has a look-ahead bias that no data pipeline can remove: the model has already
+read what happened next. Ask it about March 2020 and it may recall the COVID crash instead of reading the data. A
+model retrained up to every rebalance date would fix this but isn't feasible, so we measure the memory, reduce it,
+and test what is left.
+
 Six LLMs from five labs read 222 month-end snapshots of the economy (2007–2026) and call the next quarter's
 regime. The question is whether they **read** the economy or **remember** it. The design keeps the LLM on a short
 leash:
