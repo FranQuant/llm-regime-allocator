@@ -5,8 +5,7 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-> **LLMs as point-in-time macro regime classifiers, audited for memory.**
-> *Good calls or good memory? We blinded the data, raced four model families and rewrote the numbers to find out.*
+> **A tool, not an oracle.** An LLM classifies the macro regime from point-in-time data and is audited for memory; a fixed playbook, pre-registered tests and human oversight do the rest.
 
 ---
 
@@ -17,9 +16,6 @@
 ![Gemini 3.8 Flash](https://img.shields.io/badge/Google-Gemini_3.8_Flash-4285F4?logo=googlegemini&logoColor=white)
 ![GLM-5.3](https://img.shields.io/badge/Zhipu-GLM--5.3-1F6FEB)
 ![Ollama](https://img.shields.io/badge/via-Ollama-000000?logo=ollama&logoColor=white)
-
-**A tool, not an oracle.** The LLM's only job is to estimate the current macro regime, inside a disciplined
-workflow: point-in-time data, a fixed playbook, pre-registered tests and full human oversight.
 
 **Why it's hard.** An LLM back-test has a look-ahead bias that no data pipeline can remove: the model has already
 read what happened next. Ask it about March 2020 and it may recall the COVID crash instead of reading the data. A
