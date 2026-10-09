@@ -1,4 +1,4 @@
-# 🧠 LLM Regime Allocator
+# 🧠 LLM-Driven Asset Allocation: Reading or Remembering?
 
 [![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FranQuant/llm-regime-allocator/blob/main/notebooks/nb02_llm_regime_playbook.ipynb)
@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 > **LLMs as point-in-time macro regime classifiers, audited for memory.**
-> *Good calls, or good memory? We blinded the data, raced four model families and rewrote the numbers to find out.*
+> *Good calls or good memory? We blinded the data, raced four model families and rewrote the numbers to find out.*
 
 ---
 
@@ -222,5 +222,11 @@ Bank of St. Louis; third-party series remain under their owners' terms. Rebuild:
 </details>
 
 ---
+
+**Related**
+
+🎙️ [![Podcast: AI in Asset Allocation](https://img.shields.io/badge/Podcast-AI_in_Asset_Allocation-9933CC?logo=applepodcasts&logoColor=white)](https://allintoaccount.podbean.com/e/ai-in-asset-allocation/)
+
+📖 Y. J. Hilpisch, *Python and AI for Asset Management* (upcoming), Part VIII: "LLMs, Agents, and Modern AI in Asset Management".
 
 Code under [MIT](LICENSE). Research code, not investment advice.
