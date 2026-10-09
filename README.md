@@ -18,6 +18,9 @@
 ![GLM-5.3](https://img.shields.io/badge/Zhipu-GLM--5.3-1F6FEB)
 ![Ollama](https://img.shields.io/badge/via-Ollama-000000?logo=ollama&logoColor=white)
 
+**A tool, not an oracle.** The LLM's only job is to estimate the current macro regime, inside a disciplined
+workflow: point-in-time data, a fixed playbook, pre-registered tests and full human oversight.
+
 Six LLMs from five labs read 222 month-end snapshots of the economy (2007–2026) and call the next quarter's
 regime. The question is whether they **read** the economy or **remember** it. The design keeps the LLM on a short
 leash:
